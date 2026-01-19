@@ -53,7 +53,7 @@ def extract_keypoints_from_video(video_path, landmarker):
                 for lm in landmarks
             ])
         else:
-            frame_kps = np.zeros((NUM_KEYPOINTS, 3))
+            frame_kps = np.full((NUM_KEYPOINTS, 3), np.nan)
 
         all_keypoints.append(frame_kps)
         frame_idx += 1
@@ -66,8 +66,8 @@ def extract_keypoints_from_video(video_path, landmarker):
 def process_attempt(attempt_dir, output_dir, landmarker):
     cameras = {
         "front": "cam_front.mp4",
-        "sideA": "cam_sideA.mp4",
-        "sideB": "cam_sideB.mp4"
+        "left": "cam_left.mp4",
+        "right": "cam_right.mp4"
     }
 
     output_dir.mkdir(parents=True, exist_ok=True)
