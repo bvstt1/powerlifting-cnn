@@ -15,36 +15,50 @@ CAMERAS = {
 
 
 def process_dataset():
-    landmarker = create_landmarker()
 
-    for exercise_dir in DATASET_ROOT.iterdir():
+    for exercise_dir in sorted(DATASET_ROOT.iterdir()):
         if not exercise_dir.is_dir():
             continue
 
-        print(f"\n=== {exercise_dir.name.upper()} ===")
+        exercise_name = exercise_dir.name
+        print(f"\n=== PROCESANDO {exercise_name.upper()} ===")
 
-        for attempt_dir in exercise_dir.iterdir():
+        for attempt_dir in sorted(exercise_dir.iterdir()):
             if not attempt_dir.is_dir():
                 continue
 
-            print(f"→ {attempt_dir.name}")
-            out_dir = OUTPUT_ROOT / exercise_dir.name / attempt_dir.name
+            attempt_name = attempt_dir.name
+            print(f"\n→ Intento: {attempt_name}")
+
+            out_dir = OUTPUT_ROOT / exercise_name / attempt_name
             out_dir.mkdir(parents=True, exist_ok=True)
 
             for cam, filename in CAMERAS.items():
                 video_path = attempt_dir / filename
 
+                if not video_path.exists():
+                    print(f"  ⚠ {filename} no existe, se omite")
+                    continue
+
+                print(f"  Procesando cámara: {cam}")
+
+                # 🔥 CREAR LANDMARKER NUEVO POR VIDEO
+                landmarker = create_landmarker()
+
                 keypoints = extract_keypoints_from_video(video_path, landmarker)
+
+                landmarker.close()
+
                 np.save(out_dir / f"{cam}_body.npy", keypoints)
+                print(f"    ✔ {cam}_body.npy {keypoints.shape}")
 
-                print(f"  ✔ {cam}_body {keypoints.shape}")
-
+                # Barra solo para cámara frontal
                 if cam == "front":
                     bar_features = extract_bar_features(video_path)
                     np.save(out_dir / "front_bar.npy", bar_features)
-                    print(f"  ✔ front_bar {bar_features.shape}")
+                    print(f"    ✔ front_bar.npy {bar_features.shape}")
 
-    landmarker.close()
+    print("\nProcesamiento completo.")
 
 
 if __name__ == "__main__":
