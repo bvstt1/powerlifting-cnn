@@ -7,7 +7,7 @@ from mediapipe.tasks.python.core.base_options import BaseOptions
 # ----------------------------------
 # CONFIG
 # ----------------------------------
-MODEL_PATH = "../models/pose_landmarker_heavy.task"
+MODEL_PATH = "../../models/pose_landmarker_heavy.task"
 CONF_THRESHOLD = 0.5
 
 # ----------------------------------
@@ -37,7 +37,7 @@ POSE_CONNECTIONS = [
 # ----------------------------------
 # WEBCAM
 # ----------------------------------
-cap = cv2.VideoCapture(2)
+cap = cv2.VideoCapture(3)
 fps = cap.get(cv2.CAP_PROP_FPS)
 frame_idx = 0
 
