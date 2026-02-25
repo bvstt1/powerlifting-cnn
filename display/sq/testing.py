@@ -7,7 +7,7 @@ from mediapipe.tasks.python.core.base_options import BaseOptions
 # -----------------------------
 # Configuración
 # -----------------------------
-MODEL_PATH = "../models/pose_landmarker_heavy.task"
+MODEL_PATH = "../../models/pose_landmarker_heavy.task"
 VIDEO_PATH = r"C:\Users\basti\Desktop\AQP17xjrbDFEnDWJVVDm00TVKDOx6MWKXSae5G9KnJv2eGq0xT9v5d-Clajmj-Ftrh7YAfXGDntQ5pNfmxa9r0TTRm6MZiW-yoNZN18.mp4"
 
 CONF_THRESHOLD = 0.5

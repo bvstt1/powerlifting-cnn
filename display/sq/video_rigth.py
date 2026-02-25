@@ -6,9 +6,9 @@ import numpy as np
 # ----------------------------------
 CAM = "right"   # "left" o "right"
 
-video_path = f"../dataset/sq/sq_040/cam_{CAM}.mp4"
-body_path  = f"../processed/sq/sq_040/{CAM}_body.npy"
-output_path = f"../visualizations/sq_040_{CAM}_leg_only.mp4"
+video_path = f"../../dataset/sq/sq_040/cam_{CAM}.mp4"
+body_path  = f"../../processed/sq/sq_040/{CAM}_body.npy"
+output_path = f"../../visualizations/sq_040_{CAM}_leg_only.mp4"
 
 # ----------------------------------
 # CARGAR DATOS

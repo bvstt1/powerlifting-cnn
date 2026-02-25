@@ -4,9 +4,9 @@ import numpy as np
 # -------------------------------
 # RUTAS
 # -------------------------------
-video_path = "../dataset/sq/sq_001/cam_front.mp4"
-body_path  = "../processed/sq/sq_001/front_body.npy"
-bar_path   = "../processed/sq/sq_001/front_bar.npy"
+video_path = "../../dataset/sq/sq_002/cam_front.mp4"
+body_path  = "../../processed/sq/sq_002/front_body.npy"
+bar_path   = "../../processed/sq/sq_002/front_bar.npy"
 
 # -------------------------------
 # CARGAR DATOS

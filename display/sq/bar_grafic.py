@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-bar = np.load("../processed/sq/sq_004/front_bar.npy")
+bar = np.load("../../processed/sq/sq_002/front_bar.npy")
 
 y = bar[:, 1]   # altura de la barra
 
