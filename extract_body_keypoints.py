@@ -1,15 +1,22 @@
+
 import cv2
 import numpy as np
 from pathlib import Path
+import mediapipe as mp
 from mediapipe.tasks.python import vision
 from mediapipe.tasks.python.core.base_options import BaseOptions
 
 
-# Configuración PoseLandmarker
+# -----------------------------
+# Configuración
+# -----------------------------
 MODEL_PATH = "models/pose_landmarker_heavy.task"
 NUM_KEYPOINTS = 33
 
 
+# -----------------------------
+# Crear landmarker (VIDEO MODE)
+# -----------------------------
 def create_landmarker():
     options = vision.PoseLandmarkerOptions(
         base_options=BaseOptions(model_asset_path=MODEL_PATH),
@@ -18,32 +25,35 @@ def create_landmarker():
     return vision.PoseLandmarker.create_from_options(options)
 
 
+# -----------------------------
 # Extraer keypoints de un video
+# -----------------------------
 def extract_keypoints_from_video(video_path, landmarker):
+
     cap = cv2.VideoCapture(str(video_path))
     fps = cap.get(cv2.CAP_PROP_FPS)
 
-    all_keypoints = []
+    if fps == 0:
+        fps = 30  # fallback seguro
+
     frame_idx = 0
+    all_keypoints = []
 
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
             break
 
+        timestamp_ms = int((frame_idx / fps) * 1000)
+
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-        mp_image = vision.MPImage(
-            image_format=vision.ImageFormat.SRGB,
+        mp_image = mp.Image(
+            image_format=mp.ImageFormat.SRGB,
             data=frame_rgb
         )
 
-        timestamp_ms = int((frame_idx / fps) * 1000)
-
-        result = landmarker.detect_for_video(
-            mp_image,
-            timestamp_ms
-        )
+        result = landmarker.detect_for_video(mp_image, timestamp_ms)
 
         if result.pose_landmarks:
             landmarks = result.pose_landmarks[0]
@@ -51,19 +61,24 @@ def extract_keypoints_from_video(video_path, landmarker):
             frame_kps = np.array([
                 [lm.x, lm.y, lm.visibility]
                 for lm in landmarks
-            ])
+            ], dtype=np.float32)
+
         else:
-            frame_kps = np.full((NUM_KEYPOINTS, 3), np.nan)
+            frame_kps = np.full((NUM_KEYPOINTS, 3), np.nan, dtype=np.float32)
 
         all_keypoints.append(frame_kps)
         frame_idx += 1
 
     cap.release()
-    return np.array(all_keypoints)  # (T, 33, 3)
+
+    return np.array(all_keypoints, dtype=np.float32)  # (T, 33, 3)
 
 
+# -----------------------------
 # Procesar un intento (3 cámaras)
+# -----------------------------
 def process_attempt(attempt_dir, output_dir, landmarker):
+
     cameras = {
         "front": "cam_front.mp4",
         "left": "cam_left.mp4",
@@ -73,45 +88,52 @@ def process_attempt(attempt_dir, output_dir, landmarker):
     output_dir.mkdir(parents=True, exist_ok=True)
 
     for cam_name, cam_file in cameras.items():
+
         video_path = attempt_dir / cam_file
+
         if not video_path.exists():
-            raise FileNotFoundError(video_path)
+            print(f"⚠ {video_path} no existe, se omite")
+            continue
 
         keypoints = extract_keypoints_from_video(video_path, landmarker)
 
-        out_file = output_dir / f"{attempt_dir.name}_{cam_name}.npy"
+        out_file = output_dir / f"{cam_name}_body.npy"
         np.save(out_file, keypoints)
 
         print(f"✔ {out_file} {keypoints.shape}")
 
 
-#Procesar todo el dataset
+# -----------------------------
+# Procesar todo el dataset
+# -----------------------------
 def process_dataset(dataset_root, output_root):
+
     dataset_root = Path(dataset_root)
     output_root = Path(output_root)
 
     landmarker = create_landmarker()
 
-    for exercise_dir in dataset_root.iterdir():
+    for exercise_dir in sorted(dataset_root.iterdir()):
         if not exercise_dir.is_dir():
             continue
 
         print(f"\n=== {exercise_dir.name.upper()} ===")
 
-        for attempt_dir in exercise_dir.iterdir():
+        for attempt_dir in sorted(exercise_dir.iterdir()):
             if not attempt_dir.is_dir():
                 continue
 
             print(f"→ Procesando {attempt_dir.name}")
+
             out_dir = output_root / exercise_dir.name / attempt_dir.name
             process_attempt(attempt_dir, out_dir, landmarker)
 
     landmarker.close()
 
 
-# --------------------------------------------------
+# -----------------------------
 # Main
-# --------------------------------------------------
+# -----------------------------
 if __name__ == "__main__":
     process_dataset(
         dataset_root="dataset",
