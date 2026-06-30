@@ -2,13 +2,15 @@ import cv2
 import mediapipe as mp
 from mediapipe.tasks.python import vision
 from mediapipe.tasks.python.core.base_options import BaseOptions
+from ultralytics import YOLO
 
 # ----------------------------------
 # CONFIG
 # ----------------------------------
 
-VIDEO_PATH = r"C:\Users\basti\MediapipePythonProjects\dataset\dl\front\dl_008.mp4"
+VIDEO_PATH = r"C:\Users\basti\MediapipePythonProjects\dataset\dl\front\dl_002.mp4"
 MODEL_PATH = "../../models/pose_landmarker_heavy.task"
+YOLO_SEG_PATH = "../../models/dl_front_seg_v1.pt"
 
 CONF_THRESHOLD = 0.5
 DISPLAY_WIDTH = 960
@@ -79,6 +81,8 @@ def create_landmarker():
 
 landmarker = create_landmarker()
 
+yolo_model = YOLO(YOLO_SEG_PATH)
+
 
 # ----------------------------------
 # VIDEO
@@ -89,13 +93,40 @@ cap = cv2.VideoCapture(VIDEO_PATH)
 fps = cap.get(cv2.CAP_PROP_FPS)
 frame_idx = 0
 
-print("ESC para salir")
+print("ESC para salir | YOLO Seg + MediaPipe Skeleton")
 
 while cap.isOpened():
 
     ret, frame = cap.read()
     if not ret:
         break
+
+    # YOLO segmentation overlay
+    yolo_results = yolo_model(frame, verbose=False)
+    result_obj = yolo_results[0]
+
+    # Extraer centros de barras antes de plot()
+    bar_centers = []
+    if result_obj.boxes is not None:
+        for i in range(len(result_obj.boxes)):
+            cls_id = int(result_obj.boxes.cls[i])
+            if cls_id == 0:  # bar
+                x1, y1, x2, y2 = map(int, result_obj.boxes.xyxy[i])
+                cx = (x1 + x2) // 2
+                cy = y2  # parte inferior del bounding box
+                bar_centers.append((cx, cy))
+
+    frame = result_obj.plot()
+
+    # Si hay exactamente 2 barras, dibujar línea horizontal que las une
+    if len(bar_centers) == 2:
+        bar_centers.sort(key=lambda p: p[0])  # ordenar por x
+        lx, ly = bar_centers[0]
+        rx, ry = bar_centers[1]
+        line_y = (ly + ry) // 2
+        cv2.line(frame, (lx, line_y), (rx, line_y), (0, 255, 255), 3)
+        cv2.circle(frame, (lx, line_y), 5, (0, 255, 255), -1)
+        cv2.circle(frame, (rx, line_y), 5, (0, 255, 255), -1)
 
     h, w, _ = frame.shape
 
@@ -155,7 +186,7 @@ while cap.isOpened():
 
     frame = cv2.resize(frame, (DISPLAY_WIDTH, DISPLAY_HEIGHT))
 
-    cv2.imshow("Front Bench Raw", frame)
+    cv2.imshow("DL Front - YOLO Seg + MediaPipe Skeleton", frame)
 
     if cv2.waitKey(1) & 0xFF == 27:
         break
