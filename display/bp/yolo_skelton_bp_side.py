@@ -8,7 +8,7 @@ import cv2
 model = YOLO("../../models/bp_side_skeleton_v1.pt")
 
 test = r"C:\Users\basti\Desktop\test.mp4"
-video_path = r"C:\Users\basti\MediapipePythonProjects\dataset\bp\left\bp_247.mp4"
+video_path = r"C:\Users\basti\MediapipePythonProjects\dataset\bp\right\bp_125.mp4"
 
 # Conexiones skeleton
 SKELETON = [
