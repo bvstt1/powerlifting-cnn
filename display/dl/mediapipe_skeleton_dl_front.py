@@ -8,7 +8,7 @@ from ultralytics import YOLO
 # CONFIG
 # ----------------------------------
 
-VIDEO_PATH = r"C:\Users\basti\MediapipePythonProjects\dataset\dl\front\dl_002.mp4"
+VIDEO_PATH = r"C:\Users\basti\MediapipePythonProjects\dataset\dl\front\dl_061.mp4"
 MODEL_PATH = "../../models/pose_landmarker_heavy.task"
 YOLO_SEG_PATH = "../../models/dl_front_seg_v1.pt"
 
