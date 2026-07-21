@@ -2,34 +2,33 @@ import cv2
 import mediapipe as mp
 from mediapipe.tasks.python import vision
 from mediapipe.tasks.python.core.base_options import BaseOptions
-from ultralytics import YOLO
+
 
 # ----------------------------------
 # CONFIG
 # ----------------------------------
 
-VIDEO_PATH = r"C:\Users\basti\MediapipePythonProjects\dataset\dl\front\dl_061.mp4"
+VIDEO_PATH = r"C:\Users\basti\MediapipePythonProjects\dataset\dl\front\dl_010.mp4"
 MODEL_PATH = "../../models/pose_landmarker_heavy.task"
-YOLO_SEG_PATH = "../../models/dl_front_seg_v1.pt"
 
 CONF_THRESHOLD = 0.5
 DISPLAY_WIDTH = 960
 DISPLAY_HEIGHT = 720
 
+OFFSET_Y = 19 # px hacia abajo para ajustar el centroide al centro de la barra
+
 
 # ----------------------------------
-# FULL BODY LANDMARKS
+# LANDMARKS (sin rostro 0-10)
 # ----------------------------------
 
-LANDMARKS = list(range(33))
+MANO_IZQ = [15, 17, 19, 21]   # muneca, meique, indice, pulgar
+MANO_DER = [16, 18, 20, 22]
+MANOS = MANO_IZQ + MANO_DER
 
-CONNECTIONS = [
+BODY = list(range(11, 33))
 
-    # Cara
-    (0,1),(1,2),(2,3),(3,7),
-    (0,4),(4,5),(5,6),(6,8),
-    (9,10),
-
+CONEXIONES = [
     # Tronco
     (11,12),
     (11,23),
@@ -81,7 +80,22 @@ def create_landmarker():
 
 landmarker = create_landmarker()
 
-yolo_model = YOLO(YOLO_SEG_PATH)
+
+# ----------------------------------
+# AUX
+# ----------------------------------
+
+def centro_mano(landmarks, indices, w, h, offset_y=0):
+    pts = []
+    for idx in indices:
+        lm = landmarks[idx]
+        if lm.visibility >= CONF_THRESHOLD:
+            pts.append((int(lm.x * w), int(lm.y * h)))
+    if not pts:
+        return None
+    cx = int(sum(p[0] for p in pts) / len(pts))
+    cy = int(sum(p[1] for p in pts) / len(pts)) + offset_y
+    return (cx, cy)
 
 
 # ----------------------------------
@@ -93,7 +107,7 @@ cap = cv2.VideoCapture(VIDEO_PATH)
 fps = cap.get(cv2.CAP_PROP_FPS)
 frame_idx = 0
 
-print("ESC para salir | YOLO Seg + MediaPipe Skeleton")
+print("ESC para salir | Barra simulada entre manos - DL Front")
 
 while cap.isOpened():
 
@@ -101,92 +115,55 @@ while cap.isOpened():
     if not ret:
         break
 
-    # YOLO segmentation overlay
-    yolo_results = yolo_model(frame, verbose=False)
-    result_obj = yolo_results[0]
-
-    # Extraer centros de barras antes de plot()
-    bar_centers = []
-    if result_obj.boxes is not None:
-        for i in range(len(result_obj.boxes)):
-            cls_id = int(result_obj.boxes.cls[i])
-            if cls_id == 0:  # bar
-                x1, y1, x2, y2 = map(int, result_obj.boxes.xyxy[i])
-                cx = (x1 + x2) // 2
-                cy = y2  # parte inferior del bounding box
-                bar_centers.append((cx, cy))
-
-    frame = result_obj.plot()
-
-    # Si hay exactamente 2 barras, dibujar línea horizontal que las une
-    if len(bar_centers) == 2:
-        bar_centers.sort(key=lambda p: p[0])  # ordenar por x
-        lx, ly = bar_centers[0]
-        rx, ry = bar_centers[1]
-        line_y = (ly + ry) // 2
-        cv2.line(frame, (lx, line_y), (rx, line_y), (0, 255, 255), 3)
-        cv2.circle(frame, (lx, line_y), 5, (0, 255, 255), -1)
-        cv2.circle(frame, (rx, line_y), 5, (0, 255, 255), -1)
-
     h, w, _ = frame.shape
 
     frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame_rgb)
 
-    mp_image = mp.Image(
-        image_format=mp.ImageFormat.SRGB,
-        data=frame_rgb
-    )
-
-    timestamp_ms = int((frame_idx / max(fps,1)) * 1000)
-
-    result = landmarker.detect_for_video(
-        mp_image,
-        timestamp_ms
-    )
-
-    # ----------------------------------
-    # DRAW
-    # ----------------------------------
+    timestamp_ms = int((frame_idx / max(fps, 1)) * 1000)
+    result = landmarker.detect_for_video(mp_image, timestamp_ms)
 
     if result.pose_landmarks:
 
-        landmarks = result.pose_landmarks[0]
+        lm = result.pose_landmarks[0]
 
-        # Dibujar puntos
-        for idx in LANDMARKS:
-
-            lm = landmarks[idx]
-
-            if lm.visibility < CONF_THRESHOLD:
+        # Landmarks del cuerpo
+        for idx in BODY:
+            if lm[idx].visibility < CONF_THRESHOLD:
                 continue
+            x = int(lm[idx].x * w)
+            y = int(lm[idx].y * h)
+            if idx in MANOS:
+                cv2.circle(frame, (x, y), 9, (0, 255, 255), -1)
+            else:
+                cv2.circle(frame, (x, y), 4, (0, 255, 0), -1)
 
-            x = int(lm.x * w)
-            y = int(lm.y * h)
-
-            cv2.circle(frame, (x,y), 5, (0,255,0), -1)
-
-
-        # Dibujar conexiones
-        for a,b in CONNECTIONS:
-
-            la = landmarks[a]
-            lb = landmarks[b]
-
-            if la.visibility < CONF_THRESHOLD or lb.visibility < CONF_THRESHOLD:
+        # Conexiones
+        for a, b in CONEXIONES:
+            if lm[a].visibility < CONF_THRESHOLD or lm[b].visibility < CONF_THRESHOLD:
                 continue
+            x1 = int(lm[a].x * w)
+            y1 = int(lm[a].y * h)
+            x2 = int(lm[b].x * w)
+            y2 = int(lm[b].y * h)
+            cv2.line(frame, (x1, y1), (x2, y2), (255, 0, 0), 3)
 
-            x1 = int(la.x * w)
-            y1 = int(la.y * h)
+        # Centroide de cada mano
+        izq = centro_mano(lm, MANO_IZQ, w, h, OFFSET_Y)
+        der = centro_mano(lm, MANO_DER, w, h, OFFSET_Y)
 
-            x2 = int(lb.x * w)
-            y2 = int(lb.y * h)
+        if izq:
+            cv2.circle(frame, izq, 14, (0, 255, 255), -1)
+        if der:
+            cv2.circle(frame, der, 14, (0, 255, 255), -1)
 
-            cv2.line(frame, (x1,y1), (x2,y2), (255,0,0), 3)
-
+        # Barra simulada entre las manos
+        if izq and der:
+            cv2.line(frame, izq, der, (0, 255, 255), 5)
 
     frame = cv2.resize(frame, (DISPLAY_WIDTH, DISPLAY_HEIGHT))
 
-    cv2.imshow("DL Front - YOLO Seg + MediaPipe Skeleton", frame)
+    cv2.imshow("DL Front - Barra simulada entre manos", frame)
 
     if cv2.waitKey(1) & 0xFF == 27:
         break
