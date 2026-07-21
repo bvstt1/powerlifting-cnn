@@ -5,7 +5,7 @@ import cv2
 model = YOLO("../../models/bp_front_seg_v1.pt")
 
 # Ruta del video
-video_path = r"C:\Users\basti\MediapipePythonProjects\dataset\bp\front\bp_190.mp4"
+video_path = r"C:\Users\basti\MediapipePythonProjects\dataset\bp\front\bp_402.mp4"
 
 # Abrir video
 cap = cv2.VideoCapture(video_path)

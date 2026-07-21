@@ -7,10 +7,10 @@ from mediapipe.tasks.python.core.base_options import BaseOptions
 # CONFIG
 # ----------------------------------
 
-VIDEO_PATH = r"C:\Users\basti\MediapipePythonProjects\dataset\dl\left\dl_109.mp4"
+VIDEO_PATH = r"C:\Users\basti\MediapipePythonProjects\dataset\dl\left\dl_001.mp4"
 MODEL_PATH = "../../models/pose_landmarker_heavy.task"
 
-CONF_THRESHOLD = 0.5
+CONF_THRESHOLD = 0.2
 DISPLAY_WIDTH = 960
 DISPLAY_HEIGHT = 720
 
@@ -20,17 +20,19 @@ DISPLAY_HEIGHT = 720
 # ----------------------------------
 
 LANDMARKS = [
-    11, 23,
+    11, 23, 25, 27, 29, 31,
 ]
 
 CONNECTIONS = [
-
-
     # Tronco
     (11,23),
 
-
-
+    # Pierna izquierda
+    (23,25),
+    (25,27),
+    (27,29),
+    (27,31),
+    (29,31),
 ]
 
 
@@ -123,7 +125,7 @@ while cap.isOpened():
 
     frame = cv2.resize(frame, (DISPLAY_WIDTH, DISPLAY_HEIGHT))
 
-    cv2.imshow("Front Bench Raw", frame)
+    cv2.imshow("DL Left - MediaPipe Skeleton", frame)
 
     if cv2.waitKey(1) & 0xFF == 27:
         break

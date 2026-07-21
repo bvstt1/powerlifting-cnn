@@ -6,8 +6,8 @@ import numpy as np
 # CONFIG
 # ==========================
 
-MODEL_PATH = "../../models/sq_front_skeleton_v3.pt"
-VIDEO_PATH = r"C:\Users\basti\MediapipePythonProjects\dataset\sq\front\sq_120.mp4" #61
+MODEL_PATH = "../../models/sq_front_skeleton_v4.pt"
+VIDEO_PATH = r"C:\Users\basti\MediapipePythonProjects\dataset\sq\front\sq_177.mp4"
 TEST = r"C:\Users\basti\Desktop\todo\test_sq6.mp4"
 
 # Suavizado EMA
