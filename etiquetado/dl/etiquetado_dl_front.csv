@@ -1,260 +1,442 @@
-﻿"video_id","movimiento","camara","archivo","resultado","label","codigos","criterios","etiquetador","timestamp"
-"dl_001","1","2","dl_001_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:44"
-"dl_002","2","2","dl_002_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:44"
-"dl_003","3","2","dl_003_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:47"
-"dl_004","4","2","dl_004_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:47"
-"dl_005","5","2","dl_005_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:48"
-"dl_006","6","2","dl_006_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:48"
-"dl_007","7","2","dl_007_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:48"
-"dl_008","8","2","dl_008_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:48"
-"dl_009","9","2","dl_009_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:48"
-"dl_010","10","2","dl_010_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:49"
-"dl_011","11","2","dl_011_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:49"
-"dl_012","12","2","dl_012_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:49"
-"dl_013","13","2","dl_013_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:49"
-"dl_014","14","2","dl_014_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:50"
-"dl_015","15","2","dl_015_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:50"
-"dl_016","16","2","dl_016_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:50"
-"dl_017","17","2","dl_017_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:50"
-"dl_018","18","2","dl_018_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:51"
-"dl_019","19","2","dl_019_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:51"
-"dl_020","20","2","dl_020_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:51"
-"dl_021","21","2","dl_021_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:51"
-"dl_022","22","2","dl_022_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:52"
-"dl_023","23","2","dl_023_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:52"
-"dl_024","24","2","dl_024_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:52"
-"dl_025","25","2","dl_025_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:52"
-"dl_026","26","2","dl_026_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:52"
-"dl_027","27","2","dl_027_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:53"
-"dl_028","28","2","dl_028_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:53"
-"dl_029","29","2","dl_029_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:53"
-"dl_030","30","2","dl_030_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:53"
-"dl_031","31","2","dl_031_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:53"
-"dl_032","32","2","dl_032_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:53"
-"dl_033","33","2","dl_033_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:54"
-"dl_034","34","2","dl_034_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:54"
-"dl_035","35","2","dl_035_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:54"
-"dl_036","36","2","dl_036_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:55"
-"dl_037","37","2","dl_037_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:55"
-"dl_038","38","2","dl_038_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:55"
-"dl_039","39","2","dl_039_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:55"
-"dl_040","40","2","dl_040_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:55"
-"dl_041","41","2","dl_041_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:55"
-"dl_042","42","2","dl_042_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:56"
-"dl_043","43","2","dl_043_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:56"
-"dl_044","44","2","dl_044_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:56"
-"dl_045","45","2","dl_045_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:56"
-"dl_046","46","2","dl_046_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:57"
-"dl_047","47","2","dl_047_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:57"
-"dl_048","48","2","dl_048_cam2.mp4","invalido","0","DL-02","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra","Francisco","2026-06-30 19:58"
-"dl_049","49","2","dl_049_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:58"
-"dl_050","50","2","dl_050_cam2.mp4","valido","1","","","Francisco","2026-06-30 19:59"
-"dl_051","51","2","dl_051_cam2.mp4","invalido","0","DL-02","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra","Francisco","2026-06-30 19:59"
-"dl_052","52","2","dl_052_cam2.mp4","invalido","0","DL-02|DL-05","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra | Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:00"
-"dl_053","53","2","dl_053_cam2.mp4","invalido","0","DL-02|DL-05","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra | Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:01"
-"dl_054","54","2","dl_054_cam2.mp4","invalido","0","DL-02|DL-05","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra | Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:01"
-"dl_055","55","2","dl_055_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:02"
-"dl_056","56","2","dl_056_cam2.mp4","invalido","0","DL-02|DL-05","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra | Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:12"
-"dl_057","57","2","dl_057_cam2.mp4","invalido","0","DL-02|DL-05","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra | Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:14"
-"dl_058","58","2","dl_058_cam2.mp4","invalido","0","DL-02|DL-05","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra | Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:16"
-"dl_059","59","2","dl_059_cam2.mp4","invalido","0","DL-02|DL-05","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra | Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:17"
-"dl_060","60","2","dl_060_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:17"
-"dl_061","61","2","dl_061_cam2.mp4","invalido","0","DL-02|DL-05","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra | Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:17"
-"dl_062","62","2","dl_062_cam2.mp4","invalido","0","DL-02|DL-05","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra | Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:32"
-"dl_063","63","2","dl_063_cam2.mp4","invalido","0","DL-02|DL-05","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra | Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:32"
-"dl_064","64","2","dl_064_cam2.mp4","invalido","0","DL-02|DL-05","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra | Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:33"
-"dl_065","65","2","dl_065_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:33"
-"dl_066","66","2","dl_066_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:33"
-"dl_067","67","2","dl_067_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:46"
-"dl_068","68","2","dl_068_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:46"
-"dl_069","69","2","dl_069_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:47"
-"dl_070","70","2","dl_070_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:47"
-"dl_071","71","2","dl_071_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:47"
-"dl_072","72","2","dl_072_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:48"
-"dl_073","73","2","dl_073_cam2.mp4","invalido","0","DL-03","Movimiento descendente de la barra antes de llegar a la posición final","Francisco","2026-06-30 20:49"
-"dl_074","74","2","dl_074_cam2.mp4","invalido","0","DL-03","Movimiento descendente de la barra antes de llegar a la posición final","Francisco","2026-06-30 20:49"
-"dl_075","75","2","dl_075_cam2.mp4","invalido","0","DL-03","Movimiento descendente de la barra antes de llegar a la posición final","Francisco","2026-06-30 20:50"
-"dl_076","76","2","dl_076_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:50"
-"dl_077","77","2","dl_077_cam2.mp4","invalido","0","DL-03","Movimiento descendente de la barra antes de llegar a la posición final","Francisco","2026-06-30 20:50"
-"dl_078","78","2","dl_078_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:50"
-"dl_079","79","2","dl_079_cam2.mp4","invalido","0","DL-03","Movimiento descendente de la barra antes de llegar a la posición final","Francisco","2026-06-30 20:51"
-"dl_080","80","2","dl_080_cam2.mp4","invalido","0","DL-02|DL-05","No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra | Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:51"
-"dl_081","81","2","dl_081_cam2.mp4","invalido","0","DL-03","Movimiento descendente de la barra antes de llegar a la posición final","Francisco","2026-06-30 20:51"
-"dl_082","82","2","dl_082_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:51"
-"dl_083","83","2","dl_083_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:52"
-"dl_084","84","2","dl_084_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:52"
-"dl_085","85","2","dl_085_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:56"
-"dl_086","86","2","dl_086_cam2.mp4","invalido","0","DL-03","Movimiento descendente de la barra antes de llegar a la posición final","Francisco","2026-06-30 20:56"
-"dl_087","87","2","dl_087_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:56"
-"dl_088","88","2","dl_088_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:56"
-"dl_089","89","2","dl_089_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:57"
-"dl_090","90","2","dl_090_cam2.mp4","valido","1","","","Francisco","2026-06-30 20:58"
-"dl_091","91","2","dl_091_cam2.mp4","invalido","0","DL-03|DL-02","Movimiento descendente de la barra antes de llegar a la posición final | No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra","Francisco","2026-06-30 20:58"
-"dl_092","92","2","dl_092_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:59"
-"dl_093","93","2","dl_093_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 20:59"
-"dl_094","94","2","dl_094_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 21:01"
-"dl_095","95","2","dl_095_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 21:01"
-"dl_096","96","2","dl_096_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 21:01"
-"dl_097","97","2","dl_097_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Francisco","2026-06-30 21:01"
-"dl_098","98","2","dl_098_cam2.mp4","valido","1","","","Francisco","2026-06-30 21:01"
-"dl_099","99","2","dl_099_cam2.mp4","valido","1","","","Francisco","2026-06-30 21:01"
-"dl_100","100","2","dl_100_cam2.mp4","valido","1","","","Francisco","2026-06-30 21:02"
-"dl_101","101","2","dl_101_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_102","102","2","dl_102_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_103","103","2","dl_103_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_104","104","2","dl_104_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_105","105","2","dl_105_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_106","106","2","dl_106_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_107","107","2","dl_107_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_108","108","2","dl_108_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_109","109","2","dl_109_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_110","110","2","dl_110_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_111","111","2","dl_111_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_112","112","2","dl_112_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_113","113","2","dl_113_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_114","114","2","dl_114_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_115","115","2","dl_115_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_116","116","2","dl_116_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_117","117","2","dl_117_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_118","118","2","dl_118_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_119","119","2","dl_119_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_120","120","2","dl_120_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_121","121","2","dl_121_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_122","122","2","dl_122_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_123","123","2","dl_123_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_124","124","2","dl_124_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_125","125","2","dl_125_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_126","126","2","dl_126_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_127","127","2","dl_127_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_128","128","2","dl_128_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_129","129","2","dl_129_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_130","130","2","dl_130_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_131","131","2","dl_131_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_132","132","2","dl_132_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_133","133","2","dl_133_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_134","134","2","dl_134_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_135","135","2","dl_135_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_136","136","2","dl_136_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_137","137","2","dl_137_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_138","138","2","dl_138_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_139","139","2","dl_139_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_140","140","2","dl_140_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_141","141","2","dl_141_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_142","142","2","dl_142_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_143","143","2","dl_143_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 20:59"
-"dl_144","144","2","dl_144_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:00"
-"dl_145","145","2","dl_145_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:00"
-"dl_146","146","2","dl_146_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:00"
-"dl_147","147","2","dl_147_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:00"
-"dl_148","148","2","dl_148_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:00"
-"dl_149","149","2","dl_149_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:00"
-"dl_150","150","2","dl_150_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:00"
-"dl_151","151","2","dl_151_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:03"
-"dl_152","152","2","dl_152_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:03"
-"dl_153","153","2","dl_153_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:03"
-"dl_154","154","2","dl_154_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:03"
-"dl_155","155","2","dl_155_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:03"
-"dl_156","156","2","dl_156_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:03"
-"dl_157","157","2","dl_157_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:03"
-"dl_158","158","2","dl_158_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:04"
-"dl_159","159","2","dl_159_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:05"
-"dl_160","160","2","dl_160_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:05"
-"dl_161","161","2","dl_161_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:05"
-"dl_162","162","2","dl_162_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:05"
-"dl_163","163","2","dl_163_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:05"
-"dl_164","164","2","dl_164_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:05"
-"dl_165","165","2","dl_165_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:05"
-"dl_166","166","2","dl_166_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:05"
-"dl_167","167","2","dl_167_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:07"
-"dl_168","168","2","dl_168_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:07"
-"dl_169","169","2","dl_169_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:07"
-"dl_170","170","2","dl_170_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:07"
-"dl_171","171","2","dl_171_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:07"
-"dl_172","172","2","dl_172_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:07"
-"dl_173","173","2","dl_173_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:07"
-"dl_174","174","2","dl_174_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:07"
-"dl_175","175","2","dl_175_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:07"
-"dl_176","176","2","dl_176_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:07"
-"dl_177","177","2","dl_177_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:07"
-"dl_178","178","2","dl_178_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:08"
-"dl_179","179","2","dl_179_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:08"
-"dl_180","180","2","dl_180_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:08"
-"dl_181","181","2","dl_181_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:08"
-"dl_182","182","2","dl_182_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:09"
-"dl_183","183","2","dl_183_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:09"
-"dl_184","184","2","dl_184_cam2.mp4","invalido","0","DL-05","Bajar la barra antes de recibir la señal ""Down"" del árbitro jefe","Sin nombre","2026-06-30 21:09"
-"dl_185","185","2","dl_185_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:09"
-"dl_186","186","2","dl_186_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_187","187","2","dl_187_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_188","188","2","dl_188_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_189","189","2","dl_189_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_190","190","2","dl_190_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_191","191","2","dl_191_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_192","192","2","dl_192_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_193","193","2","dl_193_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_194","194","2","dl_194_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_195","195","2","dl_195_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_196","196","2","dl_196_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_197","197","2","dl_197_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_198","198","2","dl_198_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_199","199","2","dl_199_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_200","200","2","dl_200_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_201","201","2","dl_201_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_202","202","2","dl_202_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_203","203","2","dl_203_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_204","204","2","dl_204_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_205","205","2","dl_205_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_206","206","2","dl_206_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_207","207","2","dl_207_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_208","208","2","dl_208_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_209","209","2","dl_209_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_210","210","2","dl_210_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_211","211","2","dl_211_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_212","212","2","dl_212_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_213","213","2","dl_213_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_214","214","2","dl_214_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_215","215","2","dl_215_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_216","216","2","dl_216_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_217","217","2","dl_217_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_218","218","2","dl_218_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_219","219","2","dl_219_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_220","220","2","dl_220_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_221","221","2","dl_221_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_222","222","2","dl_222_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_223","223","2","dl_223_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_224","224","2","dl_224_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_225","225","2","dl_225_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_226","226","2","dl_226_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_227","227","2","dl_227_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_228","228","2","dl_228_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_229","229","2","dl_229_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:18"
-"dl_230","230","2","dl_230_cam2.mp4","invalido","0","DL-03","Movimiento descendente de la barra antes de llegar a la posición final","Sin nombre","2026-06-30 21:18"
-"dl_231","231","2","dl_231_cam2.mp4","invalido","0","DL-04","Apoyo de la barra sobre los muslos durante el levantamiento (hitching)","Sin nombre","2026-06-30 21:19"
-"dl_232","232","2","dl_232_cam2.mp4","invalido","0","DL-03","Movimiento descendente de la barra antes de llegar a la posición final","Sin nombre","2026-06-30 21:20"
-"dl_233","233","2","dl_233_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:20"
-"dl_234","234","2","dl_234_cam2.mp4","invalido","0","DL-07","Pasos hacia atrás, adelante o movimiento lateral de los pies","Sin nombre","2026-06-30 21:23"
-"dl_235","235","2","dl_235_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:24"
-"dl_236","236","2","dl_236_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:25"
-"dl_237","237","2","dl_237_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:25"
-"dl_238","238","2","dl_238_cam2.mp4","invalido","0","DL-01","No bloquear las rodillas completamente al finalizar","Sin nombre","2026-06-30 21:25"
-"dl_239","239","2","dl_239_cam2.mp4","invalido","0","DL-01","No bloquear las rodillas completamente al finalizar","Sin nombre","2026-06-30 21:25"
-"dl_240","240","2","dl_240_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:27"
-"dl_241","241","2","dl_241_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:27"
-"dl_242","242","2","dl_242_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:27"
-"dl_243","243","2","dl_243_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:27"
-"dl_244","244","2","dl_244_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:27"
-"dl_245","245","2","dl_245_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:27"
-"dl_246","246","2","dl_246_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:27"
-"dl_247","247","2","dl_247_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:27"
-"dl_248","248","2","dl_248_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:27"
-"dl_249","249","2","dl_249_cam2.mp4","invalido","0","","","Sin nombre","2026-06-30 21:27"
-"dl_250","250","2","dl_250_cam2.mp4","invalido","0","","","Sin nombre","2026-06-30 21:29"
-"dl_251","251","2","dl_251_cam2.mp4","invalido","0","","","Sin nombre","2026-06-30 21:29"
-"dl_252","252","2","dl_252_cam2.mp4","invalido","0","","","Sin nombre","2026-06-30 21:29"
-"dl_253","253","2","dl_253_cam2.mp4","invalido","0","","","Sin nombre","2026-06-30 21:29"
-"dl_254","254","2","dl_254_cam2.mp4","valido","1","","","Sin nombre","2026-06-30 21:29"
-"dl_255","255","2","dl_255_cam2.mp4","invalido","0","","","Sin nombre","2026-06-30 21:30"
-"dl_256","256","2","dl_256_cam2.mp4","invalido","0","","","Sin nombre","2026-06-30 21:30"
-"dl_257","257","2","dl_257_cam2.mp4","invalido","0","","","Sin nombre","2026-06-30 21:30"
-"dl_258","258","2","dl_258_cam2.mp4","invalido","0","","","Sin nombre","2026-06-30 21:30"
-"dl_259","259","2","dl_259_cam2.mp4","invalido","0","","","Sin nombre","2026-06-30 21:30"
+video_id,movimiento,camara,archivo,resultado,label,codigos,criterios,etiquetador,timestamp
+"dl_001,""DEADLIFT"",""2"",""dl_001_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:44""",,,,,,,,,
+"dl_002,""DEADLIFT"",""2"",""dl_002_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:44""",,,,,,,,,
+"dl_003,""DEADLIFT"",""2"",""dl_003_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:47""",,,,,,,,,
+"dl_004,""DEADLIFT"",""2"",""dl_004_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:47""",,,,,,,,,
+"dl_005,""DEADLIFT"",""2"",""dl_005_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:48""",,,,,,,,,
+"dl_006,""DEADLIFT"",""2"",""dl_006_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:48""",,,,,,,,,
+"dl_007,""DEADLIFT"",""2"",""dl_007_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:48""",,,,,,,,,
+"dl_008,""DEADLIFT"",""2"",""dl_008_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:48""",,,,,,,,,
+"dl_009,""DEADLIFT"",""2"",""dl_009_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:48""",,,,,,,,,
+"dl_010,""DEADLIFT"",""2"",""dl_010_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:49""",,,,,,,,,
+"dl_011,""DEADLIFT"",""2"",""dl_011_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:49""",,,,,,,,,
+"dl_012,""DEADLIFT"",""2"",""dl_012_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:49""",,,,,,,,,
+"dl_013,""DEADLIFT"",""2"",""dl_013_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:49""",,,,,,,,,
+"dl_014,""DEADLIFT"",""2"",""dl_014_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:50""",,,,,,,,,
+"dl_015,""DEADLIFT"",""2"",""dl_015_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:50""",,,,,,,,,
+"dl_016,""DEADLIFT"",""2"",""dl_016_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:50""",,,,,,,,,
+"dl_017,""DEADLIFT"",""2"",""dl_017_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:50""",,,,,,,,,
+"dl_018,""DEADLIFT"",""2"",""dl_018_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:51""",,,,,,,,,
+"dl_019,""DEADLIFT"",""2"",""dl_019_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:51""",,,,,,,,,
+"dl_020,""DEADLIFT"",""2"",""dl_020_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:51""",,,,,,,,,
+"dl_021,""DEADLIFT"",""2"",""dl_021_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:51""",,,,,,,,,
+"dl_022,""DEADLIFT"",""2"",""dl_022_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:52""",,,,,,,,,
+"dl_023,""DEADLIFT"",""2"",""dl_023_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:52""",,,,,,,,,
+"dl_024,""DEADLIFT"",""2"",""dl_024_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:52""",,,,,,,,,
+"dl_025,""DEADLIFT"",""2"",""dl_025_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:52""",,,,,,,,,
+"dl_026,""DEADLIFT"",""2"",""dl_026_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:52""",,,,,,,,,
+"dl_027,""DEADLIFT"",""2"",""dl_027_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:53""",,,,,,,,,
+"dl_028,""DEADLIFT"",""2"",""dl_028_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:53""",,,,,,,,,
+"dl_029,""DEADLIFT"",""2"",""dl_029_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:53""",,,,,,,,,
+"dl_030,""DEADLIFT"",""2"",""dl_030_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:53""",,,,,,,,,
+"dl_031,""DEADLIFT"",""2"",""dl_031_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:53""",,,,,,,,,
+"dl_032,""DEADLIFT"",""2"",""dl_032_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:53""",,,,,,,,,
+"dl_033,""DEADLIFT"",""2"",""dl_033_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:54""",,,,,,,,,
+"dl_034,""DEADLIFT"",""2"",""dl_034_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:54""",,,,,,,,,
+"dl_035,""DEADLIFT"",""2"",""dl_035_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:54""",,,,,,,,,
+"dl_036,""DEADLIFT"",""2"",""dl_036_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:55""",,,,,,,,,
+"dl_037,""DEADLIFT"",""2"",""dl_037_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:55""",,,,,,,,,
+"dl_038,""DEADLIFT"",""2"",""dl_038_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:55""",,,,,,,,,
+"dl_039,""DEADLIFT"",""2"",""dl_039_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:55""",,,,,,,,,
+"dl_040,""DEADLIFT"",""2"",""dl_040_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:55""",,,,,,,,,
+"dl_041,""DEADLIFT"",""2"",""dl_041_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:55""",,,,,,,,,
+"dl_042,""DEADLIFT"",""2"",""dl_042_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:56""",,,,,,,,,
+"dl_043,""DEADLIFT"",""2"",""dl_043_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:56""",,,,,,,,,
+"dl_044,""DEADLIFT"",""2"",""dl_044_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:56""",,,,,,,,,
+"dl_045,""DEADLIFT"",""2"",""dl_045_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:56""",,,,,,,,,
+"dl_046,""DEADLIFT"",""2"",""dl_046_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:57""",,,,,,,,,
+"dl_047,""DEADLIFT"",""2"",""dl_047_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:57""",,,,,,,,,
+"dl_048,""DEADLIFT"",""2"",""dl_048_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra"",""Francisco"",""2026-06-30 19:58""",,,,,,,,,
+"dl_049,""DEADLIFT"",""2"",""dl_049_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:58""",,,,,,,,,
+"dl_050,""DEADLIFT"",""2"",""dl_050_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_051,""DEADLIFT"",""2"",""dl_051_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra"",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_052,""DEADLIFT"",""2"",""dl_052_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_053,""DEADLIFT"",""2"",""dl_053_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_054,""DEADLIFT"",""2"",""dl_054_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_055,""DEADLIFT"",""2"",""dl_055_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:02""",,,,,,,,,
+"dl_056,""DEADLIFT"",""2"",""dl_056_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_057,""DEADLIFT"",""2"",""dl_057_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_058,""DEADLIFT"",""2"",""dl_058_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_059,""DEADLIFT"",""2"",""dl_059_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_060,""DEADLIFT"",""2"",""dl_060_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:17""",,,,,,,,,
+"dl_061,""DEADLIFT"",""2"",""dl_061_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_062,""DEADLIFT"",""2"",""dl_062_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_063,""DEADLIFT"",""2"",""dl_063_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_064,""DEADLIFT"",""2"",""dl_064_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_065,""DEADLIFT"",""2"",""dl_065_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:33""",,,,,,,,,
+"dl_066,""DEADLIFT"",""2"",""dl_066_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:33""",,,,,,,,,
+"dl_067,""DEADLIFT"",""2"",""dl_067_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:46""",,,,,,,,,
+"dl_068,""DEADLIFT"",""2"",""dl_068_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:46""",,,,,,,,,
+"dl_069,""DEADLIFT"",""2"",""dl_069_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:47""",,,,,,,,,
+"dl_070,""DEADLIFT"",""2"",""dl_070_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:47""",,,,,,,,,
+"dl_071,""DEADLIFT"",""2"",""dl_071_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:47""",,,,,,,,,
+"dl_072,""DEADLIFT"",""2"",""dl_072_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:48""",,,,,,,,,
+"dl_073,""DEADLIFT"",""2"",""dl_073_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posición final"",""Francisco"",""2026-06-30 20:49""",,,,,,,,,
+"dl_074,""DEADLIFT"",""2"",""dl_074_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posición final"",""Francisco"",""2026-06-30 20:49""",,,,,,,,,
+"dl_075,""DEADLIFT"",""2"",""dl_075_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posición final"",""Francisco"",""2026-06-30 20:50""",,,,,,,,,
+"dl_076,""DEADLIFT"",""2"",""dl_076_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:50""",,,,,,,,,
+"dl_077,""DEADLIFT"",""2"",""dl_077_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posición final"",""Francisco"",""2026-06-30 20:50""",,,,,,,,,
+"dl_078,""DEADLIFT"",""2"",""dl_078_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:50""",,,,,,,,,
+"dl_079,""DEADLIFT"",""2"",""dl_079_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posición final"",""Francisco"",""2026-06-30 20:51""",,,,,,,,,
+"dl_080,""DEADLIFT"",""2"",""dl_080_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_081,""DEADLIFT"",""2"",""dl_081_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posición final"",""Francisco"",""2026-06-30 20:51""",,,,,,,,,
+"dl_082,""DEADLIFT"",""2"",""dl_082_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:51""",,,,,,,,,
+"dl_083,""DEADLIFT"",""2"",""dl_083_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:52""",,,,,,,,,
+"dl_084,""DEADLIFT"",""2"",""dl_084_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:52""",,,,,,,,,
+"dl_085,""DEADLIFT"",""2"",""dl_085_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:56""",,,,,,,,,
+"dl_086,""DEADLIFT"",""2"",""dl_086_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posición final"",""Francisco"",""2026-06-30 20:56""",,,,,,,,,
+"dl_087,""DEADLIFT"",""2"",""dl_087_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:56""",,,,,,,,,
+"dl_088,""DEADLIFT"",""2"",""dl_088_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:56""",,,,,,,,,
+"dl_089,""DEADLIFT"",""2"",""dl_089_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:57""",,,,,,,,,
+"dl_090,""DEADLIFT"",""2"",""dl_090_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 20:58""",,,,,,,,,
+"dl_091,""DEADLIFT"",""2"",""dl_091_cam2.mp4"",""invalido"",""0"",""DL-03|DL-02"",""Movimiento descendente de la barra antes de llegar a la posición final | No quedar erguido con hombros atrás — deltoides detrás de proyección imaginaria de la barra"",""Francisco"",""2026-06-30 20:58""",,,,,,,,,
+"dl_092,""DEADLIFT"",""2"",""dl_092_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_093,""DEADLIFT"",""2"",""dl_093_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_094,""DEADLIFT"",""2"",""dl_094_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_095,""DEADLIFT"",""2"",""dl_095_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_096,""DEADLIFT"",""2"",""dl_096_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_097,""DEADLIFT"",""2"",""dl_097_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_098,""DEADLIFT"",""2"",""dl_098_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 21:01""",,,,,,,,,
+"dl_099,""DEADLIFT"",""2"",""dl_099_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 21:01""",,,,,,,,,
+"dl_100,""DEADLIFT"",""2"",""dl_100_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_101,""DEADLIFT"",""2"",""dl_101_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_102,""DEADLIFT"",""2"",""dl_102_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_103,""DEADLIFT"",""2"",""dl_103_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_104,""DEADLIFT"",""2"",""dl_104_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_105,""DEADLIFT"",""2"",""dl_105_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_106,""DEADLIFT"",""2"",""dl_106_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_107,""DEADLIFT"",""2"",""dl_107_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_108,""DEADLIFT"",""2"",""dl_108_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_109,""DEADLIFT"",""2"",""dl_109_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_110,""DEADLIFT"",""2"",""dl_110_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_111,""DEADLIFT"",""2"",""dl_111_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_112,""DEADLIFT"",""2"",""dl_112_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_113,""DEADLIFT"",""2"",""dl_113_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_114,""DEADLIFT"",""2"",""dl_114_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_115,""DEADLIFT"",""2"",""dl_115_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_116,""DEADLIFT"",""2"",""dl_116_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_117,""DEADLIFT"",""2"",""dl_117_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_118,""DEADLIFT"",""2"",""dl_118_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_119,""DEADLIFT"",""2"",""dl_119_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_120,""DEADLIFT"",""2"",""dl_120_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_121,""DEADLIFT"",""2"",""dl_121_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_122,""DEADLIFT"",""2"",""dl_122_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_123,""DEADLIFT"",""2"",""dl_123_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_124,""DEADLIFT"",""2"",""dl_124_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_125,""DEADLIFT"",""2"",""dl_125_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_126,""DEADLIFT"",""2"",""dl_126_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_127,""DEADLIFT"",""2"",""dl_127_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_128,""DEADLIFT"",""2"",""dl_128_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_129,""DEADLIFT"",""2"",""dl_129_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_130,""DEADLIFT"",""2"",""dl_130_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_131,""DEADLIFT"",""2"",""dl_131_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_132,""DEADLIFT"",""2"",""dl_132_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_133,""DEADLIFT"",""2"",""dl_133_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_134,""DEADLIFT"",""2"",""dl_134_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_135,""DEADLIFT"",""2"",""dl_135_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_136,""DEADLIFT"",""2"",""dl_136_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_137,""DEADLIFT"",""2"",""dl_137_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_138,""DEADLIFT"",""2"",""dl_138_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_139,""DEADLIFT"",""2"",""dl_139_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_140,""DEADLIFT"",""2"",""dl_140_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_141,""DEADLIFT"",""2"",""dl_141_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_142,""DEADLIFT"",""2"",""dl_142_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_143,""DEADLIFT"",""2"",""dl_143_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 20:59""",,,,,,,,,
+"dl_144,""DEADLIFT"",""2"",""dl_144_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:00""",,,,,,,,,
+"dl_145,""DEADLIFT"",""2"",""dl_145_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:00""",,,,,,,,,
+"dl_146,""DEADLIFT"",""2"",""dl_146_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:00""",,,,,,,,,
+"dl_147,""DEADLIFT"",""2"",""dl_147_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:00""",,,,,,,,,
+"dl_148,""DEADLIFT"",""2"",""dl_148_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:00""",,,,,,,,,
+"dl_149,""DEADLIFT"",""2"",""dl_149_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:00""",,,,,,,,,
+"dl_150,""DEADLIFT"",""2"",""dl_150_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:00""",,,,,,,,,
+"dl_151,""DEADLIFT"",""2"",""dl_151_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:03""",,,,,,,,,
+"dl_152,""DEADLIFT"",""2"",""dl_152_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:03""",,,,,,,,,
+"dl_153,""DEADLIFT"",""2"",""dl_153_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:03""",,,,,,,,,
+"dl_154,""DEADLIFT"",""2"",""dl_154_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:03""",,,,,,,,,
+"dl_155,""DEADLIFT"",""2"",""dl_155_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:03""",,,,,,,,,
+"dl_156,""DEADLIFT"",""2"",""dl_156_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:03""",,,,,,,,,
+"dl_157,""DEADLIFT"",""2"",""dl_157_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_158,""DEADLIFT"",""2"",""dl_158_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_159,""DEADLIFT"",""2"",""dl_159_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_160,""DEADLIFT"",""2"",""dl_160_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_161,""DEADLIFT"",""2"",""dl_161_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_162,""DEADLIFT"",""2"",""dl_163_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_163,""DEADLIFT"",""2"",""dl_16_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_164,""DEADLIFT"",""2"",""dl_164_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_165,""DEADLIFT"",""2"",""dl_165_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_166,""DEADLIFT"",""2"",""dl_166_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:05""",,,,,,,,,
+"dl_167,""DEADLIFT"",""2"",""dl_167_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:07""",,,,,,,,,
+"dl_168,""DEADLIFT"",""2"",""dl_168_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:07""",,,,,,,,,
+"dl_169,""DEADLIFT"",""2"",""dl_169_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_170,""DEADLIFT"",""2"",""dl_170_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_171,""DEADLIFT"",""2"",""dl_171_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_172,""DEADLIFT"",""2"",""dl_172_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_173,""DEADLIFT"",""2"",""dl_173_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_174,""DEADLIFT"",""2"",""dl_174_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_175,""DEADLIFT"",""2"",""dl_175_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_176,""DEADLIFT"",""2"",""dl_176_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_177,""DEADLIFT"",""2"",""dl_177_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:07""",,,,,,,,,
+"dl_178,""DEADLIFT"",""2"",""dl_178_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_179,""DEADLIFT"",""2"",""dl_179_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_180,""DEADLIFT"",""2"",""dl_180_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_181,""DEADLIFT"",""2"",""dl_181_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:08""",,,,,,,,,
+"dl_182,""DEADLIFT"",""2"",""dl_182_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_183,""DEADLIFT"",""2"",""dl_183_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_184,""DEADLIFT"",""2"",""dl_184_cam2.mp4"",""valido"",""1"","""","""",""Francisco"",""2026-06-30 19:59""",,,,,,,,,
+"dl_185,""DEADLIFT"",""2"",""dl_185_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:09""",,,,,,,,,
+"dl_186,""DEADLIFT"",""2"",""dl_186_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_187,""DEADLIFT"",""2"",""dl_187_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_188,""DEADLIFT"",""2"",""dl_188_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_189,""DEADLIFT"",""2"",""dl_189_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_190,""DEADLIFT"",""2"",""dl_190_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_191,""DEADLIFT"",""2"",""dl_191_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_192,""DEADLIFT"",""2"",""dl_192_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_193,""DEADLIFT"",""2"",""dl_193_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_194,""DEADLIFT"",""2"",""dl_194_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_195,""DEADLIFT"",""2"",""dl_195_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_196,""DEADLIFT"",""2"",""dl_196_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_197,""DEADLIFT"",""2"",""dl_197_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_198,""DEADLIFT"",""2"",""dl_198_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_199,""DEADLIFT"",""2"",""dl_199_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_200,""DEADLIFT"",""2"",""dl_200_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_201,""DEADLIFT"",""2"",""dl_201_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_202,""DEADLIFT"",""2"",""dl_202_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_203,""DEADLIFT"",""2"",""dl_203_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_204,""DEADLIFT"",""2"",""dl_204_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_205,""DEADLIFT"",""2"",""dl_205_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_206,""DEADLIFT"",""2"",""dl_206_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_207,""DEADLIFT"",""2"",""dl_207_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_208,""DEADLIFT"",""2"",""dl_208_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_209,""DEADLIFT"",""2"",""dl_209_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_210,""DEADLIFT"",""2"",""dl_210_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_211,""DEADLIFT"",""2"",""dl_211_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_212,""DEADLIFT"",""2"",""dl_212_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_213,""DEADLIFT"",""2"",""dl_213_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_214,""DEADLIFT"",""2"",""dl_214_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_215,""DEADLIFT"",""2"",""dl_215_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_216,""DEADLIFT"",""2"",""dl_216_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_217,""DEADLIFT"",""2"",""dl_217_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_218,""DEADLIFT"",""2"",""dl_218_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_219,""DEADLIFT"",""2"",""dl_219_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_220,""DEADLIFT"",""2"",""dl_220_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_221,""DEADLIFT"",""2"",""dl_221_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_222,""DEADLIFT"",""2"",""dl_222_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_223,""DEADLIFT"",""2"",""dl_223_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_224,""DEADLIFT"",""2"",""dl_224_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_225,""DEADLIFT"",""2"",""dl_225_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_226,""DEADLIFT"",""2"",""dl_226_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_227,""DEADLIFT"",""2"",""dl_227_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_228,""DEADLIFT"",""2"",""dl_228_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_229,""DEADLIFT"",""2"",""dl_229_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_230,""DEADLIFT"",""2"",""dl_230_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posición final"",""Sin nombre"",""2026-06-30 21:18""",,,,,,,,,
+"dl_231,""DEADLIFT"",""2"",""dl_231_cam2.mp4"",""invalido"",""0"",""DL-04"",""Apoyo de la barra sobre los muslos durante el levantamiento (hitching)"",""Sin nombre"",""2026-06-30 21:19""",,,,,,,,,
+"dl_232,""DEADLIFT"",""2"",""dl_232_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posición final"",""Sin nombre"",""2026-06-30 21:20""",,,,,,,,,
+"dl_233,""DEADLIFT"",""2"",""dl_233_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:20""",,,,,,,,,
+"dl_234,""DEADLIFT"",""2"",""dl_234_cam2.mp4"",""invalido"",""0"",""DL-07"",""Pasos hacia atrás, adelante o movimiento lateral de los pies"",""Sin nombre"",""2026-06-30 21:23""",,,,,,,,,
+"dl_235,""DEADLIFT"",""2"",""dl_235_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:24""",,,,,,,,,
+"dl_236,""DEADLIFT"",""2"",""dl_236_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:25""",,,,,,,,,
+"dl_237,""DEADLIFT"",""2"",""dl_237_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:25""",,,,,,,,,
+"dl_238,""DEADLIFT"",""2"",""dl_238_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-06-30 21:25""",,,,,,,,,
+"dl_239,""DEADLIFT"",""2"",""dl_239_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-06-30 21:25""",,,,,,,,,
+"dl_240,""DEADLIFT"",""2"",""dl_240_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:27""",,,,,,,,,
+"dl_241,""DEADLIFT"",""2"",""dl_241_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:27""",,,,,,,,,
+"dl_242,""DEADLIFT"",""2"",""dl_242_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:27""",,,,,,,,,
+"dl_243,""DEADLIFT"",""2"",""dl_243_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:27""",,,,,,,,,
+"dl_244,""DEADLIFT"",""2"",""dl_244_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:27""",,,,,,,,,
+"dl_245,""DEADLIFT"",""2"",""dl_245_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:27""",,,,,,,,,
+"dl_246,""DEADLIFT"",""2"",""dl_246_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:27""",,,,,,,,,
+"dl_247,""DEADLIFT"",""2"",""dl_247_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:27""",,,,,,,,,
+"dl_248,""DEADLIFT"",""2"",""dl_248_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:27""",,,,,,,,,
+"dl_249,""DEADLIFT"",""2"",""dl_249_cam2.mp4"",""invalido"",""0"","""","""",""Sin nombre"",""2026-06-30 21:27""",,,,,,,,,
+"dl_250,""DEADLIFT"",""2"",""dl_250_cam2.mp4"",""invalido"",""0"","""","""",""Sin nombre"",""2026-06-30 21:29""",,,,,,,,,
+"dl_251,""DEADLIFT"",""2"",""dl_251_cam2.mp4"",""invalido"",""0"","""","""",""Sin nombre"",""2026-06-30 21:29""",,,,,,,,,
+"dl_252,""DEADLIFT"",""2"",""dl_252_cam2.mp4"",""invalido"",""0"","""","""",""Sin nombre"",""2026-06-30 21:29""",,,,,,,,,
+"dl_253,""DEADLIFT"",""2"",""dl_253_cam2.mp4"",""invalido"",""0"","""","""",""Sin nombre"",""2026-06-30 21:29""",,,,,,,,,
+"dl_254,""DEADLIFT"",""2"",""dl_254_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-06-30 21:29""",,,,,,,,,
+"dl_255,""DEADLIFT"",""2"",""dl_255_cam2.mp4"",""invalido"",""0"","""","""",""Sin nombre"",""2026-06-30 21:30""",,,,,,,,,
+"dl_256,""DEADLIFT"",""2"",""dl_256_cam2.mp4"",""invalido"",""0"","""","""",""Sin nombre"",""2026-06-30 21:30""",,,,,,,,,
+"dl_257,""DEADLIFT"",""2"",""dl_257_cam2.mp4"",""invalido"",""0"","""","""",""Sin nombre"",""2026-06-30 21:30""",,,,,,,,,
+"dl_258,""DEADLIFT"",""2"",""dl_258_cam2.mp4"",""invalido"",""0"","""","""",""Sin nombre"",""2026-06-30 21:30""",,,,,,,,,
+"dl_259,""DEADLIFT"",""2"",""dl_259_cam2.mp4"",""invalido"",""0"","""","""",""Sin nombre"",""2026-06-30 21:30""",,,,,,,,,
+"dl_260,""DEADLIFT"",""2"",""dl_260_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:24""",,,,,,,,,
+"dl_261,""DEADLIFT"",""2"",""dl_261_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:24""",,,,,,,,,
+"dl_262,""DEADLIFT"",""2"",""dl_262_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:24""",,,,,,,,,
+"dl_263,""DEADLIFT"",""2"",""dl_263_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:24""",,,,,,,,,
+"dl_264,""DEADLIFT"",""2"",""dl_264_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:25""",,,,,,,,,
+"dl_265,""DEADLIFT"",""2"",""dl_265_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:25""",,,,,,,,,
+"dl_266,""DEADLIFT"",""2"",""dl_266_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:25""",,,,,,,,,
+"dl_267,""DEADLIFT"",""2"",""dl_267_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:25""",,,,,,,,,
+"dl_268,""DEADLIFT"",""2"",""dl_268_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:25""",,,,,,,,,
+"dl_269,""DEADLIFT"",""2"",""dl_269_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:26""",,,,,,,,,
+"dl_270,""DEADLIFT"",""2"",""dl_270_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:26""",,,,,,,,,
+"dl_271,""DEADLIFT"",""2"",""dl_271_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:27""",,,,,,,,,
+"dl_272,""DEADLIFT"",""2"",""dl_272_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:28""",,,,,,,,,
+"dl_273,""DEADLIFT"",""2"",""dl_273_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:30""",,,,,,,,,
+"dl_274,""DEADLIFT"",""2"",""dl_274_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:30""",,,,,,,,,
+"dl_275,""DEADLIFT"",""2"",""dl_275_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:30""",,,,,,,,,
+"dl_276,""DEADLIFT"",""2"",""dl_276_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:30""",,,,,,,,,
+"dl_277,""DEADLIFT"",""2"",""dl_277_cam2.mp4"",""invalido"",""0"",""DL-02|DL-01"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra | No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-18 02:31""",,,,,,,,,
+"dl_278,""DEADLIFT"",""2"",""dl_278_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-18 02:31""",,,,,,,,,
+"dl_279,""DEADLIFT"",""2"",""dl_279_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-18 02:31""",,,,,,,,,
+"dl_280,""DEADLIFT"",""2"",""dl_280_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-18 02:31""",,,,,,,,,
+"dl_281,""DEADLIFT"",""2"",""dl_281_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-18 02:32""",,,,,,,,,
+"dl_282,""DEADLIFT"",""2"",""dl_282_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-18 02:32""",,,,,,,,,
+"dl_283,""DEADLIFT"",""2"",""dl_283_cam2.mp4"",""invalido"",""0"",""DL-06"",""Soltar la barra sin mantener control con ambas manos"",""Sin nombre"",""2026-07-18 02:32""",,,,,,,,,
+"dl_284,""DEADLIFT"",""2"",""dl_284_cam2.mp4"",""invalido"",""0"",""DL-06"",""Soltar la barra sin mantener control con ambas manos"",""Sin nombre"",""2026-07-18 02:33""",,,,,,,,,
+"dl_285,""DEADLIFT"",""2"",""dl_285_cam2.mp4"",""invalido"",""0"",""DL-06"",""Soltar la barra sin mantener control con ambas manos"",""Sin nombre"",""2026-07-18 02:33""",,,,,,,,,
+"dl_286,""DEADLIFT"",""2"",""dl_286_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:34""",,,,,,,,,
+"dl_287,""DEADLIFT"",""2"",""dl_287_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:34""",,,,,,,,,
+"dl_288,""DEADLIFT"",""2"",""dl_288_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:34""",,,,,,,,,
+"dl_289,""DEADLIFT"",""2"",""dl_289_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:34""",,,,,,,,,
+"dl_290,""DEADLIFT"",""2"",""dl_290_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:34""",,,,,,,,,
+"dl_291,""DEADLIFT"",""2"",""dl_291_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:36""",,,,,,,,,
+"dl_292,""DEADLIFT"",""2"",""dl_292_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:36""",,,,,,,,,
+"dl_293,""DEADLIFT"",""2"",""dl_293_cam2.mp4"",""invalido"",""0"","""","""",""Sin nombre"",""2026-07-18 02:36""",,,,,,,,,
+"dl_294,""DEADLIFT"",""2"",""dl_294_cam2.mp4"",""invalido"",""0"","""","""",""Sin nombre"",""2026-07-18 02:36""",,,,,,,,,
+"dl_295,""DEADLIFT"",""2"",""dl_295_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:37""",,,,,,,,,
+"dl_296,""DEADLIFT"",""2"",""dl_296_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:37""",,,,,,,,,
+"dl_297,""DEADLIFT"",""2"",""dl_297_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:37""",,,,,,,,,
+"dl_298,""DEADLIFT"",""2"",""dl_298_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:37""",,,,,,,,,
+"dl_299,""DEADLIFT"",""2"",""dl_299_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:37""",,,,,,,,,
+"dl_300,""DEADLIFT"",""2"",""dl_300_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:37""",,,,,,,,,
+"dl_301,""DEADLIFT"",""2"",""dl_301_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:37""",,,,,,,,,
+"dl_302,""DEADLIFT"",""2"",""dl_302_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:38""",,,,,,,,,
+"dl_303,""DEADLIFT"",""2"",""dl_303_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:38""",,,,,,,,,
+"dl_304,""DEADLIFT"",""2"",""dl_304_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:38""",,,,,,,,,
+"dl_305,""DEADLIFT"",""2"",""dl_305_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:39""",,,,,,,,,
+"dl_306,""DEADLIFT"",""2"",""dl_306_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:39""",,,,,,,,,
+"dl_307,""DEADLIFT"",""2"",""dl_307_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:39""",,,,,,,,,
+"dl_308,""DEADLIFT"",""2"",""dl_308_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:40""",,,,,,,,,
+"dl_309,""DEADLIFT"",""2"",""dl_309_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:40""",,,,,,,,,
+"dl_310,""DEADLIFT"",""2"",""dl_310_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:40""",,,,,,,,,
+"dl_311,""DEADLIFT"",""2"",""dl_311_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:40""",,,,,,,,,
+"dl_312,""DEADLIFT"",""2"",""dl_312_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:41""",,,,,,,,,
+"dl_313,""DEADLIFT"",""2"",""dl_313_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:41""",,,,,,,,,
+"dl_314,""DEADLIFT"",""2"",""dl_314_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:41""",,,,,,,,,
+"dl_315,""DEADLIFT"",""2"",""dl_315_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:41""",,,,,,,,,
+"dl_316,""DEADLIFT"",""2"",""dl_316_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:41""",,,,,,,,,
+"dl_317,""DEADLIFT"",""2"",""dl_317_cam2.mp4"",""invalido"",""0"",""DL-08"",""Incumplimiento de cualquier otro requisito del deadlift"",""Sin nombre"",""2026-07-18 02:42""",,,,,,,,,
+"dl_318,""DEADLIFT"",""2"",""dl_318_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:42""",,,,,,,,,
+"dl_319,""DEADLIFT"",""2"",""dl_319_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:42""",,,,,,,,,
+"dl_320,""DEADLIFT"",""2"",""dl_320_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:43""",,,,,,,,,
+"dl_321,""DEADLIFT"",""2"",""dl_321_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:43""",,,,,,,,,
+"dl_322,""DEADLIFT"",""2"",""dl_322_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:44""",,,,,,,,,
+"dl_323,""DEADLIFT"",""2"",""dl_323_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:44""",,,,,,,,,
+"dl_324,""DEADLIFT"",""2"",""dl_324_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:44""",,,,,,,,,
+"dl_325,""DEADLIFT"",""2"",""dl_325_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:44""",,,,,,,,,
+"dl_326,""DEADLIFT"",""2"",""dl_326_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:44""",,,,,,,,,
+"dl_327,""DEADLIFT"",""2"",""dl_327_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:44""",,,,,,,,,
+"dl_328,""DEADLIFT"",""2"",""dl_328_cam2.mp4"",""invalido"",""0"",""DL-08"",""Incumplimiento de cualquier otro requisito del deadlift"",""Sin nombre"",""2026-07-18 02:44""",,,,,,,,,
+"dl_329,""DEADLIFT"",""2"",""dl_329_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:45""",,,,,,,,,
+"dl_330,""DEADLIFT"",""2"",""dl_330_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:46""",,,,,,,,,
+"dl_331,""DEADLIFT"",""2"",""dl_331_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:46""",,,,,,,,,
+"dl_332,""DEADLIFT"",""2"",""dl_332_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:46""",,,,,,,,,
+"dl_333,""DEADLIFT"",""2"",""dl_333_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:46""",,,,,,,,,
+"dl_334,""DEADLIFT"",""2"",""dl_334_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:46""",,,,,,,,,
+"dl_335,""DEADLIFT"",""2"",""dl_335_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-18 02:47""",,,,,,,,,
+"dl_336,""DEADLIFT"",""2"",""dl_336_cam2.mp4"",""invalido"",""0"",""DL-06"",""Soltar la barra sin mantener control con ambas manos"",""Sin nombre"",""2026-07-18 02:47""",,,,,,,,,
+"dl_337,""DEADLIFT"",""2"",""dl_337_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-18 02:47""",,,,,,,,,
+"dl_338,""DEADLIFT"",""2"",""dl_338_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-18 02:48""",,,,,,,,,
+"dl_339,""DEADLIFT"",""2"",""dl_339_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-18 02:48""",,,,,,,,,
+"dl_340,""DEADLIFT"",""2"",""dl_340_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:48""",,,,,,,,,
+"dl_341,""DEADLIFT"",""2"",""dl_341_cam2.mp4"",""invalido"",""0"",""DL-08"",""Incumplimiento de cualquier otro requisito del deadlift"",""Sin nombre"",""2026-07-18 02:50""",,,,,,,,,
+"dl_342,""DEADLIFT"",""2"",""dl_342_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:50""",,,,,,,,,
+"dl_343,""DEADLIFT"",""2"",""dl_343_cam2.mp4"",""invalido"",""0"",""DL-08"",""Incumplimiento de cualquier otro requisito del deadlift"",""Sin nombre"",""2026-07-18 02:50""",,,,,,,,,
+"dl_344,""DEADLIFT"",""2"",""dl_344_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-18 02:51""",,,,,,,,,
+"dl_345,""DEADLIFT"",""2"",""dl_345_cam2.mp4"",""invalido"",""0"",""DL-01|DL-02"",""No bloquear las rodillas completamente al finalizar | No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:51""",,,,,,,,,
+"dl_346,""DEADLIFT"",""2"",""dl_346_cam2.mp4"",""invalido"",""0"",""DL-06"",""Soltar la barra sin mantener control con ambas manos"",""Sin nombre"",""2026-07-18 02:51""",,,,,,,,,
+"dl_347,""DEADLIFT"",""2"",""dl_347_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-18 02:51""",,,,,,,,,
+"dl_348,""DEADLIFT"",""2"",""dl_348_cam2.mp4"",""invalido"",""0"",""DL-03|DL-01|DL-02"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final | No bloquear las rodillas completamente al finalizar | No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-18 02:52""",,,,,,,,,
+"dl_349,""DEADLIFT"",""2"",""dl_349_cam2.mp4"",""invalido"",""0"",""DL-06"",""Soltar la barra sin mantener control con ambas manos"",""Sin nombre"",""2026-07-18 02:52""",,,,,,,,,
+"dl_350,""DEADLIFT"",""2"",""dl_349_cam2.mp4"",""invalido"",""0"",""DL-06"",""Soltar la barra sin mantener control con ambas manos"",""Sin nombre"",""2026-07-18 02:52""",,,,,,,,,
+"dl_351,""DEADLIFT"",""2"",""dl_351_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 02:44""",,,,,,,,,
+"dl_352,""DEADLIFT"",""2"",""dl_352_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 02:44""",,,,,,,,,
+"dl_353,""DEADLIFT"",""2"",""dl_353_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 02:45""",,,,,,,,,
+"dl_354,""DEADLIFT"",""2"",""dl_354_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-22 02:45""",,,,,,,,,
+"dl_355,""DEADLIFT"",""2"",""dl_355_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 02:47""",,,,,,,,,
+"dl_356,""DEADLIFT"",""2"",""dl_356_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 02:48""",,,,,,,,,
+"dl_357,""DEADLIFT"",""2"",""dl_357_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 02:48""",,,,,,,,,
+"dl_358,""DEADLIFT"",""2"",""dl_358_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-22 02:49""",,,,,,,,,
+"dl_359,""DEADLIFT"",""2"",""dl_359_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-22 02:49""",,,,,,,,,
+"dl_360,""DEADLIFT"",""2"",""dl_360_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 02:49""",,,,,,,,,
+"dl_361,""DEADLIFT"",""2"",""dl_361_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 02:49""",,,,,,,,,
+"dl_362,""DEADLIFT"",""2"",""dl_362_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 02:50""",,,,,,,,,
+"dl_363,""DEADLIFT"",""2"",""dl_363_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 02:50""",,,,,,,,,
+"dl_364,""DEADLIFT"",""2"",""dl_364_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 02:50""",,,,,,,,,
+"dl_365,""DEADLIFT"",""2"",""dl_365_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 02:51""",,,,,,,,,
+"dl_366,""DEADLIFT"",""2"",""dl_366_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 02:52""",,,,,,,,,
+"dl_367,""DEADLIFT"",""2"",""dl_367_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 02:56""",,,,,,,,,
+"dl_368,""DEADLIFT"",""2"",""dl_368_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 02:56""",,,,,,,,,
+"dl_369,""DEADLIFT"",""2"",""dl_369_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 02:56""",,,,,,,,,
+"dl_370,""DEADLIFT"",""2"",""dl_370_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 02:56""",,,,,,,,,
+"dl_371,""DEADLIFT"",""2"",""dl_371_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:03""",,,,,,,,,
+"dl_372,""DEADLIFT"",""2"",""dl_372_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:03""",,,,,,,,,
+"dl_373,""DEADLIFT"",""2"",""dl_373_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:03""",,,,,,,,,
+"dl_374,""DEADLIFT"",""2"",""dl_374_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:04""",,,,,,,,,
+"dl_375,""DEADLIFT"",""2"",""dl_375_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:04""",,,,,,,,,
+"dl_376,""DEADLIFT"",""2"",""dl_376_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:04""",,,,,,,,,
+"dl_377,""DEADLIFT"",""2"",""dl_377_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:04""",,,,,,,,,
+"dl_378,""DEADLIFT"",""2"",""dl_378_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:05""",,,,,,,,,
+"dl_379,""DEADLIFT"",""2"",""dl_379_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-22 03:05""",,,,,,,,,
+"dl_380,""DEADLIFT"",""2"",""dl_380_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:05""",,,,,,,,,
+"dl_381,""DEADLIFT"",""2"",""dl_381_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:05""",,,,,,,,,
+"dl_382,""DEADLIFT"",""2"",""dl_382_cam2.mp4"",""invalido"",""0"","""","""",""Sin nombre"",""2026-07-22 03:06""",,,,,,,,,
+"dl_383,""DEADLIFT"",""2"",""dl_383_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:06""",,,,,,,,,
+"dl_384,""DEADLIFT"",""2"",""dl_384_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:06""",,,,,,,,,
+"dl_385,""DEADLIFT"",""2"",""dl_385_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:06""",,,,,,,,,
+"dl_386,""DEADLIFT"",""2"",""dl_386_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:09""",,,,,,,,,
+"dl_387,""DEADLIFT"",""2"",""dl_387_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:09""",,,,,,,,,
+"dl_388,""DEADLIFT"",""2"",""dl_388_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:09""",,,,,,,,,
+"dl_389,""DEADLIFT"",""2"",""dl_389_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:09""",,,,,,,,,
+"dl_390,""DEADLIFT"",""2"",""dl_390_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:10""",,,,,,,,,
+"dl_391,""DEADLIFT"",""2"",""dl_391_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:10""",,,,,,,,,
+"dl_392,""DEADLIFT"",""2"",""dl_392_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:10""",,,,,,,,,
+"dl_393,""DEADLIFT"",""2"",""dl_393_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:11""",,,,,,,,,
+"dl_394,""DEADLIFT"",""2"",""dl_394_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:11""",,,,,,,,,
+"dl_395,""DEADLIFT"",""2"",""dl_395_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:11""",,,,,,,,,
+"dl_396,""DEADLIFT"",""2"",""dl_396_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:12""",,,,,,,,,
+"dl_397,""DEADLIFT"",""2"",""dl_397_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:12""",,,,,,,,,
+"dl_398,""DEADLIFT"",""2"",""dl_398_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-22 03:12""",,,,,,,,,
+"dl_399,""DEADLIFT"",""2"",""dl_399_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-22 03:12""",,,,,,,,,
+"dl_400,""DEADLIFT"",""2"",""dl_400_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-22 03:13""",,,,,,,,,
+"dl_401,""DEADLIFT"",""2"",""dl_401_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-22 03:13""",,,,,,,,,
+"dl_402,""DEADLIFT"",""2"",""dl_402_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-22 03:13""",,,,,,,,,
+"dl_403,""DEADLIFT"",""2"",""dl_403_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:14""",,,,,,,,,
+"dl_404,""DEADLIFT"",""2"",""dl_404_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:14""",,,,,,,,,
+"dl_405,""DEADLIFT"",""2"",""dl_405_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:14""",,,,,,,,,
+"dl_406,""DEADLIFT"",""2"",""dl_406_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:14""",,,,,,,,,
+"dl_407,""DEADLIFT"",""2"",""dl_407_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:15""",,,,,,,,,
+"dl_408,""DEADLIFT"",""2"",""dl_408_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:15""",,,,,,,,,
+"dl_409,""DEADLIFT"",""2"",""dl_409_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:15""",,,,,,,,,
+"dl_410,""DEADLIFT"",""2"",""dl_410_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:16""",,,,,,,,,
+"dl_411,""DEADLIFT"",""2"",""dl_411_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:16""",,,,,,,,,
+"dl_412,""DEADLIFT"",""2"",""dl_412_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:16""",,,,,,,,,
+"dl_413,""DEADLIFT"",""2"",""dl_413_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-22 03:17""",,,,,,,,,
+"dl_414,""DEADLIFT"",""2"",""dl_414_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:17""",,,,,,,,,
+"dl_415,""DEADLIFT"",""2"",""dl_415_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:17""",,,,,,,,,
+"dl_416,""DEADLIFT"",""2"",""dl_416_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:18""",,,,,,,,,
+"dl_417,""DEADLIFT"",""2"",""dl_417_cam2.mp4"",""invalido"",""0"",""DL-02|DL-01"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra | No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:18""",,,,,,,,,
+"dl_418,""DEADLIFT"",""2"",""dl_418_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:18""",,,,,,,,,
+"dl_419,""DEADLIFT"",""2"",""dl_419_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:19""",,,,,,,,,
+"dl_420,""DEADLIFT"",""2"",""dl_420_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-22 03:19""",,,,,,,,,
+"dl_421,""DEADLIFT"",""2"",""dl_421_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:19""",,,,,,,,,
+"dl_422,""DEADLIFT"",""2"",""dl_422_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:19""",,,,,,,,,
+"dl_423,""DEADLIFT"",""2"",""dl_423_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:19""",,,,,,,,,
+"dl_424,""DEADLIFT"",""2"",""dl_424_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:20""",,,,,,,,,
+"dl_425,""DEADLIFT"",""2"",""dl_425_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:20""",,,,,,,,,
+"dl_426,""DEADLIFT"",""2"",""dl_426_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:20""",,,,,,,,,
+"dl_427,""DEADLIFT"",""2"",""dl_427_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-22 03:20""",,,,,,,,,
+"dl_428,""DEADLIFT"",""2"",""dl_428_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:21""",,,,,,,,,
+"dl_429,""DEADLIFT"",""2"",""dl_429_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:21""",,,,,,,,,
+"dl_430,""DEADLIFT"",""2"",""dl_430_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:21""",,,,,,,,,
+"dl_431,""DEADLIFT"",""2"",""dl_431_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:21""",,,,,,,,,
+"dl_432,""DEADLIFT"",""2"",""dl_432_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:22""",,,,,,,,,
+"dl_433,""DEADLIFT"",""2"",""dl_433_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:22""",,,,,,,,,
+"dl_434,""DEADLIFT"",""2"",""dl_434_cam2.mp4"",""invalido"",""0"",""DL-01"",""No bloquear las rodillas completamente al finalizar"",""Sin nombre"",""2026-07-22 03:22""",,,,,,,,,
+"dl_435,""DEADLIFT"",""2"",""dl_435_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:22""",,,,,,,,,
+"dl_436,""DEADLIFT"",""2"",""dl_436_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:22""",,,,,,,,,
+"dl_437,""DEADLIFT"",""2"",""dl_437_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:23""",,,,,,,,,
+"dl_438,""DEADLIFT"",""2"",""dl_438_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:25""",,,,,,,,,
+"dl_439,""DEADLIFT"",""2"",""dl_439_cam2.mp4"",""valido"",""1"","""","""",""Sin nombre"",""2026-07-22 03:25""",,,,,,,,,
+"dl_440,""DEADLIFT"",""2"",""dl_440_cam2.mp4"",""invalido"",""0"",""DL-03"",""Movimiento descendente de la barra antes de llegar a la posiciÃ³n final"",""Sin nombre"",""2026-07-22 03:25""",,,,,,,,,
+"dl_441,""DEADLIFT"",""2"",""dl_441_cam2.mp4"",""invalido"",""0"",""DL-02"",""No quedar erguido con hombros atrÃ¡s â€” deltoides detrÃ¡s de proyecciÃ³n imaginaria de la barra"",""Sin nombre"",""2026-07-22 03:25""",,,,,,,,,
