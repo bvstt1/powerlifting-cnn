@@ -1,9 +1,10 @@
 import numpy as np
 import torch
-import torch.nn as nn
 from pathlib import Path
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, confusion_matrix
 from datetime import datetime
+import csv
+
+from train_utils import PoseCNN, DEVICE, evaluate, compute_metrics, analyze_curves
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -17,64 +18,43 @@ OUTPUT_DIR = SCRIPT_DIR / "models"
 
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 BATCH_SIZE = 16
 
 
-class PoseCNN(nn.Module):
-    def __init__(self, T=170, K=25, C=3):
-        super().__init__()
-        self.features = nn.Sequential(
-            nn.Conv2d(C, 32, kernel_size=3, padding="same"),
-            nn.BatchNorm2d(32),
-            nn.ReLU(),
-            nn.Conv2d(32, 64, kernel_size=3, padding="same"),
-            nn.BatchNorm2d(64),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=(2, 1)),
-            nn.Dropout2d(0.25),
-            nn.Conv2d(64, 128, kernel_size=3, padding="same"),
-            nn.BatchNorm2d(128),
-            nn.ReLU(),
-        )
-        self.pool = nn.AdaptiveAvgPool2d((1, 1))
-        self.classifier = nn.Sequential(
-            nn.Flatten(),
-            nn.Linear(128, 64),
-            nn.ReLU(),
-            nn.Dropout(0.5),
-            nn.Linear(64, 1),
-            nn.Sigmoid(),
-        )
-
-    def forward(self, x):
-        x = self.features(x)
-        x = self.pool(x)
-        x = self.classifier(x)
-        return x
-
-
-def get_misclassified():
+def load_test_data():
     data = np.load(INPUT_PATH)
     X_test = torch.from_numpy(data["X_test"]).float().permute(0, 3, 1, 2)
     y_test = data["y_test"]
+    return X_test, y_test
 
+
+def load_test_ids():
     try:
         split_data = np.load(SPLIT_PATH)
-        ids_test = split_data["ids_test"]
+        ids = split_data["ids_test"]
     except Exception:
-        ids_test = None
+        data_norm = np.load(NORMALIZED_PATH)
+        all_ids = data_norm["video_ids"]
+        X_test, y_test = load_test_data()
+        ids = all_ids[-len(y_test):]
+    return ids
+
+
+def analyze_predictions():
+    X_test, y_test = load_test_data()
+    test_ids = load_test_ids()
 
     model = PoseCNN().to(DEVICE)
     model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
     model.eval()
 
-    test_ds = torch.utils.data.TensorDataset(X_test, torch.from_numpy(y_test).float())
-    test_loader = torch.utils.data.DataLoader(test_ds, batch_size=BATCH_SIZE)
-
     all_preds, all_probs = [], []
     with torch.no_grad():
-        for X_batch, _ in test_loader:
+        loader = torch.utils.data.DataLoader(
+            torch.utils.data.TensorDataset(X_test, torch.from_numpy(y_test).float()),
+            batch_size=BATCH_SIZE,
+        )
+        for X_batch, _ in loader:
             X_batch = X_batch.to(DEVICE)
             outputs = model(X_batch)
             probs = outputs.cpu().numpy().flatten()
@@ -85,57 +65,118 @@ def get_misclassified():
     all_preds = np.array(all_preds)
     all_probs = np.array(all_probs)
 
-    fp_mask = (all_preds == 0) & (y_test == 1)
-    fn_mask = (all_preds == 1) & (y_test == 0)
+    rows = []
+    for idx in range(len(y_test)):
+        real = int(y_test[idx])
+        pred = int(all_preds[idx])
+        prob = float(all_probs[idx])
+        correct = pred == real
 
-    fps = np.where(fp_mask)[0]
-    fns = np.where(fn_mask)[0]
+        vid = str(test_ids[idx]) if idx < len(test_ids) else "unknown"
+        ruta = f"keypoints/dl/front/{vid}.npy" if vid != "unknown" else "N/A"
 
-    data_norm = np.load(NORMALIZED_PATH)
-    all_ids = data_norm["video_ids"]
+        tipo_error = ""
+        if not correct:
+            if pred == 1 and real == 0:
+                tipo_error = "FP"
+            elif pred == 0 and real == 1:
+                tipo_error = "FN"
 
-    # ids_test may not be available in augmented data; use ordered mapping
-    if ids_test is not None:
-        test_ids = ids_test
-    else:
-        test_ids = all_ids[-len(y_test):]
-
-    results = {"fp": [], "fn": []}
-    for idx in fps:
-        results["fp"].append({
-            "index": int(idx),
-            "video_id": str(test_ids[idx]) if idx < len(test_ids) else "unknown",
-            "real": 1,
-            "pred": 0,
-            "probability": float(all_probs[idx]),
-        })
-    for idx in fns:
-        results["fn"].append({
-            "index": int(idx),
-            "video_id": str(test_ids[idx]) if idx < len(test_ids) else "unknown",
-            "real": 0,
-            "pred": 1,
-            "probability": float(all_probs[idx]),
+        rows.append({
+            "video_id": vid,
+            "indice": idx,
+            "etiqueta_real": real,
+            "etiqueta_predicha": pred,
+            "probabilidad": prob,
+            "correcto": correct,
+            "ruta_archivo": ruta,
+            "tipo_error": tipo_error,
         })
 
-    # Save CSV
-    import csv
-    csv_path = RESULTS_DIR / "misclassified.csv"
-    with open(csv_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow(["tipo", "indice", "video_id", "etiqueta_real", "etiqueta_predicha", "probabilidad", "ruta_archivo"])
-        for item in results["fp"]:
-            ruta = f"keypoints/dl/front/{item['video_id']}.npy" if item["video_id"] != "unknown" else "N/A"
-            writer.writerow(["FP", item["index"], item["video_id"], item["real"], item["pred"], f"{item['probability']:.4f}", ruta])
-        for item in results["fn"]:
-            ruta = f"keypoints/dl/front/{item['video_id']}.npy" if item["video_id"] != "unknown" else "N/A"
-            writer.writerow(["FN", item["index"], item["video_id"], item["real"], item["pred"], f"{item['probability']:.4f}", ruta])
+    predictions_path = RESULTS_DIR / "predictions.csv"
+    with open(predictions_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=[
+            "video_id", "indice", "etiqueta_real", "etiqueta_predicha",
+            "probabilidad", "correcto", "ruta_archivo", "tipo_error",
+        ])
+        writer.writeheader()
+        writer.writerows(rows)
 
-    print(f"Errores guardados en: {csv_path}")
-    print(f"  Falsos Positivos: {len(results['fp'])}")
-    print(f"  Falsos Negativos: {len(results['fn'])}")
+    print(f"Predicciones guardadas en: {predictions_path}")
 
-    return results
+    errors = [r for r in rows if not r["correcto"]]
+
+    misclassified_path = RESULTS_DIR / "misclassified.csv"
+    with open(misclassified_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=[
+            "video_id", "indice", "etiqueta_real", "etiqueta_predicha",
+            "probabilidad", "correcto", "ruta_archivo", "tipo_error",
+        ])
+        writer.writeheader()
+        for r in errors:
+            row_out = dict(r)
+            row_out["correcto"] = str(r["correcto"])
+            writer.writerow(row_out)
+
+    print(f"Errores guardados en: {misclassified_path}")
+
+    fp_count = sum(1 for r in errors if r["tipo_error"] == "FP")
+    fn_count = sum(1 for r in errors if r["tipo_error"] == "FN")
+    total = len(rows)
+    correct = total - len(errors)
+    incorrect = len(errors)
+
+    correct_probs = [r["probabilidad"] for r in rows if r["correcto"]]
+    error_probs = [r["probabilidad"] for r in errors]
+    mean_correct_prob = np.mean(correct_probs) if correct_probs else 0.0
+    mean_error_prob = np.mean(error_probs) if error_probs else 0.0
+
+    most_uncertain_correct = min(correct_probs, key=lambda p: abs(p - 0.5)) if correct_probs else None
+    most_certain_error = max(error_probs, key=lambda p: max(p, 1 - p)) if error_probs else None
+
+    print()
+    print("=" * 34)
+    print("ANALISIS DE PREDICCIONES")
+    print("=" * 34)
+    print()
+    print(f"Total muestras:     {total}")
+    print(f"Correctas:          {correct}")
+    print(f"Incorrectas:        {incorrect}")
+    print()
+    print(f"Falsos positivos:   {fp_count}")
+    print(f"Falsos negativos:   {fn_count}")
+    print()
+
+    if most_uncertain_correct is not None:
+        idx_uncertain = correct_probs.index(most_uncertain_correct)
+        r_uncertain = [r for r in rows if r["correcto"]][idx_uncertain]
+        print(f"Prediccion correcta mas insegura:")
+        print(f"  video_id: {r_uncertain['video_id']}, probabilidad: {most_uncertain_correct:.4f}")
+    print()
+
+    if most_certain_error is not None:
+        idx_certain = error_probs.index(most_certain_error)
+        r_certain = errors[idx_certain]
+        print(f"Prediccion incorrecta mas segura:")
+        print(f"  video_id: {r_certain['video_id']}, probabilidad: {most_certain_error:.4f}")
+    print()
+
+    print(f"Probabilidad media de aciertos:   {mean_correct_prob:.4f}")
+    print(f"Probabilidad media de errores:    {mean_error_prob:.4f}")
+    print()
+    print("=" * 34)
+
+    result = {
+        "fp": [r for r in errors if r["tipo_error"] == "FP"],
+        "fn": [r for r in errors if r["tipo_error"] == "FN"],
+        "total": total,
+        "correct": correct,
+        "incorrect": incorrect,
+        "fp_count": fp_count,
+        "fn_count": fn_count,
+        "rows": rows,
+    }
+    return result
 
 
 def load_history():
@@ -150,72 +191,25 @@ def load_history():
 def analyze_overfitting_from_history(history):
     if history is None:
         return {"best_epoch": "N/A", "diagnosis": "No disponible"}
-    train_loss = history.get("train_loss", [])
-    val_loss = history.get("val_loss", [])
+    train_loss = list(history.get("train_loss", []))
+    val_loss = list(history.get("val_loss", []))
     if len(train_loss) == 0:
         return {"best_epoch": "N/A", "diagnosis": "No disponible"}
-
-    train_loss = np.array(train_loss)
-    val_loss = np.array(val_loss)
-    best_epoch = int(np.argmin(val_loss)) + 1
-    last_val = val_loss[-1]
-    min_val = val_loss.min()
-
-    analysis = {"best_epoch": best_epoch, "best_val_loss": float(val_loss[best_epoch - 1])}
-
-    if last_val > min_val * 1.08:
-        analysis["diagnosis"] = "OVERFITTING"
-        for i in range(1, len(val_loss)):
-            if val_loss[i] > val_loss[i - 1] and val_loss[i] > min_val * 1.03:
-                analysis["divergence_epoch"] = i
-                break
-        else:
-            analysis["divergence_epoch"] = best_epoch
-    elif last_val > 0.4 and train_loss[-1] > 0.4:
-        analysis["diagnosis"] = "UNDERFITTING"
-        analysis["divergence_epoch"] = None
-    else:
-        analysis["diagnosis"] = "NORMAL"
-        analysis["divergence_epoch"] = None
-
-    return analysis
+    return analyze_curves(history)
 
 
 def compute_test_metrics():
-    data = np.load(INPUT_PATH)
-    X_test = torch.from_numpy(data["X_test"]).float().permute(0, 3, 1, 2)
-    y_test = data["y_test"]
+    X_test, y_test = load_test_data()
 
     model = PoseCNN().to(DEVICE)
     model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
-    model.eval()
 
     test_ds = torch.utils.data.TensorDataset(X_test, torch.from_numpy(y_test).float())
     test_loader = torch.utils.data.DataLoader(test_ds, batch_size=BATCH_SIZE)
 
-    all_preds, all_probs, all_labels = [], [], []
-    with torch.no_grad():
-        for X_batch, y_batch in test_loader:
-            X_batch, y_batch = X_batch.to(DEVICE), y_batch.to(DEVICE).unsqueeze(1)
-            outputs = model(X_batch)
-            probs = outputs.cpu().numpy().flatten()
-            preds = (outputs > 0.5).cpu().numpy().flatten()
-            all_probs.extend(probs)
-            all_preds.extend(preds)
-            all_labels.extend(y_batch.cpu().numpy().flatten())
-
-    y_true = np.array(all_labels)
-    y_pred = np.array(all_preds)
-    y_prob = np.array(all_probs)
-
-    metrics = {
-        "accuracy": accuracy_score(y_true, y_pred),
-        "precision": precision_score(y_true, y_pred, zero_division=0),
-        "recall": recall_score(y_true, y_pred, zero_division=0),
-        "f1": f1_score(y_true, y_pred, zero_division=0),
-        "roc_auc": roc_auc_score(y_true, y_prob) if len(np.unique(y_true)) > 1 else None,
-        "confusion_matrix": confusion_matrix(y_true, y_pred).tolist(),
-    }
+    criterion = torch.nn.BCELoss()
+    _, preds, labels, probs = evaluate(model, test_loader, criterion)
+    metrics = compute_metrics(labels, preds, probs)
     return metrics
 
 
@@ -239,10 +233,11 @@ def generate_report():
     metrics = compute_test_metrics()
     history = load_history()
     overfitting = analyze_overfitting_from_history(history)
-    errors = get_misclassified()
+    errors = analyze_predictions()
 
-    total_errors = len(errors["fp"]) + len(errors["fn"])
-    error_rate = total_errors / (dataset["validos"] + dataset["invalidos"] - dataset["total"] + 62)  # approximate test size
+    total_errors = errors["incorrect"]
+    fp_count = errors["fp_count"]
+    fn_count = errors["fn_count"]
 
     cm = np.array(metrics["confusion_matrix"])
     tn, fp_cm, fn_cm, tp = cm.ravel()
@@ -365,30 +360,31 @@ def generate_report():
 
 ## 6. Análisis de Errores
 
-### Falsos Positivos (FP) — {len(errors['fp'])} casos
-
-Predichos como inválidos cuando eran válidos.
-
-| # | video_id | Probabilidad |
-|---|---|---|
-"""
-
-    for i, item in enumerate(errors["fp"], 1):
-        report += f"| {i} | {item['video_id']} | {item['probability']:.4f} |\n"
-
-    report += f"""
-### Falsos Negativos (FN) — {len(errors['fn'])} casos
+### Falsos Positivos (FP) — {fp_count} casos
 
 Predichos como válidos cuando eran inválidos.
 
 | # | video_id | Probabilidad |
 |---|---|---|
 """
-    for i, item in enumerate(errors["fn"], 1):
-        report += f"| {i} | {item['video_id']} | {item['probability']:.4f} |\n"
+
+    for i, item in enumerate(errors["fp"], 1):
+        report += f"| {i} | {item['video_id']} | {item['probabilidad']:.4f} |\n"
 
     report += f"""
-El listado completo con rutas de archivo se encuentra en `misclassified.csv`.
+### Falsos Negativos (FN) — {fn_count} casos
+
+Predichos como inválidos cuando eran válidos.
+
+| # | video_id | Probabilidad |
+|---|---|---|
+"""
+    for i, item in enumerate(errors["fn"], 1):
+        report += f"| {i} | {item['video_id']} | {item['probabilidad']:.4f} |\n"
+
+    report += f"""
+El listado completo de todas las predicciones se encuentra en `predictions.csv`.
+Los errores clasificados están en `misclassified.csv`.
 
 ---
 
@@ -397,7 +393,7 @@ El listado completo con rutas de archivo se encuentra en `misclassified.csv`.
 ### Estado Actual del Modelo
 
 - El modelo CNN para clasificación binaria de deadlift frontal alcanzó un **F1-score de {metrics['f1']:.4f}** y un **ROC-AUC de {metrics['roc_auc']:.4f}** en el conjunto de test.
-- Se detectaron **{total_errors} errores** en el conjunto de test ({len(errors['fp'])} FP, {len(errors['fn'])} FN).
+- Se detectaron **{total_errors} errores** en el conjunto de test ({fp_count} FP, {fn_count} FN).
 - El análisis de curvas de entrenamiento indica **{overfitting.get('diagnosis', 'estado normal')}**.
 
 ### Recomendaciones
