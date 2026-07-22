@@ -8,7 +8,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = SCRIPT_DIR.parent
 
 KEYPOINTS_DIR = PROJECT_DIR / "keypoints" / "dl" / "front"
-CSV_PATH = PROJECT_DIR / "etiquetado" / "dl" / "etiquetado_dl_front_fixed.csv"
+CSV_PATH = PROJECT_DIR / "etiquetado" / "dl" / "etiquetado_dl_front.csv"
 OUTPUT_DIR = SCRIPT_DIR / "data" / "preprocessed"
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)

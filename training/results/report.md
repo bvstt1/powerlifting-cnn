@@ -1,6 +1,6 @@
 # Informe de Evaluacion: CNN para Deadlift Frontal
 
-**Fecha de generacion:** 2026-07-22 00:48
+**Fecha de generacion:** 2026-07-22 02:15
 
 ---
 
@@ -49,12 +49,12 @@
 
 ### Interpretacion Automatica
 
-- **Mejor epoca:** 10
-- **Mejor validation loss:** 0.3027
+- **Mejor epoca:** 20
+- **Mejor validation loss:** 0.3275
 - **Diagnostico:** OVERFITTING
 
 - El validation loss aumentó mientras el train loss seguía disminuyendo, indicando sobreajuste.
-- El sobreajuste comenzó aproximadamente en la época 3.
+- El sobreajuste comenzó aproximadamente en la época 2.
 - Se recomienda aumentar la regularización (dropout, weight decay) o reducir la capacidad del modelo.
 
 ---
@@ -67,7 +67,7 @@
 | Precision | 0.9429 |
 | Recall | 0.8684 |
 | F1-Score | 0.9041 |
-| ROC-AUC | 0.9254 |
+| ROC-AUC | 0.9243 |
 
 ### Matriz de Confusión
 
@@ -90,28 +90,29 @@
 
 ## 6. Análisis de Errores
 
-### Falsos Positivos (FP) — 5 casos
-
-Predichos como inválidos cuando eran válidos.
-
-| # | video_id | Probabilidad |
-|---|---|---|
-| 1 | dl_267 | 0.1604 |
-| 2 | dl_313 | 0.4574 |
-| 3 | dl_427 | 0.2787 |
-| 4 | dl_233 | 0.2116 |
-| 5 | dl_354 | 0.0576 |
-
-### Falsos Negativos (FN) — 2 casos
+### Falsos Positivos (FP) — 2 casos
 
 Predichos como válidos cuando eran inválidos.
 
 | # | video_id | Probabilidad |
 |---|---|---|
-| 1 | dl_441 | 0.9970 |
-| 2 | dl_253 | 0.6482 |
+| 1 | dl_441 | 0.9998 |
+| 2 | dl_253 | 0.5924 |
 
-El listado completo con rutas de archivo se encuentra en `misclassified.csv`.
+### Falsos Negativos (FN) — 5 casos
+
+Predichos como inválidos cuando eran válidos.
+
+| # | video_id | Probabilidad |
+|---|---|---|
+| 1 | dl_267 | 0.1298 |
+| 2 | dl_313 | 0.4871 |
+| 3 | dl_427 | 0.4425 |
+| 4 | dl_233 | 0.2367 |
+| 5 | dl_354 | 0.0194 |
+
+El listado completo de todas las predicciones se encuentra en `predictions.csv`.
+Los errores clasificados están en `misclassified.csv`.
 
 ---
 
@@ -119,8 +120,8 @@ El listado completo con rutas de archivo se encuentra en `misclassified.csv`.
 
 ### Estado Actual del Modelo
 
-- El modelo CNN para clasificación binaria de deadlift frontal alcanzó un **F1-score de 0.9041** y un **ROC-AUC de 0.9254** en el conjunto de test.
-- Se detectaron **7 errores** en el conjunto de test (5 FP, 2 FN).
+- El modelo CNN para clasificación binaria de deadlift frontal alcanzó un **F1-score de 0.9041** y un **ROC-AUC de 0.9243** en el conjunto de test.
+- Se detectaron **7 errores** en el conjunto de test (2 FP, 5 FN).
 - El análisis de curvas de entrenamiento indica **OVERFITTING**.
 
 ### Recomendaciones
