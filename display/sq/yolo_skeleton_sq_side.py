@@ -6,9 +6,9 @@ import numpy as np
 # CONFIG
 # -------------------------
 
-model = YOLO("../../models/sq_side_skeleton_v1.pt")
+model = YOLO("../../models/sq_side_skeleton_v2.pt")
 
-video_path = r"C:\Users\basti\MediapipePythonProjects\dataset\sq\left\sq_134.mp4"
+video_path = r"C:\Users\basti\MediapipePythonProjects\dataset\sq\left\sq_257.mp4"
 
 # Suavizado EMA
 alpha = 0.6

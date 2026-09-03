@@ -7,30 +7,21 @@ from mediapipe.tasks.python.core.base_options import BaseOptions
 # CONFIG
 # ----------------------------------
 
-VIDEO_PATH = r"C:\Users\basti\MediapipePythonProjects\dataset\dl\right\dl_052.mp4"
+VIDEO_PATH = r"C:\Users\basti\MediapipePythonProjects\dataset\dl\left\dl_004.mp4"
 MODEL_PATH = "../../models/pose_landmarker_heavy.task"
 
-CONF_THRESHOLD = 0.5
+CONF_THRESHOLD = 0.3
 DISPLAY_WIDTH = 960
 DISPLAY_HEIGHT = 720
 
+# Landmarks de MediaPipe
+# 11 = hombro izquierdo, 12 = hombro derecho
+# 23 = cadera izquierda, 24 = cadera derecha
 
-# ----------------------------------
-# FULL BODY LANDMARKS
-# ----------------------------------
-
-LANDMARKS = [
-    11, 23
-]
-
-CONNECTIONS = [
-
-
-    # Tronco
-    (11,23),
-
-
-]
+SIDES = {
+    "left":  (11, 23),
+    "right": (12, 24),
+}
 
 
 # ----------------------------------
@@ -88,28 +79,35 @@ while cap.isOpened():
 
         landmarks = result.pose_landmarks[0]
 
-        # Dibujar puntos
-        for idx in LANDMARKS:
+        # Elegir el lado mas visible
+        side_name = None
+        side_score = 0.0
 
-            lm = landmarks[idx]
+        for name, (shoulder, hip) in SIDES.items():
 
-            if lm.visibility < CONF_THRESHOLD:
-                continue
+            vis = min(landmarks[shoulder].visibility, landmarks[hip].visibility)
 
-            x = int(lm.x * w)
-            y = int(lm.y * h)
+            if vis >= CONF_THRESHOLD and vis > side_score:
+                side_score = vis
+                side_name = name
 
-            cv2.circle(frame, (x,y), 5, (0,255,0), -1)
+        if side_name is not None:
 
+            shoulder, hip = SIDES[side_name]
 
-        # Dibujar conexiones
-        for a,b in CONNECTIONS:
+            # Dibujar puntos
+            for idx in (shoulder, hip):
 
-            la = landmarks[a]
-            lb = landmarks[b]
+                lm = landmarks[idx]
 
-            if la.visibility < CONF_THRESHOLD or lb.visibility < CONF_THRESHOLD:
-                continue
+                x = int(lm.x * w)
+                y = int(lm.y * h)
+
+                cv2.circle(frame, (x,y), 5, (0,255,0), -1)
+
+            # Dibujar conexion hombro-cadera
+            la = landmarks[shoulder]
+            lb = landmarks[hip]
 
             x1 = int(la.x * w)
             y1 = int(la.y * h)
@@ -119,10 +117,12 @@ while cap.isOpened():
 
             cv2.line(frame, (x1,y1), (x2,y2), (255,0,0), 3)
 
+            cv2.putText(frame, f"LADO: {side_name.upper()}", (20, 40),
+                        cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0,255,255), 2)
 
     frame = cv2.resize(frame, (DISPLAY_WIDTH, DISPLAY_HEIGHT))
 
-    cv2.imshow("Front Bench Raw", frame)
+    cv2.imshow("DL Side - MediaPipe Skeleton", frame)
 
     if cv2.waitKey(1) & 0xFF == 27:
         break
