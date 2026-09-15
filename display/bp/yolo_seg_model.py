@@ -2,7 +2,7 @@ from ultralytics import YOLO
 import cv2
 
 # Cargar modelo
-model = YOLO("../../models/bp_front_seg_v1.pt")
+model = YOLO("../../models/bp/bp_front_seg_v1.pt")
 
 # Ruta del video
 video_path = r"C:\Users\basti\MediapipePythonProjects\dataset\bp\front\bp_402.mp4"

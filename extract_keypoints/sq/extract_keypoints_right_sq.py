@@ -10,7 +10,7 @@ from mediapipe.tasks.python.core.base_options import BaseOptions
 # CONFIG
 # -----------------------------------
 
-MODEL_PATH = "../../models/pose_landmarker_heavy.task"
+MODEL_PATH = "../../models/common/pose_landmarker_heavy.task"
 
 DATASET_ROOT = Path(
     r"C:\Users\basti\MediapipePythonProjects\dataset"

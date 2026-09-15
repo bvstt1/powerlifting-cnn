@@ -34,8 +34,8 @@ MediapipePythonProjects/
 │   ├── bp/                                # (vacío - pendiente)
 │   ├── dl/
 │   │   ├── extract_keypoints_front_dl.py  # MediaPipe: 22 body + 2 hand centroids + bar-knee dist = 25 kps
-│   │   ├── extract_keypoints_left_dl.py   # MediaPipe: shoulder+hip izquierdo (2 kps)
-│   │   └── extract_keypoints_right_dl.py  # MediaPipe: shoulder+hip derecho (2 kps)
+│   │   ├── extract_keypoints_left_dl.py   # YOLO: shoulder+hip lateral (2 kps)
+│   │   └── extract_keypoints_right_dl.py  # YOLO: shoulder+hip lateral (2 kps)
 │   └── sq/
 │       ├── extract_keypoints_front_sq.py  # MediaPipe: 33 landmarks → (T, 22, 3)
 │       ├── extract_keypoints_left_sq.py   # MediaPipe: cadera/rodilla/tobillo izq → (T, 3, 3)
@@ -45,8 +45,9 @@ MediapipePythonProjects/
 ├── keypoints/                             # Keypoints extraídos (.npy)
 │   ├── dl/
 │   │   ├── front/   (441 archivos)
-│   │   ├── left/    (259 archivos)
-│   │   └── right/   (258 archivos)
+│   │   ├── left/    (412 archivos)
+│   │   ├── right/   (413 archivos)
+│   │   └── side/    (825 archivos: right + left renumerado)
 │   └── sq/
 │       ├── front/   (316 archivos)
 │       ├── left/    (245 archivos)
@@ -121,18 +122,21 @@ MediapipePythonProjects/
 │   ├── live2.py                         # Cámara índice 1
 │   └── live3.py                         # Cámara índice 2
 │
-├── models/                              # Modelos entrenados
-│   ├── pose_landmarker_heavy.task        # MediaPipe Pose Landmarker
-│   ├── bp_front_seg_v1.pt               # YOLO segmentación BP frontal
-│   ├── bp_front_skeleton_v[3-6].pt      # YOLO pose BP frontal (varias versiones)
-│   ├── bp_side_skeleton_v1.pt           # YOLO pose BP lateral
-│   ├── bp_object_model.pt               # YOLO detección objetos BP
-│   ├── dl_front_seg_v1.pt              # YOLO segmentación DL frontal
-│   ├── sq_front_seg_v1.pt              # YOLO segmentación SQ frontal
-│   ├── sq_front_skeleton_v1.pt          # YOLO pose SQ frontal v1
-│   ├── sq_front_skeleton_v2.pt          # YOLO pose SQ frontal v2
-│   ├── sq_front_skeleton_v3.pt          # YOLO pose SQ frontal v3
-│   └── sq_front_skeleton_v4.pt          # YOLO pose SQ frontal v4
+├── models/                              # Modelos organizados por ejercicio
+│   ├── bp/
+│   │   ├── bp_front_seg_v1.pt           # YOLO segmentación BP frontal
+│   │   ├── bp_front_skeleton_v[3-6].pt  # YOLO pose BP frontal (varias versiones)
+│   │   ├── bp_side_skeleton_v1.pt       # YOLO pose BP lateral
+│   │   └── bp_object_model.pt           # YOLO detección objetos BP
+│   ├── dl/
+│   │   ├── dl_front_seg_v1.pt           # YOLO segmentación DL frontal
+│   │   └── dl_side_skeleton_v1.pt       # YOLO pose DL lateral
+│   ├── sq/
+│   │   ├── sq_front_seg_v1.pt           # YOLO segmentación SQ frontal
+│   │   ├── sq_front_skeleton_v[1-4].pt  # YOLO pose SQ frontal (varias versiones)
+│   │   └── sq_side_skeleton_v[1-2].pt   # YOLO pose SQ lateral (varias versiones)
+│   └── common/
+│       └── pose_landmarker_heavy.task    # MediaPipe Pose Landmarker compartido
 │
 └── runs/pose/                           # Entrenamientos YOLO
     ├── train/
@@ -146,10 +150,10 @@ MediapipePythonProjects/
 
 | Ejercicio | Vista Front | Vista Left | Vista Right | Total |
 |-----------|-------------|------------|-------------|-------|
-| BP (Press Banca) | 492 | 487 | 481 | 1,460 |
-| DL (Peso Muerto) | 259 | 150 | 150 | 559 |
-| SQ (Sentadilla) | 375 | 245 | 274 | 894 |
-| **Total** | **1,126** | **882** | **905** | **~2,913** |
+| BP (Press Banca) | 663 | 611 | 600 | 1,874 |
+| DL (Peso Muerto) | 441 | 412 | 413 | 1,266 |
+| SQ (Sentadilla) | 444 | 371 | 384 | 1,199 |
+| **Total** | **1,548** | **1,394** | **1,397** | **4,339** |
 
 Los videos están en `dataset/<ejercicio>/<vista>/` (ignorados por git).
 
@@ -158,8 +162,9 @@ Los videos están en `dataset/<ejercicio>/<vista>/` (ignorados por git).
 | Ejercicio | Vista | Archivos .npy | Forma | Landmarks |
 |-----------|-------|---------------|-------|-----------|
 | Peso Muerto | Front | 441 | (T, 25, 3) | 22 body + 2 hand centroids + bar-knee distance |
-| Peso Muerto | Left | 259 | (T, 2, 3) | Shoulder + hip izquierdo |
-| Peso Muerto | Right | 258 | (T, 2, 3) | Shoulder + hip derecho |
+| Peso Muerto | Left | 412 | (T, 2, 3) | YOLO: shoulder + hip lateral |
+| Peso Muerto | Right | 413 | (T, 2, 3) | YOLO: shoulder + hip lateral |
+| Peso Muerto | Side | 825 | (T, 2, 3) | Right 001-413 + left 414-825 |
 | Sentadilla | Front | 316 | (T, 22, 3) | 33 landmarks sin rostro |
 | Sentadilla | Left | 245 | (T, 3, 3) | Cadera + rodilla + tobillo izquierdo |
 | Sentadilla | Right | 274 | (T, 3, 3) | Cadera + rodilla + tobillo derecho |
@@ -245,9 +250,9 @@ Input: (batch, 3, 170, 25)  →  (N, C, T, K)
 ## Estado Actual
 
 ### ✅ Completado
-- [x] Dataset de ~2,913 videos en 3 ejercicios × 3 vistas
+- [x] Dataset de 4,339 videos en 3 ejercicios × 3 vistas
 - [x] Extracción de keypoints con MediaPipe para **sentadilla** (front, left, right)
-- [x] Extracción de keypoints con MediaPipe para **peso muerto** (front: 25 kps, left/right: 2 kps)
+- [x] Extracción de keypoints para **peso muerto** (MediaPipe front: 25 kps; YOLO left/right: 2 kps)
 - [x] Tracking de barra con CSRT (sentadilla)
 - [x] **8 archivos CSV etiquetados** (~4,500+ filas) para los 3 ejercicios
 - [x] Datos etiquetados integrados con pipeline de entrenamiento (DL front)
@@ -288,7 +293,7 @@ Input: (batch, 3, 170, 25)  →  (N, C, T, K)
   - `T` = frames
   - `N` = landmarks seleccionados
   - `3` = (x, y, visibility)
-- **Rutas de modelos**: Relativas desde el script (`../../models/...`)
+- **Rutas de modelos**: Relativas desde el script (`../../models/<ejercicio>/...` o `../../models/common/...`)
 - **Parámetros de entrenamiento YOLO**: img=960, batch=8, AdamW(lr=0.001), pose_weight=12.0
 - **Parámetros de entrenamiento CNN**: 170 frames, 25 keypoints, Adam(lr=0.001), EarlyStopping(patience=15), ReduceLROnPlateau
 

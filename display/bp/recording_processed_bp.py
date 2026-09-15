@@ -14,7 +14,7 @@ VIDEO_FRONT = f"{BASE_PATH}/cam_front.mp4"
 VIDEO_LEFT  = f"{BASE_PATH}/cam_left.mp4"
 VIDEO_RIGHT = f"{BASE_PATH}/cam_right.mp4"
 
-MODEL_PATH = "../../models/pose_landmarker_heavy.task"
+MODEL_PATH = "../../models/common/pose_landmarker_heavy.task"
 
 OUTPUT_BASE = "../processed/bp"
 

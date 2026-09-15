@@ -6,7 +6,7 @@ import numpy as np
 # CONFIG
 # ==========================
 
-MODEL_PATH = "../../models/sq_front_skeleton_v4.pt"
+MODEL_PATH = "../../models/sq/sq_front_skeleton_v4.pt"
 VIDEO_PATH = r"C:\Users\basti\MediapipePythonProjects\dataset\sq\front\sq_151.mp4"
 TEST = r"C:\Users\basti\Desktop\todo\test_sq6.mp4"
 
