@@ -5,7 +5,7 @@ import cv2
 # CONFIG
 # -------------------------
 
-model = YOLO("../../models/bp_front_skeleton_v6.pt")
+model = YOLO("../../models/bp/bp_front_skeleton_v6.pt")
 
 test = r"C:\Users\basti\Desktop\test.mp4"
 video_path = r"C:\Users\basti\MediapipePythonProjects\dataset\bp\front\bp_125.mp4"

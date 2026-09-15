@@ -1,36 +1,39 @@
 from ultralytics import YOLO
 import cv2
 import numpy as np
+from pathlib import Path
 
 # -------------------------
 # CONFIG
 # -------------------------
 
-model = YOLO("../../models/dl_side_skeleton_v1.pt")
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parents[1]
 
-video_path = r"C:\Users\basti\MediapipePythonProjects\dataset\dl\right\dl_403.mp4"
+MODEL_PATH = PROJECT_ROOT / "models" / "dl" / "dl_side_skeleton_v1.pt"
+VIDEO_PATH = PROJECT_ROOT / "dataset" / "dl" / "left" / "dl_408.mp4"
+
+model = YOLO(str(MODEL_PATH))
 
 # Suavizado EMA
 alpha = 0.6
+CONF_THRESHOLD = 0.5
+IMG_SIZE = 960
 
-# Conexiones skeleton (un solo lado - lateral)
-# El modelo detecta los keypoints visibles desde la vista lateral
+# El modelo lateral detecta solamente hombro y cadera.
+KEYPOINT_NAMES = ("cadera", "hombro")
 SKELETON = [
-    (0, 1),  # hombro -> cadera
-    (1, 2),  # cadera -> rodilla
-    (2, 3),  # rodilla -> tobillo
-    (3, 4),  # tobillo -> pie
+    (1, 0),  # hombro -> cadera
 ]
 
 # -------------------------
 # VIDEO
 # -------------------------
 
-cap = cv2.VideoCapture(video_path)
+cap = cv2.VideoCapture(str(VIDEO_PATH))
 
 if not cap.isOpened():
-    print("Error al abrir video")
-    exit()
+    raise SystemExit(f"Error al abrir video: {VIDEO_PATH}")
 
 window_name = "DL Side - YOLO Skeleton"
 
@@ -45,37 +48,65 @@ while True:
     if not ret:
         break
 
-    results = model(frame, verbose=False)
+    results = model(frame, imgsz=IMG_SIZE, verbose=False)
 
     annotated = frame.copy()
 
-    if len(results) > 0 and results[0].keypoints is not None:
+    if results and results[0].keypoints is not None:
 
         kpts = results[0].keypoints.xy.cpu().numpy()
+        kpts_conf = results[0].keypoints.conf
 
         if len(kpts) > 0:
 
-            person = kpts[0]
+            # Usar la persona con mayor confianza si hay varias detecciones.
+            if results[0].boxes is not None and len(results[0].boxes) > 0:
+                person_idx = int(np.argmax(results[0].boxes.conf.cpu().numpy()))
+            else:
+                person_idx = 0
 
-            # Suavizado EMA
-            if prev_kpts is not None:
-                person = alpha * person + (1 - alpha) * prev_kpts
+            person = kpts[person_idx]
 
-            prev_kpts = person.copy()
+            if len(person) != len(KEYPOINT_NAMES):
+                raise RuntimeError(
+                    f"Se esperaban 2 keypoints y el modelo entregó {len(person)}"
+                )
+
+            if kpts_conf is not None:
+                confidence = kpts_conf[person_idx].cpu().numpy()
+            else:
+                confidence = np.ones(len(person), dtype=np.float32)
+
+            valid = (
+                (confidence >= CONF_THRESHOLD)
+                & np.any(person != 0, axis=1)
+            )
+
+            # Suavizar solamente detecciones válidas para evitar puntos fantasma.
+            if prev_kpts is None:
+                prev_kpts = np.full_like(person, np.nan)
+
+            for idx in range(len(person)):
+                if not valid[idx]:
+                    prev_kpts[idx] = np.nan
+                    continue
+
+                if np.all(np.isfinite(prev_kpts[idx])):
+                    person[idx] = (
+                        alpha * person[idx]
+                        + (1 - alpha) * prev_kpts[idx]
+                    )
+
+                prev_kpts[idx] = person[idx]
 
             # Dibujar lineas
             for p1, p2 in SKELETON:
 
-                if p1 >= len(person) or p2 >= len(person):
+                if not valid[p1] or not valid[p2]:
                     continue
 
                 x1, y1 = person[p1]
                 x2, y2 = person[p2]
-
-                if x1 == 0 and y1 == 0:
-                    continue
-                if x2 == 0 and y2 == 0:
-                    continue
 
                 cv2.line(
                     annotated,
@@ -85,19 +116,36 @@ while True:
                     3
                 )
 
-            # Dibujar puntos
+            # Dibujar hombro y cadera con su confianza.
             for idx, (x, y) in enumerate(person):
 
-                if x == 0 and y == 0:
+                if not valid[idx]:
                     continue
+
+                point = (int(x), int(y))
 
                 cv2.circle(
                     annotated,
-                    (int(x), int(y)),
+                    point,
                     6,
                     (0, 255, 0),
                     -1
                 )
+
+                cv2.putText(
+                    annotated,
+                    f"{KEYPOINT_NAMES[idx]} {confidence[idx]:.2f}",
+                    (point[0] + 8, point[1] - 8),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.55,
+                    (0, 255, 255),
+                    2
+                )
+
+        else:
+            prev_kpts = None
+    else:
+        prev_kpts = None
 
     cv2.imshow(window_name, annotated)
 

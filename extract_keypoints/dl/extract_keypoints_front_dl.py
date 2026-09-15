@@ -13,7 +13,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 # CONFIG
 # -----------------------------------
 
-MODEL_PATH = str(SCRIPT_DIR / "../../models/pose_landmarker_heavy.task")
+MODEL_PATH = str(SCRIPT_DIR / "../../models/common/pose_landmarker_heavy.task")
 
 DATASET_ROOT = Path(
     r"C:\Users\basti\MediapipePythonProjects\dataset"
