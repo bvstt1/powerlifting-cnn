@@ -1,0 +1,11 @@
+video_id,indice,etiqueta_real,etiqueta_predicha,probabilidad,correcto,ruta_archivo,tipo_error
+dl_264,3,0,1,0.6008228063583374,False,keypoints/dl/left/dl_264.npy,FP
+dl_166,6,1,0,0.2275473028421402,False,keypoints/dl/left/dl_166.npy,FN
+dl_359,7,1,0,0.34478098154067993,False,keypoints/dl/left/dl_359.npy,FN
+dl_169,17,1,0,0.12408918887376785,False,keypoints/dl/left/dl_169.npy,FN
+dl_311,18,1,0,0.3924599289894104,False,keypoints/dl/left/dl_311.npy,FN
+dl_404,45,0,1,0.690788745880127,False,keypoints/dl/left/dl_404.npy,FP
+dl_209,47,1,0,0.3495349884033203,False,keypoints/dl/left/dl_209.npy,FN
+dl_412,51,0,1,0.9153943657875061,False,keypoints/dl/left/dl_412.npy,FP
+dl_337,56,0,1,0.7623643279075623,False,keypoints/dl/left/dl_337.npy,FP
+dl_212,57,1,0,0.44068729877471924,False,keypoints/dl/left/dl_212.npy,FN

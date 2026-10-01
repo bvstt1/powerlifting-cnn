@@ -11,7 +11,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parents[1]
 
 MODEL_PATH = PROJECT_ROOT / "models" / "dl" / "dl_side_skeleton_v1.pt"
-VIDEO_PATH = PROJECT_ROOT / "dataset" / "dl" / "left" / "dl_408.mp4"
+VIDEO_PATH = PROJECT_ROOT / "dataset" / "dl" / "right" / "dl_373.mp4"
 
 model = YOLO(str(MODEL_PATH))
 

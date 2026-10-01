@@ -5,10 +5,10 @@ import cv2
 # CONFIG
 # -------------------------
 
-model = YOLO("../../models/bp/bp_side_skeleton_v1.pt")
+model = YOLO("../../models/bp/bp_side_skeleton_v2.pt")
 
 test = r"C:\Users\basti\Desktop\test.mp4"
-video_path = r"C:\Users\basti\MediapipePythonProjects\dataset\bp\left\bp_400.mp4"
+video_path = r"C:\Users\basti\MediapipePythonProjects\dataset\bp\right\bp_509.mp4"
 
 # Conexiones skeleton
 SKELETON = [

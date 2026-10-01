@@ -1,0 +1,17 @@
+video_id,indice,etiqueta_real,etiqueta_predicha,probabilidad,correcto,ruta_archivo,tipo_error
+dl_239,2,0,1,0.867021918296814,False,keypoints/dl/right/dl_239.npy,FP
+dl_406,6,1,0,0.49345600605010986,False,keypoints/dl/right/dl_406.npy,FN
+dl_326,8,1,0,0.48140376806259155,False,keypoints/dl/right/dl_326.npy,FN
+dl_161,9,0,1,0.7993015050888062,False,keypoints/dl/right/dl_161.npy,FP
+dl_389,11,0,1,0.5541849136352539,False,keypoints/dl/right/dl_389.npy,FP
+dl_241,12,1,0,0.2565217912197113,False,keypoints/dl/right/dl_241.npy,FN
+dl_353,21,0,1,0.7580097317695618,False,keypoints/dl/right/dl_353.npy,FP
+dl_335,23,1,0,0.10086711496114731,False,keypoints/dl/right/dl_335.npy,FN
+dl_376,24,1,0,0.2664709687232971,False,keypoints/dl/right/dl_376.npy,FN
+dl_361,25,1,0,0.2971082627773285,False,keypoints/dl/right/dl_361.npy,FN
+dl_348,34,1,0,0.43329837918281555,False,keypoints/dl/right/dl_348.npy,FN
+dl_248,41,0,1,0.7778737545013428,False,keypoints/dl/right/dl_248.npy,FP
+dl_274,42,1,0,0.47849828004837036,False,keypoints/dl/right/dl_274.npy,FN
+dl_318,49,1,0,0.16232652962207794,False,keypoints/dl/right/dl_318.npy,FN
+dl_368,51,1,0,0.4452403485774994,False,keypoints/dl/right/dl_368.npy,FN
+dl_386,53,0,1,0.8944759964942932,False,keypoints/dl/right/dl_386.npy,FP

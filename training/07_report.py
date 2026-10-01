@@ -1,24 +1,35 @@
 import numpy as np
 import torch
-from pathlib import Path
 from datetime import datetime
 import csv
 
 from train_utils import PoseCNN, DEVICE, evaluate, compute_metrics, analyze_curves
+from training_config import parse_config
 
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-INPUT_PATH = SCRIPT_DIR / "data" / "augmented" / "augmented_data.npz"
-SPLIT_PATH = SCRIPT_DIR / "data" / "split" / "split_data.npz"
-NORMALIZED_PATH = SCRIPT_DIR / "data" / "normalized" / "sequences_170.npz"
-MODEL_PATH = SCRIPT_DIR / "models" / "best_model.pth"
-HISTORY_PATH = SCRIPT_DIR / "models" / "history.npz"
-RESULTS_DIR = SCRIPT_DIR / "results"
-OUTPUT_DIR = SCRIPT_DIR / "models"
-
-RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+CONFIG = None
+INPUT_PATH = None
+SPLIT_PATH = None
+NORMALIZED_PATH = None
+MODEL_PATH = None
+HISTORY_PATH = None
+RESULTS_DIR = None
 
 BATCH_SIZE = 16
+
+
+def configure(config):
+    global CONFIG, INPUT_PATH, SPLIT_PATH, NORMALIZED_PATH
+    global MODEL_PATH, HISTORY_PATH, RESULTS_DIR
+
+    CONFIG = config
+    INPUT_PATH = config["augmented_path"]
+    SPLIT_PATH = config["split_path"]
+    NORMALIZED_PATH = config["normalized_path"]
+    MODEL_PATH = config["model_path"]
+    HISTORY_PATH = config["history_path"]
+    RESULTS_DIR = config["results_dir"]
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def load_test_data():
@@ -44,7 +55,7 @@ def analyze_predictions():
     X_test, y_test = load_test_data()
     test_ids = load_test_ids()
 
-    model = PoseCNN().to(DEVICE)
+    model = PoseCNN(T=X_test.shape[2], K=X_test.shape[3]).to(DEVICE)
     model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
     model.eval()
 
@@ -73,7 +84,10 @@ def analyze_predictions():
         correct = pred == real
 
         vid = str(test_ids[idx]) if idx < len(test_ids) else "unknown"
-        ruta = f"keypoints/dl/front/{vid}.npy" if vid != "unknown" else "N/A"
+        ruta = (
+            f"keypoints/{CONFIG['exercise']}/{CONFIG['view']}/{vid}.npy"
+            if vid != "unknown" else "N/A"
+        )
 
         tipo_error = ""
         if not correct:
@@ -201,7 +215,7 @@ def analyze_overfitting_from_history(history):
 def compute_test_metrics():
     X_test, y_test = load_test_data()
 
-    model = PoseCNN().to(DEVICE)
+    model = PoseCNN(T=X_test.shape[2], K=X_test.shape[3]).to(DEVICE)
     model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
 
     test_ds = torch.utils.data.TensorDataset(X_test, torch.from_numpy(y_test).float())
@@ -226,7 +240,27 @@ def get_dataset_summary():
     }
 
 
-def generate_report():
+def get_cross_validation_summary():
+    path = RESULTS_DIR / "cross_validation_metrics.npz"
+
+    if not path.exists():
+        return None
+
+    data = np.load(path)
+    summary = {}
+
+    for metric in ["accuracy", "precision", "recall", "f1", "roc_auc"]:
+        values = data[metric]
+        summary[metric] = (
+            float(np.nanmean(values)),
+            float(np.nanstd(values)),
+        )
+
+    return summary
+
+
+def generate_report(config):
+    configure(config)
     print("Generando informe automático...")
 
     dataset = get_dataset_summary()
@@ -234,6 +268,19 @@ def generate_report():
     history = load_history()
     overfitting = analyze_overfitting_from_history(history)
     errors = analyze_predictions()
+    cross_validation = get_cross_validation_summary()
+
+    if cross_validation is None:
+        cross_validation_table = (
+            "> Validacion cruzada pendiente. Ejecutar `06_cross_validation.py`."
+        )
+    else:
+        cross_validation_table = "| Metrica | Promedio | Desviacion |\n|---|---:|---:|\n"
+
+        for metric, (mean, std) in cross_validation.items():
+            cross_validation_table += (
+                f"| {metric.upper()} | {mean:.4f} | {std:.4f} |\n"
+            )
 
     total_errors = errors["incorrect"]
     fp_count = errors["fp_count"]
@@ -248,7 +295,7 @@ def generate_report():
     else:
         best_val_loss_str = str(best_val_loss)
 
-    report = f"""# Informe de Evaluacion: CNN para Deadlift Frontal
+    report = f"""# Informe de Evaluacion: CNN para {CONFIG['display_name']}
 
 **Fecha de generacion:** {datetime.now().strftime("%Y-%m-%d %H:%M")}
 
@@ -352,9 +399,7 @@ def generate_report():
 
 ![Cross Validation Boxplot](cross_validation_boxplot.png)
 
-<!-- Los resultados de 5-Fold CV se insertan aquí desde la ejecución de 06_cross_validation.py -->
-
-> **Nota:** Los resultados de validación cruzada se generan ejecutando `06_cross_validation.py`. El análisis completo se encuentra en la salida de dicho script.
+{cross_validation_table}
 
 ---
 
@@ -392,7 +437,7 @@ Los errores clasificados están en `misclassified.csv`.
 
 ### Estado Actual del Modelo
 
-- El modelo CNN para clasificación binaria de deadlift frontal alcanzó un **F1-score de {metrics['f1']:.4f}** y un **ROC-AUC de {metrics['roc_auc']:.4f}** en el conjunto de test.
+- El modelo CNN para clasificación binaria de {CONFIG['display_name']} alcanzó un **F1-score de {metrics['f1']:.4f}** y un **ROC-AUC de {metrics['roc_auc'] if metrics['roc_auc'] is not None else 'N/A'}** en el conjunto de test.
 - Se detectaron **{total_errors} errores** en el conjunto de test ({fp_count} FP, {fn_count} FN).
 - El análisis de curvas de entrenamiento indica **{overfitting.get('diagnosis', 'estado normal')}**.
 
@@ -408,7 +453,7 @@ Los errores clasificados están en `misclassified.csv`.
     elif metrics["f1"] >= 0.75:
         report += """- El modelo tiene un rendimiento aceptable pero con margen de mejora.
 - Se recomienda aumentar el dataset y probar técnicas de balanceo de clases (class weights, focal loss).
-- Evaluar si incluir más vistas (lateral) mejora la clasificación.
+- Evaluar arquitecturas temporales alternativas y revisar los casos mal clasificados.
 """
     else:
         report += """- El modelo actual no alcanza un rendimiento suficiente para producción.
@@ -430,4 +475,4 @@ Los errores clasificados están en `misclassified.csv`.
 
 
 if __name__ == "__main__":
-    generate_report()
+    generate_report(parse_config("Reporte de evaluacion de PoseCNN"))

@@ -1,0 +1,10 @@
+group_id,left_video_id,right_video_id,left_label,right_label,left_resultado,right_resultado,left_codigos,right_codigos
+dl_event_171,dl_171,dl_171,0,1,invalido,valido,DL-05,
+dl_event_172,dl_172,dl_172,0,1,invalido,valido,DL-05,
+dl_event_174,dl_174,dl_174,0,1,invalido,valido,DL-05,
+dl_event_277,dl_277,dl_277,1,0,valido,invalido,,DL-02
+dl_event_278,dl_278,dl_278,1,0,valido,invalido,,DL-02
+dl_event_282,dl_282,dl_282,1,0,valido,invalido,,DL-02
+dl_event_283,dl_283,dl_283,1,0,valido,invalido,,DL-02
+dl_event_285,dl_285,dl_285,1,0,valido,invalido,DL-03,
+dl_event_351,dl_350,dl_351,1,0,valido,invalido,,DL-02

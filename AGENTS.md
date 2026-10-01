@@ -16,7 +16,8 @@ Cada levantamiento se graba desde **3 vistas sincronizadas**: frontal (front), l
 2. **Extracción de keypoints** → Archivos `.npy` con forma `(T, N, 3)`
 3. **Etiquetado manual** → Archivos **CSV** con válido/nulo + códigos de falta
 4. **Preprocesamiento** → Limpieza, interpolación, normalización espacial y temporal
-5. **Aumentación** → Traslación, escala, ruido, rotación, shift temporal (x4)
+5. **Split/normalización/aumentación** → split por evento físico; scaler fit solo
+   con train original; aumento solo de train; transform posterior de train/val/test
 6. **Clasificación** → **PoseCNN** (CNN 2D sobre keypoints) u otras arquitecturas
 
 ---
@@ -56,28 +57,40 @@ MediapipePythonProjects/
 ├── training/                              # Pipeline de entrenamiento de CNN
 │   ├── 01_preprocessing.py               # Carga .npy, validación, interpolación NaN, normalización espacial
 │   ├── 02_temporal_normalization.py       # Interpolación a 170 frames (scipy lineal)
-│   ├── 03_split_scale.py                  # Split estratificado 70/15/15 + StandardScaler
-│   ├── 04_augmentation.py                 # Aumentación train x4 (traslación, escala, ruido, rotación, shift)
+│   ├── 03_split_scale.py                  # Split 70/15/15 por evento (sin scaler)
+│   ├── 04_augmentation.py                 # Fit scaler train original + aumento train x4 + transform
 │   ├── 05_train_cnn.py                    # Entrenamiento PoseCNN (Adam, EarlyStopping, ReduceLROnPlateau)
-│   ├── 06_cross_validation.py            # 5-Fold stratified CV con análisis de estabilidad
+│   ├── 06_cross_validation.py            # 5-Fold CV estratificada/agrupada con análisis de estabilidad
 │   ├── 07_report.py                       # Reporte automático en Markdown con métricas y errores
+│   ├── 08_baseline_v2.py                 # Entrenamiento/evaluación aislada Baseline V2
+│   ├── 09_baseline_v2_cv.py              # CV V2 solo sobre development + folds físicos comunes
+│   ├── 10_baseline_v3_manual_audit.py    # Entrenamiento Baseline V3 post auditoría
+│   ├── 11_baseline_v3_manual_audit_cv.py # CV V3 solo sobre development
+│   ├── 12_v3_quality_and_comparison.py   # CLEAN vs WARNING y comparación V2/V3
+│   ├── apply_manual_label_audit.py       # Preview/aplicación reproducible de 41 revisiones
+│   ├── export_discordant_labels.py       # Exporta labels left/right discordantes
+│   ├── test_event_mapping.py             # Tests de fronteras del mapping físico
+│   ├── training_config.py                 # Perfiles + única fuente de verdad physical_event()
 │   ├── fix_csv.py                         # Reparación de CSV etiquetado corrupto (BOM UTF-8)
 │   ├── train_utils.py                     # Clase PoseCNN, loops de entrenamiento, métricas, aumento
 │   ├── RESUMEN_SESION.md                  # Resumen completo de resultados del entrenamiento
 │   ├── data/
-│   │   ├── preprocessed/raw_sequences.npz      # 412 secuencias limpias (T variable)
-│   │   ├── normalized/sequences_170.npz        # 412 × 170 × 25 × 3
-│   │   ├── split/split_data.npz + scaler.pkl   # Train/Val/Test + escalador
-│   │   └── augmented/augmented_data.npz        # Train aumentado x4
+│   │   └── dl/
+│   │       ├── front/                     # Pipeline histórico DL front
+│   │       ├── left/                      # Pipeline vigente DL left
+│   │       ├── right/                     # Pipeline vigente DL right
+│   │       ├── side/                      # Pipeline vigente DL side
+│   │       ├── event_split.npz            # Split físico común left/right
+│   │       ├── cv_event_folds.csv         # Folds comunes V2
+│   │       ├── cv_event_folds_v3.csv      # Folds comunes V3
+│   │       ├── manual_label_audit.csv      # Log de las 41 revisiones
+│   │       └── manual_quality_audit.csv    # Métricas/estado de calidad por muestra
 │   ├── models/
-│   │   ├── best_model.pth                      # PoseCNN entrenado (pesos)
-│   │   └── history.npz                         # Historial de entrenamiento
+│   │   └── dl/
+│   │       └── {left,right,side}/          # Históricos + baseline_v2/v2_cv/v3/v3_cv
 │   └── results/
-│       ├── report.md                           # Reporte de evaluación generado
-│       ├── predictions.csv                     # Predicciones del test set
-│       ├── misclassified.csv                   # Casos FP/FN con detalle
-│       ├── train_val_loss.png                  # Curvas de entrenamiento
-│       └── cross_validation_boxplot.png        # Boxplot de 5-Fold CV
+│       └── dl/
+│           └── {front,left,right,side}/    # Reportes, predicciones, métricas y curvas
 │
 ├── etiquetado/                            # Datos etiquetados en CSV
 │   ├── bp/
@@ -85,7 +98,13 @@ MediapipePythonProjects/
 │   │   ├── bp_left.csv                    # 495 filas (vista izquierda)
 │   │   └── bp_right.csv                   # 989 filas (vista derecha)
 │   ├── dl/
-│   │   └── etiquetado_dl_front.csv        # 442 filas (vista frontal)
+│   │   ├── dl_front.csv                   # 441 filas (CSV frontal histórico reparado)
+│   │   ├── dl_left.csv                    # 412 filas + auditoría/exclusión manual
+│   │   ├── dl_right.csv                   # 413 filas + auditoría/exclusión manual
+│   │   ├── dl_side.csv                    # 825 filas consolidadas y sincronizadas
+│   │   ├── dl_left_pre_manual_audit.csv   # Backup inmutable pre-auditoría
+│   │   ├── dl_right_pre_manual_audit.csv  # Backup inmutable pre-auditoría
+│   │   └── dl_side_pre_manual_audit.csv   # Backup inmutable pre-auditoría
 │   └── sq/
 │       ├── sq_front.csv                   # 270 filas (vista frontal)
 │       ├── sq_laterales.csv               # 522 filas (laterales combinados)
@@ -148,14 +167,86 @@ MediapipePythonProjects/
 
 ## Dataset de Video
 
-| Ejercicio | Vista Front | Vista Left | Vista Right | Total |
-|-----------|-------------|------------|-------------|-------|
-| BP (Press Banca) | 663 | 611 | 600 | 1,874 |
-| DL (Peso Muerto) | 441 | 412 | 413 | 1,266 |
-| SQ (Sentadilla) | 444 | 371 | 384 | 1,199 |
-| **Total** | **1,548** | **1,394** | **1,397** | **4,339** |
+| Ejercicio | Vista Front | Vista Left | Vista Right | Vista Side | Total |
+|-----------|-------------|------------|-------------|------------|-------|
+| BP (Press Banca) | 663 | 611 | 600 | 0 | 1,874 |
+| DL (Peso Muerto) | 441 | 412 | 413 | 0 | 1,266 |
+| SQ (Sentadilla) | 444 | 371 | 384 | 0 | 1,199 |
+| **Total** | **1,548** | **1,394** | **1,397** | **0** | **4,339** |
 
-Los videos están en `dataset/<ejercicio>/<vista>/` (ignorados por git).
+Los videos están en `dataset/<ejercicio>/<vista>/` (ignorados por git). En DL,
+right conserva `dl_001`-`dl_413` y left usa la secuencia corregida
+`dl_001`-`dl_412` después de eliminar el hueco del video original `dl_310`
+(auditoría contra conteo de frames/T de keypoints: `left[N]==right[N]` hasta
+N=309 y `left[N]==right[N+1]` desde N=310; el evento 401 sí tiene ambas
+vistas). La consolidación `dl_001`-`dl_825` se mantiene únicamente en
+`keypoints/dl/side`. Fuente de verdad del mapping: `physical_event()` en
+`training/training_config.py`.
+
+### Mapping físico definitivo de Deadlift lateral
+
+Mapping auditado contra filenames, conteo de frames de video y longitud `T` de
+los `.npy` (no inferido desde la propia función):
+
+| Rango físico | Right | Left | Side consolidado |
+|---|---|---|---|
+| Eventos 001-309 | `right N` | `left N` | right `N`; left `N+413` |
+| Evento 310 | `right 310` | **sin muestra** | `side 310` (right) |
+| Eventos 311-413 | `right N` | `left N-1` | right `N`; left `N+412` |
+
+- El hueco físico real es **310**, no 401.
+- El evento 401 tiene ambas vistas: `right 401 ↔ left 400 ↔ side 813`.
+- Frontera verificada: `left 309 == right 309`; `left 310 == right 311`.
+- Cola verificada: `left 412 == right 413`.
+- `physical_event(video_id, view)` es la **única fuente de verdad** para
+  `dl_left`, `dl_right` y `dl_side`; no duplicar la fórmula en otros scripts.
+- Tests: `python training/test_event_mapping.py`.
+
+### Auditoría manual de labels DL
+
+Se revisaron manualmente los 41 eventos que originalmente tenían
+`left_label != right_label`:
+
+- 15 labels left modificados.
+- 18 labels right modificados.
+- Evento físico 302 descartado explícitamente en ambas vistas, sin borrar los
+  registros ni videos: `manual_exclude=1`,
+  `exclude_reason=manual_review_discard`.
+- Resultado de los 41 casos: 15 pares `0/0`, 16 pares `1/1`, 3 pares `0/1`,
+  6 pares `1/0` y 1 descartado.
+- Quedan 9 discordancias válidas: eventos 171, 172, 174, 277, 278, 282, 283,
+  285 y 351. No deben corregirse automáticamente.
+- Backups pre-auditoría en `etiquetado/dl/*_pre_manual_audit.csv`.
+- Log reproducible en `training/data/dl/manual_label_audit.csv`.
+- Export vigente en `training/data/dl/discordant_view_labels.csv`.
+
+La fila manual que decía `236/236` fue confirmada como typo y aplicada al
+evento `235` (`dl_235/dl_235 → 0/0`). No se modificaron códigos, criterios,
+IDs, filenames ni metadata ajena a la auditoría.
+
+### Auditoría de calidad DL
+
+Los flags manuales son metadata descriptiva y **nunca son input de PoseCNN**:
+
+- `*L`, `*R`, `*LR`: pérdida de frames en left/right/ambas.
+- `+L`, `+R`: detección deficiente de esqueleto/keypoints.
+- `+'L`, `+'R`: detección deficiente y label original incorrecto.
+- Los flags no excluyen automáticamente; se aplican las reglas objetivas ya
+  existentes: shape, mínimo 10 frames, sin Inf, interpolación de gaps ≤5 y
+  ratio de frames con NaN en x/y ≤0.30.
+
+Estado de las 82 muestras (41 eventos × 2 vistas) auditadas:
+
+| Estado | N | Detalle |
+|---|---:|---|
+| `QUALITY_OK` | 66 | Sin flag y pasa reglas objetivas |
+| `QUALITY_WARNING` | 11 | Con flag, pero pasa preprocessing |
+| `QUALITY_EXCLUDED` | 5 | 196L, 197L y 373R por NaN>30%; 302L/302R manual |
+
+Flags contabilizados: frame loss left=3, right=6, ambas=1 evento; skeleton
+issue left=3, right=2; label original incorrecto left=1, right=1. Métricas
+detalladas (`total_frames_original`, `valid_frames`, `nan_ratio`, gaps y
+confidence) están en `training/data/dl/manual_quality_audit.csv`.
 
 ## Keypoints Extraídos
 
@@ -176,13 +267,19 @@ Los videos están en `dataset/<ejercicio>/<vista>/` (ignorados por git).
 | `etiquetado/bp/bp_laterales.csv` | 1,483 | BP lateral combinado (left+right) |
 | `etiquetado/bp/bp_left.csv` | 495 | BP vista izquierda |
 | `etiquetado/bp/bp_right.csv` | 989 | BP vista derecha |
-| `etiquetado/dl/etiquetado_dl_front.csv` | 442 | DL vista frontal |
+| `etiquetado/dl/dl_front.csv` | 441 | DL vista frontal |
+| `etiquetado/dl/dl_left.csv` | 412 | DL vista izquierda (auditado) |
+| `etiquetado/dl/dl_right.csv` | 413 | DL vista derecha (auditado) |
+| `etiquetado/dl/dl_side.csv` | 825 | DL lateral consolidado (auditado) |
 | `etiquetado/sq/sq_front.csv` | 270 | SQ vista frontal |
 | `etiquetado/sq/sq_laterales.csv` | 522 | SQ lateral combinado |
 | `etiquetado/sq/sq_left.csv` | 275 | SQ vista izquierda |
 | `etiquetado/sq/sq_right.csv` | 248 | SQ vista derecha |
 
 **Esquema común:** `video_id, movimiento, camara, archivo, resultado, label [1=valido/0=invalido], codigos [BP-10|SQ-01|DL-03], criterios, etiquetador, timestamp`
+
+Los CSV laterales DL añaden `manual_exclude` y `exclude_reason`; solo el evento
+302 tiene `manual_exclude=1`. No usar quality flags como features del modelo.
 
 ---
 
@@ -191,10 +288,10 @@ Los videos están en `dataset/<ejercicio>/<vista>/` (ignorados por git).
 ### Arquitectura: PoseCNN
 
 ```
-Input: (batch, 3, 170, 25)  →  (N, C, T, K)
+Input: (batch, 3, 170, K)  →  (N, C, T, K), K=25 front / K=2 lateral
   └─ Conv2D(32, 3×3) → BatchNorm → ReLU
   └─ Conv2D(64, 3×3) → BatchNorm → ReLU
-  └─ MaxPool2D(2×1) + Dropout2D(25%)
+  └─ MaxPool2D(2×1) + Dropout2D(40%)
   └─ Conv2D(128, 3×3) → BatchNorm → ReLU
   └─ GlobalAvgPool2D(1×1)
   └─ Dense(64) → ReLU → Dropout(50%)
@@ -207,11 +304,23 @@ Input: (batch, 3, 170, 25)  →  (N, C, T, K)
 |------|--------|-------------|
 | 1 | `01_preprocessing.py` | Carga `.npy`, valida (min 10 frames, <30% NaN), interpola gaps (max 5), normaliza espacialmente (centro cadera, escala torso), cruza con CSV |
 | 2 | `02_temporal_normalization.py` | Interpola todas las secuencias a **170 frames** (scipy.interpolate lineal) |
-| 3 | `03_split_scale.py` | Split estratificado **70/15/15** (288 train, 62 val, 62 test) + StandardScaler |
-| 4 | `04_augmentation.py` | Aumenta train **x4**: traslación (±5%), escala (±10%), ruido Gaussiano (σ=0.01), rotación (±10°), shift temporal (±3 frames) |
-| 5 | `05_train_cnn.py` | Entrena PoseCNN: Adam(lr=0.001), BCELoss, ReduceLROnPlateau, EarlyStopping(patience=15), max 200 epochs |
-| 6 | `06_cross_validation.py` | **5-Fold stratified CV** con pipeline completo por fold |
+| 3 | `03_split_scale.py` | Split **70/15/15 por physical_event**, común para left/right; guarda datos originales sin escalar |
+| 4 | `04_augmentation.py` | Fit `StandardScaler` solo con train original `(N,1020)`; aumento train x4 sin escalar; transform train aumentado/val/test |
+| 5 | `05_train_cnn.py` | PoseCNN: Adam(lr=0.001), BCELoss, weight decay 1e-4, patience=8, max 200 épocas |
+| 6 | `09/11_*_cv.py` | **5-Fold CV solo en development**; test excluido; folds comunes por evento físico |
 | 7 | `07_report.py` | Genera reporte Markdown automático con métricas, matriz de confusión, FP/FN, curvas |
+
+Orden obligatorio vigente:
+
+```text
+preprocessing → temporal normalization → grouped physical-event split
+→ scaler.fit(train original) → augmentation(train original únicamente)
+→ scaler.transform(train aumentado / validation / test) → PoseCNN
+```
+
+`StandardScaler` recibe `(N,170,2,3) → reshape (N,1020)`: cada combinación
+`timestep × keypoint × canal` se escala como feature independiente. Mantener
+esta estrategia para comparabilidad con Baseline V2/V3.
 
 ### Resultados (DL Front)
 
@@ -226,6 +335,66 @@ Input: (batch, 3, 170, 25)  →  (N, C, T, K)
 **Matriz de confusión:** TN=22, FP=2, FN=5, TP=33
 
 **Diagnóstico:** Overfitting (mejor época = 10, divergencia desde época ~3). 7 misclasificados (2 FP, 5 FN).
+
+### Deadlift Lateral: Baseline V2
+
+Arquitectura y features sin cambios (`x,y,confidence`, T=170, K=2, C=3).
+V2 incorporó mapping gap-310, split físico común y orden correcto del scaler.
+
+| Perfil | Test Accuracy | Test F1 | Test AUC | 5-Fold CV F1 | 5-Fold CV AUC |
+|---|---:|---:|---:|---:|---:|
+| `dl_left` | 0.7705 | 0.7667 | 0.8820 | 0.8335±0.0508 | 0.8964±0.0353 |
+| `dl_right` | 0.8226 | 0.8308 | 0.8942 | 0.8218±0.0453 | 0.8639±0.0611 |
+| `dl_side` | 0.7967 | 0.8120 | 0.8682 | 0.7815±0.0602 | 0.8559±0.0439 |
+
+Paired test V2 (61 eventos): left F1=0.7667/AUC=0.8820; right
+F1=0.8254/AUC=0.8932. CV V2 usa 351 eventos development y excluye 62
+eventos test. Asignación común: `training/data/dl/cv_event_folds.csv`.
+
+### Deadlift Lateral: Baseline V3 post auditoría manual
+
+V3 mantiene **exactamente la misma PoseCNN e hiperparámetros** de V2. Cambian
+ground truth, exclusión del evento 302 y, por ello, split/folds regenerados.
+
+Dataset efectivo tras reglas objetivas + descarte manual:
+
+| Perfil | Total | Válidos | Inválidos | Train | Val | Test |
+|---|---:|---:|---:|---:|---:|---:|
+| `dl_left` | 403 | 222 | 181 | 283 | 60 | 60 |
+| `dl_right` | 411 | 226 | 185 | 287 | 62 | 62 |
+| `dl_side` | 814 | 448 | 366 | 570 | 122 | 122 |
+
+Resultados V3:
+
+| Perfil | Test Acc | Test F1 | Test AUC | CV Acc | CV F1 | CV AUC |
+|---|---:|---:|---:|---:|---:|---:|
+| `dl_left` | 0.8167 | 0.8358 | 0.8923 | 0.8278±0.0441 | 0.8445±0.0395 | 0.8924±0.0403 |
+| `dl_right` | 0.8226 | 0.8451 | 0.8645 | 0.8193±0.0514 | 0.8399±0.0413 | 0.8727±0.0521 |
+| `dl_side` | 0.7869 | 0.8219 | 0.8179 | 0.7905±0.0556 | 0.8108±0.0446 | 0.8757±0.0476 |
+
+- Paired test V3 (60 eventos): left F1=0.8358/AUC=0.8923; right
+  F1=0.8358/AUC=0.8627.
+- Paired CV V3: left F1=0.8445±0.0395/AUC=0.8917±0.0403; right
+  F1=0.8388±0.0397/AUC=0.8738±0.0508.
+- CV V3 usa 350 eventos development, test completamente excluido y folds
+  comunes en `training/data/dl/cv_event_folds_v3.csv`.
+- No interpretar V2→V3 como cambio arquitectónico: refleja labels auditados,
+  descarte 302 y redistribución del split.
+
+### Análisis CLEAN vs QUALITY_WARNING (test V3)
+
+| Perfil/subset | N | Accuracy | F1 | AUC | Errores |
+|---|---:|---:|---:|---:|---:|
+| Left CLEAN | 60 | 0.8167 | 0.8358 | 0.8923 | 11 |
+| Left WARNING | 0 | N/D | N/D | N/D | 0 |
+| Right CLEAN | 61 | 0.8197 | 0.8451 | 0.8638 | 11 |
+| Right WARNING | 1 | 1.0000 | 0.0000 | N/D | 0 |
+| Side CLEAN | 121 | 0.7934 | 0.8276 | 0.8195 | 25 |
+| Side WARNING | 1 | 0.0000 | 0.0000 | N/D | 1 |
+
+La única muestra WARNING en test fue `event_301/right`: correcta en el modelo
+right e incorrecta en side. Es análisis descriptivo; no se seleccionaron
+modelos ni thresholds con estos subconjuntos.
 
 ---
 
@@ -254,11 +423,22 @@ Input: (batch, 3, 170, 25)  →  (N, C, T, K)
 - [x] Extracción de keypoints con MediaPipe para **sentadilla** (front, left, right)
 - [x] Extracción de keypoints para **peso muerto** (MediaPipe front: 25 kps; YOLO left/right: 2 kps)
 - [x] Tracking de barra con CSRT (sentadilla)
-- [x] **8 archivos CSV etiquetados** (~4,500+ filas) para los 3 ejercicios
+- [x] **11 CSV principales etiquetados** para los 3 ejercicios (incluye vistas combinadas)
 - [x] Datos etiquetados integrados con pipeline de entrenamiento (DL front)
 - [x] **Pipeline completo de preprocesamiento** (limpieza, normalización espacial/temporal, split, aumento)
 - [x] **PoseCNN entrenada** para clasificación DL front (F1=0.904, ROC-AUC=0.925)
+- [x] **PoseCNN entrenada** para DL side con split agrupado (F1=0.822, ROC-AUC=0.840)
+- [x] **5-Fold CV agrupada DL side** (F1=0.796 ± 0.046, ROC-AUC=0.848 ± 0.031)
+- [x] Pipeline parametrizado con perfiles `dl_front`, `dl_left`, `dl_right` y `dl_side`
 - [x] **5-Fold Cross-Validation** con análisis de estabilidad
+- [x] Mapping físico DL lateral auditado (hueco real evento 310) y centralizado
+- [x] Split común left/right por `physical_event`, sin leakage
+- [x] Scaler fit solo en train original; augmentation solo train antes de transform
+- [x] Baseline V2 left/right/side + CV común solo sobre development
+- [x] Auditoría manual de 41 labels, 33 cambios y descarte del evento 302
+- [x] Auditoría objetiva de quality flags (OK/WARNING/EXCLUDED)
+- [x] Baseline V3 post auditoría + CV común + evaluación pareada
+- [x] Análisis CLEAN vs QUALITY_WARNING y comparación V2/V3
 - [x] **Reporte automático** con métricas, matriz de confusión, casos FP/FN
 - [x] Modelos YOLO entrenados para **pose** (BP frontal v3-v6, BP lateral v1, SQ frontal v1-v4)
 - [x] Modelos YOLO entrenados para **segmentación** (BP frontal v1, SQ frontal v1, DL frontal v1)
@@ -275,11 +455,10 @@ Input: (batch, 3, 170, 25)  →  (N, C, T, K)
 ### ❌ Pendiente
 - [ ] Extracción de keypoints para **press de banca** (bp) — `extract_keypoints/bp/` vacío
 - [ ] Pipeline de entrenamiento para **BP** (front, left, right)
-- [ ] Pipeline de entrenamiento para **DL lateral** (left, right)
 - [ ] Pipeline de entrenamiento para **SQ** (front, left, right)
 - [ ] Clasificación **multi-clase** (por tipo de falta, no solo binario)
 - [ ] Arquitecturas alternativas (LSTM, Transformer)
-- [ ] Hacer el pipeline reutilizable entre ejercicios/vistas (parametrizar)
+- [ ] Extender los perfiles reutilizables a BP y SQ
 - [ ] README / documentación para la tesis
 - [ ] requirements.txt o pyproject.toml
 
@@ -295,7 +474,7 @@ Input: (batch, 3, 170, 25)  →  (N, C, T, K)
   - `3` = (x, y, visibility)
 - **Rutas de modelos**: Relativas desde el script (`../../models/<ejercicio>/...` o `../../models/common/...`)
 - **Parámetros de entrenamiento YOLO**: img=960, batch=8, AdamW(lr=0.001), pose_weight=12.0
-- **Parámetros de entrenamiento CNN**: 170 frames, 25 keypoints, Adam(lr=0.001), EarlyStopping(patience=15), ReduceLROnPlateau
+- **Parámetros de entrenamiento CNN**: 170 frames, keypoints según perfil (25 front/2 side), Adam(lr=0.001), EarlyStopping(patience=8 en V2/V3), weight decay 1e-4, Dropout2D=0.40, ReduceLROnPlateau
 
 ---
 
@@ -303,8 +482,8 @@ Input: (batch, 3, 170, 25)  →  (N, C, T, K)
 
 1. Extracción de keypoints para **press de banca** (bp) con MediaPipe
 2. Mejorar generalización de PoseCNN (regularización, más datos, hyperparameter tuning)
-3. Pipeline de entrenamiento para las demás vistas (BP front/lateral, DL lateral, SQ)
+3. Pipeline de entrenamiento para las demás vistas (BP front/lateral, SQ)
 4. Clasificación multi-clase por tipo de falta (no solo válido/nulo)
 5. Probar arquitecturas LSTM/Transformer para comparar con CNN
-6. Parametrizar el pipeline para que sea reutilizable entre ejercicios/vistas
+6. Extender la parametrización existente a BP y SQ
 7. Evaluar y documentar resultados para la tesis

@@ -1,0 +1,19 @@
+{
+  "profile": "dl_right",
+  "display_name": "Deadlift Right",
+  "target_frames": 170,
+  "keypoints": 2,
+  "channels": 3,
+  "split_strategy": "stratified",
+  "augmentation": [
+    "translation",
+    "scaling",
+    "noise",
+    "temporal_shift"
+  ],
+  "batch_size": 16,
+  "epochs": 200,
+  "learning_rate": 0.001,
+  "patience": 8,
+  "random_seed": 42
+}

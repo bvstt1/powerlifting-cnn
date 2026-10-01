@@ -1,0 +1,28 @@
+{
+  "experiment": "baseline_v2_cv",
+  "mapping_version": "physical_event_gap_310",
+  "profile": "dl_right",
+  "development_only": true,
+  "test_used": false,
+  "common_fold_map": "C:\\Users\\basti\\MediapipePythonProjects\\training\\data\\dl\\cv_event_folds.csv",
+  "folds": 5,
+  "seed": 42,
+  "fold_seed_policy": "reset_to_42_each_fold",
+  "target_frames": 170,
+  "keypoints": 2,
+  "channels": 3,
+  "augmentation": [
+    "translation",
+    "scaling",
+    "noise",
+    "temporal_shift"
+  ],
+  "augmentation_factor": 3,
+  "scaler_fit": "fold_train_original_only",
+  "batch_size": 16,
+  "epochs_max": 200,
+  "learning_rate": 0.001,
+  "patience": 8,
+  "weight_decay": 0.0001,
+  "dropout2d": 0.4
+}

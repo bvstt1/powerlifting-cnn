@@ -1,0 +1,34 @@
+{
+  "experiment": "baseline_v3_manual_audit",
+  "mapping_version": "physical_event_gap_310",
+  "profile": "dl_right",
+  "display_name": "Deadlift Right",
+  "seed": 42,
+  "target_frames": 170,
+  "keypoints": 2,
+  "channels": 3,
+  "split_strategy": "grouped",
+  "augmentation": [
+    "translation",
+    "scaling",
+    "noise",
+    "temporal_shift"
+  ],
+  "augmentation_factor": 3,
+  "scaler_fit": "train_original_only",
+  "batch_size": 16,
+  "epochs_max": 200,
+  "learning_rate": 0.001,
+  "patience": 8,
+  "weight_decay": 0.0001,
+  "dropout2d": 0.4,
+  "train_augmented_samples": 1148,
+  "validation_samples": 62,
+  "test_samples": 62,
+  "manual_label_audit": true,
+  "manual_audit_cases": 41,
+  "manual_discarded_events": [
+    302
+  ],
+  "quality_flags_enabled": true
+}

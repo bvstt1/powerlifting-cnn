@@ -1,0 +1,49 @@
+{
+  "experiment": "baseline_v3_manual_audit",
+  "mapping_version": "physical_event_gap_310",
+  "n": 60,
+  "left": {
+    "accuracy": 0.8166666666666667,
+    "precision": 0.8235294117647058,
+    "recall": 0.8484848484848485,
+    "f1": 0.835820895522388,
+    "confusion_matrix": [
+      [
+        21,
+        6
+      ],
+      [
+        5,
+        28
+      ]
+    ],
+    "roc_auc": 0.8922558922558922,
+    "specificity": 0.7777777777777778,
+    "tn": 21.0,
+    "fp": 6.0,
+    "fn": 5.0,
+    "tp": 28.0
+  },
+  "right": {
+    "accuracy": 0.8166666666666667,
+    "precision": 0.8,
+    "recall": 0.875,
+    "f1": 0.835820895522388,
+    "confusion_matrix": [
+      [
+        21,
+        7
+      ],
+      [
+        4,
+        28
+      ]
+    ],
+    "roc_auc": 0.8627232142857143,
+    "specificity": 0.75,
+    "tn": 21.0,
+    "fp": 7.0,
+    "fn": 4.0,
+    "tp": 28.0
+  }
+}

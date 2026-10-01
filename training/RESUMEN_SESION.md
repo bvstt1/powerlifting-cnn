@@ -152,18 +152,21 @@ Entrada: (batch, 3, 170, 25)  # (C, T, K) después de permute
 ```
 training/
 ├── data/
-│   ├── preprocessed/raw_sequences.npz      # 412 secuencias limpias
-│   ├── normalized/sequences_170.npz        # 412 × 170 × 25 × 3
-│   ├── split/split_data.npz + scaler.pkl   # Train/Val/Test escalados
-│   └── augmented/augmented_data.npz        # Train aumentado x4
+│   └── dl/front/
+│       ├── preprocessed/raw_sequences.npz      # 412 secuencias limpias
+│       ├── normalized/sequences_170.npz        # 412 × 170 × 25 × 3
+│       ├── split/split_data.npz + scaler.pkl   # Train/Val/Test escalados
+│       └── augmented/augmented_data.npz        # Train aumentado x4
 ├── models/
-│   ├── best_model.pth                      # Mejor modelo (época 10)
-│   └── history.npz                         # Loss/Accuracy por época
+│   └── dl/front/
+│       ├── best_model.pth                      # Mejor modelo (época 10)
+│       └── history.npz                         # Loss/Accuracy por época
 ├── results/
-│   ├── train_val_loss.png                  # Curvas de entrenamiento
-│   ├── cross_validation_boxplot.png        # Boxplot 5-Fold CV
-│   ├── misclassified.csv                   # 5 FP + 2 FN con detalles
-│   └── report.md                           # Informe completo
+│   └── dl/front/
+│       ├── train_val_loss.png                  # Curvas de entrenamiento
+│       ├── cross_validation_boxplot.png        # Boxplot 5-Fold CV
+│       ├── misclassified.csv                   # 5 FP + 2 FN con detalles
+│       └── report.md                           # Informe completo
 ├── 01_preprocessing.py
 ├── 02_temporal_normalization.py
 ├── 03_split_scale.py

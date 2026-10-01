@@ -1,0 +1,17 @@
+{
+  "profile": "dl_side",
+  "display_name": "Deadlift Lateral",
+  "target_frames": 170,
+  "keypoints": 2,
+  "channels": 3,
+  "split_strategy": "grouped",
+  "augmentation": [
+    "noise",
+    "temporal_shift"
+  ],
+  "batch_size": 16,
+  "epochs": 200,
+  "learning_rate": 0.001,
+  "patience": 15,
+  "random_seed": 42
+}

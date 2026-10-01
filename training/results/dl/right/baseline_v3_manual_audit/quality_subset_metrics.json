@@ -1,0 +1,16 @@
+{
+  "CLEAN": {
+    "n": 61,
+    "accuracy": 0.819672131147541,
+    "f1": 0.8450704225352113,
+    "roc_auc": 0.8638344226579521,
+    "errors": 11
+  },
+  "QUALITY_WARNING": {
+    "n": 1,
+    "accuracy": 1.0,
+    "f1": 0.0,
+    "roc_auc": null,
+    "errors": 0
+  }
+}

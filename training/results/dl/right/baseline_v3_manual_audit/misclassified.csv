@@ -1,0 +1,12 @@
+video_id,physical_event,source_view,true_label,probability,prediction,correct
+dl_070,dl_event_070,right,1,0.4125969707965851,0,False
+dl_097,dl_event_097,right,0,0.8379913568496704,1,False
+dl_149,dl_event_149,right,0,0.9159976243972778,1,False
+dl_164,dl_event_164,right,0,0.6258397102355957,1,False
+dl_178,dl_event_178,right,0,0.8514587879180908,1,False
+dl_180,dl_event_180,right,0,0.7024847865104675,1,False
+dl_249,dl_event_249,right,0,0.8982552289962769,1,False
+dl_294,dl_event_294,right,1,0.4495082497596741,0,False
+dl_326,dl_event_326,right,1,0.3186965584754944,0,False
+dl_338,dl_event_338,right,0,0.5088457465171814,1,False
+dl_359,dl_event_359,right,1,0.38989776372909546,0,False
