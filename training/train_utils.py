@@ -4,11 +4,36 @@ import torch.nn as nn
 import torch.optim as optim
 from pathlib import Path
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, confusion_matrix
+from sklearn.model_selection import GroupShuffleSplit
 from sklearn.preprocessing import StandardScaler
 import copy
 
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
+def best_group_split(y, groups, test_size, random_seed, attempts=200):
+    indices = np.arange(len(y))
+    global_ratio = float(np.mean(y))
+    best_split = None
+    best_score = float("inf")
+
+    for attempt in range(attempts):
+        splitter = GroupShuffleSplit(
+            n_splits=1,
+            test_size=test_size,
+            random_state=random_seed + attempt,
+        )
+        train_idx, test_idx = next(splitter.split(indices, y, groups))
+        size_error = abs((len(test_idx) / len(y)) - test_size)
+        ratio_error = abs(float(np.mean(y[test_idx])) - global_ratio)
+        score = size_error + ratio_error
+
+        if score < best_score:
+            best_score = score
+            best_split = (train_idx, test_idx)
+
+    return best_split
 
 
 class PoseCNN(nn.Module):
@@ -22,7 +47,7 @@ class PoseCNN(nn.Module):
             nn.BatchNorm2d(64),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=(2, 1)),
-            nn.Dropout2d(0.25),
+            nn.Dropout2d(0.4),
             nn.Conv2d(64, 128, kernel_size=3, padding="same"),
             nn.BatchNorm2d(128),
             nn.ReLU(),
@@ -179,8 +204,8 @@ def add_rotation(seq, rng, max_angle=10):
     angle_rad = np.deg2rad(angle)
     cos_a, sin_a = np.cos(angle_rad), np.sin(angle_rad)
     aug = seq.copy()
-    x = aug[..., 0]
-    y = aug[..., 1]
+    x = aug[..., 0].copy()
+    y = aug[..., 1].copy()
     aug[..., 0] = x * cos_a - y * sin_a
     aug[..., 1] = x * sin_a + y * cos_a
     return aug
@@ -199,32 +224,121 @@ def add_temporal_shift(seq, rng, max_shift=3):
     return aug
 
 
-def augment_sequence(seq, label, rng, aug_factor):
+def augment_sequence(seq, label, rng, aug_factor, transforms=None):
+    if transforms is None:
+        transforms = (
+            "translation",
+            "scaling",
+            "noise",
+            "rotation",
+            "temporal_shift",
+        )
+
     results = [(seq, label)]
     for _ in range(aug_factor):
         aug = seq.copy()
-        if rng.rand() > 0.5:
+        if "translation" in transforms and rng.rand() > 0.5:
             aug = add_translation(aug, rng)
-        if rng.rand() > 0.5:
+        if "scaling" in transforms and rng.rand() > 0.5:
             aug = add_scaling(aug, rng)
-        if rng.rand() > 0.5:
+        if "noise" in transforms and rng.rand() > 0.5:
             aug = add_gaussian_noise(aug, rng)
-        if rng.rand() > 0.5:
+        if "rotation" in transforms and rng.rand() > 0.5:
             aug = add_rotation(aug, rng)
-        if rng.rand() > 0.5:
+        if "temporal_shift" in transforms and rng.rand() > 0.5:
             aug = add_temporal_shift(aug, rng)
         results.append((aug, label))
     return results
 
 
-def augment_dataset(X, y, rng, aug_factor):
+def augment_dataset(X, y, rng, aug_factor, transforms=None):
     all_X, all_y = [], []
     for i in range(len(X)):
-        augmented = augment_sequence(X[i], y[i], rng, aug_factor)
+        augmented = augment_sequence(
+            X[i],
+            y[i],
+            rng,
+            aug_factor,
+            transforms,
+        )
         for kp, lbl in augmented:
             all_X.append(kp)
             all_y.append(lbl)
     return np.array(all_X, dtype=np.float32), np.array(all_y)
+
+
+# ─── Verificacion de splits ─────────────────────────────────────────────────
+
+def verify_no_group_leakage(groups_train, groups_val, groups_test):
+    train_groups = set(np.asarray(groups_train).astype(str).tolist())
+    val_groups = set(np.asarray(groups_val).astype(str).tolist())
+    test_groups = set(np.asarray(groups_test).astype(str).tolist())
+
+    assert not (train_groups & val_groups), (
+        f"Fuga de eventos entre train y val: "
+        f"{sorted(train_groups & val_groups)[:10]}"
+    )
+    assert not (train_groups & test_groups), (
+        f"Fuga de eventos entre train y test: "
+        f"{sorted(train_groups & test_groups)[:10]}"
+    )
+    assert not (val_groups & test_groups), (
+        f"Fuga de eventos entre val y test: "
+        f"{sorted(val_groups & test_groups)[:10]}"
+    )
+    return train_groups, val_groups, test_groups
+
+
+def verify_no_duplicate_videos(ids_train, ids_val, ids_test):
+    train_ids = np.asarray(ids_train).astype(str)
+    val_ids = np.asarray(ids_val).astype(str)
+    test_ids = np.asarray(ids_test).astype(str)
+
+    for name, ids in (("train", train_ids), ("val", val_ids), ("test", test_ids)):
+        assert len(ids) == len(np.unique(ids)), (
+            f"Videos duplicados dentro de {name}"
+        )
+
+    assert not (set(train_ids) & set(val_ids)), "Video repetido entre train y val"
+    assert not (set(train_ids) & set(test_ids)), "Video repetido entre train y test"
+    assert not (set(val_ids) & set(test_ids)), "Video repetido entre val y test"
+
+
+def verify_arrays_finite(*arrays, names=None):
+    names = names or [f"array_{i}" for i in range(len(arrays))]
+
+    for name, array in zip(names, arrays):
+        array = np.asarray(array)
+        assert not np.isnan(array).any(), f"NaN detectado en {name}"
+        assert not np.isinf(array).any(), f"Inf detectado en {name}"
+
+
+def verify_split_shapes(X_train, X_val, X_test, target_frames, expected_keypoints):
+    for name, array in (
+        ("X_train", X_train),
+        ("X_val", X_val),
+        ("X_test", X_test),
+    ):
+        array = np.asarray(array)
+        assert array.ndim == 4, f"{name} debe ser 4D (N,T,K,C): {array.shape}"
+        assert array.shape[1] == target_frames, (
+            f"{name} frames={array.shape[1]}, esperado={target_frames}"
+        )
+        assert array.shape[2] == expected_keypoints, (
+            f"{name} keypoints={array.shape[2]}, esperado={expected_keypoints}"
+        )
+        assert array.shape[3] == 3, f"{name} canales={array.shape[3]}, esperado=3"
+
+
+def summarize_partition(name, labels, groups):
+    labels = np.asarray(labels)
+    groups = np.asarray(groups)
+    print(
+        f"{name:<6}: {len(labels)} muestras "
+        f"(validos={int(sum(labels == 1))}, "
+        f"invalidos={int(sum(labels == 0))}, "
+        f"eventos={len(np.unique(groups))})"
+    )
 
 
 # ─── Scaling ────────────────────────────────────────────────────────────────

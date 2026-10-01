@@ -2,8 +2,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from pathlib import Path
-from sklearn.model_selection import StratifiedKFold, train_test_split
+from sklearn.model_selection import StratifiedGroupKFold, StratifiedKFold, train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 import matplotlib
 matplotlib.use("Agg")
@@ -11,31 +10,29 @@ import matplotlib.pyplot as plt
 
 from train_utils import (
     PoseCNN, DEVICE, train_model, evaluate, compute_metrics,
-    create_scaler, scale_data, augment_dataset,
+    create_scaler, scale_data, augment_dataset, best_group_split,
 )
+from training_config import parse_config
 
-
-SCRIPT_DIR = Path(__file__).resolve().parent
-INPUT_PATH = SCRIPT_DIR / "data" / "normalized" / "sequences_170.npz"
-OUTPUT_DIR = SCRIPT_DIR / "models"
-RESULTS_DIR = SCRIPT_DIR / "results"
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
 N_FOLDS = 5
 BATCH_SIZE = 16
 EPOCHS = 200
 LEARNING_RATE = 0.001
-PATIENCE = 15
+PATIENCE = 8
+WEIGHT_DECAY = 1e-4
 VAL_SPLIT = 0.15
 AUG_FACTOR = 3
 RANDOM_SEED = 42
 
 
-def run_cross_validation():
-    data = np.load(INPUT_PATH)
+def run_cross_validation(config):
+    config["model_dir"].mkdir(parents=True, exist_ok=True)
+    config["results_dir"].mkdir(parents=True, exist_ok=True)
+    data = np.load(config["normalized_path"])
     X = data["keypoints"]
     y = data["labels"]
+    groups = data["group_ids"]
 
     print(f"\n{'='*60}")
     print(f"VALIDACIÓN CRUZADA {N_FOLDS}-FOLD")
@@ -43,10 +40,24 @@ def run_cross_validation():
     print(f"Total muestras: {len(X)}")
     print(f"Válidos: {sum(y==1)}, Inválidos: {sum(y==0)}")
 
-    skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=RANDOM_SEED)
+    if config["split_strategy"] == "grouped":
+        splitter = StratifiedGroupKFold(
+            n_splits=N_FOLDS,
+            shuffle=True,
+            random_state=RANDOM_SEED,
+        )
+        splits = splitter.split(X, y, groups)
+    else:
+        splitter = StratifiedKFold(
+            n_splits=N_FOLDS,
+            shuffle=True,
+            random_state=RANDOM_SEED,
+        )
+        splits = splitter.split(X, y)
+
     fold_metrics = []
 
-    for fold, (train_idx, test_idx) in enumerate(skf.split(X, y), 1):
+    for fold, (train_idx, test_idx) in enumerate(splits, 1):
         print(f"\n{'='*50}")
         print(f"FOLD {fold}/{N_FOLDS}")
         print(f"{'='*50}")
@@ -56,28 +67,72 @@ def run_cross_validation():
         y_test_fold = y[test_idx].copy()
         X_train_fold = X[train_idx].copy()
         y_train_fold = y[train_idx].copy()
+        groups_train_fold = groups[train_idx].copy()
 
         # 2. Split train into train/validation
-        X_tr, X_val, y_tr, y_val = train_test_split(
-            X_train_fold, y_train_fold, test_size=VAL_SPLIT,
-            stratify=y_train_fold, random_state=RANDOM_SEED + fold,
-        )
+        if config["split_strategy"] == "grouped":
+            tr_idx, val_idx = best_group_split(
+                y_train_fold,
+                groups_train_fold,
+                VAL_SPLIT,
+                RANDOM_SEED + fold,
+            )
+            X_tr = X_train_fold[tr_idx]
+            X_val = X_train_fold[val_idx]
+            y_tr = y_train_fold[tr_idx]
+            y_val = y_train_fold[val_idx]
+        else:
+            X_tr, X_val, y_tr, y_val = train_test_split(
+                X_train_fold, y_train_fold, test_size=VAL_SPLIT,
+                stratify=y_train_fold, random_state=RANDOM_SEED + fold,
+            )
 
-        # 3. Fit scaler on train of this fold ONLY
+        # 3. Fit scaler on ORIGINAL train of this fold ONLY (muestras
+        #    reales; val/test y el aumento nunca participan en fit). El
+        #    scaler se crea de nuevo en cada fold.
+        n_tr_before = len(X_tr)
         scaler = create_scaler(X_tr)
 
-        # 4. Transform train, val, test with that scaler
-        X_tr_scaled = scale_data(scaler, X_tr)
-        X_val_scaled = scale_data(scaler, X_val)
-        X_test_scaled = scale_data(scaler, X_test_fold)
+        assert int(scaler.n_samples_seen_) == n_tr_before, (
+            f"Fold {fold}: el scaler vio {scaler.n_samples_seen_} "
+            f"muestras, esperado train original={n_tr_before}"
+        )
 
         print(f"  Train: {len(X_tr)} (válidos={sum(y_tr==1)}, inválidos={sum(y_tr==0)})")
         print(f"  Val:   {len(X_val)} (válidos={sum(y_val==1)}, inválidos={sum(y_val==0)})")
         print(f"  Test:  {len(X_test_fold)} (válidos={sum(y_test_fold==1)}, inválidos={sum(y_test_fold==0)})")
+        print(f"  Scaler del fold {fold} ajustado solo en train original "
+              f"({scaler.n_samples_seen_} muestras)")
 
-        # 5. Augment ONLY train (with per-fold seed)
+        # 4. Augment ONLY train in unscaled space (with per-fold seed)
         rng = np.random.RandomState(RANDOM_SEED + fold)
-        X_tr_aug, y_tr_aug = augment_dataset(X_tr_scaled, y_tr, rng, AUG_FACTOR)
+        X_tr_aug, y_tr_aug = augment_dataset(
+            X_tr,
+            y_tr,
+            rng,
+            AUG_FACTOR,
+            transforms=config["augmentation"],
+        )
+
+        assert len(X_tr_aug) == n_tr_before * (AUG_FACTOR + 1), (
+            f"Fold {fold}: train aumentado={len(X_tr_aug)}, "
+            f"esperado={n_tr_before * (AUG_FACTOR + 1)}"
+        )
+        assert len(X_val) == len(y_val) and len(X_test_fold) == len(y_test_fold), (
+            f"Fold {fold}: val/test no deben aumentar"
+        )
+
+        # 5. Transform train aumentado / val / test with that fold's scaler
+        import numpy as _np
+        X_tr_aug = _np.asarray(X_tr_aug, dtype=_np.float32)
+        X_tr_scaled = scale_data(scaler, X_tr_aug)
+        X_val_scaled = scale_data(scaler, X_val)
+        X_test_scaled = scale_data(scaler, X_test_fold)
+
+        assert not _np.isnan(X_tr_scaled).any(), f"Fold {fold}: NaN en train"
+        assert not _np.isinf(X_tr_scaled).any(), f"Fold {fold}: Inf en train"
+        assert not _np.isnan(X_val_scaled).any(), f"Fold {fold}: NaN en val"
+        assert not _np.isnan(X_test_scaled).any(), f"Fold {fold}: NaN en test"
 
         print(f"  Train after augmentation: {len(X_tr_aug)}")
 
@@ -102,7 +157,7 @@ def run_cross_validation():
 
         # 8. Train with identical pipeline (Adam, BCELoss, ReduceLROnPlateau, EarlyStopping, ModelCheckpoint)
         criterion = nn.BCELoss()
-        optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
+        optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE, weight_decay=WEIGHT_DECAY)
         scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode="min", factor=0.5, patience=5)
 
         model, _, _ = train_model(
@@ -225,13 +280,26 @@ def run_cross_validation():
     ax.set_ylim(0.4, 1.05)
 
     plt.tight_layout()
-    boxplot_path = RESULTS_DIR / "cross_validation_boxplot.png"
+    boxplot_path = config["results_dir"] / "cross_validation_boxplot.png"
     plt.savefig(boxplot_path, dpi=150, bbox_inches="tight")
     print(f"\nBoxplot guardado en: {boxplot_path}")
     plt.close()
+
+    metrics_path = config["results_dir"] / "cross_validation_metrics.npz"
+    np.savez(
+        metrics_path,
+        **{
+            metric: np.asarray([
+                item[metric] if item[metric] is not None else np.nan
+                for item in fold_metrics
+            ])
+            for metric in metrics_names
+        },
+    )
+    print(f"Metricas guardadas en: {metrics_path}")
 
     return fold_metrics, avg, std
 
 
 if __name__ == "__main__":
-    run_cross_validation()
+    run_cross_validation(parse_config("Validacion cruzada de PoseCNN"))

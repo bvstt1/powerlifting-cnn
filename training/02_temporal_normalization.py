@@ -1,76 +1,85 @@
 import numpy as np
-from pathlib import Path
 from scipy import interpolate
 
-
-SCRIPT_DIR = Path(__file__).resolve().parent
-INPUT_PATH = SCRIPT_DIR / "data" / "preprocessed" / "raw_sequences.npz"
-OUTPUT_DIR = SCRIPT_DIR / "data" / "normalized"
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-TARGET_FRAMES = 170
+from training_config import build_sample_metadata, parse_config
 
 
-def normalize_temporal(seq, target_frames):
-    T, K, C = seq.shape
-    if T == target_frames:
-        return seq.copy()
+def normalize_temporal(sequence, target_frames):
+    frames, keypoints, channels = sequence.shape
 
-    normalized = np.zeros((target_frames, K, C), dtype=np.float32)
+    if frames == target_frames:
+        return sequence.copy()
 
-    for k in range(K):
-        for c in range(C):
-            col = seq[:, k, c]
-            valid = ~np.isnan(col)
+    normalized = np.zeros(
+        (target_frames, keypoints, channels),
+        dtype=np.float32,
+    )
+    new_index = np.linspace(0, frames - 1, target_frames)
+
+    for keypoint in range(keypoints):
+        for channel in range(channels):
+            column = sequence[:, keypoint, channel]
+            valid = ~np.isnan(column)
+
             if valid.sum() == 0:
-                normalized[:, k, c] = np.nan
+                normalized[:, keypoint, channel] = np.nan
                 continue
+
             if valid.sum() == 1:
-                normalized[:, k, c] = col[valid][0]
+                normalized[:, keypoint, channel] = column[valid][0]
                 continue
 
-            old_idx = np.where(valid)[0]
-            old_vals = col[old_idx]
-            new_idx = np.linspace(0, T - 1, target_frames)
-
-            f = interpolate.interp1d(
-                old_idx, old_vals, kind="linear",
-                bounds_error=False, fill_value="extrapolate"
+            old_index = np.where(valid)[0]
+            old_values = column[old_index]
+            function = interpolate.interp1d(
+                old_index,
+                old_values,
+                kind="linear",
+                bounds_error=False,
+                fill_value=(old_values[0], old_values[-1]),
             )
-            normalized[:, k, c] = f(new_idx)
+            normalized[:, keypoint, channel] = function(new_index)
 
     return normalized
 
 
-def process():
-    data = np.load(INPUT_PATH, allow_pickle=True)
+def process(config):
+    config["normalized_dir"].mkdir(parents=True, exist_ok=True)
+    data = np.load(config["raw_path"], allow_pickle=True)
     video_ids = data["video_ids"]
     keypoints = data["keypoints"]
     labels = data["labels"]
+    if "group_ids" in data.files and "source_views" in data.files:
+        group_ids = data["group_ids"]
+        source_views = data["source_views"]
+    else:
+        group_ids, source_views = build_sample_metadata(video_ids, config)
 
+    print(f"Perfil: {config['profile']} ({config['display_name']})")
     print(f"Cargadas {len(video_ids)} secuencias")
-    print(f"Normalizando a {TARGET_FRAMES} frames...")
+    print(f"Normalizando a {config['target_frames']} frames...")
 
-    normalized_kps = []
-    for i, kp in enumerate(keypoints):
-        norm = normalize_temporal(kp, TARGET_FRAMES)
-        normalized_kps.append(norm)
+    normalized_keypoints = np.asarray([
+        normalize_temporal(sequence, config["target_frames"])
+        for sequence in keypoints
+    ], dtype=np.float32)
 
-    normalized_kps = np.array(normalized_kps, dtype=np.float32)
-    print(f"Shape final: {normalized_kps.shape}")
+    if np.isnan(normalized_keypoints).any():
+        raise ValueError("Quedaron NaN despues de la normalizacion temporal")
 
-    out_path = OUTPUT_DIR / "sequences_170.npz"
     np.savez_compressed(
-        out_path,
+        config["normalized_path"],
         video_ids=video_ids,
-        keypoints=normalized_kps,
+        group_ids=group_ids,
+        source_views=source_views,
+        keypoints=normalized_keypoints,
         labels=labels,
     )
-    print(f"Guardado en: {out_path}")
 
-    nan_after = np.isnan(normalized_kps).sum()
-    print(f"NaN restantes: {nan_after}")
+    print(f"Shape final: {normalized_keypoints.shape}")
+    print(f"NaN restantes: {np.isnan(normalized_keypoints).sum()}")
+    print(f"Guardado en: {config['normalized_path']}")
 
 
 if __name__ == "__main__":
-    process()
+    process(parse_config("Normalizacion temporal de secuencias"))

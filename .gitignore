@@ -2,3 +2,5 @@
 .idea
 dataset
 /display/pruebas
+__pycache__/
+*.py[cod]
