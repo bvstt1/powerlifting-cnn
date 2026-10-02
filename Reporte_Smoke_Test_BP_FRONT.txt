@@ -1,0 +1,667 @@
+REPORTE CONSOLIDADO DEL SMOKE TEST DE SEGMENTACION BP_FRONT
+===========================================================
+
+Proyecto: Juez virtual de powerlifting
+Fecha: 2026-10-01
+Estado: smoke test completado y procesamiento detenido
+Vista: BP_FRONT
+Modelo: models/bp/bp_front_seg_v2.pt
+
+Configuracion de inferencia:
+
+- imgsz: 960
+- confidence threshold: 0.25
+- IoU threshold: 0.7
+- retina_masks: True
+- Clases: 0=bar, 1=bench, 2=person
+- Proximity threshold: 0.01 x diagonal de imagen
+- El proximity threshold es descriptivo; no es contacto fisico ni ground truth.
+
+No se procesaron los 663 videos ni los 58.036 frames completos. No se entreno
+ninguna red, no se generaron splits, no se modificaron labels y no se aplicaron
+StandardScaler, augmentation, interpolacion temporal ni normalizacion a 170
+frames.
+
+
+A. IMPLEMENTACION REALIZADA
+---------------------------
+
+Se implementaron los siguientes componentes:
+
+- extract_segmentation/bp/extract_segmentation_front_bp.py
+- extract_segmentation/bp/segmentation_utils.py
+- display/bp/inspect_segmentation_front_bp.py
+
+La salida se mantiene en:
+
+segmentation/bp/front/
+|-- raw/
+|-- features/
+|-- manifests/
+`-- previews/
+
+El extractor realiza inferencia secuencial por video y conserva todas las
+instancias post-NMS. No limita el RAW a los tracks principales. Para cada
+instancia se almacenan:
+
+- frame_index e indice local dentro del frame;
+- timestamp;
+- class_id y class_name;
+- confidence;
+- bounding boxes raw y normalizadas;
+- poligono;
+- mascara binaria;
+- track_id;
+- dimensiones originales;
+- area de mascara.
+
+Los esquemas finales utilizados son:
+
+- bp_front_segmentation_raw_v2
+- bp_front_segmentation_features_v2
+
+Cada pareja RAW/features incluye un extraction_id comun, hash SHA-256 del video,
+hash SHA-256 del modelo y la configuracion de extraccion. Esto permite detectar
+salidas pertenecientes a otra ejecucion o configuracion.
+
+
+B. CONSERVACION LOSSLESS DE MASCARAS
+------------------------------------
+
+Para cada mascara binaria se aplica:
+
+mascara a resolucion original
+-> bounding rectangle minimo no vacio
+-> crop
+-> flatten en orden C
+-> np.packbits con bitorder little
+-> np.savez_compressed
+
+Se conserva:
+
+- origin_x y origin_y;
+- mask_width y mask_height;
+- image_width y image_height por frame;
+- offsets dentro del buffer packed;
+- area binaria original;
+- metadata del metodo de codificacion.
+
+La validacion de round-trip ejecutada durante la extraccion fue:
+
+mascara YOLO binaria original
+-> crop y packbits
+-> escritura NPZ temporal
+-> carga desde disco
+-> unpackbits
+-> reconstruccion a 1920x1080
+-> np.array_equal(original, reconstructed)
+
+Resultado:
+
+- Mascaras comparadas: 2.350
+- Correctas pixel a pixel: 2.350
+- Fallidas: 0
+- Tasa de exito: 100%
+
+Ademas, todos los NPZ finales fueron reabiertos y todas las mascaras fueron
+reconstruidas nuevamente. Las areas reconstruidas coinciden con las areas RAW.
+
+
+C. TRACKING Y SELECCION PRINCIPAL
+---------------------------------
+
+El tracking temporal utiliza:
+
+- IoU de mascaras;
+- IoU de bounding boxes;
+- desplazamiento normalizado del centro;
+- cambio logaritmico de area;
+- persistencia temporal;
+- penalizacion por gaps;
+- gating de asociaciones fisicamente improbables;
+- asignacion uno-a-uno mediante Hungarian algorithm.
+
+No se selecciona automaticamente max(confidence) como objeto principal.
+
+La seleccion del track principal considera, segun la clase:
+
+- coverage;
+- continuity;
+- mean_confidence;
+- relative_area;
+- centrality;
+- stability;
+- relacion espacial con otros tracks principales;
+- horizontalness para bar.
+
+Para bench se permite reconexion tras gaps de hasta 60 frames, debido a que es
+un objeto estatico. Para bar y person se mantiene un max_gap base de 2 frames.
+El maximo costo de asociacion es 0.85.
+
+Cada RAW conserva track_summaries_json con:
+
+- track_id;
+- clase;
+- primer y ultimo frame;
+- duracion;
+- frames cubiertos;
+- confidence promedio;
+- selected_as_main;
+- componentes del score;
+- selection_score.
+
+
+D. FEATURES GEOMETRICAS
+-----------------------
+
+Para el track principal de cada clase y frame se almacenan, como minimo:
+
+- detected;
+- confidence;
+- raw_instance_index;
+- track_id;
+- bbox_x1, bbox_y1, bbox_x2, bbox_y2;
+- bbox_cx y bbox_cy;
+- bbox_width y bbox_height;
+- mask_area_px y mask_area_normalized;
+- mask_centroid_x y mask_centroid_y;
+- topmost_y, bottommost_y, leftmost_x y rightmost_x;
+- orientation_angle_deg;
+- major_axis_length_px y minor_axis_length_px;
+- versiones normalizadas pertinentes.
+
+Se conservan valores RAW y NORMALIZED. Las longitudes principales se normalizan
+por la diagonal de imagen, las coordenadas por ancho/alto y las areas por el
+area total de imagen.
+
+
+E. FEATURES TEMPORALES
+----------------------
+
+Se calculan:
+
+- centroid_dx y centroid_dy;
+- centroid_vx y centroid_vy;
+- centroid_ax y centroid_ay;
+- versiones raw y normalizadas;
+- dt_seconds.
+
+Los timestamps se calculan con frame_index/FPS usando el FPS real reportado por
+el video, que fue 30 FPS para los cinco casos.
+
+No se interpolan detecciones ausentes. Una derivada solo se calcula cuando
+existen las detecciones consecutivas necesarias y dt es positivo. Si no existe
+informacion suficiente, se conserva NaN. Los NaN no se reemplazan por cero.
+
+
+F. INTERACCIONES ENTRE MASCARAS
+-------------------------------
+
+Se calcularon las interacciones:
+
+- bar_person;
+- person_bench;
+- bar_bench.
+
+Features almacenadas:
+
+- both_detected;
+- centroid_distance_px y normalized;
+- relative_dx y relative_dy, raw y normalized;
+- minimum_mask_distance_px y normalized;
+- intersection_area_px y normalized;
+- union_area_px y normalized;
+- IoU;
+- a_contained_in_b_ratio;
+- b_contained_in_a_ratio;
+- overlap_detected;
+- proximity_candidate.
+
+Si existe overlap, minimum_mask_distance es 0, pero se conservan por separado
+intersection_area e IoU. Si no existe overlap, la distancia se obtiene mediante
+cv2.distanceTransform con DIST_L2 y DIST_MASK_PRECISE sobre la geometria binaria
+real. No se sustituye por distancia entre centroides.
+
+Los extremos visuales de la linea corresponden al mismo par de puntos que
+produce la distancia minima almacenada. Esto se comprobo tambien mediante una
+prueba sintetica automatica.
+
+El umbral proximity_candidate permanece configurable y registrado en metadata.
+La distancia continua siempre se conserva, independientemente del indicador.
+
+
+G. REGION TORACICA FUTURA
+-------------------------
+
+No se genero bar_chest_contact.
+
+La clase person representa el cuerpo completo, por lo que un overlap bar-person
+puede corresponder a manos, brazos, antebrazos o torso. No se invento una ROI
+toracica.
+
+Se dejo preparada compute_optional_region_interaction(), que puede recibir en
+el futuro exactamente uno de estos parametros:
+
+- torso_mask;
+- torso_roi.
+
+La funcion calcula para bar-torso las mismas metricas continuas y binarias de
+las demas interacciones.
+
+
+H. ESCRITURA ATOMICA Y REANUDACION
+----------------------------------
+
+RAW y features se escriben primero como archivos temporales. Ambos son validados
+antes de publicar la pareja final. La publicacion utiliza reemplazo atomico y
+respaldo/rollback si ocurre una excepcion durante el reemplazo.
+
+No quedaron archivos .tmp ni .backup tras el smoke test.
+
+La reanudacion fue comprobada ejecutando nuevamente el extractor sobre los cinco
+IDs sin --overwrite. Resultado:
+
+- 5 videos reconocidos como RAW + FEATURES existentes y validos;
+- 5 videos omitidos con [SKIP];
+- 0 videos nuevos;
+- 0 videos fallidos;
+- no se repitio inferencia YOLO.
+
+La opcion --overwrite queda disponible para reprocesamiento explicito.
+La seleccion de videos es obligatoria mediante --videos o --all, evitando que
+una ejecucion accidental sin argumentos procese el dataset completo.
+
+
+I. SELECCION DEL SMOKE TEST
+---------------------------
+
+No se utilizaron labels valido/nulo, resultados ni codigos de falta.
+
+Videos seleccionados:
+
+1. bp_578
+   - 21 frames.
+   - Video mas corto del dataset.
+   - Presento detecciones secundarias de bar y bench.
+
+2. bp_346
+   - 79 frames.
+   - Coincide con la mediana aproximada del dataset.
+   - Presento dos instancias bench por frame.
+
+3. bp_364
+   - 302 frames.
+   - Video mas largo del dataset.
+   - Util para comprobar persistencia y estabilidad temporal.
+
+4. bp_106
+   - 63 frames.
+   - Caso con bench dificil y baja confidence exploratoria.
+   - Util para evaluar fragmentacion y seleccion principal.
+
+5. bp_241
+   - 131 frames.
+   - La exploracion limitada sugirio detecciones ausentes.
+   - Util para comprobar missing detections y tracks secundarios.
+
+La seleccion se registra en:
+
+segmentation/bp/front/manifests/bp_front_smoke_test_selection.csv
+
+
+J. FRAMES E INSTANCIAS PROCESADAS
+---------------------------------
+
+- Videos: 5
+- Frames totales: 596
+- Frames decodificados: 596
+- Frames procesados: 596
+- Resolucion: 1920x1080
+- FPS: 30
+- Instancias bar: 604
+- Instancias bench: 1.150
+- Instancias person: 596
+- Instancias totales: 2.350
+
+Todos los videos cumplieron:
+
+- frames_decoded == frames_processed == frames_video;
+- indices continuos desde cero;
+- timestamps estrictamente crecientes;
+- shapes consistentes.
+
+
+K. DETECTION RATIO Y CONFIDENCES
+--------------------------------
+
+Detection ratio por clase, considerando al menos una instancia cruda de la
+clase en el frame:
+
+- bar: 587/596 = 0,9849
+- bench: 596/596 = 1,0000
+- person: 596/596 = 1,0000
+
+Confidences sobre todas las instancias crudas:
+
+Clase    Minimo    Mediana   Media     Maximo
+bar      0,2513    0,8554    0,8391    0,9064
+bench    0,2536    0,8979    0,8893    0,9675
+person   0,9189    0,9663    0,9609    0,9689
+
+
+L. RESULTADOS DE TRACKING
+-------------------------
+
+Video    Tracks bar/bench/person    Tracks principales bar/bench/person
+bp_106   1 / 3 / 1                  0 / 2 / 3
+bp_241   3 / 2 / 1                  0 / 1 / 3
+bp_346   1 / 2 / 1                  0 / 1 / 3
+bp_364   1 / 2 / 1                  0 / 1 / 3
+bp_578   2 / 2 / 1                  0 / 2 / 4
+
+Observaciones:
+
+- Person produjo un unico track por video y cobertura principal del 100%.
+- Bar fue estable salvo bp_241, con 9 frames ausentes y tracks secundarios.
+- bp_578 presento una deteccion secundaria breve de bar.
+- El modelo produjo dos instancias bench en todos los frames de bp_241,
+  bp_346, bp_364 y bp_578.
+- bp_106 fue el caso mas ambiguo para bench.
+- En bp_106 el bench principal cubre 34/63 frames, equivalente a 0,5397.
+- Los 29 frames restantes de bp_106 no fueron interpolados.
+- No hubo cambios dinamicos del track principal: el track se selecciona de
+  forma global y sus ausencias permanecen como missing.
+
+
+M. DISTANCIAS E INTERACCIONES
+-----------------------------
+
+Par             Both detected    Distancia px: min / mediana / media / max
+bar_person      587              0 / 0 / 0,604 / 6,000
+person_bench    567              0 / 1 / 0,876 / 4,123
+bar_bench       558              214 / 408,240 / 417,173 / 866
+
+Overlap:
+
+- bar_person: 337 frames
+- person_bench: 205 frames
+- bar_bench: 0 frames
+
+Proximity candidate:
+
+- bar_person: 587 frames
+- person_bench: 567 frames
+- bar_bench: 0 frames
+
+IoU:
+
+- bar_person: mediana 0,0000061; media 0,0000417; maximo 0,0006550.
+- person_bench: mediana 0; media 0,0000569; maximo 0,0018298.
+- bar_bench: siempre 0.
+
+Interpretacion tecnica:
+
+- Bar-person suele tener contacto 2D o una separacion de pocos pixeles debido
+  principalmente a las manos, no necesariamente al pecho.
+- Person-bench muestra bordes adyacentes o solapamientos 2D pequenos.
+- Bar-bench permanece claramente separado.
+- No aparecio un caso bar-person realmente lejano; el maximo observado fue 6 px.
+- El umbral de aproximadamente 22 px satura proximity_candidate para bar-person
+  y person-bench en esta muestra.
+- La distancia continua permite conservar informacion interpretable aunque el
+  indicador binario quede saturado.
+
+
+N. VISUALIZACION Y PREVIEWS
+---------------------------
+
+El inspector permite mostrar u ocultar:
+
+- mascaras bar, bench y person;
+- bounding boxes;
+- centroides;
+- track_id;
+- track principal;
+- confidence;
+- interacciones;
+- distancia minima;
+- IoU;
+- overlap;
+- proximity_candidate.
+
+Teclas principales:
+
+- 1/2/3: clases bar/bench/person;
+- m: mascaras;
+- b: bounding boxes;
+- c: centroides;
+- t: tracks;
+- p: tracks principales;
+- i: interacciones;
+- a/d: frame anterior/siguiente;
+- espacio: play/pause;
+- q: salir.
+
+El inspector valida antes de abrir:
+
+- RAW y features;
+- extraction_id compartido;
+- video_id;
+- cantidad de frames;
+- resolucion;
+- FPS;
+- SHA-256 del video fuente.
+
+Se generaron 27 previews que cubren, cuando estuvieron disponibles:
+
+- maxima distancia bar-person observada;
+- bar-person cercano sin overlap;
+- overlap bar-person;
+- relacion person-bench;
+- inicio de tracks secundarios;
+- missing detections;
+- menor confidence principal.
+
+No aparecio ningun frame con multiples instancias person. Este escenario queda
+pendiente para una futura muestra o para la extraccion completa.
+
+
+O. VALIDACIONES EJECUTADAS
+--------------------------
+
+Se validaron:
+
+- schemas RAW/features V2;
+- metadata obligatoria completa;
+- hashes del modelo y videos;
+- identidad comun de cada pareja RAW/features;
+- frames continuos;
+- timestamps finitos y crecientes;
+- offsets de frames, mascaras y poligonos;
+- correspondencia instancia-frame;
+- correspondencia class_id-class_name;
+- track_ids no negativos y existentes;
+- tracks principales validos;
+- bounding boxes dentro de imagen;
+- crops dentro de imagen;
+- cantidad exacta de bytes packed;
+- poligonos finitos y dentro de imagen;
+- areas de mascaras reconstruidas;
+- round-trip exacto de mascaras;
+- shapes de features;
+- asociaciones feature-instancia-frame-track-clase;
+- flags detected, both_detected, overlap y proximity;
+- IoU y areas en rangos validos;
+- distancia cero cuando existe overlap;
+- NaN solamente donde falta informacion;
+- ausencia de Inf;
+- ausencia de archivos finales incompletos.
+
+Pruebas tecnicas ejecutadas:
+
+- Compilacion de los tres scripts con py_compile: correcta.
+- Self-test sintetico de pack/unpack: correcto.
+- Self-test de distancia sin overlap: correcto.
+- Self-test de overlap y distancia cero: correcto.
+- Self-test de extremos visuales de distancia minima: correcto.
+- Validacion completa de los cinco RAW: correcta.
+- Validacion completa de las cinco parejas RAW/features: correcta.
+- Prueba de reanudacion: correcta.
+- Revision de previews: coherente.
+
+Estado final de artefactos:
+
+- Videos completos en manifest: 5
+- Filas de quality report: 30
+- Errores registrados: 0
+- Previews: 27
+- Archivos .tmp remanentes: 0
+- Archivos .backup remanentes: 0
+
+
+P. ALMACENAMIENTO REAL
+----------------------
+
+Video    Frames   Instancias   RAW bytes   FEATURES bytes   Total bytes
+bp_106   63       210          865.717     60.938           926.655
+bp_241   131      531          1.777.408   141.018          1.918.426
+bp_346   79       316          717.315     88.849           806.164
+bp_364   302      1.208        2.671.810   302.932          2.974.742
+bp_578   21       85           275.966     28.050           304.016
+
+Totales:
+
+- RAW: 6.308.216 bytes
+- FEATURES: 621.787 bytes
+- Total: 6.930.003 bytes
+- Total aproximado: 6,61 MiB
+- Promedio total por frame: 11.627,52 bytes
+- Promedio RAW por instancia: 2.684,35 bytes
+
+Compresion de mascaras:
+
+- Binario completo uint8 equivalente: 4.872.960.000 bytes
+- Crop binario: 429.813.706 bytes
+- Crop / binario completo: 8,82%
+- Crop con packbits: 53.727.517 bytes
+- Packbits / binario completo: 1,10%
+- Payload packbits comprimido con DEFLATE: 3.398.083 bytes
+- Payload comprimido / binario completo: 0,0697%
+- Payload comprimido / packbits: 6,32%
+- Archivo RAW completo / binario completo: 0,1295%
+
+
+Q. PROYECCION PARA EL DATASET COMPLETO
+--------------------------------------
+
+Proyeccion lineal basada en los 596 frames del smoke test para:
+
+- 663 videos;
+- 58.036 frames.
+
+Resultado estimado:
+
+- RAW: 614.267.825 bytes, aproximadamente 585,8 MiB
+- FEATURES: 60.547.031 bytes, aproximadamente 57,7 MiB
+- Total: 674.814.856 bytes
+- Total aproximado: 643,6 MiB o 0,628 GiB
+
+La estimacion inicial de 0,7-1,5 GiB sigue siendo prudente. La proyeccion no
+incluye previews masivos, que no se planea generar para todos los videos.
+
+
+R. WARNINGS Y LIMITACIONES
+--------------------------
+
+- No aparecieron multiples instancias person en los cinco videos.
+- Bench genera multiples instancias persistentes y requiere seleccion principal.
+- bp_106 conserva 29 frames sin el bench principal.
+- bp_241 conserva 9 frames sin la barra principal.
+- No se interpolaron detecciones ausentes.
+- proximity_candidate=0.01 es poco discriminante para bar-person y
+  person-bench en esta muestra.
+- Bar-person no debe interpretarse como contacto con el pecho.
+- Los poligonos son informacion complementaria; la mascara binaria lossless es
+  la representacion geometrica de referencia.
+- OpenCV puede exponer hasta 16 filas de padding HEVC al buscar frames de forma
+  aleatoria. El inspector recorta solamente ese padding cuando ancho y altura
+  esperados son compatibles. La extraccion secuencial fue validada a 1080 filas.
+- No se detectaron errores de extraccion ni validacion.
+
+
+S. EVALUACION TECNICA FINAL
+---------------------------
+
+Mascaras:
+
+- Consistentes y lossless en 2.350/2.350 instancias.
+
+Tracking:
+
+- Estable para person y bar.
+- Razonable para bench tras permitir reconexion del objeto estatico.
+- Las ambiguedades y componentes de seleccion quedan conservados en metadata.
+
+Seleccion principal:
+
+- Los previews muestran el atleta, la barra levantada y la banca central como
+  tracks principales razonables en los casos revisados.
+
+Distancias:
+
+- Las lineas dibujadas coinciden numericamente con la distancia almacenada.
+- Se utiliza geometria real de mascaras, no distancia entre centroides.
+
+Overlaps:
+
+- Se distinguen de proximidad y de distancia cero sin interseccion.
+- Intersection area e IoU permanecen disponibles por separado.
+
+Features:
+
+- Shapes, asociaciones RAW, unidades, normalizaciones, NaN e Inf superaron las
+  validaciones automaticas.
+
+Conclusion:
+
+El pipeline y el dataset derivado del smoke test estan listos para revision.
+No se inicio la extraccion completa. Debe mantenerse la condicion de parada
+hasta recibir aprobacion explicita para procesar los 663 videos BP_FRONT.
+
+
+T. ARCHIVOS DE RESULTADOS
+-------------------------
+
+Manifiestos:
+
+- segmentation/bp/front/manifests/bp_front_segmentation_manifest.csv
+- segmentation/bp/front/manifests/bp_front_quality_report.csv
+- segmentation/bp/front/manifests/bp_front_extraction_errors.csv
+- segmentation/bp/front/manifests/bp_front_smoke_test_selection.csv
+- segmentation/bp/front/manifests/bp_front_smoke_test_report.txt
+
+RAW:
+
+- segmentation/bp/front/raw/bp_106_segmentation.npz
+- segmentation/bp/front/raw/bp_241_segmentation.npz
+- segmentation/bp/front/raw/bp_346_segmentation.npz
+- segmentation/bp/front/raw/bp_364_segmentation.npz
+- segmentation/bp/front/raw/bp_578_segmentation.npz
+
+FEATURES:
+
+- segmentation/bp/front/features/bp_106_features.npz
+- segmentation/bp/front/features/bp_241_features.npz
+- segmentation/bp/front/features/bp_346_features.npz
+- segmentation/bp/front/features/bp_364_features.npz
+- segmentation/bp/front/features/bp_578_features.npz
+
+PREVIEWS:
+
+- segmentation/bp/front/previews/bp_106/
+- segmentation/bp/front/previews/bp_241/
+- segmentation/bp/front/previews/bp_346/
+- segmentation/bp/front/previews/bp_364/
+- segmentation/bp/front/previews/bp_578/
+
+FIN DEL REPORTE

@@ -1,0 +1,6 @@
+video_id,selection_reason,selection_source,labels_used
+bp_106,"Video de 63 frames; exploración de tres frames encontró confidence baja de bench (mínimo 0.311), útil para evaluar detecciones difíciles y fragmentación","metadata de video + inferencia exploratoria limitada",0
+bp_241,"Video de 131 frames; exploración de tres frames sugirió una detección ausente, útil para evaluar missing detections","metadata de video + inferencia exploratoria limitada",0
+bp_346,"Video de 79 frames, igual a la mediana del dataset; además mostró múltiples instancias de bench","metadata de video + inferencia exploratoria limitada",0
+bp_364,"Video más largo del dataset con 302 frames; permite evaluar persistencia y estabilidad temporal","metadata de video",0
+bp_578,"Video más corto del dataset con 21 frames; mostró detecciones secundarias de bar y bench","metadata de video + prueba de integración",0

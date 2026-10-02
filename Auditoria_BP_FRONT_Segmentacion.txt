@@ -1,0 +1,114 @@
+AUDITORÍA PREVIA Y ARQUITECTURA BP_FRONT
+========================================
+
+Modelo auditado
+---------------
+
+- Ruta: models/bp/bp_front_seg_v2.pt
+- Task: segment
+- Clases reales: 0=bar, 1=bench, 2=person
+- Parámetros base: imgsz=960, conf=0.25, iou=0.7
+- Extracción aprobada con retina_masks=True
+- Ultralytics instalado durante la auditoría: 8.4.137
+- Python: 3.10.11
+- OpenCV: 4.13.0
+- GPU: NVIDIA GeForce RTX 5060 Laptop GPU
+
+Dataset BP_FRONT
+----------------
+
+- Directorio: dataset/bp/front/
+- 663 videos MP4, desde bp_001 hasta bp_663
+- IDs ausentes: 0
+- IDs duplicados: 0
+- Videos que no abren: 0
+- FPS: 30 en todos los videos
+- Resolución: 1920x1080 en todos los videos
+- Frames totales declarados: 58.036
+- Rango: 21-302 frames por video
+- Mediana: 79 frames
+- CSV asociado: etiquetado/bp/bp_front.csv, 663 registros
+
+Formato de máscaras aprobado
+-----------------------------
+
+Máscara binaria a resolución original -> bounding rectangle mínimo -> crop ->
+np.packbits(bitorder="little") -> np.savez_compressed.
+
+Se conservan origin_x, origin_y, mask_width, mask_height, image_width,
+image_height, offsets y orden de bits. La reconstrucción es exacta píxel a
+píxel y se valida con np.array_equal.
+
+Información RAW
+---------------
+
+Se guardan todas las instancias con frame_index, timestamp, class_id,
+class_name, confidence, bbox raw/normalizada, polygon, máscara, track_id y
+dimensiones originales. Los tracks principales no sustituyen el output RAW.
+
+Tracking y selección principal
+-------------------------------
+
+Asociación determinista por clase con mask IoU, bbox IoU, continuidad espacial,
+desplazamiento normalizado, cambio de área, persistencia y gating. La selección
+principal considera cobertura, continuidad, confidence, estabilidad,
+centralidad, geometría y relaciones con otros objetos. No usa solamente la
+confidence máxima. Los componentes del score quedan en metadata.
+
+Features
+--------
+
+Por clase y frame se conservan detected, confidence, bbox xyxy/cxcywh,
+mask_area, centroid, extremos, orientación y ejes mayor/menor, tanto raw como
+normalizados. Las señales temporales dx, dy, vx, vy, ax y ay usan timestamps y
+FPS reales. No se interpolan detecciones; los valores no disponibles son NaN.
+
+Interacciones
+-------------
+
+Se calculan bar_person, person_bench y bar_bench: distancia entre centroides,
+distancia mínima geométrica entre máscaras, desplazamiento relativo,
+intersección, unión, IoU, ratios de contención, overlap y proximity_candidate.
+La distancia es cero con overlap, pero la intersección permanece separada.
+
+Proximity usa inicialmente 0.01 x diagonal de imagen. Es descriptivo, no es
+ground truth ni contacto físico. No se genera bar_chest_contact. Existe una
+interfaz futura para torso_mask o torso_roi proveniente de pose BP_FRONT.
+
+Estructura aprobada
+-------------------
+
+extract_segmentation/bp/
+  extract_segmentation_front_bp.py
+  segmentation_utils.py
+
+display/bp/
+  inspect_segmentation_front_bp.py
+
+segmentation/bp/front/
+  raw/
+  features/
+  manifests/
+  previews/
+
+Identidad metodológica
+----------------------
+
+source_view=front. Mientras no exista mapeo físico confirmado, cada muestra usa
+un group_id individual con group_id_status=unverified_individual y paired=0.
+No se usan labels ni códigos de falta para construir identidad multivista.
+
+Estimación previa de almacenamiento
+-----------------------------------
+
+- Máscaras uint8 completas para tres clases: aproximadamente 336,2 GiB.
+- Packbits completo: aproximadamente 42,0 GiB.
+- Formato crop + packbits + compresión, incluyendo output y features:
+  estimación previa de aproximadamente 0,7-1,5 GiB para todo BP_FRONT.
+
+Restricciones
+-------------
+
+En esta etapa no se entrena una CNN, no se crean splits, no se aplica scaler,
+augmentation, interpolación temporal ni normalización a T=170, y no se
+modifican labels.
