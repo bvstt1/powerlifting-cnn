@@ -3,6 +3,7 @@ import csv
 import json
 import math
 import platform
+import subprocess
 import sys
 import traceback
 from datetime import datetime, timezone
@@ -46,9 +47,12 @@ DEFAULT_MODEL = PROJECT_ROOT / "models" / "bp" / "bp_front_seg_v2.pt"
 DEFAULT_INPUT = PROJECT_ROOT / "dataset" / "bp" / "front"
 DEFAULT_OUTPUT = PROJECT_ROOT / "segmentation" / "bp" / "front"
 EXPECTED_CLASSES = {0: "bar", 1: "bench", 2: "person"}
+PIPELINE_VERSION = "BP_FRONT_SEG_DATASET_V1"
+EXTRACTOR_VERSION = "bp_front_segmentation_extractor_v1"
 
 MANIFEST_FIELDS = [
     "video_id", "video_path", "segmentation_path", "features_path",
+    "pipeline_version", "extractor_version", "git_commit",
     "frames_video", "frames_decoded", "frames_processed", "fps", "width",
     "height", "duration_seconds", "source_view", "group_id",
     "group_id_status", "paired", "status", "instances_total",
@@ -80,6 +84,21 @@ ERROR_FIELDS = [
 
 def utc_now():
     return datetime.now(timezone.utc).isoformat()
+
+
+def git_state():
+    try:
+        commit = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=PROJECT_ROOT, text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+        dirty = bool(subprocess.check_output(
+            ["git", "status", "--porcelain"], cwd=PROJECT_ROOT, text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip())
+        return commit, dirty
+    except (OSError, subprocess.CalledProcessError):
+        return None, None
 
 
 def atomic_write_csv(path, rows, fieldnames):
@@ -188,6 +207,10 @@ def extraction_metadata(video_path, video_hash, model_path, model_hash, class_na
     return {
         "extraction_id": str(uuid4()),
         "extractor": "extract_segmentation_front_bp.py",
+        "pipeline_version": PIPELINE_VERSION,
+        "extractor_version": EXTRACTOR_VERSION,
+        "git_commit": args.git_commit,
+        "git_worktree_dirty": args.git_worktree_dirty,
         "schema_description": "Todas las detecciones YOLO post-NMS y features de tracks principales",
         "video_id": video_path.stem,
         "video_path": str(video_path.resolve()),
@@ -206,6 +229,7 @@ def extraction_metadata(video_path, video_hash, model_path, model_hash, class_na
         "ultralytics_version": ultralytics.__version__,
         "opencv_version": cv2.__version__,
         "torch_version": torch.__version__,
+        "cuda_version": torch.version.cuda,
         "device_requested": str(args.device),
         "device_name": device_name,
         "imgsz": int(args.imgsz),
@@ -365,6 +389,9 @@ def build_saved_report_rows(raw_path, features_path):
             "video_path": metadata["video_path"],
             "segmentation_path": str(raw_path.resolve()),
             "features_path": str(features_path.resolve()),
+            "pipeline_version": metadata.get("pipeline_version", PIPELINE_VERSION),
+            "extractor_version": metadata.get("extractor_version", EXTRACTOR_VERSION),
+            "git_commit": metadata.get("git_commit", ""),
             "frames_video": metadata["frames_video"],
             "frames_decoded": metadata["frames_decoded"],
             "frames_processed": metadata["frames_processed"],
@@ -662,6 +689,9 @@ def process_video(video_path, model, model_path, model_hash, class_names, output
         "video_path": str(video_path.resolve()),
         "segmentation_path": str(raw_path.resolve()),
         "features_path": str(features_path.resolve()),
+        "pipeline_version": PIPELINE_VERSION,
+        "extractor_version": EXTRACTOR_VERSION,
+        "git_commit": metadata.get("git_commit", ""),
         "frames_video": frames_video,
         "frames_decoded": frames_decoded,
         "frames_processed": frames_processed,
@@ -731,6 +761,7 @@ def parse_args():
 
 def main():
     args = parse_args()
+    args.git_commit, args.git_worktree_dirty = git_state()
     numeric_arguments = {
         "imgsz": args.imgsz,
         "conf": args.conf,

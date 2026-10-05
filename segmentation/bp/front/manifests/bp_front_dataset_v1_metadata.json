@@ -1,0 +1,90 @@
+{
+  "environment": {
+    "cuda": "13.0",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "opencv": "4.13.0",
+    "python": "3.10.11",
+    "torch": "2.13.0.dev20260521+cu130",
+    "ultralytics": "8.4.137"
+  },
+  "extractor_version": "bp_front_segmentation_extractor_v1",
+  "frozen_at_utc": "2026-10-02T14:46:54.628353+00:00",
+  "git_commit": "09fc8057b4d17f3b107ff436373378848a3fbd10",
+  "git_worktree_dirty": true,
+  "inference": {
+    "confidence_threshold": 0.25,
+    "imgsz": 960,
+    "iou_threshold": 0.7,
+    "proximity_semantics": "Descriptivo; no es contacto fisico ni ground truth",
+    "proximity_threshold_normalized": 0.01,
+    "retina_masks": true
+  },
+  "model": {
+    "classes": {
+      "0": "bar",
+      "1": "bench",
+      "2": "person"
+    },
+    "path": "C:\\Users\\basti\\MediapipePythonProjects\\models\\bp\\bp_front_seg_v2.pt",
+    "sha256": "22514988978ac6bb0c9b86e14b37043a58912ca0e30be3da20571c9172020f38"
+  },
+  "pipeline_version": "BP_FRONT_SEG_DATASET_V1",
+  "prohibitions": {
+    "augmentation": false,
+    "cnn_training": false,
+    "labels_used": false,
+    "normalization_to_170_frames": false,
+    "split": false,
+    "standard_scaler": false,
+    "temporal_interpolation": false
+  },
+  "script_sha256": {
+    "extract_segmentation\\bp\\extract_segmentation_front_bp.py": "3020dfdabe8defb3e515054fd27d7a630b296dd7167c63101ff192a904dc146d",
+    "extract_segmentation\\bp\\finalize_segmentation_front_bp.py": "1319cd981b4c9c183bca8f15bf9c69a6bfa91a2afaef5fa7bcf5b0305684813e",
+    "extract_segmentation\\bp\\rebuild_tracking_front_bp_from_raw.py": "0d80b2ee3bf9502170d7d5f79d5eac05fa25b2f11acbbe8e7f03c132f79d7c11",
+    "extract_segmentation\\bp\\segmentation_utils.py": "3a3ca79bcee5aaba2eeeac161415d63fdbe00ba94693fbe6215b077e16c72024"
+  },
+  "tracking_source": {
+    "max_assignment_cost": 0.85,
+    "max_gap_frames": 2,
+    "stationary_bench_max_gap_frames": 60
+  },
+  "tracking_v2": {
+    "bar_handoff": {
+      "max_area_ratio_each_frame": 1.1,
+      "max_centroid_distance_normalized_each_frame": 0.01,
+      "min_bbox_iou_each_frame": 0.65,
+      "min_containment_each_frame": 0.99,
+      "min_mask_iou_each_frame": 0.9,
+      "shared_frames_max": 5,
+      "shared_frames_min": 2
+    },
+    "bench_anchor_weights": {
+      "centrality": 0.1,
+      "confidence": 0.05,
+      "continuity": 0.15,
+      "coverage": 0.5,
+      "relative_area": 0.05,
+      "stability": 0.15
+    },
+    "bench_identity": {
+      "interpolation": false,
+      "max_area_ratio": 1.8,
+      "max_centroid_distance_normalized": 0.04,
+      "min_containment": 0.95,
+      "min_joint_support_ratio": 0.75,
+      "min_mask_iou": 0.55,
+      "min_shared_frames": 3,
+      "source_switch_penalty": 0.25
+    },
+    "bench_stitch": {
+      "max_area_ratio": 1.25,
+      "max_centroid_distance_normalized": 0.01,
+      "max_gap_frames": 60,
+      "min_bbox_iou": 0.8,
+      "min_mask_iou": 0.8
+    }
+  },
+  "tracking_version": "bp_front_bench_tracking_v2.2"
+}

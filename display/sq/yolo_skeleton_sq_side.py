@@ -6,9 +6,9 @@ import numpy as np
 # CONFIG
 # -------------------------
 
-model = YOLO("../../models/sq/sq_side_skeleton_v2.pt")
+model = YOLO("../../models/sq/sq_side_skeleton_v3.pt")
 
-video_path = r"C:\Users\basti\MediapipePythonProjects\dataset\sq\left\sq_257.mp4"
+video_path = r"C:\Users\basti\MediapipePythonProjects\dataset\sq\left\sq_300.mp4"
 
 # Suavizado EMA
 alpha = 0.6
@@ -24,6 +24,7 @@ SKELETON = [
     (0, 2),  # cadera -> rodilla
     (2, 3),  # rodilla -> tobillo
     (3, 4),  # tobillo -> pie
+
 ]
 
 # -------------------------

@@ -1,0 +1,1905 @@
+{
+  "bench_tracks_after": [
+    {
+      "area_px": {
+        "count": 45,
+        "max": 38367.0,
+        "mean": 36071.71111111111,
+        "median": 35251.0,
+        "min": 34397.0
+      },
+      "bbox_x1_px": {
+        "count": 45,
+        "max": 864.429443359375,
+        "mean": 858.9626925998264,
+        "median": 858.5848388671875,
+        "min": 855.708251953125
+      },
+      "bbox_x2_px": {
+        "count": 45,
+        "max": 1180.054443359375,
+        "mean": 1177.736572265625,
+        "median": 1177.7847900390625,
+        "min": 1175.2734375
+      },
+      "bbox_y1_px": {
+        "count": 45,
+        "max": 918.8536376953125,
+        "mean": 916.2404405381944,
+        "median": 916.39306640625,
+        "min": 912.5662841796875
+      },
+      "bbox_y2_px": {
+        "count": 45,
+        "max": 1080.0,
+        "mean": 1079.803285047743,
+        "median": 1080.0,
+        "min": 1078.8729248046875
+      },
+      "centroid_x_px": {
+        "count": 45,
+        "max": 1023.1941157659098,
+        "mean": 1019.2989080485908,
+        "median": 1019.2901604984352,
+        "min": 1016.6762078871768
+      },
+      "centroid_y_px": {
+        "count": 45,
+        "max": 1000.03427892556,
+        "mean": 999.5616711948559,
+        "median": 999.572877238574,
+        "min": 998.9777847637012
+      },
+      "class_name": "bench",
+      "confidence": {
+        "count": 45,
+        "max": 0.9026631116867065,
+        "mean": 0.8962507221433852,
+        "median": 0.8967832326889038,
+        "min": 0.8851295113563538
+      },
+      "coverage": 1.0,
+      "first_frame": 0,
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "frames": 45,
+      "gaps": [],
+      "last_frame": 44,
+      "score_components": {
+        "centrality": 0.5792884795188863,
+        "continuity": 1.0,
+        "coverage": 1.0,
+        "horizontalness": 0.9844100393473955,
+        "mean_confidence": 0.8962507221433852,
+        "median_area_normalized": 0.016999903549382717,
+        "relationship": 0.0,
+        "relative_area": 0.9842798905455967,
+        "selection_score": 0.9154416946160457,
+        "stability": 0.9974178696574927
+      },
+      "temporal_bbox_iou": {
+        "count": 44,
+        "max": 0.9990291882776439,
+        "mean": 0.990938037094957,
+        "median": 0.9937638576016604,
+        "min": 0.9633108250919096
+      },
+      "temporal_mask_iou": {
+        "count": 44,
+        "max": 0.9973044292483614,
+        "mean": 0.9871101716031727,
+        "median": 0.9879475186441105,
+        "min": 0.9677402210884354
+      },
+      "track_id": 1
+    },
+    {
+      "area_px": {
+        "count": 45,
+        "max": 39267.0,
+        "mean": 36785.044444444444,
+        "median": 35814.0,
+        "min": 35146.0
+      },
+      "bbox_x1_px": {
+        "count": 45,
+        "max": 845.8525390625,
+        "mean": 841.1908718532986,
+        "median": 840.9317626953125,
+        "min": 838.267333984375
+      },
+      "bbox_x2_px": {
+        "count": 45,
+        "max": 1193.6875,
+        "mean": 1188.4859971788194,
+        "median": 1187.132080078125,
+        "min": 1185.0137939453125
+      },
+      "bbox_y1_px": {
+        "count": 45,
+        "max": 914.675048828125,
+        "mean": 913.095933702257,
+        "median": 913.245361328125,
+        "min": 911.4650268554688
+      },
+      "bbox_y2_px": {
+        "count": 45,
+        "max": 1080.0,
+        "mean": 1080.0,
+        "median": 1080.0,
+        "min": 1080.0
+      },
+      "centroid_x_px": {
+        "count": 45,
+        "max": 1018.9597330682948,
+        "mean": 1016.4108828777813,
+        "median": 1016.2683134582624,
+        "min": 1014.7236845464525
+      },
+      "centroid_y_px": {
+        "count": 45,
+        "max": 999.2933901368448,
+        "mean": 998.9224717341858,
+        "median": 998.9580374435119,
+        "min": 998.320315692685
+      },
+      "class_name": "bench",
+      "confidence": {
+        "count": 45,
+        "max": 0.8653420209884644,
+        "mean": 0.846584951877594,
+        "median": 0.8447884917259216,
+        "min": 0.8293875455856323
+      },
+      "coverage": 1.0,
+      "first_frame": 0,
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "frames": 45,
+      "gaps": [],
+      "last_frame": 44,
+      "score_components": {
+        "centrality": 0.5801693393489534,
+        "continuity": 1.0,
+        "coverage": 1.0,
+        "horizontalness": 0.9927783437652705,
+        "mean_confidence": 0.846584951877594,
+        "median_area_normalized": 0.017271412037037037,
+        "relationship": 0.0,
+        "relative_area": 1.0,
+        "selection_score": 0.9060135070814075,
+        "stability": 0.9978074386903041
+      },
+      "temporal_bbox_iou": {
+        "count": 44,
+        "max": 0.9990594057144825,
+        "mean": 0.9934275194426612,
+        "median": 0.9951017606092225,
+        "min": 0.97257340438951
+      },
+      "temporal_mask_iou": {
+        "count": 44,
+        "max": 0.9966641437501752,
+        "mean": 0.9876989837506914,
+        "median": 0.9889705067787522,
+        "min": 0.9690396011172893
+      },
+      "track_id": 2
+    }
+  ],
+  "bench_tracks_before": [
+    {
+      "area_px": {
+        "count": 45,
+        "max": 38367.0,
+        "mean": 36071.71111111111,
+        "median": 35251.0,
+        "min": 34397.0
+      },
+      "bbox_x1_px": {
+        "count": 45,
+        "max": 864.429443359375,
+        "mean": 858.9626925998264,
+        "median": 858.5848388671875,
+        "min": 855.708251953125
+      },
+      "bbox_x2_px": {
+        "count": 45,
+        "max": 1180.054443359375,
+        "mean": 1177.736572265625,
+        "median": 1177.7847900390625,
+        "min": 1175.2734375
+      },
+      "bbox_y1_px": {
+        "count": 45,
+        "max": 918.8536376953125,
+        "mean": 916.2404405381944,
+        "median": 916.39306640625,
+        "min": 912.5662841796875
+      },
+      "bbox_y2_px": {
+        "count": 45,
+        "max": 1080.0,
+        "mean": 1079.803285047743,
+        "median": 1080.0,
+        "min": 1078.8729248046875
+      },
+      "centroid_x_px": {
+        "count": 45,
+        "max": 1023.1941157659098,
+        "mean": 1019.2989080485908,
+        "median": 1019.2901604984352,
+        "min": 1016.6762078871768
+      },
+      "centroid_y_px": {
+        "count": 45,
+        "max": 1000.03427892556,
+        "mean": 999.5616711948559,
+        "median": 999.572877238574,
+        "min": 998.9777847637012
+      },
+      "class_name": "bench",
+      "confidence": {
+        "count": 45,
+        "max": 0.9026631116867065,
+        "mean": 0.8962507221433852,
+        "median": 0.8967832326889038,
+        "min": 0.8851295113563538
+      },
+      "coverage": 1.0,
+      "first_frame": 0,
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "frames": 45,
+      "gaps": [],
+      "last_frame": 44,
+      "score_components": {
+        "centrality": 0.5792884795188863,
+        "continuity": 1.0,
+        "coverage": 1.0,
+        "horizontalness": 0.9844100393473955,
+        "mean_confidence": 0.8962507221433852,
+        "median_area_normalized": 0.016999903549382717,
+        "relationship": 0.0,
+        "relative_area": 0.9842798905455967,
+        "selection_score": 0.9154416946160457,
+        "stability": 0.9974178696574927
+      },
+      "temporal_bbox_iou": {
+        "count": 44,
+        "max": 0.9990291882776439,
+        "mean": 0.990938037094957,
+        "median": 0.9937638576016604,
+        "min": 0.9633108250919096
+      },
+      "temporal_mask_iou": {
+        "count": 44,
+        "max": 0.9973044292483614,
+        "mean": 0.9871101716031727,
+        "median": 0.9879475186441105,
+        "min": 0.9677402210884354
+      },
+      "track_id": 1
+    },
+    {
+      "area_px": {
+        "count": 45,
+        "max": 39267.0,
+        "mean": 36785.044444444444,
+        "median": 35814.0,
+        "min": 35146.0
+      },
+      "bbox_x1_px": {
+        "count": 45,
+        "max": 845.8525390625,
+        "mean": 841.1908718532986,
+        "median": 840.9317626953125,
+        "min": 838.267333984375
+      },
+      "bbox_x2_px": {
+        "count": 45,
+        "max": 1193.6875,
+        "mean": 1188.4859971788194,
+        "median": 1187.132080078125,
+        "min": 1185.0137939453125
+      },
+      "bbox_y1_px": {
+        "count": 45,
+        "max": 914.675048828125,
+        "mean": 913.095933702257,
+        "median": 913.245361328125,
+        "min": 911.4650268554688
+      },
+      "bbox_y2_px": {
+        "count": 45,
+        "max": 1080.0,
+        "mean": 1080.0,
+        "median": 1080.0,
+        "min": 1080.0
+      },
+      "centroid_x_px": {
+        "count": 45,
+        "max": 1018.9597330682948,
+        "mean": 1016.4108828777813,
+        "median": 1016.2683134582624,
+        "min": 1014.7236845464525
+      },
+      "centroid_y_px": {
+        "count": 45,
+        "max": 999.2933901368448,
+        "mean": 998.9224717341858,
+        "median": 998.9580374435119,
+        "min": 998.320315692685
+      },
+      "class_name": "bench",
+      "confidence": {
+        "count": 45,
+        "max": 0.8653420209884644,
+        "mean": 0.846584951877594,
+        "median": 0.8447884917259216,
+        "min": 0.8293875455856323
+      },
+      "coverage": 1.0,
+      "first_frame": 0,
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "frames": 45,
+      "gaps": [],
+      "last_frame": 44,
+      "score_components": {
+        "centrality": 0.5801693393489534,
+        "continuity": 1.0,
+        "coverage": 1.0,
+        "horizontalness": 0.9927783437652705,
+        "mean_confidence": 0.846584951877594,
+        "median_area_normalized": 0.017271412037037037,
+        "relationship": 0.0,
+        "relative_area": 1.0,
+        "selection_score": 0.9060135070814075,
+        "stability": 0.9978074386903041
+      },
+      "temporal_bbox_iou": {
+        "count": 44,
+        "max": 0.9990594057144825,
+        "mean": 0.9934275194426612,
+        "median": 0.9951017606092225,
+        "min": 0.97257340438951
+      },
+      "temporal_mask_iou": {
+        "count": 44,
+        "max": 0.9966641437501752,
+        "mean": 0.9876989837506914,
+        "median": 0.9889705067787522,
+        "min": 0.9690396011172893
+      },
+      "track_id": 2
+    }
+  ],
+  "immutable_arrays_verified": [
+    "frame_index",
+    "timestamp_sec",
+    "frame_image_shape_hw",
+    "frame_instance_offsets",
+    "instance_frame_index",
+    "instance_index_in_frame",
+    "instance_class_id",
+    "instance_class_name",
+    "instance_confidence",
+    "instance_bbox_xyxy_px",
+    "instance_bbox_xyxy_normalized",
+    "instance_bbox_cxcywh_px",
+    "instance_bbox_cxcywh_normalized",
+    "instance_mask_origin_xy",
+    "instance_mask_shape_hw",
+    "instance_mask_area_px",
+    "mask_byte_offsets",
+    "mask_bits",
+    "polygon_point_offsets",
+    "polygon_xy_px"
+  ],
+  "merge_audit": {
+    "accepted_stitches": [],
+    "algorithm_version": "bp_front_bench_tracking_v2.2",
+    "anchor_selection": {
+      "policy": "bench-static score: coverage 0.50, continuity 0.15, confidence 0.05, area 0.05, centrality 0.10, stability 0.15",
+      "scores": {
+        "1": {
+          "anchor_score": 0.9515680590349617,
+          "centrality": 0.5792884795188863,
+          "continuity": 1.0,
+          "coverage": 1.0,
+          "mean_confidence": 0.8962507221433852,
+          "median_area_normalized": 0.016999903549382717,
+          "relative_area": 0.9842798905455967,
+          "stability_per_frame": 0.9974178696574927
+        },
+        "2": {
+          "anchor_score": 0.9500172973323208,
+          "centrality": 0.5801693393489534,
+          "continuity": 1.0,
+          "coverage": 1.0,
+          "mean_confidence": 0.846584951877594,
+          "median_area_normalized": 0.017271412037037037,
+          "relative_area": 1.0,
+          "stability_per_frame": 0.9978074386903041
+        }
+      },
+      "selected_track_id": 1
+    },
+    "bar_identity": {
+      "accepted_handoffs": [],
+      "anchor_track_id": 0,
+      "criterion": "2-5 shared frames; per-frame mask IoU>=0.90, bbox IoU>=0.65, containment>=0.99, centroid<=0.01 diagonal, area ratio<=1.10; immediate successor transition required",
+      "identity_track_ids": [
+        0
+      ],
+      "rejected_handoffs": []
+    },
+    "bench_identity": {
+      "anchor_track_id": 1,
+      "fallback_frames": [],
+      "framewise_selection": "dynamic programming with source-track switch penalty",
+      "identity_track_ids": [
+        1,
+        2
+      ],
+      "minimum_shared_frames": 3,
+      "rejected_relations": [],
+      "relations": [
+        {
+          "metrics": null,
+          "relation": "anchor",
+          "track_id": 1
+        },
+        {
+          "metrics": {
+            "area_ratio": 1.0203314492674094,
+            "bbox_iou": 0.8960794624612807,
+            "centroid_distance_normalized": 0.0013118684316481887,
+            "comparison_mode": "temporal_overlap",
+            "duplicate_support_ratio": 1.0,
+            "mask_iou": 0.9715684766446188,
+            "metric_summaries": {
+              "area_ratio": {
+                "count": 45,
+                "max": 1.0279272151898735,
+                "mean": 1.0196709116482285,
+                "median": 1.0203314492674094,
+                "min": 1.0097186700767264
+              },
+              "bbox_iou": {
+                "count": 45,
+                "max": 0.9225929711223338,
+                "mean": 0.8995116553156242,
+                "median": 0.8960794624612807,
+                "min": 0.8873213663312415
+              },
+              "centroid_distance_normalized": {
+                "count": 45,
+                "max": 0.002088589983005567,
+                "mean": 0.0013445382117379565,
+                "median": 0.0013118684316481887,
+                "min": 0.0009402313185769961
+              },
+              "mask_iou": {
+                "count": 45,
+                "max": 0.9824158593268746,
+                "mean": 0.9724380697827221,
+                "median": 0.9715684766446188,
+                "min": 0.9613845842195887
+              },
+              "smaller_containment_ratio": {
+                "count": 45,
+                "max": 0.9984634802173078,
+                "mean": 0.9957118293820849,
+                "median": 0.9960256628626583,
+                "min": 0.991564377121964
+              }
+            },
+            "missing_gap_frames": -1,
+            "nested_support_ratio": 1.0,
+            "pair_count": 45,
+            "shared_frame_count": 45,
+            "shared_frames": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44
+            ],
+            "smaller_containment_ratio": 0.9960256628626583
+          },
+          "relation": "duplicate_hypothesis",
+          "track_id": 2
+        }
+      ],
+      "source_track_switch_penalty": 0.25
+    },
+    "criterion": "strict non-overlap stitching plus audited same-bench identity stitching",
+    "merged_track_id": 1,
+    "original_main_track_id": 1,
+    "original_track_ids": [
+      1
+    ],
+    "rejected_stitches": [],
+    "thresholds": {
+      "algorithm_version": "bp_front_bench_tracking_v2.2",
+      "bar_handoff_max_area_ratio_each_frame": 1.1,
+      "bar_handoff_max_centroid_distance_normalized_each_frame": 0.01,
+      "bar_handoff_max_shared_frames": 5,
+      "bar_handoff_min_bbox_iou_each_frame": 0.65,
+      "bar_handoff_min_containment_each_frame": 0.99,
+      "bar_handoff_min_mask_iou_each_frame": 0.9,
+      "bar_handoff_min_shared_frames": 2,
+      "bar_person_policy": "original association plus strict audited bar handoff; person unchanged",
+      "bench_identity_max_area_ratio": 1.8,
+      "bench_identity_max_centroid_distance_normalized": 0.04,
+      "bench_identity_min_containment": 0.95,
+      "bench_identity_min_joint_support_ratio": 0.75,
+      "bench_identity_min_mask_iou": 0.55,
+      "bench_identity_min_shared_frames": 3,
+      "bench_stitch_max_area_ratio": 1.25,
+      "bench_stitch_max_centroid_distance_normalized": 0.01,
+      "bench_stitch_max_gap_frames": 60,
+      "bench_stitch_min_bbox_iou": 0.8,
+      "bench_stitch_min_mask_iou": 0.8,
+      "identity_fallback_interpolation": false
+    }
+  },
+  "original_selected_tracks": {
+    "bar": 0,
+    "bench": 1,
+    "person": 3
+  },
+  "roundtrip_masks": 180,
+  "selected_tracks_after": {
+    "bar": 0,
+    "bench": 1,
+    "person": 3
+  },
+  "source_raw_path": "C:\\Users\\basti\\MediapipePythonProjects\\segmentation\\bp\\front\\raw\\bp_413_segmentation.npz",
+  "source_raw_sha256": "97d7ad41000e9c8feb0d4dea38170bbfa50d33ee0edd4c8ad84fa90eb74bdfb8",
+  "source_raw_unchanged": true,
+  "tracks_after_by_class": {
+    "bar": [
+      {
+        "area_px": {
+          "count": 45,
+          "max": 15015.0,
+          "mean": 13323.733333333334,
+          "median": 13526.0,
+          "min": 11030.0
+        },
+        "bbox_x1_px": {
+          "count": 45,
+          "max": 700.7059326171875,
+          "mean": 695.6223768446181,
+          "median": 696.101318359375,
+          "min": 690.5643310546875
+        },
+        "bbox_x2_px": {
+          "count": 45,
+          "max": 1299.7213134765625,
+          "mean": 1295.8943115234374,
+          "median": 1297.1470947265625,
+          "min": 1290.5294189453125
+        },
+        "bbox_y1_px": {
+          "count": 45,
+          "max": 676.5140380859375,
+          "mean": 610.106487358941,
+          "median": 610.2042846679688,
+          "min": 550.021728515625
+        },
+        "bbox_y2_px": {
+          "count": 45,
+          "max": 705.7247314453125,
+          "mean": 637.4900838216146,
+          "median": 634.9525756835938,
+          "min": 576.4112548828125
+        },
+        "centroid_x_px": {
+          "count": 45,
+          "max": 995.5587845596679,
+          "mean": 983.1503255890766,
+          "median": 983.3355329101237,
+          "min": 974.3240359140418
+        },
+        "centroid_y_px": {
+          "count": 45,
+          "max": 692.6588913089299,
+          "mean": 625.6600742386364,
+          "median": 624.333277647845,
+          "min": 566.684197024115
+        },
+        "class_name": "bar",
+        "confidence": {
+          "count": 45,
+          "max": 0.8517434000968933,
+          "mean": 0.8113723476727803,
+          "median": 0.8130287528038025,
+          "min": 0.7436493635177612
+        },
+        "coverage": 1.0,
+        "first_frame": 0,
+        "frame_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44
+        ],
+        "frames": 45,
+        "gaps": [],
+        "last_frame": 44,
+        "score_components": {
+          "centrality": 0.9205574523505036,
+          "continuity": 1.0,
+          "coverage": 1.0,
+          "horizontalness": 0.9939896581299605,
+          "mean_confidence": 0.8113723476727803,
+          "median_area_normalized": 0.00652295524691358,
+          "relationship": 0.658929520395641,
+          "relative_area": 1.0,
+          "selection_score": 0.9368281688051836,
+          "stability": 0.9668654190058995
+        },
+        "temporal_bbox_iou": {
+          "count": 44,
+          "max": 0.9940450239597084,
+          "mean": 0.6691491621548574,
+          "median": 0.626269469502127,
+          "min": 0.363623821320181
+        },
+        "temporal_mask_iou": {
+          "count": 44,
+          "max": 0.9971141038922599,
+          "mean": 0.6162839840515922,
+          "median": 0.5684324467567086,
+          "min": 0.24829545454545454
+        },
+        "track_id": 0
+      }
+    ],
+    "bench": [
+      {
+        "area_px": {
+          "count": 45,
+          "max": 38367.0,
+          "mean": 36071.71111111111,
+          "median": 35251.0,
+          "min": 34397.0
+        },
+        "bbox_x1_px": {
+          "count": 45,
+          "max": 864.429443359375,
+          "mean": 858.9626925998264,
+          "median": 858.5848388671875,
+          "min": 855.708251953125
+        },
+        "bbox_x2_px": {
+          "count": 45,
+          "max": 1180.054443359375,
+          "mean": 1177.736572265625,
+          "median": 1177.7847900390625,
+          "min": 1175.2734375
+        },
+        "bbox_y1_px": {
+          "count": 45,
+          "max": 918.8536376953125,
+          "mean": 916.2404405381944,
+          "median": 916.39306640625,
+          "min": 912.5662841796875
+        },
+        "bbox_y2_px": {
+          "count": 45,
+          "max": 1080.0,
+          "mean": 1079.803285047743,
+          "median": 1080.0,
+          "min": 1078.8729248046875
+        },
+        "centroid_x_px": {
+          "count": 45,
+          "max": 1023.1941157659098,
+          "mean": 1019.2989080485908,
+          "median": 1019.2901604984352,
+          "min": 1016.6762078871768
+        },
+        "centroid_y_px": {
+          "count": 45,
+          "max": 1000.03427892556,
+          "mean": 999.5616711948559,
+          "median": 999.572877238574,
+          "min": 998.9777847637012
+        },
+        "class_name": "bench",
+        "confidence": {
+          "count": 45,
+          "max": 0.9026631116867065,
+          "mean": 0.8962507221433852,
+          "median": 0.8967832326889038,
+          "min": 0.8851295113563538
+        },
+        "coverage": 1.0,
+        "first_frame": 0,
+        "frame_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44
+        ],
+        "frames": 45,
+        "gaps": [],
+        "last_frame": 44,
+        "score_components": {
+          "centrality": 0.5792884795188863,
+          "continuity": 1.0,
+          "coverage": 1.0,
+          "horizontalness": 0.9844100393473955,
+          "mean_confidence": 0.8962507221433852,
+          "median_area_normalized": 0.016999903549382717,
+          "relationship": 0.0,
+          "relative_area": 0.9842798905455967,
+          "selection_score": 0.9154416946160457,
+          "stability": 0.9974178696574927
+        },
+        "temporal_bbox_iou": {
+          "count": 44,
+          "max": 0.9990291882776439,
+          "mean": 0.990938037094957,
+          "median": 0.9937638576016604,
+          "min": 0.9633108250919096
+        },
+        "temporal_mask_iou": {
+          "count": 44,
+          "max": 0.9973044292483614,
+          "mean": 0.9871101716031727,
+          "median": 0.9879475186441105,
+          "min": 0.9677402210884354
+        },
+        "track_id": 1
+      },
+      {
+        "area_px": {
+          "count": 45,
+          "max": 39267.0,
+          "mean": 36785.044444444444,
+          "median": 35814.0,
+          "min": 35146.0
+        },
+        "bbox_x1_px": {
+          "count": 45,
+          "max": 845.8525390625,
+          "mean": 841.1908718532986,
+          "median": 840.9317626953125,
+          "min": 838.267333984375
+        },
+        "bbox_x2_px": {
+          "count": 45,
+          "max": 1193.6875,
+          "mean": 1188.4859971788194,
+          "median": 1187.132080078125,
+          "min": 1185.0137939453125
+        },
+        "bbox_y1_px": {
+          "count": 45,
+          "max": 914.675048828125,
+          "mean": 913.095933702257,
+          "median": 913.245361328125,
+          "min": 911.4650268554688
+        },
+        "bbox_y2_px": {
+          "count": 45,
+          "max": 1080.0,
+          "mean": 1080.0,
+          "median": 1080.0,
+          "min": 1080.0
+        },
+        "centroid_x_px": {
+          "count": 45,
+          "max": 1018.9597330682948,
+          "mean": 1016.4108828777813,
+          "median": 1016.2683134582624,
+          "min": 1014.7236845464525
+        },
+        "centroid_y_px": {
+          "count": 45,
+          "max": 999.2933901368448,
+          "mean": 998.9224717341858,
+          "median": 998.9580374435119,
+          "min": 998.320315692685
+        },
+        "class_name": "bench",
+        "confidence": {
+          "count": 45,
+          "max": 0.8653420209884644,
+          "mean": 0.846584951877594,
+          "median": 0.8447884917259216,
+          "min": 0.8293875455856323
+        },
+        "coverage": 1.0,
+        "first_frame": 0,
+        "frame_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44
+        ],
+        "frames": 45,
+        "gaps": [],
+        "last_frame": 44,
+        "score_components": {
+          "centrality": 0.5801693393489534,
+          "continuity": 1.0,
+          "coverage": 1.0,
+          "horizontalness": 0.9927783437652705,
+          "mean_confidence": 0.846584951877594,
+          "median_area_normalized": 0.017271412037037037,
+          "relationship": 0.0,
+          "relative_area": 1.0,
+          "selection_score": 0.9060135070814075,
+          "stability": 0.9978074386903041
+        },
+        "temporal_bbox_iou": {
+          "count": 44,
+          "max": 0.9990594057144825,
+          "mean": 0.9934275194426612,
+          "median": 0.9951017606092225,
+          "min": 0.97257340438951
+        },
+        "temporal_mask_iou": {
+          "count": 44,
+          "max": 0.9966641437501752,
+          "mean": 0.9876989837506914,
+          "median": 0.9889705067787522,
+          "min": 0.9690396011172893
+        },
+        "track_id": 2
+      }
+    ],
+    "person": [
+      {
+        "area_px": {
+          "count": 45,
+          "max": 123892.0,
+          "mean": 121822.66666666667,
+          "median": 123113.0,
+          "min": 116640.0
+        },
+        "bbox_x1_px": {
+          "count": 45,
+          "max": 628.239501953125,
+          "mean": 625.3445719401042,
+          "median": 625.1004638671875,
+          "min": 622.15283203125
+        },
+        "bbox_x2_px": {
+          "count": 45,
+          "max": 1372.822998046875,
+          "mean": 1368.702427842882,
+          "median": 1369.858642578125,
+          "min": 1360.8685302734375
+        },
+        "bbox_y1_px": {
+          "count": 45,
+          "max": 666.7613525390625,
+          "mean": 599.1801676432292,
+          "median": 600.0787353515625,
+          "min": 538.2296142578125
+        },
+        "bbox_y2_px": {
+          "count": 45,
+          "max": 1080.0,
+          "mean": 1079.8197808159723,
+          "median": 1079.87548828125,
+          "min": 1079.36572265625
+        },
+        "centroid_x_px": {
+          "count": 45,
+          "max": 984.0998276038644,
+          "mean": 982.0804695785138,
+          "median": 981.954183784486,
+          "min": 979.9680538246625
+        },
+        "centroid_y_px": {
+          "count": 45,
+          "max": 841.6289180473323,
+          "mean": 816.3694614834907,
+          "median": 816.5248724127579,
+          "min": 794.346754247253
+        },
+        "class_name": "person",
+        "confidence": {
+          "count": 45,
+          "max": 0.9704735279083252,
+          "mean": 0.9678126361634997,
+          "median": 0.9681165814399719,
+          "min": 0.964813232421875
+        },
+        "coverage": 1.0,
+        "first_frame": 0,
+        "frame_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44
+        ],
+        "frames": 45,
+        "gaps": [],
+        "last_frame": 44,
+        "score_components": {
+          "centrality": 0.7480385293994133,
+          "continuity": 1.0,
+          "coverage": 1.0,
+          "horizontalness": 0.9391455612696404,
+          "mean_confidence": 0.9678126361634997,
+          "median_area_normalized": 0.059371624228395065,
+          "relationship": 0.8345341384719742,
+          "relative_area": 1.0,
+          "selection_score": 0.9229923838243819,
+          "stability": 0.9887531506934647
+        },
+        "temporal_bbox_iou": {
+          "count": 44,
+          "max": 0.9992919260488545,
+          "mean": 0.9855207313512587,
+          "median": 0.9837511835293474,
+          "min": 0.970775883733805
+        },
+        "temporal_mask_iou": {
+          "count": 44,
+          "max": 0.9913484148220222,
+          "mean": 0.9449848934413563,
+          "median": 0.9419880105695524,
+          "min": 0.9004495037049537
+        },
+        "track_id": 3
+      }
+    ]
+  },
+  "tracks_before_by_class": {
+    "bar": [
+      {
+        "area_px": {
+          "count": 45,
+          "max": 15015.0,
+          "mean": 13323.733333333334,
+          "median": 13526.0,
+          "min": 11030.0
+        },
+        "bbox_x1_px": {
+          "count": 45,
+          "max": 700.7059326171875,
+          "mean": 695.6223768446181,
+          "median": 696.101318359375,
+          "min": 690.5643310546875
+        },
+        "bbox_x2_px": {
+          "count": 45,
+          "max": 1299.7213134765625,
+          "mean": 1295.8943115234374,
+          "median": 1297.1470947265625,
+          "min": 1290.5294189453125
+        },
+        "bbox_y1_px": {
+          "count": 45,
+          "max": 676.5140380859375,
+          "mean": 610.106487358941,
+          "median": 610.2042846679688,
+          "min": 550.021728515625
+        },
+        "bbox_y2_px": {
+          "count": 45,
+          "max": 705.7247314453125,
+          "mean": 637.4900838216146,
+          "median": 634.9525756835938,
+          "min": 576.4112548828125
+        },
+        "centroid_x_px": {
+          "count": 45,
+          "max": 995.5587845596679,
+          "mean": 983.1503255890766,
+          "median": 983.3355329101237,
+          "min": 974.3240359140418
+        },
+        "centroid_y_px": {
+          "count": 45,
+          "max": 692.6588913089299,
+          "mean": 625.6600742386364,
+          "median": 624.333277647845,
+          "min": 566.684197024115
+        },
+        "class_name": "bar",
+        "confidence": {
+          "count": 45,
+          "max": 0.8517434000968933,
+          "mean": 0.8113723476727803,
+          "median": 0.8130287528038025,
+          "min": 0.7436493635177612
+        },
+        "coverage": 1.0,
+        "first_frame": 0,
+        "frame_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44
+        ],
+        "frames": 45,
+        "gaps": [],
+        "last_frame": 44,
+        "score_components": {
+          "centrality": 0.9205574523505036,
+          "continuity": 1.0,
+          "coverage": 1.0,
+          "horizontalness": 0.9939896581299605,
+          "mean_confidence": 0.8113723476727803,
+          "median_area_normalized": 0.00652295524691358,
+          "relationship": 0.658929520395641,
+          "relative_area": 1.0,
+          "selection_score": 0.9368281688051836,
+          "stability": 0.9668654190058995
+        },
+        "temporal_bbox_iou": {
+          "count": 44,
+          "max": 0.9940450239597084,
+          "mean": 0.6691491621548574,
+          "median": 0.626269469502127,
+          "min": 0.363623821320181
+        },
+        "temporal_mask_iou": {
+          "count": 44,
+          "max": 0.9971141038922599,
+          "mean": 0.6162839840515922,
+          "median": 0.5684324467567086,
+          "min": 0.24829545454545454
+        },
+        "track_id": 0
+      }
+    ],
+    "bench": [
+      {
+        "area_px": {
+          "count": 45,
+          "max": 38367.0,
+          "mean": 36071.71111111111,
+          "median": 35251.0,
+          "min": 34397.0
+        },
+        "bbox_x1_px": {
+          "count": 45,
+          "max": 864.429443359375,
+          "mean": 858.9626925998264,
+          "median": 858.5848388671875,
+          "min": 855.708251953125
+        },
+        "bbox_x2_px": {
+          "count": 45,
+          "max": 1180.054443359375,
+          "mean": 1177.736572265625,
+          "median": 1177.7847900390625,
+          "min": 1175.2734375
+        },
+        "bbox_y1_px": {
+          "count": 45,
+          "max": 918.8536376953125,
+          "mean": 916.2404405381944,
+          "median": 916.39306640625,
+          "min": 912.5662841796875
+        },
+        "bbox_y2_px": {
+          "count": 45,
+          "max": 1080.0,
+          "mean": 1079.803285047743,
+          "median": 1080.0,
+          "min": 1078.8729248046875
+        },
+        "centroid_x_px": {
+          "count": 45,
+          "max": 1023.1941157659098,
+          "mean": 1019.2989080485908,
+          "median": 1019.2901604984352,
+          "min": 1016.6762078871768
+        },
+        "centroid_y_px": {
+          "count": 45,
+          "max": 1000.03427892556,
+          "mean": 999.5616711948559,
+          "median": 999.572877238574,
+          "min": 998.9777847637012
+        },
+        "class_name": "bench",
+        "confidence": {
+          "count": 45,
+          "max": 0.9026631116867065,
+          "mean": 0.8962507221433852,
+          "median": 0.8967832326889038,
+          "min": 0.8851295113563538
+        },
+        "coverage": 1.0,
+        "first_frame": 0,
+        "frame_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44
+        ],
+        "frames": 45,
+        "gaps": [],
+        "last_frame": 44,
+        "score_components": {
+          "centrality": 0.5792884795188863,
+          "continuity": 1.0,
+          "coverage": 1.0,
+          "horizontalness": 0.9844100393473955,
+          "mean_confidence": 0.8962507221433852,
+          "median_area_normalized": 0.016999903549382717,
+          "relationship": 0.0,
+          "relative_area": 0.9842798905455967,
+          "selection_score": 0.9154416946160457,
+          "stability": 0.9974178696574927
+        },
+        "temporal_bbox_iou": {
+          "count": 44,
+          "max": 0.9990291882776439,
+          "mean": 0.990938037094957,
+          "median": 0.9937638576016604,
+          "min": 0.9633108250919096
+        },
+        "temporal_mask_iou": {
+          "count": 44,
+          "max": 0.9973044292483614,
+          "mean": 0.9871101716031727,
+          "median": 0.9879475186441105,
+          "min": 0.9677402210884354
+        },
+        "track_id": 1
+      },
+      {
+        "area_px": {
+          "count": 45,
+          "max": 39267.0,
+          "mean": 36785.044444444444,
+          "median": 35814.0,
+          "min": 35146.0
+        },
+        "bbox_x1_px": {
+          "count": 45,
+          "max": 845.8525390625,
+          "mean": 841.1908718532986,
+          "median": 840.9317626953125,
+          "min": 838.267333984375
+        },
+        "bbox_x2_px": {
+          "count": 45,
+          "max": 1193.6875,
+          "mean": 1188.4859971788194,
+          "median": 1187.132080078125,
+          "min": 1185.0137939453125
+        },
+        "bbox_y1_px": {
+          "count": 45,
+          "max": 914.675048828125,
+          "mean": 913.095933702257,
+          "median": 913.245361328125,
+          "min": 911.4650268554688
+        },
+        "bbox_y2_px": {
+          "count": 45,
+          "max": 1080.0,
+          "mean": 1080.0,
+          "median": 1080.0,
+          "min": 1080.0
+        },
+        "centroid_x_px": {
+          "count": 45,
+          "max": 1018.9597330682948,
+          "mean": 1016.4108828777813,
+          "median": 1016.2683134582624,
+          "min": 1014.7236845464525
+        },
+        "centroid_y_px": {
+          "count": 45,
+          "max": 999.2933901368448,
+          "mean": 998.9224717341858,
+          "median": 998.9580374435119,
+          "min": 998.320315692685
+        },
+        "class_name": "bench",
+        "confidence": {
+          "count": 45,
+          "max": 0.8653420209884644,
+          "mean": 0.846584951877594,
+          "median": 0.8447884917259216,
+          "min": 0.8293875455856323
+        },
+        "coverage": 1.0,
+        "first_frame": 0,
+        "frame_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44
+        ],
+        "frames": 45,
+        "gaps": [],
+        "last_frame": 44,
+        "score_components": {
+          "centrality": 0.5801693393489534,
+          "continuity": 1.0,
+          "coverage": 1.0,
+          "horizontalness": 0.9927783437652705,
+          "mean_confidence": 0.846584951877594,
+          "median_area_normalized": 0.017271412037037037,
+          "relationship": 0.0,
+          "relative_area": 1.0,
+          "selection_score": 0.9060135070814075,
+          "stability": 0.9978074386903041
+        },
+        "temporal_bbox_iou": {
+          "count": 44,
+          "max": 0.9990594057144825,
+          "mean": 0.9934275194426612,
+          "median": 0.9951017606092225,
+          "min": 0.97257340438951
+        },
+        "temporal_mask_iou": {
+          "count": 44,
+          "max": 0.9966641437501752,
+          "mean": 0.9876989837506914,
+          "median": 0.9889705067787522,
+          "min": 0.9690396011172893
+        },
+        "track_id": 2
+      }
+    ],
+    "person": [
+      {
+        "area_px": {
+          "count": 45,
+          "max": 123892.0,
+          "mean": 121822.66666666667,
+          "median": 123113.0,
+          "min": 116640.0
+        },
+        "bbox_x1_px": {
+          "count": 45,
+          "max": 628.239501953125,
+          "mean": 625.3445719401042,
+          "median": 625.1004638671875,
+          "min": 622.15283203125
+        },
+        "bbox_x2_px": {
+          "count": 45,
+          "max": 1372.822998046875,
+          "mean": 1368.702427842882,
+          "median": 1369.858642578125,
+          "min": 1360.8685302734375
+        },
+        "bbox_y1_px": {
+          "count": 45,
+          "max": 666.7613525390625,
+          "mean": 599.1801676432292,
+          "median": 600.0787353515625,
+          "min": 538.2296142578125
+        },
+        "bbox_y2_px": {
+          "count": 45,
+          "max": 1080.0,
+          "mean": 1079.8197808159723,
+          "median": 1079.87548828125,
+          "min": 1079.36572265625
+        },
+        "centroid_x_px": {
+          "count": 45,
+          "max": 984.0998276038644,
+          "mean": 982.0804695785138,
+          "median": 981.954183784486,
+          "min": 979.9680538246625
+        },
+        "centroid_y_px": {
+          "count": 45,
+          "max": 841.6289180473323,
+          "mean": 816.3694614834907,
+          "median": 816.5248724127579,
+          "min": 794.346754247253
+        },
+        "class_name": "person",
+        "confidence": {
+          "count": 45,
+          "max": 0.9704735279083252,
+          "mean": 0.9678126361634997,
+          "median": 0.9681165814399719,
+          "min": 0.964813232421875
+        },
+        "coverage": 1.0,
+        "first_frame": 0,
+        "frame_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44
+        ],
+        "frames": 45,
+        "gaps": [],
+        "last_frame": 44,
+        "score_components": {
+          "centrality": 0.7480385293994133,
+          "continuity": 1.0,
+          "coverage": 1.0,
+          "horizontalness": 0.9391455612696404,
+          "mean_confidence": 0.9678126361634997,
+          "median_area_normalized": 0.059371624228395065,
+          "relationship": 0.8345341384719742,
+          "relative_area": 1.0,
+          "selection_score": 0.9229923838243819,
+          "stability": 0.9887531506934647
+        },
+        "temporal_bbox_iou": {
+          "count": 44,
+          "max": 0.9992919260488545,
+          "mean": 0.9855207313512587,
+          "median": 0.9837511835293474,
+          "min": 0.970775883733805
+        },
+        "temporal_mask_iou": {
+          "count": 44,
+          "max": 0.9913484148220222,
+          "mean": 0.9449848934413563,
+          "median": 0.9419880105695524,
+          "min": 0.9004495037049537
+        },
+        "track_id": 3
+      }
+    ]
+  },
+  "uses_yolo": false,
+  "video_id": "bp_413"
+}

@@ -1,1 +1,2 @@
-﻿video_id,video_path,stage,error_type,error_message,traceback,timestamp_utc
+﻿video_id,video_path,stage,error_type,error_message,frame,class,instance,reason,traceback,timestamp_utc
+bp_349,C:\Users\basti\MediapipePythonProjects\dataset\bp\front\bp_349.mp4,extraction_or_validation,ValueError,Poligono YOLO degenerado de 2 puntos,121,person,0,Instancia global 470; confidence 0.990939; la validacion rechazo la pareja completa y no se publicaron RAW/FEATURES parciales,,2026-10-05T13:18:07.617621+00:00
