@@ -38,6 +38,7 @@ PROJECT_ROOT = SCRIPT_DIR.parents[1]
 DEFAULT_SOURCE = PROJECT_ROOT / "segmentation" / "bp" / "front"
 DEFAULT_OUTPUT = DEFAULT_SOURCE / "tracking_v2"
 ALGORITHM_VERSION = "bp_front_bench_tracking_v2.2"
+PIPELINE_VERSION = "BP_FRONT_SEG_DATASET_V1"
 BENCH_IDENTITY_MIN_SHARED_FRAMES = 3
 
 COMPARISON_FIELDS = [
@@ -952,6 +953,7 @@ def process_video(video_id, source_root, output_root, overwrite):
 
         derivation_id = str(uuid4())
         derived_metadata = dict(metadata)
+        derived_metadata["pipeline_version"] = PIPELINE_VERSION
         derived_metadata["tracking_original"] = metadata["tracking"]
         derived_metadata["tracking"] = {
             "algorithm_version": ALGORITHM_VERSION,
@@ -984,6 +986,7 @@ def process_video(video_id, source_root, output_root, overwrite):
             "source_extraction_id": metadata["extraction_id"],
             "script": Path(__file__).name,
             "algorithm_version": ALGORITHM_VERSION,
+            "pipeline_version": PIPELINE_VERSION,
             "timestamp_utc": utc_now(),
             "uses_yolo": False,
         }
@@ -1187,7 +1190,12 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description="Regenera tracking y features BP_FRONT desde RAW, sin YOLO"
     )
-    parser.add_argument("--videos", nargs="+", required=True)
+    selection = parser.add_mutually_exclusive_group(required=True)
+    selection.add_argument("--videos", nargs="+")
+    selection.add_argument(
+        "--all", action="store_true",
+        help="Procesa todos los RAW fuente bp_### disponibles",
+    )
     parser.add_argument("--source-dir", type=Path, default=DEFAULT_SOURCE)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--overwrite", action="store_true")
@@ -1202,7 +1210,13 @@ def main():
     comparison_path = args.output_dir / "manifests" / "bp_front_tracking_v2_comparison.csv"
     comparison_path.parent.mkdir(parents=True, exist_ok=True)
     failures = 0
-    for value in args.videos:
+    values = args.videos
+    if args.all:
+        values = sorted(
+            path.name.removesuffix("_segmentation.npz")
+            for path in (args.source_dir / "raw").glob("bp_*_segmentation.npz")
+        )
+    for value in values:
         video_id = normalize_video_id(value)
         try:
             rows = process_video(
