@@ -1,0 +1,44 @@
+{
+  "analysis": "BP_FRONT_POSECNN_FAULT_OBSERVABILITY_POSTHOC_V1",
+  "inference_executed": false,
+  "training_executed": false,
+  "threshold_changed": false,
+  "frozen_confusion_matrix": [
+    [
+      31,
+      9
+    ],
+    [
+      7,
+      53
+    ]
+  ],
+  "test_samples": 100,
+  "invalid_test_samples": 40,
+  "valid_test_samples": 60,
+  "real_fault_codes": [
+    "BP-01",
+    "BP-02",
+    "BP-03",
+    "BP-08"
+  ],
+  "full_invalid_multicode_samples": 29,
+  "test_invalid_multicode_samples": 2,
+  "input_sha256_before_and_after": {
+    "C:\\Users\\basti\\MediapipePythonProjects\\training\\results\\bp\\front\\posecnn\\bp_front_pose_test_predictions.csv": "0cd046b613db064c96c9bee99c9de4e5bdac23390124ace08bc419f1c00c5ddf",
+    "C:\\Users\\basti\\MediapipePythonProjects\\training\\data\\bp\\front\\bp_front_pose_split.csv": "d4233ef8f4fa2a77320a50134ec6503d1836a9cd41a14027a614e05f01128261",
+    "C:\\Users\\basti\\MediapipePythonProjects\\etiquetado\\bp\\bp_front.csv": "baa94bd939f74b158884946f0d9936c9dc2fcc5dcb6e4eaef9fbf3c229dc9662",
+    "C:\\Users\\basti\\MediapipePythonProjects\\Reporte_BP_FRONT_PoseCNN.md": "aedccb7d431caea7fa295a7b4563fd3566ca26832258803ea5349d24e4883de2",
+    "C:\\Users\\basti\\MediapipePythonProjects\\training\\data\\bp\\front\\bp_front_pose_audit.csv": "6dd2e49e5c8358c5fda555b93e86bed2e444882993a6423ecf4ca2631dd398d4",
+    "C:\\Users\\basti\\MediapipePythonProjects\\training\\data\\bp\\front\\bp_front_pose_preprocessing_manifest.csv": "1532058ed8b70f8ca126364ee5151c83f7e1cbd7dc64fc8911cdda8a3f3dcbd3",
+    "C:\\Users\\basti\\MediapipePythonProjects\\training\\models\\bp\\front\\posecnn\\bp_front_pose_best_model.pth": "78877ac297f20582adcb988d5b1624f6a91d51e3b469c752ca7df8356b5b1530",
+    "C:\\Users\\basti\\MediapipePythonProjects\\training\\models\\bp\\front\\posecnn\\bp_front_pose_scaler.pkl": "dfcf8abe90bd0e16938035258ce2a95ad2718a6d7815e677b7da21cfe4253d85"
+  },
+  "outputs": [
+    "C:\\Users\\basti\\MediapipePythonProjects\\training\\results\\bp\\front\\posecnn\\analysis\\bp_front_pose_test_by_fault_code.csv",
+    "C:\\Users\\basti\\MediapipePythonProjects\\training\\results\\bp\\front\\posecnn\\analysis\\bp_front_pose_test_invalid_samples.csv",
+    "C:\\Users\\basti\\MediapipePythonProjects\\training\\results\\bp\\front\\posecnn\\analysis\\bp_front_pose_fault_observability.csv",
+    "C:\\Users\\basti\\MediapipePythonProjects\\training\\results\\bp\\front\\posecnn\\analysis\\bp_front_pose_observability_summary.csv",
+    "C:\\Users\\basti\\MediapipePythonProjects\\Reporte_BP_FRONT_PoseCNN_Fault_Observability.md"
+  ]
+}

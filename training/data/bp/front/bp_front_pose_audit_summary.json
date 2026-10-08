@@ -1,0 +1,385 @@
+{
+  "dataset": {
+    "keypoints_path": "C:\\Users\\basti\\MediapipePythonProjects\\keypoints\\bp\\front",
+    "extension": ".npy",
+    "pose_files": 663,
+    "pose_id_min": "bp_001",
+    "pose_id_max": "bp_663",
+    "pose_naming": "bp_NNN.npy",
+    "videos": 663,
+    "video_id_min": "bp_001",
+    "video_id_max": "bp_663",
+    "csv_rows": 663,
+    "csv_unique_ids": 663,
+    "segmentation_manifest_rows": 663
+  },
+  "pose_model": {
+    "path": "C:\\Users\\basti\\MediapipePythonProjects\\models\\bp\\bp_front_skeleton_v8.pt",
+    "version": "bp_front_skeleton_v8.pt",
+    "sha256": "ff6b67374b50e9e98cab732ecbcc26ad80e5a41daac5f64a22c7c6fcffdd09dd",
+    "kpt_shape": [
+      6,
+      3
+    ],
+    "extractor": "C:\\Users\\basti\\MediapipePythonProjects\\extract_keypoints\\bp\\extract_keypoints_front_bp.py",
+    "channels": [
+      "x_normalized",
+      "y_normalized",
+      "confidence"
+    ],
+    "keypoint_schema": [
+      {
+        "index": 0,
+        "keypoint_name": "left_elbow",
+        "description": "Codo izquierdo del levantador"
+      },
+      {
+        "index": 1,
+        "keypoint_name": "left_shoulder",
+        "description": "Hombro izquierdo del levantador"
+      },
+      {
+        "index": 2,
+        "keypoint_name": "right_shoulder",
+        "description": "Hombro derecho del levantador"
+      },
+      {
+        "index": 3,
+        "keypoint_name": "right_elbow",
+        "description": "Codo derecho del levantador"
+      },
+      {
+        "index": 4,
+        "keypoint_name": "right_wrist",
+        "description": "Muneca derecha del levantador"
+      },
+      {
+        "index": 5,
+        "keypoint_name": "left_wrist",
+        "description": "Muneca izquierda del levantador"
+      }
+    ]
+  },
+  "pose_integrity": {
+    "shape_counts": {
+      "(83, 6, 3)": 19,
+      "(76, 6, 3)": 18,
+      "(64, 6, 3)": 14,
+      "(65, 6, 3)": 13,
+      "(61, 6, 3)": 13,
+      "(82, 6, 3)": 13,
+      "(84, 6, 3)": 12,
+      "(66, 6, 3)": 11,
+      "(70, 6, 3)": 11,
+      "(80, 6, 3)": 11,
+      "(42, 6, 3)": 11,
+      "(88, 6, 3)": 10,
+      "(73, 6, 3)": 10,
+      "(79, 6, 3)": 9,
+      "(77, 6, 3)": 9,
+      "(74, 6, 3)": 9,
+      "(86, 6, 3)": 9,
+      "(90, 6, 3)": 9,
+      "(100, 6, 3)": 8,
+      "(72, 6, 3)": 8,
+      "(62, 6, 3)": 8,
+      "(85, 6, 3)": 8,
+      "(71, 6, 3)": 8,
+      "(87, 6, 3)": 8,
+      "(51, 6, 3)": 8,
+      "(67, 6, 3)": 8,
+      "(75, 6, 3)": 8,
+      "(92, 6, 3)": 7,
+      "(106, 6, 3)": 7,
+      "(78, 6, 3)": 7,
+      "(89, 6, 3)": 7,
+      "(52, 6, 3)": 7,
+      "(39, 6, 3)": 7,
+      "(68, 6, 3)": 7,
+      "(57, 6, 3)": 7,
+      "(47, 6, 3)": 7,
+      "(48, 6, 3)": 7,
+      "(63, 6, 3)": 7,
+      "(91, 6, 3)": 7,
+      "(81, 6, 3)": 7,
+      "(56, 6, 3)": 7,
+      "(49, 6, 3)": 6,
+      "(44, 6, 3)": 6,
+      "(99, 6, 3)": 6,
+      "(69, 6, 3)": 6,
+      "(54, 6, 3)": 6,
+      "(59, 6, 3)": 6,
+      "(45, 6, 3)": 6,
+      "(93, 6, 3)": 5,
+      "(138, 6, 3)": 5,
+      "(55, 6, 3)": 5,
+      "(35, 6, 3)": 5,
+      "(113, 6, 3)": 5,
+      "(103, 6, 3)": 5,
+      "(60, 6, 3)": 5,
+      "(34, 6, 3)": 5,
+      "(37, 6, 3)": 4,
+      "(97, 6, 3)": 4,
+      "(94, 6, 3)": 4,
+      "(126, 6, 3)": 4,
+      "(116, 6, 3)": 4,
+      "(110, 6, 3)": 4,
+      "(114, 6, 3)": 4,
+      "(111, 6, 3)": 4,
+      "(95, 6, 3)": 4,
+      "(157, 6, 3)": 4,
+      "(46, 6, 3)": 4,
+      "(105, 6, 3)": 4,
+      "(96, 6, 3)": 3,
+      "(98, 6, 3)": 3,
+      "(40, 6, 3)": 3,
+      "(101, 6, 3)": 3,
+      "(133, 6, 3)": 3,
+      "(108, 6, 3)": 3,
+      "(43, 6, 3)": 3,
+      "(53, 6, 3)": 3,
+      "(104, 6, 3)": 3,
+      "(152, 6, 3)": 3,
+      "(36, 6, 3)": 3,
+      "(147, 6, 3)": 3,
+      "(38, 6, 3)": 3,
+      "(124, 6, 3)": 3,
+      "(50, 6, 3)": 3,
+      "(139, 6, 3)": 3,
+      "(32, 6, 3)": 3,
+      "(154, 6, 3)": 3,
+      "(151, 6, 3)": 3,
+      "(58, 6, 3)": 2,
+      "(130, 6, 3)": 2,
+      "(131, 6, 3)": 2,
+      "(144, 6, 3)": 2,
+      "(123, 6, 3)": 2,
+      "(142, 6, 3)": 2,
+      "(121, 6, 3)": 2,
+      "(168, 6, 3)": 2,
+      "(137, 6, 3)": 2,
+      "(205, 6, 3)": 2,
+      "(141, 6, 3)": 2,
+      "(135, 6, 3)": 2,
+      "(178, 6, 3)": 2,
+      "(41, 6, 3)": 2,
+      "(31, 6, 3)": 2,
+      "(30, 6, 3)": 2,
+      "(128, 6, 3)": 2,
+      "(177, 6, 3)": 2,
+      "(117, 6, 3)": 2,
+      "(149, 6, 3)": 2,
+      "(112, 6, 3)": 2,
+      "(146, 6, 3)": 2,
+      "(122, 6, 3)": 2,
+      "(212, 6, 3)": 1,
+      "(158, 6, 3)": 1,
+      "(155, 6, 3)": 1,
+      "(183, 6, 3)": 1,
+      "(115, 6, 3)": 1,
+      "(119, 6, 3)": 1,
+      "(227, 6, 3)": 1,
+      "(143, 6, 3)": 1,
+      "(145, 6, 3)": 1,
+      "(169, 6, 3)": 1,
+      "(109, 6, 3)": 1,
+      "(207, 6, 3)": 1,
+      "(204, 6, 3)": 1,
+      "(176, 6, 3)": 1,
+      "(290, 6, 3)": 1,
+      "(102, 6, 3)": 1,
+      "(107, 6, 3)": 1,
+      "(140, 6, 3)": 1,
+      "(229, 6, 3)": 1,
+      "(239, 6, 3)": 1,
+      "(234, 6, 3)": 1,
+      "(166, 6, 3)": 1,
+      "(302, 6, 3)": 1,
+      "(242, 6, 3)": 1,
+      "(174, 6, 3)": 1,
+      "(201, 6, 3)": 1,
+      "(173, 6, 3)": 1,
+      "(127, 6, 3)": 1,
+      "(230, 6, 3)": 1,
+      "(196, 6, 3)": 1,
+      "(161, 6, 3)": 1,
+      "(24, 6, 3)": 1,
+      "(167, 6, 3)": 1,
+      "(287, 6, 3)": 1,
+      "(219, 6, 3)": 1,
+      "(263, 6, 3)": 1,
+      "(296, 6, 3)": 1,
+      "(163, 6, 3)": 1,
+      "(206, 6, 3)": 1,
+      "(191, 6, 3)": 1,
+      "(202, 6, 3)": 1,
+      "(209, 6, 3)": 1,
+      "(185, 6, 3)": 1,
+      "(197, 6, 3)": 1,
+      "(134, 6, 3)": 1,
+      "(26, 6, 3)": 1,
+      "(21, 6, 3)": 1,
+      "(170, 6, 3)": 1,
+      "(27, 6, 3)": 1
+    },
+    "dtype_counts": {
+      "float32": 663
+    },
+    "quality_counts": {
+      "POSE_QUALITY_OK": 662,
+      "POSE_QUALITY_EXCLUDED": 1
+    },
+    "total_nan": 0,
+    "total_inf": 0,
+    "total_frames_with_missing": 0,
+    "total_completely_missing_frames": 0,
+    "global_min_confidence": 0.9670822620391846,
+    "global_mean_confidence": 0.997347675186341,
+    "duplicate_content_groups": [
+      {
+        "canonical_id": "bp_351",
+        "duplicate_ids": [
+          "bp_352"
+        ],
+        "all_ids": [
+          "bp_351",
+          "bp_352"
+        ],
+        "pose_content_sha256": "ef0f4dfa8dcd39e468837501beae135e9be0fe6c863c89c475b7bceaec1f71fe",
+        "decoded_video_identical": true,
+        "decoded_video_sha256": {
+          "bp_351": "3c4fa13f160d1945fc748ba16ed29dd6f30baadeeb24e38a6869d190a2649336",
+          "bp_352": "3c4fa13f160d1945fc748ba16ed29dd6f30baadeeb24e38a6869d190a2649336"
+        },
+        "decoded_frames": {
+          "bp_351": 110,
+          "bp_352": 110
+        }
+      }
+    ]
+  },
+  "temporal_distribution": {
+    "N": 663,
+    "min": 21,
+    "P1": 31.0,
+    "P5": 39.0,
+    "P25": 62.0,
+    "median": 79.0,
+    "P75": 100.0,
+    "P95": 169.89999999999998,
+    "P99": 235.89999999999998,
+    "max": 302,
+    "mean": 87.53544494720965,
+    "std": 42.26153785971454
+  },
+  "labels": {
+    "path": "C:\\Users\\basti\\MediapipePythonProjects\\etiquetado\\bp\\bp_front.csv",
+    "columns": [
+      "video_id",
+      "movimiento",
+      "camara",
+      "archivo",
+      "resultado",
+      "label",
+      "codigos",
+      "criterios",
+      "etiquetador",
+      "timestamp"
+    ],
+    "rows": 663,
+    "unique_ids": 663,
+    "duplicate_ids": [],
+    "missing_by_column": {
+      "video_id": 0,
+      "movimiento": 0,
+      "camara": 0,
+      "archivo": 0,
+      "resultado": 0,
+      "label": 0,
+      "codigos": 409,
+      "criterios": 409,
+      "etiquetador": 0,
+      "timestamp": 0
+    },
+    "label_counts": {
+      "1": 400,
+      "0": 263
+    },
+    "valid_count": 400,
+    "invalid_count": 263,
+    "valid_percent": 60.33182503770739,
+    "invalid_percent": 39.66817496229261,
+    "missing_labels": 0,
+    "labels_outside_binary": [],
+    "resultado_label_mismatches": [],
+    "mapping": {
+      "0": "invalido",
+      "1": "valido"
+    },
+    "mapping_evidence": [
+      "bp_front.csv: resultado valido siempre coincide con label 1",
+      "bp_front.csv: resultado invalido siempre coincide con label 0",
+      "training/01_preprocessing.py acepta exclusivamente labels 0/1",
+      "AGENTS.md documenta 1=valido y 0=invalido"
+    ]
+  },
+  "correspondence": {
+    "video_csv_pose_intersection": 663,
+    "video_without_csv": [],
+    "video_without_pose": [],
+    "csv_without_video": [],
+    "csv_without_pose": [],
+    "pose_without_video": [],
+    "pose_without_csv": [],
+    "duplicate_video_ids": [],
+    "duplicate_pose_ids": [],
+    "duplicate_pose_content_groups": [
+      {
+        "canonical_id": "bp_351",
+        "duplicate_ids": [
+          "bp_352"
+        ],
+        "all_ids": [
+          "bp_351",
+          "bp_352"
+        ],
+        "pose_content_sha256": "ef0f4dfa8dcd39e468837501beae135e9be0fe6c863c89c475b7bceaec1f71fe",
+        "decoded_video_identical": true,
+        "decoded_video_sha256": {
+          "bp_351": "3c4fa13f160d1945fc748ba16ed29dd6f30baadeeb24e38a6869d190a2649336",
+          "bp_352": "3c4fa13f160d1945fc748ba16ed29dd6f30baadeeb24e38a6869d190a2649336"
+        },
+        "decoded_frames": {
+          "bp_351": 110,
+          "bp_352": 110
+        }
+      }
+    ],
+    "duplicate_csv_ids": []
+  },
+  "cohorts": {
+    "pose_valid": 662,
+    "segmentation_valid": 662,
+    "pose_only": 662,
+    "common_pose_segmentation": 661,
+    "segmentation_quality_error_ids": [
+      "bp_349"
+    ]
+  },
+  "quality_rules": {
+    "minimum_frames": 10,
+    "max_interpolation_gap_frames": 3,
+    "max_missing_xy_ratio": 0.01,
+    "inf_allowed": false,
+    "expected_shape": [
+      "T",
+      6,
+      3
+    ],
+    "warning_median_confidence": 0.9,
+    "excluded_median_confidence": 0.5,
+    "exclude_noncanonical_exact_duplicates": true,
+    "justification": "BP_FRONT actual no contiene missing ni Inf; gap<=3 equivale a 100 ms a 30 FPS y se conserva solo como tolerancia conservadora. No se adopta el umbral historico de 30%."
+  },
+  "critical_blockers": []
+}

@@ -1,0 +1,120 @@
+{
+  "experiment": "BP_FRONT_POSECNN_BASELINE_V1_DEDUPLICATED",
+  "dataset_revision": "bp_352_exact_duplicate_excluded",
+  "monoview": true,
+  "view": "front",
+  "group_id_used": false,
+  "multiview_used": false,
+  "seed": 42,
+  "positive_class": "1=valido",
+  "classification_threshold": 0.5,
+  "pose_model": "C:\\Users\\basti\\MediapipePythonProjects\\models\\bp\\bp_front_skeleton_v8.pt",
+  "pose_model_sha256": "ff6b67374b50e9e98cab732ecbcc26ad80e5a41daac5f64a22c7c6fcffdd09dd",
+  "keypoint_schema": [
+    {
+      "index": 0,
+      "name": "left_elbow",
+      "description": "Codo izquierdo del levantador"
+    },
+    {
+      "index": 1,
+      "name": "left_shoulder",
+      "description": "Hombro izquierdo del levantador"
+    },
+    {
+      "index": 2,
+      "name": "right_shoulder",
+      "description": "Hombro derecho del levantador"
+    },
+    {
+      "index": 3,
+      "name": "right_elbow",
+      "description": "Codo derecho del levantador"
+    },
+    {
+      "index": 4,
+      "name": "right_wrist",
+      "description": "Muneca derecha del levantador"
+    },
+    {
+      "index": 5,
+      "name": "left_wrist",
+      "description": "Muneca izquierda del levantador"
+    }
+  ],
+  "input_shape": [
+    170,
+    6,
+    3
+  ],
+  "spatial_normalization": {
+    "center": "median temporal del punto medio de ambos hombros",
+    "scale": "mediana temporal de distancia euclidea interhombros",
+    "formula": "xy_normalized=(xy-center)/scale"
+  },
+  "temporal_normalization": "linear resampling over normalized time to 170 frames",
+  "split": {
+    "strategy": "StratifiedShuffleSplit by sample",
+    "train": 462,
+    "validation": 100,
+    "test": 100
+  },
+  "scaler": "StandardScaler fit on original preprocessed train only",
+  "augmentation": {
+    "source": "train_only_before_scaler_transform",
+    "factor": 3,
+    "spatial_shift": 0.05,
+    "scale": [
+      0.9,
+      1.1
+    ],
+    "gaussian_noise_std": 0.01,
+    "rotation_degrees": 10,
+    "temporal_shift_frames": 3,
+    "horizontal_flip": false
+  },
+  "architecture": {
+    "conv_channels": [
+      32,
+      64,
+      128
+    ],
+    "global_pooling": true,
+    "mlp": [
+      128,
+      64,
+      1
+    ],
+    "output": "sigmoid"
+  },
+  "training": {
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "loss": "BCELoss",
+    "batch_size": 16,
+    "epochs_max": 200,
+    "early_stopping_patience": 15,
+    "scheduler": "ReduceLROnPlateau(factor=0.5, patience=5)"
+  },
+  "cross_validation": {
+    "strategy": "StratifiedKFold",
+    "folds": 5,
+    "shuffle": true,
+    "random_state": 42,
+    "scope": "development only; final holdout test excluded",
+    "checkpoint_selection": "inner stratified 15% validation inside each outer train fold"
+  },
+  "versions": {
+    "python": "3.10.11",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3",
+    "scikit_learn": "1.7.2",
+    "pytorch": "2.13.0.dev20260521+cu130",
+    "cuda_runtime": "13.0",
+    "cuda_available": true,
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU"
+  }
+}

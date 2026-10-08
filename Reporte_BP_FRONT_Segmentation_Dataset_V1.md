@@ -231,10 +231,8 @@ Fecha de cierre: `2026-10-05T22:09:15.098892+00:00`
 
 ## 8. Previews QA
 
-Se seleccionaron automaticamente 33 videos sin usar labels.
-- `bp_001`: low_person_detection_ratio, low_person_main_track_coverage.
-- `bp_002`: low_person_detection_ratio, low_person_main_track_coverage.
-- `bp_003`: low_person_detection_ratio, low_person_main_track_coverage.
+Se seleccionaron automaticamente 30 videos sin usar labels.
+La seleccion exige un valor objetivamente no perfecto y conserva empates en el cutoff.
 - `bp_004`: low_bar_main_track_coverage.
 - `bp_008`: extreme_distance_bar_person.
 - `bp_105`: high_stitching, low_bench_confidence_mean.

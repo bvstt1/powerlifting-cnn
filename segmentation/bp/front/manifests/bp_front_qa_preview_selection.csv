@@ -1,7 +1,4 @@
 ﻿video_id,selection_reasons
-bp_001,low_person_detection_ratio|low_person_main_track_coverage
-bp_002,low_person_detection_ratio|low_person_main_track_coverage
-bp_003,low_person_detection_ratio|low_person_main_track_coverage
 bp_004,low_bar_main_track_coverage
 bp_008,extreme_distance_bar_person
 bp_105,high_stitching|low_bench_confidence_mean

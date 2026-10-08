@@ -401,8 +401,34 @@ def table_stats(title, grouped):
     return lines + [""]
 
 
+def objectively_low_rows(rows, metric, limit):
+    finite = [row for row in rows if np.isfinite(float(row[metric]))]
+    if metric in {"detection_ratio", "main_track_coverage"}:
+        finite = [row for row in finite if float(row[metric]) < 1.0 - 1e-12]
+    elif finite and np.isclose(
+        min(float(row[metric]) for row in finite),
+        max(float(row[metric]) for row in finite),
+    ):
+        return []
+    ordered = sorted(finite, key=lambda row: (float(row[metric]), row["video_id"]))
+    if len(ordered) <= limit:
+        return ordered
+    cutoff = float(ordered[limit - 1][metric])
+    return [row for row in ordered if float(row[metric]) <= cutoff + 1e-12]
+
+
+def highest_rows_with_ties(rows, metric, limit):
+    ordered = sorted(rows, key=lambda row: (-float(row[metric]), row["video_id"]))
+    if len(ordered) <= limit:
+        return ordered
+    cutoff = float(ordered[limit - 1][metric])
+    return [row for row in ordered if float(row[metric]) >= cutoff - 1e-12]
+
+
 def worst_lines(class_rows, metric):
-    rows = sorted(class_rows, key=lambda row: (float(row[metric]), row["video_id"]))[:10]
+    rows = objectively_low_rows(class_rows, metric, 10)
+    if not rows:
+        return ["- Sin casos objetivamente bajos; todos los valores son perfectos o estan empatados."]
     return ["- `%s`: %s=%s" % (row["video_id"], metric, fmt(row[metric])) for row in rows]
 
 
@@ -411,12 +437,26 @@ def select_preview_cases(class_rows, interaction_by_video, audits_root):
     for class_name in CLASS_NAMES:
         rows = [row for row in class_rows if row["class_name"] == class_name]
         for metric in ["detection_ratio", "main_track_coverage", "confidence_mean"]:
-            for row in sorted(rows, key=lambda value: (float(value[metric]), value["video_id"]))[:3]:
+            for row in objectively_low_rows(rows, metric, 3):
                 selected[row["video_id"]].add("low_%s_%s" % (class_name, metric))
-        for row in sorted(rows, key=lambda value: (-int(value["frames_multiple_instances"]), value["video_id"]))[:3]:
+        multiple = sorted(
+            rows,
+            key=lambda value: (-int(value["frames_multiple_instances"]), value["video_id"]),
+        )
+        multiple_cutoff = int(multiple[min(2, len(multiple) - 1)]["frames_multiple_instances"])
+        for row in multiple:
+            if int(row["frames_multiple_instances"]) < multiple_cutoff:
+                break
             if int(row["frames_multiple_instances"]) > 0:
                 selected[row["video_id"]].add("multiple_%s" % class_name)
-        for row in sorted(rows, key=lambda value: (-int(value["longest_missing_gap"]), value["video_id"]))[:3]:
+        gaps = sorted(
+            rows,
+            key=lambda value: (-int(value["longest_missing_gap"]), value["video_id"]),
+        )
+        gap_cutoff = int(gaps[min(2, len(gaps) - 1)]["longest_missing_gap"])
+        for row in gaps:
+            if int(row["longest_missing_gap"]) < gap_cutoff:
+                break
             if int(row["longest_missing_gap"]) > 0:
                 selected[row["video_id"]].add("long_gap_%s" % class_name)
     stitching = []
@@ -424,10 +464,10 @@ def select_preview_cases(class_rows, interaction_by_video, audits_root):
         audit = json.loads(audit_path.read_text(encoding="utf-8"))
         merge = audit["merge_audit"]
         score = len(merge["accepted_stitches"]) + len(merge["bench_identity"]["fallback_frames"]) + len(merge["bar_identity"]["accepted_handoffs"])
-        stitching.append((score, audit["video_id"]))
-    for score, video_id in sorted(stitching, reverse=True)[:5]:
-        if score:
-            selected[video_id].add("high_stitching")
+        stitching.append({"score": score, "video_id": audit["video_id"]})
+    for row in highest_rows_with_ties(stitching, "score", 5):
+        if row["score"]:
+            selected[row["video_id"]].add("high_stitching")
     distance_name = "minimum_mask_distance_normalized"
     for pair_name in PAIR_NAMES:
         candidates = []
@@ -435,9 +475,9 @@ def select_preview_cases(class_rows, interaction_by_video, audits_root):
             values = pairs.get(pair_name, {}).get(distance_name, np.empty(0))
             values = values[np.isfinite(values)]
             if values.size:
-                candidates.append((float(np.max(values)), video_id))
-        for _, video_id in sorted(candidates, reverse=True)[:3]:
-            selected[video_id].add("extreme_distance_%s" % pair_name)
+                candidates.append({"distance": float(np.max(values)), "video_id": video_id})
+        for row in highest_rows_with_ties(candidates, "distance", 3):
+            selected[row["video_id"]].add("extreme_distance_%s" % pair_name)
     return selected
 
 

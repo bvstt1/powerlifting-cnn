@@ -1,0 +1,480 @@
+{
+  "accepted_handoffs": [],
+  "algorithm_version": "bp_front_bar_tracking_v3_prototype_1",
+  "coverage_gain_frames": 0,
+  "decision": "KEEP_V2:coverage_gain_below_minimum|score_improvement_below_minimum",
+  "frames_total": 80,
+  "handoff_candidates": [
+    {
+      "accepted": 0,
+      "overlap_frames": 2,
+      "rejection_reason": "target_does_not_extend_source",
+      "source_end_frame": 79,
+      "source_start_frame": 0,
+      "source_track": 0,
+      "target_end_frame": 19,
+      "target_start_frame": 18,
+      "target_track": 4,
+      "total_score": 0.0
+    },
+    {
+      "accepted": 0,
+      "overlap_frames": 2,
+      "rejection_reason": "target_not_temporally_after_source",
+      "source_end_frame": 19,
+      "source_start_frame": 18,
+      "source_track": 4,
+      "target_end_frame": 79,
+      "target_start_frame": 0,
+      "target_track": 0,
+      "total_score": 0.0
+    }
+  ],
+  "input_metadata": {
+    "pipeline_version": "BP_FRONT_SEG_DATASET_V1",
+    "tracking_version": "bp_front_bench_tracking_v2.2"
+  },
+  "parameters": {
+    "gap_penalty_per_frame": 0.08,
+    "handoff_penalty": 1.5,
+    "max_edge_x_delta_over_width": 0.1,
+    "max_edge_y_delta_over_height": 0.35,
+    "max_missing_gap_frames": 8,
+    "max_overlap_frames": 3,
+    "max_predicted_error_over_diagonal": 0.15,
+    "max_track_area_ratio": 4.0,
+    "max_track_center_x_delta_over_width": 0.18,
+    "max_track_length_ratio": 2.8,
+    "max_track_orientation_delta_deg": 40.0,
+    "min_track_area_ratio": 0.25,
+    "min_track_length_ratio": 0.35,
+    "minimum_coverage_gain": 3,
+    "minimum_edge_score": 0.58,
+    "minimum_overlap_identity_evidence": 0.35,
+    "minimum_runner_up_margin": 0.25,
+    "minimum_score_improvement": 0.75,
+    "motion_window": 5
+  },
+  "proposed_handoffs": [],
+  "proposed_path": [
+    0
+  ],
+  "proposed_score": {
+    "gap_cost": 0.0,
+    "handoff_cost": 0.0,
+    "incompatibility_cost": 0.0,
+    "node_reward": 106.3173193324693,
+    "total": 106.3173193324693
+  },
+  "published_global_path": false,
+  "raw_bar_frames": 80,
+  "raw_detection_gap_frames": [],
+  "runner_up_score": null,
+  "score": {
+    "gap_cost": 0.0,
+    "handoff_cost": 0.0,
+    "incompatibility_cost": 0.0,
+    "node_reward": 106.3173193324693,
+    "total": 106.3173193324693
+  },
+  "score_margin": null,
+  "score_weights": {
+    "area_score": 0.1,
+    "bbox_geometry_score": 0.08,
+    "centroid_distance_score": 0.15,
+    "confidence_score": 0.05,
+    "length_score": 0.12,
+    "mask_transition_score": 0.1,
+    "orientation_score": 0.1,
+    "predicted_motion_score": 0.2,
+    "temporal_score": 0.1
+  },
+  "selected_instance_indices": [
+    2,
+    6,
+    10,
+    14,
+    18,
+    22,
+    26,
+    30,
+    34,
+    38,
+    42,
+    46,
+    50,
+    54,
+    59,
+    63,
+    67,
+    71,
+    76,
+    -1,
+    84,
+    88,
+    92,
+    95,
+    100,
+    103,
+    107,
+    111,
+    115,
+    119,
+    123,
+    127,
+    131,
+    135,
+    139,
+    143,
+    147,
+    151,
+    155,
+    159,
+    163,
+    167,
+    171,
+    175,
+    179,
+    183,
+    187,
+    191,
+    195,
+    199,
+    203,
+    207,
+    211,
+    215,
+    219,
+    223,
+    227,
+    231,
+    235,
+    239,
+    243,
+    247,
+    251,
+    255,
+    259,
+    263,
+    267,
+    271,
+    275,
+    280,
+    283,
+    288,
+    292,
+    295,
+    299,
+    303,
+    307,
+    311,
+    315,
+    319
+  ],
+  "source_raw_path": "C:\\Users\\basti\\MediapipePythonProjects\\segmentation\\bp\\front\\raw\\bp_661_segmentation.npz",
+  "source_raw_sha256": "c31d03e7127c71d918092b1fa1e093e65dc66bceef1878aaa00c556c28ab1545",
+  "source_raw_unchanged": true,
+  "source_v2_raw_path": "C:\\Users\\basti\\MediapipePythonProjects\\segmentation\\bp\\front\\tracking_v2\\raw\\bp_661_segmentation.npz",
+  "source_v2_sha256": "3dfd755241ef55761a84b26cdc5365e1aaafd75fa43ad4c68f906f3c779f796b",
+  "source_v2_unchanged": true,
+  "timestamp_utc": "2026-10-07T15:08:08.771417+00:00",
+  "tracklets": [
+    {
+      "anchor_area_ratio": 1.0032453421153256,
+      "anchor_length_ratio": 1.0039388332759955,
+      "anchor_orientation_delta_deg": 0.0,
+      "bbox_end": [
+        647.63232421875,
+        288.2028503417969,
+        1215.6881103515625,
+        340.8247375488281
+      ],
+      "bbox_height_mean": 48.427679134320606,
+      "bbox_start": [
+        636.860595703125,
+        301.86395263671875,
+        1212.0054931640625,
+        344.99420166015625
+      ],
+      "bbox_width_mean": 561.5995212989517,
+      "centroid_end": [
+        923.6401576329221,
+        318.4007364816849
+      ],
+      "centroid_start": [
+        912.2574244751664,
+        326.8391577060932
+      ],
+      "centroid_x_median": 919.960079430293,
+      "centroid_y_median": 477.64282463592235,
+      "coverage": 0.9875,
+      "eligibility_rejection_reasons": [],
+      "eligible": true,
+      "end_frame": 79,
+      "end_velocity_px_per_frame": [
+        -0.28807556442410487,
+        -1.1816125724466815
+      ],
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79
+      ],
+      "initial_trajectory": [
+        {
+          "centroid_x": 912.2574244751664,
+          "centroid_y": 326.8391577060932,
+          "frame": 0
+        },
+        {
+          "centroid_x": 911.9312543842867,
+          "centroid_y": 327.8198456731076,
+          "frame": 1
+        },
+        {
+          "centroid_x": 911.0043940648284,
+          "centroid_y": 328.63478316245306,
+          "frame": 2
+        },
+        {
+          "centroid_x": 909.2458518049399,
+          "centroid_y": 328.5074730842305,
+          "frame": 3
+        },
+        {
+          "centroid_x": 902.7970995975212,
+          "centroid_y": 327.1413786494602,
+          "frame": 4
+        }
+      ],
+      "is_v2_main": true,
+      "major_axis_length_mean": 638.3586792177358,
+      "major_axis_length_std": 9.371825875667835,
+      "mask_area_mean": 14580.164556962025,
+      "mask_area_std": 1151.4219214846642,
+      "mean_confidence": 0.8681649199769467,
+      "median_confidence": 0.8888813257217407,
+      "minor_axis_length_mean": 30.41658421767763,
+      "minor_axis_length_std": 2.3517259018214367,
+      "n_frames": 79,
+      "orientation_mean": 2.6016796818821866,
+      "orientation_std": 0.8138927477999771,
+      "recent_end_trajectory": [
+        {
+          "centroid_x": 923.919755118162,
+          "centroid_y": 323.46079915739585,
+          "frame": 75
+        },
+        {
+          "centroid_x": 925.6850728938201,
+          "centroid_y": 320.3320861824281,
+          "frame": 76
+        },
+        {
+          "centroid_x": 924.2363110539845,
+          "centroid_y": 318.61433161953727,
+          "frame": 77
+        },
+        {
+          "centroid_x": 925.1089217649719,
+          "centroid_y": 317.96886103753474,
+          "frame": 78
+        },
+        {
+          "centroid_x": 923.6401576329221,
+          "centroid_y": 318.4007364816849,
+          "frame": 79
+        }
+      ],
+      "start_frame": 0,
+      "start_velocity_px_per_frame": [
+        -1.342701289673414,
+        0.34381370556147317
+      ],
+      "track_id": 0
+    },
+    {
+      "anchor_area_ratio": 1.0333108180169932,
+      "anchor_length_ratio": 1.068224703193444,
+      "anchor_orientation_delta_deg": 1.6013374965148703,
+      "bbox_end": [
+        620.081298828125,
+        437.611083984375,
+        1218.21728515625,
+        471.74322509765625
+      ],
+      "bbox_height_mean": 33.735076904296875,
+      "bbox_start": [
+        619.66162109375,
+        438.7955322265625,
+        1224.89208984375,
+        472.133544921875
+      ],
+      "bbox_width_mean": 601.6832275390625,
+      "centroid_end": [
+        908.2648173303783,
+        457.4584971759491
+      ],
+      "centroid_start": [
+        913.620067882902,
+        457.69990100410126
+      ],
+      "centroid_x_median": 910.9424426066402,
+      "centroid_y_median": 457.5791990900252,
+      "coverage": 0.025,
+      "eligibility_rejection_reasons": [],
+      "eligible": true,
+      "end_frame": 19,
+      "end_velocity_px_per_frame": [
+        -5.355250552523785,
+        -0.24140382815215844
+      ],
+      "frames": [
+        18,
+        19
+      ],
+      "initial_trajectory": [
+        {
+          "centroid_x": 913.620067882902,
+          "centroid_y": 457.69990100410126,
+          "frame": 18
+        },
+        {
+          "centroid_x": 908.2648173303783,
+          "centroid_y": 457.4584971759491,
+          "frame": 19
+        }
+      ],
+      "is_v2_main": false,
+      "major_axis_length_mean": 679.2351167582128,
+      "major_axis_length_std": 1.882694734162385,
+      "mask_area_mean": 14064.5,
+      "mask_area_std": 77.5,
+      "mean_confidence": 0.3976001888513565,
+      "median_confidence": 0.3976001888513565,
+      "minor_axis_length_mean": 27.243127450789352,
+      "minor_axis_length_std": 0.009210060258029173,
+      "n_frames": 2,
+      "orientation_mean": 1.0003421853673162,
+      "orientation_std": 0.05687057301201986,
+      "recent_end_trajectory": [
+        {
+          "centroid_x": 913.620067882902,
+          "centroid_y": 457.69990100410126,
+          "frame": 18
+        },
+        {
+          "centroid_x": 908.2648173303783,
+          "centroid_y": 457.4584971759491,
+          "frame": 19
+        }
+      ],
+      "start_frame": 18,
+      "start_velocity_px_per_frame": [
+        -5.355250552523785,
+        -0.24140382815215844
+      ],
+      "track_id": 4
+    }
+  ],
+  "uncovered_raw_frames": [
+    19
+  ],
+  "uses_labels": false,
+  "uses_yolo": false,
+  "v2_score_under_v3_objective": {
+    "gap_cost": 0.0,
+    "handoff_cost": 0.0,
+    "incompatibility_cost": 0.0,
+    "node_reward": 106.3173193324693,
+    "total": 106.3173193324693
+  },
+  "v2_selected_frames": 79,
+  "v2_selected_track_id": 0,
+  "v3_original_track_sequence": [
+    [
+      0
+    ]
+  ],
+  "v3_selected_frames": 79,
+  "v3_tracklet_path": [
+    0
+  ],
+  "video_id": "bp_661"
+}

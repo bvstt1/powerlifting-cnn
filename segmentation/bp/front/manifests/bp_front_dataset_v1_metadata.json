@@ -45,6 +45,13 @@
     "extract_segmentation\\bp\\rebuild_tracking_front_bp_from_raw.py": "0d80b2ee3bf9502170d7d5f79d5eac05fa25b2f11acbbe8e7f03c132f79d7c11",
     "extract_segmentation\\bp\\segmentation_utils.py": "3a3ca79bcee5aaba2eeeac161415d63fdbe00ba94693fbe6215b077e16c72024"
   },
+  "reporting_corrections": {
+    "bar_tracking_audit_v1": {
+      "applied_at_utc": "2026-10-05T23:52:00.0355803Z",
+      "finalizer_reporting_sha256": "aa0b2fbdafd1238682fd744bf5a3a8e7afbe75b1edaab89b6d16aeaffb2640d4",
+      "scope": "metadata, QA tie handling and BAR tracking audit only; extraction and tracking remain frozen"
+    }
+  },
   "tracking_source": {
     "max_assignment_cost": 0.85,
     "max_gap_frames": 2,

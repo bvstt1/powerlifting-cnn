@@ -122,6 +122,10 @@ def annotate_frame(frame, raw, features, frame_index, options):
                 track_id,
                 " MAIN" if is_main and options["main"] else "",
             ))
+            if "instance_original_track_id" in raw.files:
+                original_track_id = int(raw["instance_original_track_id"][instance_index])
+                if original_track_id != track_id:
+                    labels.append("original=%d" % original_track_id)
         if options["confidence"]:
             labels.append("conf=%.3f" % float(raw["instance_confidence"][instance_index]))
         if labels:

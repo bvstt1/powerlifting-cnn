@@ -1,0 +1,57 @@
+{
+  "experiment": "BP_FRONT_POSECNN_BASELINE_V1_DEDUPLICATED",
+  "dataset_revision": "bp_352_exact_duplicate_excluded",
+  "best_epoch": 68,
+  "final_epoch": 83,
+  "validation_loss": 0.18389100080938078,
+  "validation": {
+    "accuracy": 0.93,
+    "precision": 0.9076923076923077,
+    "recall": 0.9833333333333333,
+    "f1": 0.944,
+    "roc_auc": 0.975,
+    "specificity": 0.85,
+    "npv": 0.9714285714285714,
+    "tn": 34,
+    "fp": 6,
+    "fn": 1,
+    "tp": 59,
+    "confusion_matrix": [
+      [
+        34,
+        6
+      ],
+      [
+        1,
+        59
+      ]
+    ]
+  },
+  "test_loss": 0.46217840611934663,
+  "test": {
+    "accuracy": 0.84,
+    "precision": 0.8548387096774194,
+    "recall": 0.8833333333333333,
+    "f1": 0.8688524590163934,
+    "roc_auc": 0.9354166666666667,
+    "specificity": 0.775,
+    "npv": 0.8157894736842105,
+    "tn": 31,
+    "fp": 9,
+    "fn": 7,
+    "tp": 53,
+    "confusion_matrix": [
+      [
+        31,
+        9
+      ],
+      [
+        7,
+        53
+      ]
+    ]
+  },
+  "positive_class": "1=valido",
+  "threshold": 0.5,
+  "test_evaluations": 1
+}
