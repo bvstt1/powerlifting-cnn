@@ -1,0 +1,15 @@
+measure,value
+status,PROMISING (exploratorio; no aprobación V3.1)
+videos_validation76,76
+video_frames,7141
+both_wrist_valid_frames,7141
+both_wrist_coverage,1.000000
+selected_v3,79
+not_selected_v3_without_visual_reference,17
+correct_same,76
+correct_different_false_reject_risk,0
+correct_indeterminate,1
+false_merges_identified,2
+files_hashed_before_after,705
+source_hashes_match,True
+generated_previews,82

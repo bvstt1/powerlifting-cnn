@@ -1,0 +1,112 @@
+{
+  "status": "PROTOTYPE_NEEDS_REVISION",
+  "specification_sha256": "735befd58856d5d4156bf0ba4b169b2151aeec73e169d46553d67860e8c61855",
+  "verification": "PASS_INTEGRITY_AND_CONTRACTS_WITH_DEVELOPMENT_REGRESSIONS",
+  "source_hashes_checked": 2046,
+  "video_hashes_checked": 663,
+  "inputs_changed": [],
+  "development_videos": 85,
+  "validation76_videos": 76,
+  "prototype14_unique_videos": 9,
+  "handoff_review_matrix": {
+    "('VISUALLY_CONFIRMED', 'POSE_COMPATIBLE')": 76,
+    "('VISUALLY_CONFIRMED', 'POSE_INSUFFICIENT_EVIDENCE')": 1,
+    "('VISUAL_PROBLEM', 'POSE_INCOMPATIBLE')": 2
+  },
+  "unselected_without_visual_truth": {
+    "POSE_INSUFFICIENT_EVIDENCE": 14,
+    "POSE_INCOMPATIBLE": 3
+  },
+  "correct_boundaries_both_confident": 38,
+  "correct_boundaries_abstained": 39,
+  "false_merges_rejected": 2,
+  "hybrid_cuts": {
+    "bp_662": [
+      21,
+      62
+    ],
+    "bp_663": [
+      17,
+      49
+    ]
+  },
+  "validation76_frames": {
+    "frames_total": 7141,
+    "bar_raw_detected_frames": 7141,
+    "v2_selected_frames": 5461,
+    "v3_selected_frames": 7102,
+    "v31_confident_frames": 6940,
+    "v31_unverified_frames": 198,
+    "v31_incompatible_frames": 3,
+    "no_bar_frames": 0
+  },
+  "validation76_ablations": {
+    "V3": 7102,
+    "IDENTITY_ONLY": 6905,
+    "TRACK_ONLY": 7014,
+    "HANDOFF_ONLY": 7049,
+    "FULL_V31": 6940
+  },
+  "pose_proxy_selected_incompatible_by_ablation": {
+    "V3": 3,
+    "IDENTITY_ONLY": 0,
+    "TRACK_ONLY": 0,
+    "HANDOFF_ONLY": 0,
+    "FULL_V31": 0
+  },
+  "confidence_vs_v3_loss": 162,
+  "major_regressions": [
+    {
+      "video_id": "bp_520",
+      "v3_frames": 157,
+      "v31_frames": 69,
+      "lost": 88
+    },
+    {
+      "video_id": "bp_518",
+      "v3_frames": 161,
+      "v31_frames": 94,
+      "lost": 67
+    },
+    {
+      "video_id": "bp_517",
+      "v3_frames": 92,
+      "v31_frames": 73,
+      "lost": 19
+    },
+    {
+      "video_id": "bp_201",
+      "v3_frames": 61,
+      "v31_frames": 43,
+      "lost": 18
+    },
+    {
+      "video_id": "bp_663",
+      "v3_frames": 64,
+      "v31_frames": 46,
+      "lost": 18
+    },
+    {
+      "video_id": "bp_126",
+      "v3_frames": 69,
+      "v31_frames": 54,
+      "lost": 15
+    },
+    {
+      "video_id": "bp_139",
+      "v3_frames": 87,
+      "v31_frames": 73,
+      "lost": 14
+    },
+    {
+      "video_id": "bp_179",
+      "v3_frames": 227,
+      "v31_frames": 216,
+      "lost": 11
+    }
+  ],
+  "frame_truth_limitation": "no independent full frame-level identity annotations; geometric Pose proxy is not ground truth",
+  "holdout_status": "BLOCKED_PHYSICAL_EVENT_INDEPENDENCE_UNVERIFIED",
+  "synced_pose_level": "SEQUENCE_AND_VISUAL_SUPPORTED_FROM_3_SAMPLED_FRAMES_PER_VIDEO; NOT_CRYPTOGRAPHICALLY_TRACEABLE",
+  "notes": "correct handoff decision is NOT the same as preserving both boundary frames in the confident trajectory"
+}

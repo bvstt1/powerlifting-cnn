@@ -591,7 +591,7 @@
   "source_v2_raw_path": "C:\\Users\\basti\\MediapipePythonProjects\\segmentation\\bp\\front\\tracking_v2\\raw\\bp_223_segmentation.npz",
   "source_v2_sha256": "54e0921e4be232ec0a55b2d6a15aa88edf42e84f61524a5cea6329e77ea47edf",
   "source_v2_unchanged": true,
-  "timestamp_utc": "2026-10-07T14:51:09.496785+00:00",
+  "timestamp_utc": "2026-10-09T07:05:25.663908+00:00",
   "tracklets": [
     {
       "anchor_area_ratio": 1.1337230024991296,

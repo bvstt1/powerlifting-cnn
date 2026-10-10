@@ -1,0 +1,13 @@
+{
+  "scope": "all 85 development videos in sync_sheets/index.json",
+  "sample_frames_per_video": "first, middle, last; additional handoff previews for selected priority videos",
+  "reviewed_sheets": ["sheet_01.jpg", "sheet_02.jpg", "sheet_03.jpg", "sheet_04.jpg", "sheet_05.jpg", "sheet_06.jpg", "sheet_07.jpg", "sheet_08.jpg", "sheet_09.jpg", "sheet_10.jpg", "sheet_11.jpg"],
+  "findings": "Wrist markers lie on/near the athlete's hands and masks overlay the physical horizontal objects at the sampled original MP4 frames; view orientation and displayed motion are consistent. bp_662/bp_663 include incorrect BAR segmentation identity, not a Pose-time mismatch.",
+  "sampled_alignment_failures": [],
+  "status": "SEQUENCE_AND_VISUAL_SUPPORTED_FOR_SAMPLED_FRAMES_ONLY",
+  "limitations": [
+    "Pose .npy lacks historical source video hash, timestamps, decoded frame hashes and model hash",
+    "Three sampled frames do not prove frame-accurate synchrony for every frame; remaining uncertainty is reported",
+    "Visual inspection does not adjudicate BAR physical identity at all frames"
+  ]
+}
