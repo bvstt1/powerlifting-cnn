@@ -21,6 +21,9 @@ DEFAULT_ROOT = PROJECT_ROOT / "segmentation" / "bp" / "front"
 DEFAULT_OUTPUT = DEFAULT_ROOT / "tracking_v3" / "validation_76"
 DEFAULT_REPORT = PROJECT_ROOT / "Reporte_BP_FRONT_Bar_TrackingV3_Validation76.md"
 PROTOTYPE_OUTPUT = DEFAULT_ROOT / "tracking_v3" / "test_14"
+DEFAULT_REVIEWS = (
+    DEFAULT_OUTPUT / "manifests" / "bp_front_tracking_v3_validation_76_explicit_reviews.json"
+)
 
 ALGORITHM_HASHES = {
     "bar_tracking_v3_utils.py": "bf103391f9171c80739e52345375f464ea7ac822d22c71d4804c0c810350317d",
@@ -36,8 +39,10 @@ VALIDATION_FIELDS = [
     "accepted_handoffs", "rejected_handoff_candidates",
     "minimum_accepted_edge_score", "mean_accepted_edge_score",
     "minimum_runner_up_margin", "raw_gaps_preserved", "suspicious_handoffs",
-    "status", "visual_status", "false_merge", "visual_finding",
-    "algorithm_decision", "source_v2_sha256", "uses_yolo", "uses_labels",
+    "algorithm_status", "visual_review_status", "visual_identity_consistent",
+    "false_merge_detected", "missed_valid_merge", "review_notes", "review_evidence",
+    "algorithm_decision", "score_v2", "score_v3", "runner_up_score",
+    "source_v2_sha256", "uses_yolo", "uses_labels",
 ]
 
 HANDOFF_FIELDS = [
@@ -51,67 +56,16 @@ HANDOFF_FIELDS = [
     "runner_up_score", "runner_up_margin", "accepted", "selected_by_v3",
     "reason", "suspicious", "suspicious_reasons",
     "raw_gap_without_detection", "tracking_gap_with_raw_detection",
+    "visual_review_status", "visual_identity_consistent", "false_merge_detected",
+    "review_notes", "review_evidence",
 ]
 
 VISUAL_FIELDS = [
-    "video_id", "selection_reasons", "status", "v3_path", "n_handoffs",
-    "suspicious_handoffs", "preview_paths", "visual_status",
-    "same_physical_bar", "false_merge", "raw_gaps_preserved",
-    "visual_finding", "final_status",
+    "video_id", "algorithm_status", "v2_coverage", "v3_coverage", "v3_path",
+    "n_handoffs", "suspicious_handoffs", "visual_review_status",
+    "visual_identity_consistent", "false_merge_detected", "missed_valid_merge",
+    "raw_gap_preserved", "review_notes", "review_evidence", "selection_reasons",
 ]
-
-# Revision de los 11 overviews (83 contact sheets) y detalle de casos limite.
-VISUAL_DEFAULT_REVIEWED = True
-VISUAL_REVIEWS = {
-    "bp_182": {
-        "same_physical_bar": True,
-        "false_merge": False,
-        "raw_gaps_preserved": True,
-        "finding": "Revision detallada: los tres handoffs 0->4->7->8 siguen la misma barra pese al cambio de longitud de mascara",
-    },
-    "bp_238": {
-        "same_physical_bar": True,
-        "false_merge": False,
-        "raw_gaps_preserved": True,
-        "finding": "El handoff 0->7 es fisicamente correcto; V3 recupera 3/8 frames y conserva 5 sin fusionar por falta de evidencia",
-    },
-    "bp_536": {
-        "same_physical_bar": True,
-        "false_merge": False,
-        "raw_gaps_preserved": True,
-        "finding": "Conservador correcto: la ganancia potencial es menor al minimo congelado y V3 mantiene V2",
-    },
-    "bp_538": {
-        "same_physical_bar": True,
-        "false_merge": False,
-        "raw_gaps_preserved": True,
-        "finding": "Score bajo revisado: 0->4 mantiene la misma barra; no se observa salto a residuo",
-    },
-    "bp_540": {
-        "same_physical_bar": True,
-        "false_merge": False,
-        "raw_gaps_preserved": True,
-        "finding": "Score minimo revisado: 0->4 mantiene identidad fisica pese al cambio de extension de mascara",
-    },
-    "bp_661": {
-        "same_physical_bar": True,
-        "false_merge": False,
-        "raw_gaps_preserved": True,
-        "finding": "Conservador correcto: solo existe un frame recuperable y no se fuerza un handoff",
-    },
-    "bp_662": {
-        "same_physical_bar": True,
-        "false_merge": False,
-        "raw_gaps_preserved": True,
-        "finding": "Oportunidad perdida: 0->4 y 4->5 parecen la misma barra, pero se rechazan por evidencia de solape insuficiente; V3 permanece conservador",
-    },
-    "bp_663": {
-        "same_physical_bar": True,
-        "false_merge": False,
-        "raw_gaps_preserved": True,
-        "finding": "Los handoffs 0->4->5 recuperan la barra completa sin incorporar detecciones laterales",
-    },
-}
 
 
 def utc_now():
@@ -253,16 +207,34 @@ def verify_prototype_reproducibility(comparisons, prototype_output):
             "accepted_handoffs": (
                 comparison["accepted_handoffs"], reference["accepted_handoff_pairs"]
             ),
+            "score_v2": (float(comparison["score_v2"]), float(reference["score_v2"])),
+            "score_v3": (float(comparison["score_v3"]), float(reference["score_v3"])),
+            "score_margin": (
+                float(comparison["minimum_runner_up_margin"]), float(reference["score_margin"])
+            ),
+            "algorithm_decision": (
+                comparison["algorithm_decision"], reference["algorithm_decision"]
+            ),
+            "algorithm_status": (
+                comparison["algorithm_status"],
+                "FULLY_RECOVERED" if float(reference["v3_main_track_coverage"]) == 1.0
+                else "PARTIALLY_RECOVERED",
+            ),
         }
         mismatches = [
             name for name, (actual, expected) in checks.items()
-            if not (np.isclose(actual, expected) if isinstance(actual, float) else actual == expected)
+            if not (
+                np.isclose(actual, expected, rtol=0.0, atol=1e-12)
+                if isinstance(actual, float) else actual == expected
+            )
         ]
         if mismatches:
             raise ValueError(
                 "Inconsistencia con prototype en %s: %s" % (comparison["video_id"], mismatches)
             )
         verified.append(comparison["video_id"])
+    if len(verified) != 5:
+        raise ValueError("Se esperaban 5 casos compartidos con prototype; encontrados %d" % len(verified))
     return verified
 
 
@@ -310,11 +282,19 @@ def build_validation_rows(selected_rows, processed):
             "minimum_runner_up_margin": comparison["score_margin"],
             "raw_gaps_preserved": int(len(audit["raw_detection_gap_frames"]) == 0),
             "suspicious_handoffs": 0,
-            "status": status,
-            "visual_status": "PENDING",
-            "false_merge": "",
-            "visual_finding": "Pendiente de revision",
+            "algorithm_status": status,
+            "visual_review_status": "PENDING",
+            "visual_identity_consistent": "",
+            "false_merge_detected": "",
+            "missed_valid_merge": "",
+            "review_notes": "Pendiente de revision explicita",
+            "review_evidence": "",
             "algorithm_decision": comparison["algorithm_decision"],
+            "score_v2": comparison["score_v2"],
+            "score_v3": comparison["score_v3"],
+            "runner_up_score": (
+                audit["runner_up_score"]["total"] if audit.get("runner_up_score") else None
+            ),
             "source_v2_sha256": comparison["source_v2_sha256"],
             "uses_yolo": 0,
             "uses_labels": 0,
@@ -387,6 +367,11 @@ def build_validation_rows(selected_rows, processed):
                 "suspicious_reasons": "|".join(suspicious),
                 "raw_gap_without_detection": edge.get("raw_gap_without_detection", ""),
                 "tracking_gap_with_raw_detection": edge.get("tracking_gap_with_raw_detection", ""),
+                "visual_review_status": "PENDING" if selected_edge else "NOT_APPLICABLE",
+                "visual_identity_consistent": "",
+                "false_merge_detected": "",
+                "review_notes": "Pendiente de revision explicita" if selected_edge else "",
+                "review_evidence": "",
             })
         validation_rows.append(validation_row)
     return validation_rows, handoff_rows, audits_by_video
@@ -408,11 +393,14 @@ def visual_selection(validation_rows, handoff_rows):
     for row in sorted(validation_rows, key=lambda value: (-value["v3_number_of_handoffs"], value["video_id"]))[:5]:
         add(row["video_id"], "highest_handoff_count")
     for row in validation_rows:
-        if row["status"] == "PARTIALLY_RECOVERED":
+        if row["algorithm_status"] == "PARTIALLY_RECOVERED":
             add(row["video_id"], "partially_recovered")
-        elif row["status"] == "REGRESSED":
+        elif row["algorithm_status"] == "REGRESSED":
             add(row["video_id"], "regressed")
-    unchanged = [row for row in validation_rows if row["status"] == "UNCHANGED_CONSERVATIVE"]
+    unchanged = [
+        row for row in validation_rows
+        if row["algorithm_status"] == "UNCHANGED_CONSERVATIVE"
+    ]
     unchanged.sort(key=lambda value: (
         float(value["minimum_runner_up_margin"])
         if value["minimum_runner_up_margin"] not in {None, ""} else math.inf,
@@ -422,7 +410,8 @@ def visual_selection(validation_rows, handoff_rows):
         add(row["video_id"], "unchanged_conservative")
     fully = [
         row for row in validation_rows
-        if row["status"] == "FULLY_RECOVERED" and row["minimum_accepted_edge_score"] is not None
+        if row["algorithm_status"] == "FULLY_RECOVERED"
+        and row["minimum_accepted_edge_score"] is not None
     ]
     fully.sort(key=lambda value: (-value["minimum_accepted_edge_score"], value["video_id"]))
     for row in fully[:5]:
@@ -455,33 +444,100 @@ def create_overviews(preview_paths, output_root):
     return outputs
 
 
-def apply_visual_reviews(validation_rows, visual_rows):
-    by_video = {row["video_id"]: row for row in validation_rows}
-    for row in visual_rows:
-        review = VISUAL_REVIEWS.get(row["video_id"])
-        if review is None and not VISUAL_DEFAULT_REVIEWED:
+def load_explicit_reviews(path):
+    if not path.exists():
+        return {"video_reviews": [], "handoff_reviews": []}
+    reviews = json.loads(path.read_text(encoding="utf-8"))
+    if reviews.get("auto_review") is not False:
+        raise ValueError("El registro de revisiones debe declarar auto_review=false")
+    return reviews
+
+
+def handoff_key(row):
+    return (
+        row["video_id"], int(row["source_track"]), int(row["target_track"]),
+        int(row["transition_frame"]),
+    )
+
+
+def same_number(actual, expected):
+    return np.isclose(float(actual), float(expected), rtol=0.0, atol=1e-12)
+
+
+def apply_explicit_reviews(validation_rows, handoff_rows, visual_rows, reviews):
+    validation_by_video = {row["video_id"]: row for row in validation_rows}
+    visual_by_video = {row["video_id"]: row for row in visual_rows}
+    video_reviews = {row["video_id"]: row for row in reviews.get("video_reviews", [])}
+    if len(video_reviews) != len(reviews.get("video_reviews", [])):
+        raise ValueError("Hay revisiones de video duplicadas")
+
+    handoff_reviews = {
+        handoff_key(row): row for row in reviews.get("handoff_reviews", [])
+    }
+    if len(handoff_reviews) != len(reviews.get("handoff_reviews", [])):
+        raise ValueError("Hay revisiones de handoff duplicadas")
+
+    for video_id, review in video_reviews.items():
+        if video_id not in validation_by_video or video_id not in visual_by_video:
+            raise ValueError("Revision de video fuera del conjunto: %s" % video_id)
+        validation = validation_by_video[video_id]
+        checks = {
+            "algorithm_status": validation["algorithm_status"] == review["algorithm_status"],
+            "v2_coverage": same_number(validation["v2_main_track_coverage"], review["v2_coverage"]),
+            "v3_coverage": same_number(validation["v3_main_track_coverage"], review["v3_coverage"]),
+            "v3_path": validation["v3_path"] == review["v3_path"],
+            "n_handoffs": int(validation["v3_number_of_handoffs"]) == int(review["n_handoffs"]),
+        }
+        if not all(checks.values()):
+            raise ValueError("Revision visual obsoleta en %s: %s" % (
+                video_id, [name for name, valid in checks.items() if not valid]
+            ))
+        evidence = [value for value in review["review_evidence"].split("|") if value]
+        if not evidence or any(not (PROJECT_ROOT / value).exists() for value in evidence):
+            raise ValueError("Evidencia visual ausente en %s" % video_id)
+        for target in [validation, visual_by_video[video_id]]:
+            target.update({
+                "visual_review_status": review["visual_review_status"],
+                "visual_identity_consistent": int(review["visual_identity_consistent"]),
+                "false_merge_detected": int(review["false_merge_detected"]),
+                "missed_valid_merge": int(review["missed_valid_merge"]),
+                "review_notes": review["review_notes"],
+                "review_evidence": review["review_evidence"],
+            })
+        visual_by_video[video_id]["raw_gap_preserved"] = int(review["raw_gap_preserved"])
+
+    accepted_keys = set()
+    for row in handoff_rows:
+        if not int(row["accepted"]):
             continue
+        key = handoff_key(row)
+        accepted_keys.add(key)
+        review = handoff_reviews.get(key)
         if review is None:
-            review = {
-                "same_physical_bar": True,
-                "false_merge": False,
-                "raw_gaps_preserved": True,
-                "finding": "Revision overview: handoffs coherentes con la misma barra fisica",
-            }
-        row["visual_status"] = "REVIEWED"
-        row["same_physical_bar"] = int(review["same_physical_bar"])
-        row["false_merge"] = int(review["false_merge"])
-        row["raw_gaps_preserved"] = int(review["raw_gaps_preserved"])
-        row["visual_finding"] = review["finding"]
-        final_status = by_video[row["video_id"]]["status"]
-        if review["false_merge"]:
-            final_status = "REGRESSED"
-        row["final_status"] = final_status
-        validation = by_video[row["video_id"]]
-        validation["visual_status"] = "REVIEWED"
-        validation["false_merge"] = int(review["false_merge"])
-        validation["visual_finding"] = review["finding"]
-        validation["status"] = final_status
+            continue
+        checks = {
+            "handoff_score": same_number(row["total_edge_score"], review["handoff_score"]),
+            "suspicious_flag": int(row["suspicious"]) == int(review["suspicious_flag"]),
+            "suspicious_reason": row["suspicious_reasons"] == review["suspicious_reason"],
+        }
+        if not all(checks.values()):
+            raise ValueError("Revision de handoff obsoleta en %s: %s" % (
+                key, [name for name, valid in checks.items() if not valid]
+            ))
+        evidence = PROJECT_ROOT / review["review_evidence"]
+        if not evidence.exists():
+            raise ValueError("Evidencia de handoff ausente: %s" % evidence)
+        row.update({
+            "visual_review_status": review["visual_review_status"],
+            "visual_identity_consistent": int(review["visual_identity_consistent"]),
+            "false_merge_detected": int(review["false_merge_detected"]),
+            "review_notes": review["review_notes"],
+            "review_evidence": review["review_evidence"],
+        })
+
+    extra_handoff_reviews = set(handoff_reviews) - accepted_keys
+    if extra_handoff_reviews:
+        raise ValueError("Revisiones de handoff fuera del path: %s" % sorted(extra_handoff_reviews))
 
 
 def distribution(values):
@@ -502,45 +558,71 @@ def distribution_line(name, values):
     )
 
 
-def build_report(validation_rows, handoff_rows, visual_rows, reproducible_ids, overview_paths):
-    status_counts = Counter(row["status"] for row in validation_rows)
-    v2_coverage = [row["v2_main_track_coverage"] for row in validation_rows]
-    v3_coverage = [row["v3_main_track_coverage"] for row in validation_rows]
-    recoverable = sum(row["recoverable_frames"] for row in validation_rows)
-    recovered = sum(row["recovered_frames"] for row in validation_rows)
+def build_report(
+    validation_rows, handoff_rows, visual_rows, reproducible_ids, overview_paths,
+    verification=None,
+):
+    status_counts = Counter(row["algorithm_status"] for row in validation_rows)
+    v2_coverage = [float(row["v2_main_track_coverage"]) for row in validation_rows]
+    v3_coverage = [float(row["v3_main_track_coverage"]) for row in validation_rows]
+    recoverable = sum(int(row["recoverable_frames"]) for row in validation_rows)
+    recovered = sum(int(row["recovered_frames"]) for row in validation_rows)
     accepted = [row for row in handoff_rows if int(row["accepted"])]
     rejected = [row for row in handoff_rows if not int(row["accepted"])]
     suspicious = [row for row in accepted if int(row["suspicious"])]
-    reviewed = [row for row in visual_rows if row["visual_status"] == "REVIEWED"]
-    false_merges = [row for row in reviewed if int(row["false_merge"])]
-    pending = [row for row in visual_rows if row["visual_status"] != "REVIEWED"]
+    reviewed = [row for row in visual_rows if row["visual_review_status"] != "PENDING"]
+    reviewed_handoffs = [
+        row for row in accepted if row["visual_review_status"] != "PENDING"
+    ]
+    false_merge_handoffs = [
+        row for row in reviewed_handoffs if int(row["false_merge_detected"])
+    ]
+    false_merge_videos = [
+        row for row in reviewed if int(row["false_merge_detected"])
+    ]
+    pending = [row for row in visual_rows if row["visual_review_status"] == "PENDING"]
+    pending_handoffs = [
+        row for row in accepted if row["visual_review_status"] == "PENDING"
+    ]
+    evidence = [row["review_evidence"] for row in reviewed_handoffs]
     edge_scores = [float(row["total_edge_score"]) for row in accepted]
     margins = [
         float(row["minimum_runner_up_margin"]) for row in validation_rows
         if row["minimum_runner_up_margin"] not in {None, ""}
     ]
     gaps = [int(row["temporal_gap"]) for row in accepted]
-    handoffs_per_video = [row["v3_number_of_handoffs"] for row in validation_rows]
+    handoffs_per_video = [int(row["v3_number_of_handoffs"]) for row in validation_rows]
     lines = [
         "# Reporte BP_FRONT Bar TrackingV3 Validation76", "",
         "Fecha: `%s`" % utc_now(), "",
+        "## Objetivo", "",
+        "Cerrar formalmente Validation76 del algoritmo congelado mediante reejecucion determinista, revision visual explicita 76/76 y evidencia 1:1 para los 79 handoffs aceptados.", "",
         "## 1. Configuracion congelada", "",
         "- Algoritmo: `%s`." % ALGORITHM_VERSION,
         "- Hash utils: `%s`." % ALGORITHM_HASHES["bar_tracking_v3_utils.py"],
         "- Hash runner: `%s`." % ALGORITHM_HASHES["rebuild_bar_tracking_v3_from_raw.py"],
         "- No se cambiaron parametros, thresholds ni pesos respecto al prototipo de 14 casos.",
         "- YOLO=False; labels=False; interpolacion=False.", "",
-        "## 2. Conjunto", "",
+        "### Parametros", "",
+    ]
+    for name, value in DEFAULT_PARAMETERS.items():
+        lines.append("- `%s=%s`." % (name, value))
+    lines += [
+        "", "## 2. Correccion de auditoria", "",
+        "- Se elimino el auto-review; ninguna fila sale de `PENDING` sin registro explicito.",
+        "- `algorithm_status` permanece separado de `visual_review_status`.",
+        "- Los resultados visuales no reescriben coverage, path, score ni decision V3.", "",
+        "## 3. Conjunto", "",
         "- Seleccion automatica: `bar_detection_ratio == 1.0` y `bar_main_track_coverage < 1.0`.",
         "- N evaluados: **%d**." % len(validation_rows),
         "- IDs escritos manualmente: **0**.", "",
-        "## 3. Resultados", "",
+        "## 4. Resultados tecnicos", "",
         "| Estado | N |", "|---|---:|",
         "| FULLY_RECOVERED | %d |" % status_counts["FULLY_RECOVERED"],
         "| PARTIALLY_RECOVERED | %d |" % status_counts["PARTIALLY_RECOVERED"],
         "| UNCHANGED_CONSERVATIVE | %d |" % status_counts["UNCHANGED_CONSERVATIVE"],
         "| REGRESSED | %d |" % status_counts["REGRESSED"], "",
-        "## 4. Coverage", "",
+        "## 5. Coverage", "",
         "| Version | Mean | Median | Min | P5 | P25 | P75 | P95 |",
         "|---|---:|---:|---:|---:|---:|---:|---:|",
         distribution_line("V2", v2_coverage),
@@ -549,46 +631,98 @@ def build_report(validation_rows, handoff_rows, visual_rows, reproducible_ids, o
         "- Frames recuperables omitidos por V2: **%d**." % recoverable,
         "- Frames recuperados por V3: **%d**." % recovered,
         "- Recovery rate global: **%.6f**." % (recovered / recoverable if recoverable else 0.0), "",
-        "## 5. Handoffs", "",
+        "## 6. Handoffs", "",
         "- Handoffs aceptados en path global: **%d**." % len(accepted),
         "- Candidatos compatibles/rechazados relevantes no seleccionados: **%d**." % len(rejected),
         "- Handoffs sospechosos: **%d**." % len(suspicious),
+        "- Handoffs revisados individualmente: **%d/%d**." % (len(reviewed_handoffs), len(accepted)),
+        "- Evidencias unicas de handoff: **%d**." % len(set(evidence)),
+        "- Falsos merges confirmados: **%d**." % len(false_merge_handoffs),
         "- Edge score: %s." % distribution(edge_scores) if edge_scores else "- Edge score: N/D.",
         "- Runner-up margin: %s." % distribution(margins) if margins else "- Runner-up margin: N/D.",
         "- Gap frames: %s." % distribution(gaps) if gaps else "- Gap frames: N/D.",
         "- Handoffs/video: %s." % distribution(handoffs_per_video), "",
-        "## 6. Reproducibilidad prototype_14", "",
+        "## 7. Reproducibilidad prototype_14", "",
         "- Casos originales contenidos en validation_76: **%d**." % len(reproducible_ids),
         "- Reproducidos exactamente: %s." % ", ".join("`%s`" % value for value in reproducible_ids),
         "- Inconsistencias: **0**.", "",
-        "## 7. Casos sospechosos", "",
+        "## 8. Casos sospechosos", "",
     ]
     if suspicious:
         for row in suspicious:
-            lines.append("- `%s` %s->%s frame %s, score=%s: `%s`." % (
+            lines.append("- `%s` %s->%s frame %s, score=%s, review=%s: `%s`." % (
                 row["video_id"], row["source_track"], row["target_track"],
-                row["transition_frame"], row["total_edge_score"], row["suspicious_reasons"],
+                row["transition_frame"], row["total_edge_score"],
+                row["visual_review_status"], row["suspicious_reasons"],
             ))
     else:
         lines.append("- Ninguno.")
-    lines += ["", "## 8. Auditoria visual", "",
-              "- Filas seleccionadas: **%d**." % len(visual_rows),
-              "- Revisadas: **%d**." % len(reviewed),
-              "- Falsos merges confirmados: **%d**." % len(false_merges),
-              "- Overviews: %s." % ", ".join("`%s`" % path for path in overview_paths), ""]
+    lines += ["", "## 9. Auditoria visual", "",
+              "- Videos revisados explicitamente: **%d/%d**." % (len(reviewed), len(visual_rows)),
+              "- Videos PENDING: **%d**." % len(pending),
+              "- Handoffs PENDING: **%d**." % len(pending_handoffs),
+              "- Videos con falso merge: **%d**." % len(false_merge_videos),
+              "- Handoffs con falso merge: **%d**." % len(false_merge_handoffs),
+              "- RAW gaps preservados: **%d/%d** (el filtro contiene deteccion RAW completa)." % (
+                  sum(int(row["raw_gap_preserved"]) for row in visual_rows), len(visual_rows)
+              ),
+              "- Los overviews son auxiliares y no cuentan como evidencia 1:1.", ""]
     for row in visual_rows:
-        lines.append("- `%s` [%s]: %s." % (
-            row["video_id"], row["final_status"], row["visual_finding"]
+        lines.append("- `%s` [%s / %s]: %s Evidencia: `%s`." % (
+            row["video_id"], row["algorithm_status"], row["visual_review_status"],
+            row["review_notes"], row["review_evidence"],
         ))
-    lines += ["", "## 9. Conclusion", ""]
-    if pending:
-        conclusion = "VALIDACION PENDIENTE: faltan revisiones visuales."
-    elif false_merges or status_counts["REGRESSED"]:
-        conclusion = "V3 NO APROBADO para 662 videos: existen falsos merges o regresiones."
+
+    lines += ["", "## 10. Casos prioritarios", ""]
+    priority = {"bp_182", "bp_238", "bp_536", "bp_538", "bp_540", "bp_544", "bp_661", "bp_662", "bp_663"}
+    for row in visual_rows:
+        if row["video_id"] in priority:
+            lines.append("- `%s`: %s" % (row["video_id"], row["review_notes"]))
+
+    lines += ["", "## 11. Integridad y verificador", ""]
+    if verification is None:
+        lines.append("- Verificador read-only: **PENDIENTE**.")
     else:
-        conclusion = "V3 APROBADO para reconstruir Tracking BAR sobre los 662 videos; la ejecucion global aun no se realizo."
+        integrity = verification.get("integrity", {})
+        lines += [
+            "- Verificador read-only: **%s**." % verification.get("result", "UNKNOWN"),
+            "- Checks aprobados: **%s/%s**." % (
+                verification.get("checks_passed", 0), verification.get("checks_total", 0)
+            ),
+            "- Integridad PRE/POST: **%s**." % verification.get("integrity_pre_post", "UNKNOWN"),
+            "- Prototype suite: **%s**." % verification.get("prototype_suite", "UNKNOWN"),
+            "- Artefactos RAW/V2/features/audits comparados PRE/POST: **%s**; discrepancias: **%s**." % (
+                integrity.get("source_artifacts_checked", "N/D"),
+                len(integrity.get("source_mismatches", [])),
+            ),
+            "- Hash utils PRE: `%s`; POST: `%s`." % (
+                integrity.get("algorithm_hashes_pre", {}).get("bar_tracking_v3_utils.py", "N/D"),
+                integrity.get("algorithm_hashes_post", {}).get("bar_tracking_v3_utils.py", "N/D"),
+            ),
+            "- Hash runner PRE: `%s`; POST: `%s`." % (
+                integrity.get("algorithm_hashes_pre", {}).get("rebuild_bar_tracking_v3_from_raw.py", "N/D"),
+                integrity.get("algorithm_hashes_post", {}).get("rebuild_bar_tracking_v3_from_raw.py", "N/D"),
+            ),
+            "- Hash auditor PRE: `%s`; POST: `%s` (cambio permitido y limitado a auditoria)." % (
+                integrity.get("validator_hash_pre", "N/D"),
+                integrity.get("validator_hash_post", "N/D"),
+            ),
+        ]
+
+    lines += ["", "## 12. Conclusion", ""]
+    if pending or pending_handoffs:
+        conclusion = "VALIDATION76_NOT_APPROVED: faltan revisiones visuales explicitas."
+    elif false_merge_handoffs or status_counts["REGRESSED"]:
+        conclusion = (
+            "VALIDATION76_NOT_APPROVED: se confirmaron %d falsos merges visuales en %d video(s)."
+            % (len(false_merge_handoffs), len(false_merge_videos))
+        )
+    elif verification is not None and verification.get("result") != "OK":
+        conclusion = "VALIDATION76_NOT_APPROVED: el verificador final no termino en OK."
+    else:
+        conclusion = "VALIDATION76_APPROVED."
     lines += [
-        conclusion, "",
+        "**%s**" % conclusion, "",
         "No se modificaron RAW, mascaras, detecciones, Tracking V2 ni FEATURES V2.",
         "No se procesaron los 662 videos y no se generaron FEATURES V3 globales.", "",
     ]
@@ -601,12 +735,44 @@ def parse_args():
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
     parser.add_argument("--dataset-dir", type=Path, default=PROJECT_ROOT / "dataset" / "bp" / "front")
+    parser.add_argument("--reviews", type=Path, default=DEFAULT_REVIEWS)
     parser.add_argument("--generate-previews", action="store_true")
+    parser.add_argument("--report-only", action="store_true")
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
+    manifests = args.output_dir / "manifests"
+    validation_path = manifests / "bp_front_tracking_v3_validation_76.csv"
+    handoff_path = manifests / "bp_front_tracking_v3_validation_76_handoffs.csv"
+    visual_path = manifests / "bp_front_tracking_v3_validation_76_visual_review.csv"
+    verification_path = manifests / "bp_front_tracking_v3_validation_76_verification.json"
+    if args.report_only:
+        validation_rows = read_csv(validation_path)
+        handoff_rows = read_csv(handoff_path)
+        visual_rows = read_csv(visual_path)
+        prototype_ids = {
+            row["video_id"] for row in read_csv(
+                PROTOTYPE_OUTPUT / "manifests" / "bp_front_tracking_v3_prototype_comparison.csv"
+            )
+        }
+        reproducible_ids = sorted(prototype_ids & {row["video_id"] for row in validation_rows})
+        overview_paths = sorted((args.output_dir / "previews" / "_overviews").glob("*.jpg"))
+        verification = (
+            json.loads(verification_path.read_text(encoding="utf-8"))
+            if verification_path.exists() else None
+        )
+        atomic_write_text(
+            args.report,
+            build_report(
+                validation_rows, handoff_rows, visual_rows, reproducible_ids,
+                overview_paths, verification,
+            ),
+        )
+        print("Reporte: %s" % args.report)
+        return 0
+
     hashes = verify_frozen_algorithm()
     selected_rows = select_validation_rows(args.root)
     processed = []
@@ -624,11 +790,12 @@ def main():
     selected_visual = visual_selection(validation_rows, handoff_rows)
     preview_paths_by_video = {}
     all_contact_paths = []
-    existing_visual_path = args.output_dir / "manifests" / "bp_front_tracking_v3_validation_76_visual_review.csv"
-    if not args.generate_previews and existing_visual_path.exists():
-        for row in read_csv(existing_visual_path):
-            preview_paths_by_video[row["video_id"]] = [
-                value for value in row.get("preview_paths", "").split("|") if value
+    if not args.generate_previews:
+        for video_id in selected_visual:
+            preview_paths_by_video[video_id] = [
+                str(path.resolve()) for path in sorted(
+                    (args.output_dir / "previews" / video_id).glob("*/*_contact_sheet.jpg")
+                )
             ]
     if args.generate_previews:
         for video_id in sorted(selected_visual):
@@ -665,24 +832,23 @@ def main():
         visual_rows.append({
             "video_id": video_id,
             "selection_reasons": "|".join(sorted(reasons)),
-            "status": validation["status"],
+            "algorithm_status": validation["algorithm_status"],
+            "v2_coverage": validation["v2_main_track_coverage"],
+            "v3_coverage": validation["v3_main_track_coverage"],
             "v3_path": validation["v3_path"],
             "n_handoffs": validation["v3_number_of_handoffs"],
             "suspicious_handoffs": validation["suspicious_handoffs"],
-            "preview_paths": "|".join(preview_paths_by_video.get(video_id, [])),
-            "visual_status": "PENDING",
-            "same_physical_bar": "",
-            "false_merge": "",
-            "raw_gaps_preserved": "",
-            "visual_finding": "Pendiente de revision",
-            "final_status": validation["status"],
+            "visual_review_status": "PENDING",
+            "visual_identity_consistent": "",
+            "false_merge_detected": "",
+            "missed_valid_merge": "",
+            "raw_gap_preserved": "",
+            "review_notes": "Pendiente de revision explicita",
+            "review_evidence": "",
         })
-    apply_visual_reviews(validation_rows, visual_rows)
+    explicit_reviews = load_explicit_reviews(args.reviews)
+    apply_explicit_reviews(validation_rows, handoff_rows, visual_rows, explicit_reviews)
 
-    manifests = args.output_dir / "manifests"
-    validation_path = manifests / "bp_front_tracking_v3_validation_76.csv"
-    handoff_path = manifests / "bp_front_tracking_v3_validation_76_handoffs.csv"
-    visual_path = manifests / "bp_front_tracking_v3_validation_76_visual_review.csv"
     atomic_write_csv(validation_path, validation_rows, VALIDATION_FIELDS)
     atomic_write_csv(handoff_path, handoff_rows, HANDOFF_FIELDS)
     atomic_write_csv(visual_path, visual_rows, VISUAL_FIELDS)
@@ -695,11 +861,16 @@ def main():
         "n_selected": len(selected_rows),
         "uses_yolo": False,
         "uses_labels": False,
+        "auto_review": False,
+        "explicit_reviews_path": str(args.reviews.resolve()),
         "timestamp_utc": utc_now(),
     })
     atomic_write_text(
         args.report,
-        build_report(validation_rows, handoff_rows, visual_rows, reproducible_ids, overview_paths),
+        build_report(
+            validation_rows, handoff_rows, visual_rows, reproducible_ids, overview_paths,
+            None,
+        ),
     )
     print("Validation: %s" % validation_path)
     print("Handoffs: %s" % handoff_path)
