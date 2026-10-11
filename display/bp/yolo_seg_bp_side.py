@@ -1,7 +1,9 @@
-"""Inspección visual de proximidad barra-pecho en press de banca lateral.
+"""Inspección visual de proximidad barra-silueta torácica en BP lateral.
 
 La barra puede estar oculta entre la mano y el pecho: la extrapolación de su
 inclinación visible es una estimación 2D, no una prueba de contacto físico.
+Los keypoints 2=cadera y 3=hombro delimitan el torso; la máscara de persona
+define el contorno y NO segmenta anatómicamente el pecho.
 """
 
 import argparse
@@ -17,12 +19,13 @@ RUTA_SEGMENTACION = RAIZ_PROYECTO / "models" / "bp" / "bp_side_seg_v1.pt"
 RUTA_POSE = RAIZ_PROYECTO / "models" / "bp" / "bp_side_skeleton_v2.pt"
 VIDEO_PREDETERMINADO = RAIZ_PROYECTO / "dataset" / "bp" / "left" / "bp_345.mp4"
 
-# Orden de keypoints del modelo lateral: 2=hombro, 3=codo.
-HOMBRO = 2
-CODO = 3
+# Orden confirmado visualmente: 2=cadera, 3=hombro, 5=codo.
+CADERA = 2
+HOMBRO = 3
+IMG_SIZE = 960  # Resolución de entrenamiento de ambos modelos laterales.
 CONFIANZA_MINIMA = 0.5
 COLOR_BARRA = (0, 255, 255)
-COLOR_PECHO = (255, 200, 0)
+COLOR_TORSO = (255, 200, 0)
 COLOR_CERCA = (255, 0, 255)  # Magenta: proximidad, nunca contacto confirmado
 COLOR_LEJOS = (0, 0, 255)
 COLOR_PROYECCION_LEJANA = (0, 165, 255)
@@ -48,30 +51,31 @@ def mascara_principal(resultado, nombre_clase, forma):
     return mascara
 
 
-def zona_pecho(resultado_pose, mascara_persona):
-    """Perfil superior de la silueta en la zona del tórax (entre hombro y codo)."""
+def zona_torso_superior(resultado_pose, mascara_persona):
+    """Contorno de silueta en el tramo alto entre cadera y hombro visibles."""
     if resultado_pose.keypoints is None or len(resultado_pose.keypoints) == 0:
         return None
     indice = int(resultado_pose.boxes.conf.argmax())
     puntos = resultado_pose.keypoints.xy[indice].cpu().numpy()
     confianza = resultado_pose.keypoints.conf
     if confianza is None or np.any(
-        confianza[indice, [HOMBRO, CODO]].cpu().numpy() < CONFIANZA_MINIMA
-    ) or np.any(puntos[[HOMBRO, CODO]] == 0):
+        confianza[indice, [CADERA, HOMBRO]].cpu().numpy() < CONFIANZA_MINIMA
+    ) or np.any(puntos[[CADERA, HOMBRO]] == 0):
         return None
 
-    # Restringir al torso central para evitar medir el brazo o la mano.
-    x_hombro, x_codo = puntos[[HOMBRO, CODO], 0]
-    x_inicio = x_hombro + 0.45 * (x_codo - x_hombro)
-    x_fin = x_hombro + 0.75 * (x_codo - x_hombro)
+    # La franja original usa el 45-75 % desde la cadera hacia el hombro.
+    # La máscara determina el borde observable, no un landmark de pecho.
+    x_cadera, x_hombro = puntos[[CADERA, HOMBRO], 0]
+    x_inicio = x_cadera + 0.45 * (x_hombro - x_cadera)
+    x_fin = x_cadera + 0.75 * (x_hombro - x_cadera)
     ancho = mascara_persona.shape[1]
     x_min = max(0, int(min(x_inicio, x_fin)))
     x_max = min(ancho - 1, int(max(x_inicio, x_fin)))
-    return perfil_pecho(mascara_persona, x_min, x_max)
+    return perfil_silueta_torso(mascara_persona, x_min, x_max)
 
 
-def perfil_pecho(mascara_persona, x_min, x_max):
-    """Extrae la superficie superior de la persona en una franja del torso."""
+def perfil_silueta_torso(mascara_persona, x_min, x_max):
+    """Extrae el borde superior visible, no una máscara anatómica torácica."""
     if x_max - x_min < 5:
         return None
 
@@ -83,12 +87,12 @@ def perfil_pecho(mascara_persona, x_min, x_max):
             perfil.append((x, int(ys[0])))
     if len(perfil) < (x_max - x_min + 1) * 0.7:
         return None
-    x_pecho = int(np.median([p[0] for p in perfil]))
-    y_pecho = int(np.median([p[1] for p in perfil]))
-    return x_pecho, y_pecho, perfil
+    x_torso = int(np.median([p[0] for p in perfil]))
+    y_torso = int(np.median([p[1] for p in perfil]))
+    return x_torso, y_torso, perfil
 
 
-def zona_pecho_sin_pose(caja_banco, mascara_persona, mascara_barra):
+def zona_torso_sin_pose(caja_banco, mascara_persona, mascara_barra):
     """Estima una franja del torso respecto del banco cuando falla la pose."""
     if caja_banco is None:
         return None
@@ -109,17 +113,17 @@ def zona_pecho_sin_pose(caja_banco, mascara_persona, mascara_barra):
     limite_b = centro + direccion * 0.15 * ancho_banco
     x_min = max(0, int(min(limite_a, limite_b)))
     x_max = min(mascara_persona.shape[1] - 1, int(max(limite_a, limite_b)))
-    return perfil_pecho(mascara_persona, x_min, x_max)
+    return perfil_silueta_torso(mascara_persona, x_min, x_max)
 
 
-def borde_barra_cercano(mascara_barra, x_pecho):
+def borde_barra_cercano(mascara_barra, x_torso):
     """Altura del borde inferior de la barra visible junto al extremo proximal."""
     ys, xs = np.nonzero(mascara_barra)
     if not xs.size:
         return None
     x_min, x_max = int(xs.min()), int(xs.max())
     franja = max(4, int((x_max - x_min) * 0.15))
-    if abs(x_pecho - x_min) < abs(x_pecho - x_max):
+    if abs(x_torso - x_min) < abs(x_torso - x_max):
         cercano = xs <= x_min + franja
     else:
         cercano = xs >= x_max - franja
@@ -162,27 +166,27 @@ def inclinacion_barra(mascara_barra):
 
 def dibujar_proximidad(imagen, resultado_seg, resultado_pose, caja_banco=None,
                       texto_banco=""):
-    """Muestra borde inclinado extrapolado, perfil del pecho y separación 2D."""
+    """Proyecta la barra al contorno superior del torso, sin afirmar contacto."""
     mascara_barra = mascara_principal(resultado_seg, "bar", imagen.shape[:2])
     mascara_persona = mascara_principal(resultado_seg, "person", imagen.shape[:2])
     estado = "Sin barra/persona detectada"
     if mascara_barra is not None and mascara_persona is not None:
-        pecho = zona_pecho(resultado_pose, mascara_persona)
-        estimado = pecho is None
+        torso = zona_torso_superior(resultado_pose, mascara_persona)
+        estimado = torso is None
         if estimado:
-            pecho = zona_pecho_sin_pose(caja_banco, mascara_persona, mascara_barra)
-        if pecho is None:
-            estado = "Pecho no evaluable (sin pose ni banco fiable)"
+            torso = zona_torso_sin_pose(caja_banco, mascara_persona, mascara_barra)
+        if torso is None:
+            estado = "Contorno del torso no evaluable (sin pose ni banco fiable)"
         else:
-            x_pecho, y_pecho, perfil = pecho
-            barra = borde_barra_cercano(mascara_barra, x_pecho)
+            x_torso, y_torso, perfil = torso
+            barra = borde_barra_cercano(mascara_barra, x_torso)
             inclinacion = inclinacion_barra(mascara_barra)
             if barra is None or inclinacion is None:
                 estado = "Inclinacion de barra no evaluable"
             else:
                 x_barra, y_barra, radio = barra
                 pendiente, ancho_visible = inclinacion
-                distancia_proyectada = abs(x_pecho - x_barra)
+                distancia_proyectada = abs(x_torso - x_barra)
                 if distancia_proyectada > 4 * ancho_visible:
                     estado = "Barra demasiado lejos para proyectar"
                 else:
@@ -191,7 +195,7 @@ def dibujar_proximidad(imagen, resultado_seg, resultado_pose, caja_banco=None,
                     def y_proyectada(x):
                         return y_barra + radio + pendiente * (x - x_barra)
 
-                    separacion = round(y_pecho - y_proyectada(x_pecho))
+                    separacion = round(y_torso - y_proyectada(x_torso))
                     tolerancia = max(6, round(imagen.shape[0] * 0.012))
                     if lejana:
                         estado = "PROYECCION LEJANA (baja confianza; sin juicio de contacto)"
@@ -206,21 +210,21 @@ def dibujar_proximidad(imagen, resultado_seg, resultado_pose, caja_banco=None,
                         estado = f"Solape proyectado (no confirma toque): {separacion}px"
                         color = COLOR_LEJOS
                     if estimado:
-                        estado += " [pecho estimado por banco]"
+                        estado += " [contorno torso estimado por banco]"
 
                     cv2.polylines(imagen, [np.array(perfil, dtype=np.int32)], False,
-                                  COLOR_PECHO, 3)
-                    cv2.circle(imagen, (x_pecho, y_pecho), 7, COLOR_PECHO, -1)
+                                  COLOR_TORSO, 3)
+                    cv2.circle(imagen, (x_torso, y_torso), 7, COLOR_TORSO, -1)
                     cv2.circle(imagen, (x_barra, round(y_proyectada(x_barra))),
                                7, COLOR_BARRA, -1)
 
                     # Si la proyección entra en la silueta del torso, detenerla
                     # en el primer borde; no dibujarla atravesando el cuerpo.
-                    x_final = x_pecho
+                    x_final = x_torso
                     y_tope = None
-                    perfil_hacia_pecho = sorted(perfil, key=lambda p: abs(p[0] - x_barra))
-                    for x, y_borde in perfil_hacia_pecho:
-                        if abs(x - x_barra) > abs(x_pecho - x_barra):
+                    perfil_hacia_torso = sorted(perfil, key=lambda p: abs(p[0] - x_barra))
+                    for x, y_borde in perfil_hacia_torso:
+                        if abs(x - x_barra) > abs(x_torso - x_barra):
                             break
                         if y_proyectada(x) >= y_borde:
                             x_final = x
@@ -236,9 +240,9 @@ def dibujar_proximidad(imagen, resultado_seg, resultado_pose, caja_banco=None,
                             y_destino = min(y_destino, y_tope)
                         cv2.line(imagen, (x, round(y_proyectada(x))),
                                  (destino, y_destino), color_linea, 3)
-                    if not lejana and x_final == x_pecho and separacion > 0:
-                        cv2.line(imagen, (x_pecho, round(y_proyectada(x_pecho))),
-                                 (x_pecho, y_pecho), color, 3)
+                    if not lejana and x_final == x_torso and separacion > 0:
+                        cv2.line(imagen, (x_torso, round(y_proyectada(x_torso))),
+                                 (x_torso, y_torso), color, 3)
 
     alto_panel = 72 if texto_banco else 42
     cv2.rectangle(imagen, (0, 0), (imagen.shape[1], alto_panel), (0, 0, 0), -1)
@@ -284,7 +288,8 @@ def analizar_banco_video(captura, modelo_seg):
         disponible, frame = captura.read()
         if not disponible:
             break
-        resultado = modelo_seg(frame, verbose=False, show=False, save=False)[0]
+        resultado = modelo_seg(frame, imgsz=IMG_SIZE, verbose=False,
+                               show=False, save=False)[0]
         indice = mejor_banco(resultado)
         if indice is not None:
             caja = resultado.boxes.xyxy[indice].cpu().numpy().copy()
@@ -308,7 +313,7 @@ def analizar_banco_video(captura, modelo_seg):
 
 
 def seleccionar_banco_frame(resultado_seg, referencia, fijo):
-    """Elimina duplicados y devuelve la caja usada para ubicar el pecho."""
+    """Elimina duplicados y devuelve la caja de respaldo para el torso."""
     indice = mejor_banco(resultado_seg)
     if resultado_seg.boxes is not None:
         conservar = [
@@ -349,7 +354,7 @@ def dibujar_banco_fijo(imagen, referencia, mascara_persona):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Inspeccionar proximidad barra-pecho BP lateral")
+    parser = argparse.ArgumentParser(description="Inspeccionar barra y contorno del torso BP lateral")
     parser.add_argument(
         "video", nargs="?", type=Path, default=VIDEO_PREDETERMINADO,
         help=f"Video lateral (por defecto: {VIDEO_PREDETERMINADO.relative_to(RAIZ_PROYECTO)})",
@@ -362,7 +367,7 @@ def main():
     if not captura.isOpened():
         raise OSError(f"No se pudo abrir el video: {args.video}")
 
-    ventana = "BP lateral: barra y pecho (Q para salir)"
+    ventana = "BP lateral: barra y contorno del torso (Q para salir)"
     try:
         referencia, banco_fijo = analizar_banco_video(captura, modelo_seg)
         if not captura.set(cv2.CAP_PROP_POS_FRAMES, 0):
@@ -376,8 +381,10 @@ def main():
             if not disponible:
                 break
 
-            resultado_seg = modelo_seg(frame, verbose=False, show=False, save=False)[0]
-            resultado_pose = modelo_pose(frame, verbose=False, show=False, save=False)[0]
+            resultado_seg = modelo_seg(frame, imgsz=IMG_SIZE, verbose=False,
+                                       show=False, save=False)[0]
+            resultado_pose = modelo_pose(frame, imgsz=IMG_SIZE, verbose=False,
+                                         show=False, save=False)[0]
             caja_banco = seleccionar_banco_frame(resultado_seg, referencia, banco_fijo)
             imagen = frame.copy()
             if banco_fijo and referencia is not None:
