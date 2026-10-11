@@ -1,0 +1,182 @@
+--- display/bp/yolo_seg_bp_side.py (before)
++++ display/bp/yolo_seg_bp_side.py (after)
+@@ -1 +1 @@
+-"""Inspección visual de proximidad barra-pecho en press de banca lateral.
++"""Inspección visual de proximidad barra-silueta torácica en BP lateral.
+@@ -4,0 +5,2 @@
++Los keypoints 2=cadera y 3=hombro delimitan el torso; la máscara de persona
++define el contorno y NO segmenta anatómicamente el pecho.
+@@ -20,3 +22,4 @@
+-# Orden de keypoints del modelo lateral: 2=hombro, 3=codo.
+-HOMBRO = 2
+-CODO = 3
++# Orden confirmado visualmente: 2=cadera, 3=hombro, 5=codo.
++CADERA = 2
++HOMBRO = 3
++IMG_SIZE = 960  # Resolución de entrenamiento de ambos modelos laterales.
+@@ -25 +28 @@
+-COLOR_PECHO = (255, 200, 0)
++COLOR_TORSO = (255, 200, 0)
+@@ -51,2 +54,2 @@
+-def zona_pecho(resultado_pose, mascara_persona):
+-    """Perfil superior de la silueta en la zona del tórax (entre hombro y codo)."""
++def zona_torso_superior(resultado_pose, mascara_persona):
++    """Contorno de silueta en el tramo alto entre cadera y hombro visibles."""
+@@ -59,8 +62,9 @@
+-        confianza[indice, [HOMBRO, CODO]].cpu().numpy() < CONFIANZA_MINIMA
+-    ) or np.any(puntos[[HOMBRO, CODO]] == 0):
+-        return None
+-
+-    # Restringir al torso central para evitar medir el brazo o la mano.
+-    x_hombro, x_codo = puntos[[HOMBRO, CODO], 0]
+-    x_inicio = x_hombro + 0.45 * (x_codo - x_hombro)
+-    x_fin = x_hombro + 0.75 * (x_codo - x_hombro)
++        confianza[indice, [CADERA, HOMBRO]].cpu().numpy() < CONFIANZA_MINIMA
++    ) or np.any(puntos[[CADERA, HOMBRO]] == 0):
++        return None
++
++    # La franja original usa el 45-75 % desde la cadera hacia el hombro.
++    # La máscara determina el borde observable, no un landmark de pecho.
++    x_cadera, x_hombro = puntos[[CADERA, HOMBRO], 0]
++    x_inicio = x_cadera + 0.45 * (x_hombro - x_cadera)
++    x_fin = x_cadera + 0.75 * (x_hombro - x_cadera)
+@@ -70,5 +74,5 @@
+-    return perfil_pecho(mascara_persona, x_min, x_max)
+-
+-
+-def perfil_pecho(mascara_persona, x_min, x_max):
+-    """Extrae la superficie superior de la persona en una franja del torso."""
++    return perfil_silueta_torso(mascara_persona, x_min, x_max)
++
++
++def perfil_silueta_torso(mascara_persona, x_min, x_max):
++    """Extrae el borde superior visible, no una máscara anatómica torácica."""
+@@ -86,6 +90,6 @@
+-    x_pecho = int(np.median([p[0] for p in perfil]))
+-    y_pecho = int(np.median([p[1] for p in perfil]))
+-    return x_pecho, y_pecho, perfil
+-
+-
+-def zona_pecho_sin_pose(caja_banco, mascara_persona, mascara_barra):
++    x_torso = int(np.median([p[0] for p in perfil]))
++    y_torso = int(np.median([p[1] for p in perfil]))
++    return x_torso, y_torso, perfil
++
++
++def zona_torso_sin_pose(caja_banco, mascara_persona, mascara_barra):
+@@ -112,4 +116,4 @@
+-    return perfil_pecho(mascara_persona, x_min, x_max)
+-
+-
+-def borde_barra_cercano(mascara_barra, x_pecho):
++    return perfil_silueta_torso(mascara_persona, x_min, x_max)
++
++
++def borde_barra_cercano(mascara_barra, x_torso):
+@@ -122 +126 @@
+-    if abs(x_pecho - x_min) < abs(x_pecho - x_max):
++    if abs(x_torso - x_min) < abs(x_torso - x_max):
+@@ -165 +169 @@
+-    """Muestra borde inclinado extrapolado, perfil del pecho y separación 2D."""
++    """Proyecta la barra al contorno superior del torso, sin afirmar contacto."""
+@@ -170,2 +174,2 @@
+-        pecho = zona_pecho(resultado_pose, mascara_persona)
+-        estimado = pecho is None
++        torso = zona_torso_superior(resultado_pose, mascara_persona)
++        estimado = torso is None
+@@ -173,3 +177,3 @@
+-            pecho = zona_pecho_sin_pose(caja_banco, mascara_persona, mascara_barra)
+-        if pecho is None:
+-            estado = "Pecho no evaluable (sin pose ni banco fiable)"
++            torso = zona_torso_sin_pose(caja_banco, mascara_persona, mascara_barra)
++        if torso is None:
++            estado = "Contorno del torso no evaluable (sin pose ni banco fiable)"
+@@ -177,2 +181,2 @@
+-            x_pecho, y_pecho, perfil = pecho
+-            barra = borde_barra_cercano(mascara_barra, x_pecho)
++            x_torso, y_torso, perfil = torso
++            barra = borde_barra_cercano(mascara_barra, x_torso)
+@@ -185 +189 @@
+-                distancia_proyectada = abs(x_pecho - x_barra)
++                distancia_proyectada = abs(x_torso - x_barra)
+@@ -194 +198 @@
+-                    separacion = round(y_pecho - y_proyectada(x_pecho))
++                    separacion = round(y_torso - y_proyectada(x_torso))
+@@ -209 +213 @@
+-                        estado += " [pecho estimado por banco]"
++                        estado += " [contorno torso estimado por banco]"
+@@ -212,2 +216,2 @@
+-                                  COLOR_PECHO, 3)
+-                    cv2.circle(imagen, (x_pecho, y_pecho), 7, COLOR_PECHO, -1)
++                                  COLOR_TORSO, 3)
++                    cv2.circle(imagen, (x_torso, y_torso), 7, COLOR_TORSO, -1)
+@@ -219 +223 @@
+-                    x_final = x_pecho
++                    x_final = x_torso
+@@ -221,3 +225,3 @@
+-                    perfil_hacia_pecho = sorted(perfil, key=lambda p: abs(p[0] - x_barra))
+-                    for x, y_borde in perfil_hacia_pecho:
+-                        if abs(x - x_barra) > abs(x_pecho - x_barra):
++                    perfil_hacia_torso = sorted(perfil, key=lambda p: abs(p[0] - x_barra))
++                    for x, y_borde in perfil_hacia_torso:
++                        if abs(x - x_barra) > abs(x_torso - x_barra):
+@@ -239,3 +243,3 @@
+-                    if not lejana and x_final == x_pecho and separacion > 0:
+-                        cv2.line(imagen, (x_pecho, round(y_proyectada(x_pecho))),
+-                                 (x_pecho, y_pecho), color, 3)
++                    if not lejana and x_final == x_torso and separacion > 0:
++                        cv2.line(imagen, (x_torso, round(y_proyectada(x_torso))),
++                                 (x_torso, y_torso), color, 3)
+@@ -287 +291,2 @@
+-        resultado = modelo_seg(frame, verbose=False, show=False, save=False)[0]
++        resultado = modelo_seg(frame, imgsz=IMG_SIZE, verbose=False,
++                               show=False, save=False)[0]
+@@ -311 +316 @@
+-    """Elimina duplicados y devuelve la caja usada para ubicar el pecho."""
++    """Elimina duplicados y devuelve la caja de respaldo para el torso."""
+@@ -352 +357 @@
+-    parser = argparse.ArgumentParser(description="Inspeccionar proximidad barra-pecho BP lateral")
++    parser = argparse.ArgumentParser(description="Inspeccionar barra y contorno del torso BP lateral")
+@@ -365 +370 @@
+-    ventana = "BP lateral: barra y pecho (Q para salir)"
++    ventana = "BP lateral: barra y contorno del torso (Q para salir)"
+@@ -379,2 +384,4 @@
+-            resultado_seg = modelo_seg(frame, verbose=False, show=False, save=False)[0]
+-            resultado_pose = modelo_pose(frame, verbose=False, show=False, save=False)[0]
++            resultado_seg = modelo_seg(frame, imgsz=IMG_SIZE, verbose=False,
++                                       show=False, save=False)[0]
++            resultado_pose = modelo_pose(frame, imgsz=IMG_SIZE, verbose=False,
++                                         show=False, save=False)[0]
+--- display/bp/yolo_seg_bp_front.py (before)
++++ display/bp/yolo_seg_bp_front.py (after)
+@@ -88,0 +89,2 @@
++    puntos_manos = puntos_munecas(resultado_pose)
++    altura_manos = float(np.mean(puntos_manos[:, 1])) if puntos_manos is not None else None
+@@ -101,0 +104,6 @@
++            continue
++        # Una estructura inferior situada bastante por DEBAJO de ambas manos
++        # no es la barra que estas sujetan, aunque YOLO la llame BAR y su caja
++        # caiga sobre la caja amplia de la persona (bp_662/663 RAW a 960).
++        if (altura_manos is not None
++                and (float(np.median(ys)) - altura_manos) > 0.03 * forma[0]):
+@@ -257 +265,2 @@
+-                            texto_banco="", numero_barras=0, estimacion_barra=None):
++                            texto_banco="", numero_barras=0, estimacion_barra=None,
++                            barras_raw=0):
+@@ -261 +270,8 @@
+-    estado = "Sin persona detectada" if persona is None else "Sin barra dentro de persona/munecas"
++    if persona is None:
++        estado = ("Sin persona segmentada; BAR detectada por visor"
++                  if barras_raw else "Sin persona detectada")
++    elif barra is None:
++        estado = ("BAR detectada por visor; identidad no verificada"
++                  if barras_raw else "BAR no detectada por visor")
++    else:
++        estado = "Relación barra-silueta no evaluable"
+@@ -584,0 +601,2 @@
++            barras_raw = sum(resultado_seg.names[int(caja.cls.item())] == "bar"
++                             for caja in resultado_seg.boxes)
+@@ -599 +617,2 @@
+-                                    estimaciones.get(frame_indice) if numero_barras == 0 else None)
++                                    estimaciones.get(frame_indice) if numero_barras == 0 else None,
++                                    barras_raw)

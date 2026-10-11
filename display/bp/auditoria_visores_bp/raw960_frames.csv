@@ -1,0 +1,11 @@
+video_id,frame,instance_index,confidence,bbox,fraccion_persona,fraccion_munecas,dy_barra_munecas_px,filtro_anterior,guardia_propuesta,fuente
+bp_535,50,201,0.7625508308410645,"[450, 376, 1440, 404]",0.0,0.2621103010242877,-189.671630859375,0,0,segmentation\bp\front\raw\bp_535_segmentation.npz
+bp_537,60,234,0.795204222202301,"[451, 377, 1448, 404]",0.0,0.10384885148167632,-143.622802734375,0,0,segmentation\bp\front\raw\bp_537_segmentation.npz
+bp_537,125,487,0.783591091632843,"[453, 378, 1434, 406]",0.0,0.3437929258241758,-189.0516357421875,0,0,segmentation\bp\front\raw\bp_537_segmentation.npz
+bp_662,18,75,0.747054398059845,"[639, 314, 1206, 361]",1.0,1.0,-35.484619140625,1,1,segmentation\bp\front\raw\bp_662_segmentation.npz
+bp_662,18,76,0.2954575717449188,"[629, 438, 1228, 472]",1.0,1.0,79.515380859375,1,0,segmentation\bp\front\raw\bp_662_segmentation.npz
+bp_662,19,80,0.6602110266685486,"[625, 438, 1230, 472]",1.0,1.0,69.90621948242188,1,0,segmentation\bp\front\raw\bp_662_segmentation.npz
+bp_663,10,43,0.8203877806663513,"[630, 305, 1202, 346]",1.0,1.0,-32.4827880859375,1,1,segmentation\bp\front\raw\bp_663_segmentation.npz
+bp_663,11,47,0.6545299887657166,"[632, 437, 1214, 472]",1.0,1.0,90.054443359375,1,0,segmentation\bp\front\raw\bp_663_segmentation.npz
+bp_663,18,74,0.8565620183944702,"[642, 409, 1199, 456]",1.0,1.0,-39.42132568359375,1,1,segmentation\bp\front\raw\bp_663_segmentation.npz
+bp_663,51,207,0.794462263584137,"[630, 310, 1201, 356]",1.0,1.0,-30.1488037109375,1,1,segmentation\bp\front\raw\bp_663_segmentation.npz

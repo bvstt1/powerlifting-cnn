@@ -1,0 +1,30 @@
+{
+  "fase": "actual-before",
+  "python": "3.10.11",
+  "opencv": "4.13.0",
+  "ultralytics": "8.4.137",
+  "segmentacion": {
+    "imgsz_front": 960,
+    "imgsz_side": 960,
+    "conf": 0.25,
+    "iou": 0.7,
+    "retina_masks": false,
+    "vid_stride": 1
+  },
+  "pose": {
+    "imgsz_front": 960,
+    "imgsz_side": 960,
+    "conf": 0.25,
+    "iou": 0.7
+  },
+  "modelos_sha256": {
+    "bp_side_seg_v1.pt": "fe5a16487108c5dc0c124a26bee4f484c88e8fb1986b9df93a324cf5b627a801",
+    "bp_side_skeleton_v2.pt": "d5724149b88a72c64403e4ea687bff2a71cfa34578b417d4b9d60b03e3ac1a80",
+    "bp_front_seg_v2.pt": "22514988978ac6bb0c9b86e14b37043a58912ca0e30be3da20571c9172020f38",
+    "bp_front_skeleton_v8.pt": "ff6b67374b50e9e98cab732ecbcc26ad80e5a41daac5f64a22c7c6fcffdd09dd"
+  },
+  "fuente_original_data_yaml_lateral": "No presente en workspace; checkpoint apunta a /content/bp_side-2/data.yaml",
+  "fuente_original_documentacion": "False",
+  "raw_front_preexistente": "imgsz960/retina_masks=True: mascara RAW difiere del visor retina_masks=False",
+  "interpretacion": "BASELINE REAL: checkpoints originales ya inferian imgsz960"
+}

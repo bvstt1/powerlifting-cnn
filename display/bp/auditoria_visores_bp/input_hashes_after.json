@@ -1,0 +1,15 @@
+{
+  "models/bp/bp_side_seg_v1.pt": "fe5a16487108c5dc0c124a26bee4f484c88e8fb1986b9df93a324cf5b627a801",
+  "models/bp/bp_side_skeleton_v2.pt": "d5724149b88a72c64403e4ea687bff2a71cfa34578b417d4b9d60b03e3ac1a80",
+  "models/bp/bp_front_seg_v2.pt": "22514988978ac6bb0c9b86e14b37043a58912ca0e30be3da20571c9172020f38",
+  "models/bp/bp_front_skeleton_v8.pt": "ff6b67374b50e9e98cab732ecbcc26ad80e5a41daac5f64a22c7c6fcffdd09dd",
+  "etiquetado/bp/bp_front.csv": "baa94bd939f74b158884946f0d9936c9dc2fcc5dcb6e4eaef9fbf3c229dc9662",
+  "etiquetado/bp/bp_left.csv": "8b9fbf61ed8337a2c9dbbdbce094fe1a464758558fcedd383d894ae5a08233d5",
+  "etiquetado/bp/bp_right.csv": "0d268e4f0f8b0353a7e872daaabb5c15b1ea9e69085d132fc50d53338976fb0a",
+  "segmentation/bp/front/raw/bp_535_segmentation.npz": "f9959c42852e854b0fcbce2e1b0ebf94173a984691cc661ff51c4672da589248",
+  "segmentation/bp/front/raw/bp_537_segmentation.npz": "039995dd52d49d414d4aee96fc2ebb3b2dd56f5bef30faa7b8b0dc08310c62e3",
+  "segmentation/bp/front/raw/bp_662_segmentation.npz": "bd39f6bbd0b08cc473be2ac4609f577630813931ee84b2aea0cab5bb3e65a146",
+  "segmentation/bp/front/raw/bp_663_segmentation.npz": "6e941290fe3fab5ddb94422566da736c488f40dc1b5810ac021d7209f5f77c81",
+  "training/models/bp/front/posecnn/bp_front_pose_best_model.pth": "78877ac297f20582adcb988d5b1624f6a91d51e3b469c752ca7df8356b5b1530",
+  "training/data/bp/front/bp_front_pose_split.csv": "d4233ef8f4fa2a77320a50134ec6503d1836a9cd41a14027a614e05f01128261"
+}
