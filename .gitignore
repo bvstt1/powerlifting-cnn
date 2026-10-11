@@ -2,5 +2,6 @@
 .idea
 dataset
 /display/pruebas
+/display/bp/auditoria_visores_bp/
 __pycache__/
 *.py[cod]

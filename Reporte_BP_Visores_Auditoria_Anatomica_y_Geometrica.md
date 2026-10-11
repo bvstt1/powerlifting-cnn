@@ -28,6 +28,29 @@ automáticamente esos casos aumentaría cobertura sin demostrar precisión.
 redes, sin cambiar pesos ni tracking y sin producir el dataset completo de
 features. No se ha demostrado contacto físico barra-pecho en ninguna vista.
 
+### Política de versionado de resultados
+
+**Los resultados producidos por `display/bp/audit_visores_bp.py` no se
+versionan.** La carpeta `display/bp/auditoria_visores_bp/` está ignorada por
+Git: sus JPG, CSV, JSON, snapshots y diff se conservan solamente en el
+workspace donde se ejecutó la auditoría. Los enlaces a esa carpeta dentro de
+este reporte son **rutas locales**; no estarán disponibles al clonar el
+repositorio hasta regenerar los resultados con los videos y modelos
+correspondientes. Se versionan este informe, el código de los visores y el
+script de auditoría, no las salidas del script.
+
+El script permite capturar una nueva referencia local con
+`--phase actual-before` **antes** de futuros cambios y comparar luego con
+`--phase actual-after`, `--phase actual-compare` y `--phase verify`. Para
+repetir controles concretos están `--phase raw-controls`, `--phase mp-right`
+y `--phase temporal`. La comparación histórica descrita aquí usó snapshots
+`source_before/` capturados durante la auditoría: **una clonación nueva no
+puede reconstruir retrospectivamente esos snapshots exactos** a partir del
+commit previo porque `yolo_seg_bp_front.py` ya contenía trabajo local no
+confirmado antes de comenzar. Los resultados históricos permanecen
+documentados numéricamente en este reporte, sin presentar una regeneración
+futura como si fuera idéntica.
+
 ## 1. Fuentes examinadas y trazabilidad
 
 - Código: [`display/bp/yolo_seg_bp_side.py`](display/bp/yolo_seg_bp_side.py),
@@ -340,7 +363,8 @@ filtro**, sin etiquetas de validez para calibrar.
 - No se realizaron flips, splits, cambios de etiquetas, entrenamiento o
   ajuste de checkpoints.
 
-**Artefactos:**
+**Artefactos:** las rutas bajo `auditoria_visores_bp/` son locales e
+ignoradas por Git según la política anterior.
 
 | Entregable | Ubicación |
 |---|---|

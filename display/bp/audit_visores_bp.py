@@ -345,11 +345,10 @@ def procesar(fase):
     previo = fase.endswith("before")
     destino = OUTPUT / fase
     snapshot = OUTPUT / "source_before"
-    if fase == "before":
-        if snapshot.is_dir() and any(snapshot.iterdir()):
-            raise FileExistsError("El snapshot BEFORE ya existe: no sobrescribir fuentes iniciales")
+    if fase == "before" and snapshot.is_dir() and any(snapshot.iterdir()):
+        raise FileExistsError("El snapshot BEFORE ya existe: no sobrescribir fuentes iniciales")
     destino.mkdir(parents=True, exist_ok=True)
-    if fase == "before":
+    if previo and (not snapshot.is_dir() or not any(snapshot.iterdir())):
         snapshot.mkdir(parents=True, exist_ok=True)
         for ruta in SCRIPTS:
             (snapshot / (ruta.name + ".txt")).write_bytes((ROOT / ruta).read_bytes())
@@ -386,7 +385,7 @@ def procesar(fase):
                   "fuente_original_data_yaml_lateral": "No presente en workspace; checkpoint apunta a /content/bp_side-2/data.yaml",
                   "fuente_original_documentacion": str((ROOT / "Documentacion_BP_Visores_Segmentacion_y_CNN.md").exists()),
                   "raw_front_preexistente": "imgsz960/retina_masks=True: mascara RAW difiere del visor retina_masks=False",
-                  "interpretacion": ("BASELINE REAL: checkpoints originales ya inferian imgsz960"
+                  "interpretacion": ("BASELINE local a imgsz960: snapshot source_before; no recrea retrospectivamente una fuente perdida"
                                      if actual else "EXPERIMENTO FORZADO imgsz640: NO es el default del visor")}
     for vista, videos in CASES.items():
         ejercicio = "front" if vista == "front" else "side"
