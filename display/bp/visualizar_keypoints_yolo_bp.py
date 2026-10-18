@@ -23,14 +23,14 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 MODEL_ROOT = PROJECT_ROOT / "models" / "bp"
 
 # CONFIG: cambia la vista, el modelo o el video aqui.
-VISTA = "front"  # "front", "left" o "right"
+VISTA = "left"  # "front", "left" o "right"
 MODELOS = {
     "front": "bp_front_skeleton_v8.pt",
     "left": "bp_side_skeleton_v2.pt",
     "right": "bp_side_skeleton_v2.pt",
 }
 MODEL_PATH = MODEL_ROOT / MODELOS[VISTA]
-VIDEO_PATH = PROJECT_ROOT / "dataset" / "bp" / VISTA / "bp_630.mp4"
+VIDEO_PATH = PROJECT_ROOT / "dataset" / "bp" / VISTA / "bp_001.mp4"
 
 NOMBRES = {
     "front": ("codo izq", "hombro izq", "hombro der",

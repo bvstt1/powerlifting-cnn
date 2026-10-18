@@ -25,7 +25,7 @@ from mediapipe.tasks.python.core.base_options import BaseOptions
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 # CONFIG: elige aqui la vista y el video.
-VISTA = "right"  # "front", "left" o "right"
+VISTA = "front"  # "front", "left" o "right"
 VIDEO_PATH = PROJECT_ROOT / "dataset" / "dl" / VISTA / "dl_373.mp4"
 
 MODEL_PATH = PROJECT_ROOT / "models" / "common" / "pose_landmarker_heavy.task"

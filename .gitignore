@@ -1,7 +1,27 @@
-.venv
-.idea
-dataset
-/display/pruebas
+# Solo scripts y etiquetas vigentes de valido/nulo.
+*
+!*/
+!*.py
+!/.gitignore
+!/AGENTS.md
+!/etiquetado/*/*.csv
+!/display/sq/BAR_TRACKING_SQ.md
+!/display/sq/third_party/barbell-path-tracker-LICENSE
+
+# Los backups de etiquetas no son el ground truth vigente.
+**/*_pre_manual_audit.csv
+
+# No recorrer directorios con datos, modelos ni resultados generados.
+/.venv/
+/.idea/
+/dataset/
+/keypoints/
+/models/
+/runs/
+/training/data/
+/training/models/
+/training/results/
+/display/pruebas/
 /display/bp/auditoria_visores_bp/
-__pycache__/
-*.py[cod]
+/display/sq/bar_diagnostics/
+**/__pycache__/
