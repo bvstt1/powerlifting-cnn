@@ -1,26 +1,57 @@
-# Solo scripts y etiquetas vigentes de valido/nulo.
+# Scripts, etiquetas vigentes y respaldos historicos documentados.
 *
 !*/
 !*.py
 !/.gitignore
 !/AGENTS.md
 !/etiquetado/*/*.csv
+!/etiquetado/historico/README.md
+!/etiquetado/historico/sq/*.csv.bak
+!/extract_segmentation/README.md
+!/extract_segmentation/bp/tracking_front_v2/README.md
+!/extract_segmentation/bp/tracking_front_v3/README.md
+!/segmentation/bp/README.md
+!/segmentation/bp/front/README.md
+!/segmentation/bp/front/pose_guided/**
+!/segmentation/bp/left/README.md
+!/segmentation/bp/right/README.md
 !/display/sq/BAR_TRACKING_SQ.md
 !/display/sq/third_party/barbell-path-tracker-LICENSE
+!/training/README.md
+!/training/docs/*.md
+!/training/docs/migration_artifact_manifest.json
+!/training/docs/bp/Reporte_*.md
+!/training/bp/experiments/*/Reporte_*.md
 
-# Los backups de etiquetas no son el ground truth vigente.
+# Solo se publican los backups documentados en etiquetado/historico/.
 **/*_pre_manual_audit.csv
+!/etiquetado/historico/dl/*_pre_manual_audit.csv
 
-# No recorrer directorios con datos, modelos ni resultados generados.
+# Copias operativas de etiquetado en display (ya rastreadas, sin descender pasan por '*').
+!display/bp/bp_laterales.csv
+!display/bp/bp_press_lateral_command.csv
+
+# Historicos PoseCNN migrados (los destinos deben quedar visibles para Git).
+!/training/data/bp/front/posecnn/*
+!/training/data/dl/shared/*
+!/training/data/dl/*/posecnn/*/*
+!/training/models/bp/front/posecnn/runs/legacy_default/**
+!/training/results/bp/front/posecnn/runs/legacy_default/**
+!/training/models/dl/*/posecnn/runs/**
+!/training/results/dl/*/posecnn/runs/**
+!/training/results/dl/shared/posecnn/runs/**
+
+# NPZ/PKL binarios regenerables del pipeline 01-04 (augmented_data.npz > 50 MB bloquea GitHub).
+training/data/bp/front/posecnn/*.npz
+training/data/dl/*/posecnn/*/*.npz
+
+# Otros datos/modelos/resultados siguen ignorados por la regla general '*'.
 /.venv/
 /.idea/
 /dataset/
 /keypoints/
 /models/
 /runs/
-/training/data/
-/training/models/
-/training/results/
 /display/pruebas/
 /display/bp/auditoria_visores_bp/
 /display/sq/bar_diagnostics/
