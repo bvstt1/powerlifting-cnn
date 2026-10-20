@@ -13,7 +13,7 @@ from training.common.train_utils import compute_metrics
 
 
 SCRIPT_DIR = Path(__file__).resolve().parents[1]
-QUALITY_PATH = SCRIPT_DIR / "data" / "dl" / "manual_quality_audit.csv"
+QUALITY_PATH = SCRIPT_DIR / "data" / "dl" / "shared" / "manual_quality_audit.csv"
 RESULTS_ROOT = SCRIPT_DIR / "results" / "dl"
 PROFILES = ("left", "right", "side")
 V2 = "baseline_v2"
@@ -59,7 +59,7 @@ def quality_analysis():
     all_results = {}
 
     for profile in PROFILES:
-        path = RESULTS_ROOT / profile / V3 / "predictions.csv"
+        path = RESULTS_ROOT / profile / "posecnn" / "runs" / V3 / "predictions.csv"
         predictions = pd.read_csv(path, dtype={"physical_event": str})
         keys = list(zip(predictions["physical_event"], predictions["source_view"]))
         assert not (set(keys) & excluded_keys), (
@@ -69,7 +69,7 @@ def quality_analysis():
             "QUALITY_WARNING" if key in warning_keys else "CLEAN" for key in keys
         ]
         predictions.to_csv(
-            RESULTS_ROOT / profile / V3 / "predictions_with_quality.csv",
+            RESULTS_ROOT / profile / "posecnn" / "runs" / V3 / "predictions_with_quality.csv",
             index=False,
         )
         result = {
@@ -79,7 +79,7 @@ def quality_analysis():
             for subset in ("CLEAN", "QUALITY_WARNING")
         }
         all_results[f"dl_{profile}"] = result
-        (RESULTS_ROOT / profile / V3 / "quality_subset_metrics.json").write_text(
+        (RESULTS_ROOT / profile / "posecnn" / "runs" / V3 / "quality_subset_metrics.json").write_text(
             json.dumps(result, indent=2), encoding="utf-8"
         )
 
@@ -94,13 +94,13 @@ def comparison(quality_results):
     rows = []
 
     for profile in PROFILES:
-        v2_metrics = np.load(RESULTS_ROOT / profile / V2 / "metrics.npz")
-        v3_metrics = np.load(RESULTS_ROOT / profile / V3 / "metrics.npz")
+        v2_metrics = np.load(RESULTS_ROOT / profile / "posecnn" / "runs" / V2 / "metrics.npz")
+        v3_metrics = np.load(RESULTS_ROOT / profile / "posecnn" / "runs" / V3 / "metrics.npz")
         v2_cv = json.loads(
-            (RESULTS_ROOT / profile / V2_CV / "cv_summary.json").read_text()
+            (RESULTS_ROOT / profile / "posecnn" / "runs" / V2_CV / "cv_summary.json").read_text()
         )
         v3_cv = json.loads(
-            (RESULTS_ROOT / profile / V3_CV / "cv_summary.json").read_text()
+            (RESULTS_ROOT / profile / "posecnn" / "runs" / V3_CV / "cv_summary.json").read_text()
         )
         rows.append({
             "profile": f"dl_{profile}",
@@ -123,7 +123,7 @@ def comparison(quality_results):
             "quality_test": quality_results[f"dl_{profile}"],
         })
 
-    output_dir = RESULTS_ROOT / V3
+    output_dir = RESULTS_ROOT / "shared" / "posecnn" / "runs" / V3
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "v2_v3_comparison.json").write_text(
         json.dumps(rows, indent=2), encoding="utf-8"

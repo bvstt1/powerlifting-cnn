@@ -15,9 +15,9 @@ PROFILES = {
         "view": "front",
         "keypoints_dir": PROJECT_DIR / "keypoints" / "dl" / "mediapipe" / "front",
         "csv_path": PROJECT_DIR / "etiquetado" / "dl" / "dl_front.csv",
-        "data_dir": SCRIPT_DIR / "data" / "dl" / "front",
-        "model_dir": SCRIPT_DIR / "models" / "dl" / "front",
-        "results_dir": SCRIPT_DIR / "results" / "dl" / "front",
+        "data_dir": SCRIPT_DIR / "data" / "dl" / "front" / "posecnn",
+        "model_dir": SCRIPT_DIR / "models" / "dl" / "front" / "posecnn" / "runs" / "legacy_default",
+        "results_dir": SCRIPT_DIR / "results" / "dl" / "front" / "posecnn" / "runs" / "legacy_default",
         "expected_keypoints": 25,
         "normalization": "dl_front",
         "split_strategy": "stratified",
@@ -29,9 +29,9 @@ PROFILES = {
         "view": "side",
         "keypoints_dir": PROJECT_DIR / "keypoints" / "dl" / "yolo" / "side",
         "csv_path": PROJECT_DIR / "etiquetado" / "dl" / "dl_side.csv",
-        "data_dir": SCRIPT_DIR / "data" / "dl" / "side",
-        "model_dir": SCRIPT_DIR / "models" / "dl" / "side",
-        "results_dir": SCRIPT_DIR / "results" / "dl" / "side",
+        "data_dir": SCRIPT_DIR / "data" / "dl" / "side" / "posecnn",
+        "model_dir": SCRIPT_DIR / "models" / "dl" / "side" / "posecnn" / "runs" / "legacy_default",
+        "results_dir": SCRIPT_DIR / "results" / "dl" / "side" / "posecnn" / "runs" / "legacy_default",
         "expected_keypoints": 2,
         "normalization": "dl_side",
         "split_strategy": "grouped",
@@ -43,9 +43,9 @@ PROFILES = {
         "view": "left",
         "keypoints_dir": PROJECT_DIR / "keypoints" / "dl" / "yolo" / "left",
         "csv_path": PROJECT_DIR / "etiquetado" / "dl" / "dl_left.csv",
-        "data_dir": SCRIPT_DIR / "data" / "dl" / "left",
-        "model_dir": SCRIPT_DIR / "models" / "dl" / "left",
-        "results_dir": SCRIPT_DIR / "results" / "dl" / "left",
+        "data_dir": SCRIPT_DIR / "data" / "dl" / "left" / "posecnn",
+        "model_dir": SCRIPT_DIR / "models" / "dl" / "left" / "posecnn" / "runs" / "legacy_default",
+        "results_dir": SCRIPT_DIR / "results" / "dl" / "left" / "posecnn" / "runs" / "legacy_default",
         "expected_keypoints": 2,
         "normalization": "dl_side",
         "split_strategy": "grouped",
@@ -58,9 +58,9 @@ PROFILES = {
         "view": "right",
         "keypoints_dir": PROJECT_DIR / "keypoints" / "dl" / "yolo" / "right",
         "csv_path": PROJECT_DIR / "etiquetado" / "dl" / "dl_right.csv",
-        "data_dir": SCRIPT_DIR / "data" / "dl" / "right",
-        "model_dir": SCRIPT_DIR / "models" / "dl" / "right",
-        "results_dir": SCRIPT_DIR / "results" / "dl" / "right",
+        "data_dir": SCRIPT_DIR / "data" / "dl" / "right" / "posecnn",
+        "model_dir": SCRIPT_DIR / "models" / "dl" / "right" / "posecnn" / "runs" / "legacy_default",
+        "results_dir": SCRIPT_DIR / "results" / "dl" / "right" / "posecnn" / "runs" / "legacy_default",
         "expected_keypoints": 2,
         "normalization": "dl_side",
         "split_strategy": "grouped",
@@ -83,8 +83,10 @@ PROFILES = {
 DL_LEFT_GAP_EVENT = 310
 
 # Particion comun de eventos fisicos compartida por dl_left y dl_right.
-COMMON_EVENT_SPLIT_PATH = SCRIPT_DIR / "data" / "dl" / "event_split.npz"
-MANUAL_LABEL_AUDIT_PATH = SCRIPT_DIR / "data" / "dl" / "manual_label_audit.csv"
+DL_SHARED_DATA_DIR = SCRIPT_DIR / "data" / "dl" / "shared"
+DL_SHARED_RESULTS_DIR = SCRIPT_DIR / "results" / "dl" / "shared" / "posecnn" / "runs"
+COMMON_EVENT_SPLIT_PATH = DL_SHARED_DATA_DIR / "event_split.npz"
+MANUAL_LABEL_AUDIT_PATH = DL_SHARED_DATA_DIR / "manual_label_audit.csv"
 
 
 def get_config(profile_name):

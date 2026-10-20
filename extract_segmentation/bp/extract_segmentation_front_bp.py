@@ -1,3 +1,10 @@
+"""Extrae máscaras YOLO de barra, banco y persona en vídeos BP front.
+
+Guarda todas las detecciones en RAW y calcula tracks/features iniciales,
+manifiestos y métricas de calidad en segmentation/bp/front/. Usa el checkpoint
+bp_front_seg_v2.pt; no entrena la CNN ni aplica los experimentos V2/V3.
+"""
+
 import argparse
 import csv
 import json

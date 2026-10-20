@@ -1,4 +1,8 @@
-"""Informes descriptivos de secuencias congeladas; no examina labels ni entrena."""
+"""Resume las secuencias temporales BP left/right ya congeladas.
+
+Genera informes de calidad, cobertura y procedencia a partir de los
+artefactos de extracción; no examina etiquetas ni entrena clasificadores.
+"""
 import csv
 import json
 from pathlib import Path

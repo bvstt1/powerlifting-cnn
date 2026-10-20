@@ -3,8 +3,7 @@
 Uso (desde la raiz del repo):
     python -m training.sq.train_posecnn --view front --stage audit
     python -m training.sq.train_posecnn --view front --stage all --run-id baseline_t170_v1
-Repetir con --view left. `all` audita, prepara, ejecuta CV y finalmente test.
-Solo existen front y left (sin CSV de right).
+Repetir con --view left/right. `all` audita, prepara, ejecuta CV y finalmente test.
 La preparacion estable vive en training/data/sq/<view>/posecnn; cada ejecucion
 guarda modelos en training/models/sq/<view>/posecnn/runs/<run-id> y resultados
 (incluidos logs) en training/results/sq/<view>/posecnn/runs/<run-id>.
@@ -36,7 +35,7 @@ from training.common.train_utils import PoseCNN, augment_dataset
 
 ROOT = Path(__file__).resolve().parents[2]
 EXERCISE = "sq"
-VIEWS = ("front", "left")
+VIEWS = ("front", "left", "right")
 DEFAULT_RUN_ID = "baseline_t170_v1"
 SEED = 42
 FRAMES = 170
@@ -76,6 +75,12 @@ VIEW_CONFIGS = {
         # Centro fijo: mediana temporal de la cadera (1); escala fija:
         # mediana del segmento rodilla-tobillo (0,2), rigido (tibia), de
         # modo que el descenso de cadera (profundidad) se conserva.
+        "center_index": 1,
+        "scale_pair": (0, 2),
+    },
+    "right": {
+        "keypoints": 5,
+        "points": ("rodilla", "cadera", "tobillo", "punta", "talon"),
         "center_index": 1,
         "scale_pair": (0, 2),
     },
@@ -369,7 +374,7 @@ def resample(data, center, scale, target_frames=FRAMES):
     return result, center.astype(np.float32), float(scale)
 
 
-PREPROCESSORS = {"front": preprocess_front, "left": preprocess_left}
+PREPROCESSORS = {"front": preprocess_front, "left": preprocess_left, "right": preprocess_left}
 
 
 def prepare(view):
@@ -548,7 +553,7 @@ def config(view, run_id=DEFAULT_RUN_ID, subset="all"):
                     "boundary_gaps": "exclude", "missing_confidence": "zero_for_missing_frames"},
         "normalization": ("median shoulder-midpoint center + median intershoulder scale (front)"
                           if view == "front" else
-                          "median hip center + median knee-ankle (shank) scale (left)"),
+                           "median hip center + median knee-ankle (shank) scale (lateral)"),
         "temporal": "linear 170 frames over complete original sequence",
         "split": "70/15/15 stratified per view; video_id exclusive",
         "scaler": "StandardScaler on flattened (170*K*3) features, fit original train only",

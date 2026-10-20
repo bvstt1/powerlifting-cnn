@@ -20,30 +20,30 @@ TRAINING_DIR = Path(__file__).resolve().parents[1]
 PROJECT_ROOT = TRAINING_DIR.parent
 
 PREDICTIONS_PATH = (
-    TRAINING_DIR / "results" / "bp" / "front" / "posecnn"
+    TRAINING_DIR / "results" / "bp" / "front" / "posecnn" / "runs" / "legacy_default"
     / "bp_front_pose_test_predictions.csv"
 )
 SPLIT_PATH = (
-    TRAINING_DIR / "data" / "bp" / "front" / "bp_front_pose_split.csv"
+    TRAINING_DIR / "data" / "bp" / "front" / "posecnn" / "bp_front_pose_split.csv"
 )
 LABELS_PATH = PROJECT_ROOT / "etiquetado" / "bp" / "bp_front.csv"
 BASE_REPORT_PATH = PROJECT_ROOT / "Reporte_BP_FRONT_PoseCNN.md"
-AUDIT_PATH = TRAINING_DIR / "data" / "bp" / "front" / "bp_front_pose_audit.csv"
+AUDIT_PATH = TRAINING_DIR / "data" / "bp" / "front" / "posecnn" / "bp_front_pose_audit.csv"
 PREPROCESSING_MANIFEST_PATH = (
-    TRAINING_DIR / "data" / "bp" / "front"
+    TRAINING_DIR / "data" / "bp" / "front" / "posecnn"
     / "bp_front_pose_preprocessing_manifest.csv"
 )
 MODEL_PATH = (
-    TRAINING_DIR / "models" / "bp" / "front" / "posecnn"
+    TRAINING_DIR / "models" / "bp" / "front" / "posecnn" / "runs" / "legacy_default"
     / "bp_front_pose_best_model.pth"
 )
 SCALER_PATH = (
-    TRAINING_DIR / "models" / "bp" / "front" / "posecnn"
+    TRAINING_DIR / "models" / "bp" / "front" / "posecnn" / "runs" / "legacy_default"
     / "bp_front_pose_scaler.pkl"
 )
 
 OUTPUT_DIR = (
-    TRAINING_DIR / "results" / "bp" / "front" / "posecnn" / "analysis"
+    TRAINING_DIR / "results" / "bp" / "front" / "posecnn" / "runs" / "legacy_default" / "analysis"
 )
 BY_CODE_PATH = OUTPUT_DIR / "bp_front_pose_test_by_fault_code.csv"
 INVALID_SAMPLES_PATH = OUTPUT_DIR / "bp_front_pose_test_invalid_samples.csv"

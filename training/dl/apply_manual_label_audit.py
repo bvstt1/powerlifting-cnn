@@ -19,14 +19,15 @@ from training.configs.training_config import get_config, physical_event
 SCRIPT_DIR = Path(__file__).resolve().parents[1]
 PROJECT_DIR = SCRIPT_DIR.parent
 LABEL_DIR = PROJECT_DIR / "etiquetado" / "dl"
-DATA_DIR = SCRIPT_DIR / "data" / "dl"
+HISTORY_DIR = PROJECT_DIR / "etiquetado" / "historico" / "dl"
+DATA_DIR = SCRIPT_DIR / "data" / "dl" / "shared"
 
 LEFT_PATH = LABEL_DIR / "dl_left.csv"
 RIGHT_PATH = LABEL_DIR / "dl_right.csv"
 SIDE_PATH = LABEL_DIR / "dl_side.csv"
-LEFT_BACKUP = LABEL_DIR / "dl_left_pre_manual_audit.csv"
-RIGHT_BACKUP = LABEL_DIR / "dl_right_pre_manual_audit.csv"
-SIDE_BACKUP = LABEL_DIR / "dl_side_pre_manual_audit.csv"
+LEFT_BACKUP = HISTORY_DIR / "dl_left_pre_manual_audit.csv"
+RIGHT_BACKUP = HISTORY_DIR / "dl_right_pre_manual_audit.csv"
+SIDE_BACKUP = HISTORY_DIR / "dl_side_pre_manual_audit.csv"
 
 
 # physical_event, left_id, right_id, new_left, new_right, quality_flag

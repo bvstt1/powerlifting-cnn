@@ -1,4 +1,8 @@
-"""Acceso solo lectura a RAW lateral; todas las coordenadas son originales."""
+"""Lee y valida instancias RAW BP lateral V1 sin alterar archivos.
+
+Comprueba el esquema, frames, offsets y máscaras antes de entregar la
+geometría original de cada detección a las features temporales.
+"""
 import json
 import numpy as np
 

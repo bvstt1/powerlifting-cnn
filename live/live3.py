@@ -1,3 +1,9 @@
+"""Muestra la pose MediaPipe en vivo desde la cámara de índice 2.
+
+Dibuja puntos y conexiones visibles para comprobar encuadre y detección;
+pulsa ESC para cerrar. No graba vídeo ni clasifica el levantamiento.
+"""
+
 import cv2
 import numpy as np
 import mediapipe as mp

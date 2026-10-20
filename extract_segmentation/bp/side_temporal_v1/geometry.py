@@ -1,4 +1,8 @@
-"""Geometría lateral sobre crops binarios; sin tracking ni inferencia YOLO."""
+"""Calcula geometría BP lateral sobre máscaras crop y puntos de pose.
+
+Apoya la extracción de features de barra, persona y banco sin volver a
+ejecutar YOLO ni crear tracks temporales en el RAW.
+"""
 import numpy as np
 
 CONF_POSE = 0.5

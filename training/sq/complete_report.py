@@ -18,6 +18,11 @@ def main():
     assert select["selected_variant"] == "D"
     d = paths("D")
     left = sq.paths("left", "baseline_t170_v2")
+    right = sq.paths("right", "point_xy_v1")
+    right_test = json.loads((right["results"] / "test_metrics.json").read_text(encoding="utf-8"))
+    right_cv = json.loads((right["results"] / "cv_summary.json").read_text(encoding="utf-8"))
+    right_ref = sq.paths("right", "baseline_t170_v2")
+    right_ref_cv = json.loads((right_ref["results"] / "cv_summary.json").read_text(encoding="utf-8"))
     left_data = json.loads((left["results"] / "complete_metrics_recovered.json").read_text(encoding="utf-8"))
     d_test = json.loads((d["results"] / "test_metrics.json").read_text(encoding="utf-8"))
     d_val = json.loads((d["results"] / "validation_metrics.json").read_text(encoding="utf-8"))
@@ -66,11 +71,11 @@ def main():
                     [r["probability_valid"] for r in validation_rows], threshold)
         thresholds.append(f"| {threshold:.1f} | {m['matrix']} | {m['recall_invalid']:.4f} | {m['recall_valid']:.4f} | {m['balanced_accuracy']:.4f} |")
     matrix = d_test["matrix"]
-    text = f"""# SQ PoseCNN — tanda frontal controlada y métricas recuperadas de left v2
+    text = f"""# SQ PoseCNN — front, left y right: ejecuciones independientes
 
 ## Alcance y trazabilidad
 
-- Dos modelos independientes: `sq_front` (YOLO 16 pts; subset K10) y `sq_left` (YOLO K5). Etiquetas: 0=inválido, 1=válido; matriz de confusión **filas reales [0,1], columnas predichas [0,1]**, `[[TN,FP],[FN,TP]]`. Umbral fijo 0.5.
+- Tres modelos independientes: `sq_front` (YOLO 16 pts; subset K10), `sq_left` y `sq_right` (YOLO K5 cada uno). Etiquetas: 0=inválido, 1=válido; matriz de confusión **filas reales [0,1], columnas predichas [0,1]**, `[[TN,FP],[FN,TP]]`. Umbral fijo 0.5.
 - Referencias intactas: `baseline_t170_v1` (front K16), `baseline_t170_k10` (front), `baseline_t170_v2` (left). Snapshots verificables en `training/models/sq/<vista>/posecnn/runs/<run>/provenance/` (`split.npz`, `split.csv`, cinco `fold_*_membership.csv`, SHA-256 e IDs en `manifest.json`). No cambiaron particiones ni folds entre variantes front.
 - `training/data/sq/front/posecnn/runs/controlled_<a|b|c|d>/development.npz` aísla X/y de **377** development para cada configuración. No contiene X_test/y_test. `training/models` y `training/results` repiten ejercicio/vista/run. Config efectiva también en `training/models/.../config.json` (semillas 42/43–47, versiones, scaler y 102017 parámetros entrenables de la misma `PoseCNN` global-average-pooling; T/K NO cambian este número).
 - El test front había sido consultado antes en K16 y K10. Su lectura posterior en D es **exploratoria** y no se usó en la selección. Variantes A/B/C no tienen métricas test. No se seleccionaron seeds, longitudes adicionales ni umbral por test.
@@ -170,9 +175,12 @@ Curva left v2: {left_data['history']['n_epochs']} épocas, mejor checkpoint épo
 | Modelo | Test N | Acc | Balanced acc | Prec válido | Rec válido | F1 válido | F1 inválido | F1 macro | AUC | Matriz |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 | SQ front D (exploratorio) | 67 | {d_test['accuracy']:.4f} | {d_test['balanced_accuracy']:.4f} | {d_test['precision_valid']:.4f} | {d_test['recall_valid']:.4f} | {d_test['f1_valid']:.4f} | {d_test['f1_invalid']:.4f} | {d_test['f1_macro']:.4f} | {d_test['roc_auc']:.4f} | {d_test['matrix']} |
-| SQ left v2 (vigente, sin reentrenar) | 56 | {left_data['test']['accuracy']:.4f} | {left_data['test']['balanced_accuracy']:.4f} | {left_data['test']['precision_valid']:.4f} | {left_data['test']['recall_valid']:.4f} | {left_data['test']['f1_valid']:.4f} | {left_data['test']['f1_invalid']:.4f} | {left_data['test']['f1_macro']:.4f} | {left_data['test']['roc_auc']:.4f} | {left_data['test']['matrix']} |
+| SQ left `baseline_t170_v2` (referencia, test consultado previamente) | 56 | {left_data['test']['accuracy']:.4f} | {left_data['test']['balanced_accuracy']:.4f} | {left_data['test']['precision_valid']:.4f} | {left_data['test']['recall_valid']:.4f} | {left_data['test']['f1_valid']:.4f} | {left_data['test']['f1_invalid']:.4f} | {left_data['test']['f1_macro']:.4f} | {left_data['test']['roc_auc']:.4f} | {left_data['test']['matrix']} |
+| SQ right `point_xy_v1` (seleccionado por CV, test reservado) | {right_test['n']} | {right_test['accuracy']:.4f} | {right_test['balanced_accuracy']:.4f} | {right_test['precision_valid']:.4f} | {right_test['recall_valid']:.4f} | {right_test['f1_valid']:.4f} | {right_test['f1_invalid']:.4f} | {right_test['f1_macro']:.4f} | {right_test['roc_auc']:.4f} | {right_test['matrix']} |
 
 Comparación **descriptiva**: las vistas no representan necesariamente el mismo intento, ni sus test son pareados. No mezclar predictions ni usar ID igual como prueba de evento común.
+
+Right `baseline_t170_v2` es referencia **solo CV** (sin fit final ni test): balanced accuracy {right_ref_cv['balanced_accuracy']['mean']:.4f}±{right_ref_cv['balanced_accuracy']['std']:.4f}, F1 macro {right_ref_cv['f1_macro']['mean']:.4f}±{right_ref_cv['f1_macro']['std']:.4f}, recall inválidos {right_ref_cv['recall_invalid']['mean']:.4f}±{right_ref_cv['recall_invalid']['std']:.4f}. Right `point_xy_v1`: CV balanced accuracy {right_cv['balanced_accuracy']['mean']:.4f}±{right_cv['balanced_accuracy']['std']:.4f}, F1 macro {right_cv['f1_macro']['mean']:.4f}±{right_cv['f1_macro']['std']:.4f}, recall inválidos {right_cv['recall_invalid']['mean']:.4f}±{right_cv['recall_invalid']['std']:.4f}. Left `point_xy_v1` sigue siendo **candidato exploratorio** tras reutilización del test left v2; no mezclar sus números con left v2 en esta fila. Evidencia detallada de right: `training/results/sq/right/posecnn/runs/point_xy_v1/report.md` (folds, matrices, errores, códigos, curvas y predicciones), y `training/data/sq/right/posecnn/audit_summary.json`.
 
 ## Comandos reproducibles y controles
 
@@ -187,10 +195,19 @@ python -m training.sq.controlled_front --variant A --stage cv
 python -m training.sq.select_front
 python -m training.sq.controlled_front --variant D --stage fit-final
 python -m training.sq.controlled_front --variant D --stage evaluate-test
+python -m training.sq.controlled_right --stage audit
+python -m training.sq.controlled_right --stage prepare
+python -m training.sq.controlled_right --stage cv --variant temporal
+python -m training.sq.controlled_right --stage cv --variant point_xy
+python -m training.sq.controlled_right --stage select
+python -m training.sq.controlled_right --stage fit-final
+python -m training.sq.controlled_right --stage evaluate-test
+python -m training.sq.controlled_right --stage report
+python -m training.sq.controlled_right --stage verify
 python -m training.sq.complete_report
 ```
 
-`freeze`, `prepare`, `cv`, `fit-final`, `select_front` y `evaluate-test` protegen artefactos existentes contra reescrituras; usar run-id nuevo para repetir. Verificación: 15 pruebas OK; shapes e IDs de desarrollo, folds exactos, scaler fit solo en train original, checkpoint/scaler left v2, predicciones y config. `git diff --check` no detectó errores; Git mostró avisos de conversión LF/CRLF en archivos ajenos.
+Los entrenamientos existentes se conservan; las etapas controladas right bloquean repetir una salida final existente. Reproducir desde una copia de trabajo con los mismos datos locales; `report` y `verify` pueden repetirse aquí. Verificación de right: mismas membresías y etiquetas por fold, scaler fit solo en train original, test consultado tras selección.
 
 ## Pendientes reales
 
@@ -198,7 +215,7 @@ python -m training.sq.complete_report
 2. Auditoría de la procedencia de etiquetas alrededor de vídeos inexistentes `sq_148/sq_313`; no inferir mapeo entre vistas. Mantener labels como están hasta evidencia independiente.
 3. Repetir confirmación futura con otro holdout nunca consultado / nuevos levantamientos. D test actual es exploratorio.
 4. Investigar fases de espera mediante segmentación temporal validada solo en desarrollo; no recortar basado en test.
-5. Right: no hay CSV; ninguna red derecha entrenada.
+5. SQ right: revisar visualmente más secuencias, especialmente los cuatro errores test; confirmar en levantamientos nuevos. `sq_275` está etiquetado pero no tiene vídeo/pose; no se fabricó muestra. Retomar tracker por separado.
 """
     target = sq.ROOT / "training" / "docs" / "SQ_POSECNN_controlled_front_left_v2.md"
     target.write_text(text, encoding="utf-8")

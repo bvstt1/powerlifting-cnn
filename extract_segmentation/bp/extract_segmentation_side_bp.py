@@ -1,4 +1,8 @@
-"""Auditoría, extracción RAW y verificación independientes de BP left/right.
+"""Extrae máscaras YOLO en BP left/right sin tracking temporal.
+
+Audita vídeo y pose, procesa cada vista por separado con bp_side_seg_v1.pt,
+guarda RAW con máscaras y verifica su integridad. No genera las features
+temporales de side_temporal_v1 ni entrena clasificadores.
 
 Uso: python extract_segmentation/bp/extract_segmentation_side_bp.py --view left --phase audit
      python extract_segmentation/bp/extract_segmentation_side_bp.py --view left --phase pilot

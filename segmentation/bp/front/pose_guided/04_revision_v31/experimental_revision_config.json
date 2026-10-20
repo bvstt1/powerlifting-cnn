@@ -1,0 +1,18 @@
+{
+  "revision_id": "bp_front_pose_guided_v31_one_pass_dominance_1",
+  "status": "EXPERIMENTAL_DEVELOPMENT_ONLY",
+  "frozen_spec_sha256": "735befd58856d5d4156bf0ba4b169b2151aeec73e169d46553d67860e8c61855",
+  "reference_config": "../pose_guided_tracking_v31_prototype/experimental_config.json",
+  "algorithmic_scope": "Pareto bilateral mask/extension dominance with temporal persistence; safe handoff endpoint contextual corroboration",
+  "dominance_margin_ratio": 0.10,
+  "winner_max_mask_distance_ratio": 0.15,
+  "dominance_min_consecutive_frames": 3,
+  "handoff_context_min_observations": 3,
+  "parameter_metadata": {
+    "dominance_margin_ratio": {"unit": "wrist-span fraction", "justification": "competitor must be worse for EACH wrist in BOTH finite-mask distance and real-mask extension; bp_518/bp_520 show much larger margins but no identity ground truth on all frames", "status": "EXPLORATORY_NOT_VALIDATED"},
+    "winner_max_mask_distance_ratio": {"unit": "wrist-span fraction", "justification": "require candidate mask geometrically reachable by both wrists; does not replace bilateral signed-q/axis quality", "status": "EXPLORATORY_NOT_VALIDATED"},
+    "dominance_min_consecutive_frames": {"unit": "observed consecutive video frames", "justification": "reuse documented minimum multiframe support; no single-frame promotions", "status": "EXPLORATORY_NOT_VALIDATED"},
+    "handoff_context_min_observations": {"unit": "observed source/target frames", "justification": "compatible handoff alone is insufficient; require independent mask-quality support on both sides", "status": "EXPLORATORY_NOT_VALIDATED"}
+  },
+  "no_change": "All original Pose thresholds, V3 parameters, split criteria, and source files remain unchanged."
+}

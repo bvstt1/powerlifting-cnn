@@ -1,4 +1,4 @@
-"""Controles del pipeline PoseCNN de squat (front K=16, left K=5)."""
+"""Controles del pipeline PoseCNN de squat (front K=16, laterales K=5)."""
 
 import sys
 import tempfile
@@ -74,6 +74,21 @@ class SQLeftTests(unittest.TestCase):
 
 
 class SQSharedTests(unittest.TestCase):
+    def test_right_hip_knee_signal_and_confidence_scaler(self):
+        from training.sq.controlled_front import PointXYScaler
+        sequence = make_sample(5)
+        sequence[:, 0, :2] = [0.4, 0.6]
+        sequence[:, 2, :2] = [0.4, 0.9]
+        sequence[:, 1, 1] = np.linspace(0.4, 0.65, 20)
+        normalized, _, scale = pipeline.PREPROCESSORS["right"](sequence)
+        self.assertAlmostEqual(scale, 0.3, places=5)
+        self.assertAlmostEqual(normalized[0, 1, 1] - normalized[0, 0, 1], (0.4-0.6)/0.3, places=5)
+        self.assertAlmostEqual(normalized[-1, 1, 1] - normalized[-1, 0, 1], (0.65-0.6)/0.3, places=5)
+        X = np.stack([normalized, normalized + np.array([0.02, 0.01, 0], dtype=np.float32)])
+        scaler = PointXYScaler().fit(X[:1])
+        np.testing.assert_array_equal(scaler.transform(X)[..., 2], X[..., 2])
+        self.assertEqual(scaler.n_samples_seen_, 1)
+
     def test_augmentation_keeps_confidence(self):
         sequence, _, _ = preprocess_left(make_sample(5))
         original = np.stack([sequence])

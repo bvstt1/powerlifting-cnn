@@ -35,7 +35,7 @@ from training.common.train_utils import (
     verify_no_group_leakage,
     verify_split_shapes,
 )
-from training.configs.training_config import get_config
+from training.configs.training_config import get_config, get_event_split_path
 
 
 EXPERIMENT = "baseline_v2"
@@ -59,8 +59,8 @@ HISTORICAL = {
 
 
 def experiment_paths(config):
-    model_dir = config["model_dir"] / EXPERIMENT
-    results_dir = config["results_dir"] / EXPERIMENT
+    model_dir = config["model_dir"].parent / EXPERIMENT
+    results_dir = config["results_dir"].parent / EXPERIMENT
     model_dir.mkdir(parents=True, exist_ok=True)
     results_dir.mkdir(parents=True, exist_ok=True)
     return model_dir, results_dir
@@ -387,7 +387,7 @@ def load_experiment_model(profile):
 
 
 def paired_evaluation():
-    event_data = np.load(get_config("dl_left")["data_dir"].parent / "event_split.npz")
+    event_data = np.load(get_event_split_path())
     paired_events = set(event_data["paired_test_events"].astype(str))
     records = {}
     metrics = {}

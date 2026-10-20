@@ -1,4 +1,8 @@
-"""Pruebas con máscaras sintéticas y un caso RAW de desarrollo existente."""
+"""Prueba geometría y features laterales con máscaras sintéticas.
+
+Incluye un caso RAW de desarrollo existente para comprobar lectura y
+procedencia, sin evaluar el conjunto test del clasificador.
+"""
 import unittest
 from pathlib import Path
 

@@ -1,3 +1,10 @@
+"""Utilidades compartidas de segmentación BP front y formatos RAW/features.
+
+Codifica y valida máscaras, asocia detecciones entre frames, elige tracks
+principales y construye geometría e interacciones. Es un módulo de apoyo:
+no procesa vídeos por sí solo ni entrena modelos.
+"""
+
 import hashlib
 import json
 import math

@@ -1,0 +1,15 @@
+"""Uso: python -m training.bp.experiments.bp_left_03_fusion_v1.run --phase prepare|train|all."""
+import argparse
+from training.bp.experiments.bp_side_fusion_v1.data import prepare
+from training.bp.experiments.bp_side_fusion_v1.train import CONFIG, train_view
+
+
+def main():
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--phase",required=True,choices=("prepare","train","all"))
+    phase=p.parse_args().phase
+    if phase in ("prepare","all"):prepare("left",CONFIG)
+    if phase in ("train","all"):train_view("left")
+
+
+if __name__=="__main__":main()

@@ -1,0 +1,25 @@
+video_id,frame_index,review_scope,v3_mask_identity,competitor_identity,review_status,notes,preview
+bp_518,0,selected_frame_only,HELD_BAR,OTHER_OBJECT,VISUALLY_CONFIRMED,"Barra continua entre ambas manos; máscara competidora recorta extremo derecho del rack y no cubre ambas manos. No se extiende esta etiqueta a frames no inspeccionados.",diagnostic_previews/bp_518/frame_00000.jpg
+bp_518,30,selected_frame_only,HELD_BAR,OTHER_OBJECT,VISUALLY_CONFIRMED,"Barra superior sostenida y estructura corta derecha simultánea; las muñecas permanecen sobre la superior.",diagnostic_previews/bp_518/frame_00030.jpg
+bp_518,33,selected_frame_only,HELD_BAR,OTHER_OBJECT,VISUALLY_CONFIRMED,"La máscara V3 abarca el eje sostenido; competidor horizontal no llega a la muñeca izquierda.",diagnostic_previews/bp_518/frame_00033.jpg
+bp_518,69,selected_frame_only,HELD_BAR,OTHER_OBJECT,VISUALLY_CONFIRMED,"Justo antes de desaparecer el competidor; barra sostenida visible en toda la anchura entre manos.",diagnostic_previews/bp_518/frame_00069.jpg
+bp_518,70,selected_frame_only,HELD_BAR,NO_COMPETITOR,VISUALLY_CONFIRMED,"Primer frame sin candidato competidor: barra V3 preservada por versión previa.",diagnostic_previews/bp_518/frame_00070.jpg
+bp_518,160,selected_frame_only,HELD_BAR,NO_COMPETITOR,VISUALLY_CONFIRMED,"Control final: máscara sobre barra sostenida.",diagnostic_previews/bp_518/frame_00160.jpg
+bp_520,0,selected_frame_only,HELD_BAR,OTHER_OBJECT,VISUALLY_CONFIRMED,"Barra sobre ambas manos; competidor corresponde a estructura/rack lateral corto.",diagnostic_previews/bp_520/frame_00000.jpg
+bp_520,23,selected_frame_only,HELD_BAR,OTHER_OBJECT,VISUALLY_CONFIRMED,"Barra V3 entre muñecas; candidato azul limitado a un extremo.",diagnostic_previews/bp_520/frame_00023.jpg
+bp_520,78,selected_frame_only,HELD_BAR,OTHER_OBJECT,VISUALLY_CONFIRMED,"Antes de desaparición del competidor; barra sostenida en máscara principal.",diagnostic_previews/bp_520/frame_00078.jpg
+bp_520,80,selected_frame_only,HELD_BAR,OTHER_OBJECT,VISUALLY_CONFIRMED,"Último frame competido; continuidad visual de barra entre muñecas.",diagnostic_previews/bp_520/frame_00080.jpg
+bp_520,81,selected_frame_only,HELD_BAR,NO_COMPETITOR,VISUALLY_CONFIRMED,"Tras desaparecer competidor la identidad de la barra principal no cambia.",diagnostic_previews/bp_520/frame_00081.jpg
+bp_520,156,selected_frame_only,HELD_BAR,OTHER_OBJECT,VISUALLY_CONFIRMED,"Competidor lateral reaparece; principal sostenida por ambas manos.",diagnostic_previews/bp_520/frame_00156.jpg
+bp_517,0,selected_frame_only,HELD_BAR,OTHER_OBJECT,VISUALLY_CONFIRMED,"Máscara nueva en barra sostenida; competidor lateral corto. Anotación solo del frame mostrado.",previews/bp_517/frame_00000.jpg
+bp_517,9,selected_frame_only,HELD_BAR,OTHER_OBJECT,VISUALLY_CONFIRMED,"Dos competidores laterales cortos; máscara restituida cubre el eje entre manos.",previews/bp_517/frame_00009.jpg
+bp_585,71,selected_frame_only,HELD_BAR,OTHER_OBJECT,VISUALLY_CONFIRMED,"Nueva máscara seleccionada recorre la barra sostenida y otra máscara queda fuera de una mano.",previews/bp_585/frame_00071.jpg
+bp_311,150,selected_frame_only,HELD_BAR,OTHER_OBJECT,VISUALLY_CONFIRMED,"Máscara nueva sobre barra entre ambas manos; competidor recortado al extremo derecho.",previews/bp_311/frame_00150.jpg
+bp_102,17,selected_frame_only,HELD_BAR,NO_COMPETITOR,VISUALLY_CONFIRMED,"Barra V3 recortada en el extremo del handoff; extensión temporal documentada, sin afirmar identidad de otros frames.",previews/bp_102/frame_00017.jpg
+bp_663,11,selected_frame_only,OTHER_OBJECT,NO_COMPETITOR,VISUALLY_CONFIRMED,"V3 marca una barra horizontal inferior mientras atleta sujeta barra superior RAW ausente; revisión existente coincide.",previews/bp_663/frame_00011.jpg
+bp_663,51,selected_frame_only,HELD_BAR,NO_COMPETITOR,VISUALLY_CONFIRMED,"Barra superior sostenida tras handoff falso desde estructura inferior; no se fuerza continuidad de identidad.",previews/bp_663/frame_00051.jpg
+bp_538,51,selected_frame_only,HELD_BAR,NO_COMPETITOR,VISUALLY_CONFIRMED,"Barra sostenida pese a máscara parcial/completa.",previews/bp_538/frame_00051.jpg
+bp_540,55,selected_frame_only,HELD_BAR,NO_COMPETITOR,VISUALLY_CONFIRMED,"Barra sostenida pese al cambio de longitud.",previews/bp_540/frame_00055.jpg
+bp_544,96,selected_frame_only,HELD_BAR,SAME_BAR_FRAGMENT,VISUALLY_CONFIRMED,"Máscara parcial/completa de misma barra; salida sigue indeterminada en el borde.",previews/bp_544/frame_00096.jpg
+bp_238,101,selected_frame_only,HELD_BAR,SAME_BAR_FRAGMENT,VISUALLY_CONFIRMED,"Máscara BAR recortada en extremo del gap real; salida revisada abstiene.",previews/bp_238/frame_00101.jpg
+bp_182,52,selected_frame_only,HELD_BAR,NO_COMPETITOR,VISUALLY_CONFIRMED,"Máscara de handoff sobre barra sostenida; V31 original y revisado preservan frame.",previews/bp_182/frame_00052.jpg

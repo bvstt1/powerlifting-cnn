@@ -1,4 +1,8 @@
-"""Extracción determinista (T,F) por video, sin etiquetas ni entrenamiento."""
+"""Calcula las 62 features temporales BP lateral por vídeo y vista.
+
+Combina geometría RAW con pose, disponibilidad y procedencia por canal;
+no utiliza etiquetas, no entrena y no inventa tracking en el RAW lateral.
+"""
 import numpy as np
 import cv2
 

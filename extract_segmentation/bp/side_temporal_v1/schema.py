@@ -1,4 +1,8 @@
-"""Contrato inmutable de canales de BP lateral. Los valores ausentes son NaN."""
+"""Define el contrato de 62 canales BP lateral temporal V1.
+
+Fija orden, grupos, fórmulas y códigos de procedencia; los valores ausentes
+se representan como NaN con disponibilidad explícita.
+"""
 from collections import OrderedDict
 
 GROUPS = OrderedDict([

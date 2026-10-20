@@ -7,7 +7,7 @@ El pareo usa la correspondencia auditada (hueco en evento 310):
 
 NO modifica etiquetas. Solo exporta para revision posterior.
 
-Salida: training/data/dl/discordant_view_labels.csv
+Salida: training/data/dl/shared/discordant_view_labels.csv
 Uso: python training/export_discordant_labels.py [--profile ignorado]
 """
 
@@ -48,7 +48,7 @@ def main():
     right_df = pd.read_csv(right_config["csv_path"], dtype=str)
     left_rows = dict(zip(left_df["video_id"], left_df.to_dict("records")))
     right_rows = dict(zip(right_df["video_id"], right_df.to_dict("records")))
-    audit_path = left_config["data_dir"].parent / "manual_label_audit.csv"
+    audit_path = left_config["data_dir"].parent.parent / "shared" / "manual_label_audit.csv"
     excluded_events = set()
 
     if audit_path.exists():
@@ -95,7 +95,7 @@ def main():
         })
 
     output_path = (
-        left_config["data_dir"].parent / "discordant_view_labels.csv"
+        left_config["data_dir"].parent.parent / "shared" / "discordant_view_labels.csv"
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(discordant, columns=OUTPUT_COLUMNS).to_csv(

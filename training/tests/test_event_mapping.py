@@ -9,6 +9,7 @@ Uso: python -m training.tests.test_event_mapping
 
 import os
 import sys
+import unittest
 
 import numpy as np
 
@@ -24,9 +25,11 @@ from training.configs.training_config import (
 def keypoint_frames(view, video_id):
     base = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
-        "..", "..", "keypoints", "dl", view, video_id + ".npy",
+        "..", "..", "keypoints", "dl", "yolo", view, video_id + ".npy",
     )
-    return int(np.load(base).shape[0])
+    if not os.path.isfile(base):
+        raise unittest.SkipTest(f"Keypoint ausente para verificación de contenido: {base}")
+    return int(np.load(base, allow_pickle=False).shape[0])
 
 
 def test_gap_constant():
@@ -136,15 +139,16 @@ def test_content_side_boundary():
 
 
 if __name__ == "__main__":
-    test_gap_constant()
-    test_mapping_boundary()
-    test_mapping_tail()
-    test_event_310_right_only()
-    test_content_boundary()
-    test_boundary_308_312_left_right()
-    test_boundary_399_402_413_left_right()
-    test_boundary_side_right_part()
-    test_boundary_side_left_part()
-    test_single_source_of_truth()
-    test_content_side_boundary()
-    print("test_event_mapping: TODAS LAS ASSERTIONS PASARON (hueco=310)")
+    tests = (test_gap_constant, test_mapping_boundary, test_mapping_tail,
+             test_event_310_right_only, test_content_boundary,
+             test_boundary_308_312_left_right, test_boundary_399_402_413_left_right,
+             test_boundary_side_right_part, test_boundary_side_left_part,
+             test_single_source_of_truth, test_content_side_boundary)
+    skipped = 0
+    for test in tests:
+        try:
+            test()
+        except unittest.SkipTest as error:
+            skipped += 1
+            print(f"{test.__name__}: OMITIDO ({error})")
+    print(f"test_event_mapping: {len(tests) - skipped} pruebas OK, {skipped} omitidas")

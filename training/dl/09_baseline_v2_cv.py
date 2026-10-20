@@ -57,8 +57,8 @@ AUG_FACTOR = 3
 SEED = 42
 
 SCRIPT_DIR = Path(__file__).resolve().parents[1]
-COMMON_FOLDS_PATH = SCRIPT_DIR / "data" / "dl" / "cv_event_folds.csv"
-COMMON_RESULTS_DIR = SCRIPT_DIR / "results" / "dl" / EXPERIMENT
+COMMON_FOLDS_PATH = SCRIPT_DIR / "data" / "dl" / "shared" / "cv_event_folds.csv"
+COMMON_RESULTS_DIR = SCRIPT_DIR / "results" / "dl" / "shared" / "posecnn" / "runs" / EXPERIMENT
 
 PROFILES = ("dl_left", "dl_right", "dl_side")
 METRIC_NAMES = (
@@ -85,8 +85,8 @@ HISTORICAL_CV = {
 
 
 def profile_paths(config):
-    model_dir = config["model_dir"] / EXPERIMENT
-    results_dir = config["results_dir"] / EXPERIMENT
+    model_dir = config["model_dir"].parent / EXPERIMENT
+    results_dir = config["results_dir"].parent / EXPERIMENT
     model_dir.mkdir(parents=True, exist_ok=True)
     results_dir.mkdir(parents=True, exist_ok=True)
     return model_dir, results_dir
@@ -634,7 +634,7 @@ def aggregate_summary():
         _, results_dir = profile_paths(config)
         summary = json.loads((results_dir / "cv_summary.json").read_text())
         test_metrics = np.load(
-            config["results_dir"] / "baseline_v2" / "metrics.npz"
+            config["results_dir"].parent / "baseline_v2" / "metrics.npz"
         )
         row = {
             "profile": profile,

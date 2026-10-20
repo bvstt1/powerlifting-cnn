@@ -1,0 +1,67 @@
+[
+  {
+    "video_id": "bp_518",
+    "omitted_frames": 67,
+    "runs": [
+      [
+        0,
+        30,
+        31
+      ],
+      [
+        32,
+        51,
+        20
+      ],
+      [
+        53,
+        53,
+        1
+      ],
+      [
+        55,
+        69,
+        15
+      ]
+    ],
+    "v3_identity_reasons": {
+      "multiple supported BAR candidates without calibrated main-bar margin": 67
+    },
+    "bar_candidates_per_frame": {
+      "2": 65,
+      "3": 2
+    }
+  },
+  {
+    "video_id": "bp_520",
+    "omitted_frames": 88,
+    "runs": [
+      [
+        0,
+        23,
+        24
+      ],
+      [
+        25,
+        80,
+        56
+      ],
+      [
+        148,
+        148,
+        1
+      ],
+      [
+        150,
+        156,
+        7
+      ]
+    ],
+    "v3_identity_reasons": {
+      "multiple supported BAR candidates without calibrated main-bar margin": 88
+    },
+    "bar_candidates_per_frame": {
+      "2": 88
+    }
+  }
+]

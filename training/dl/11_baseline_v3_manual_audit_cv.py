@@ -16,10 +16,10 @@ spec.loader.exec_module(runner)
 
 runner.EXPERIMENT = "baseline_v3_manual_audit_cv"
 runner.COMMON_FOLDS_PATH = (
-    SCRIPT_DIR.parent / "data" / "dl" / "cv_event_folds_v3.csv"
+    SCRIPT_DIR.parent / "data" / "dl" / "shared" / "cv_event_folds_v3.csv"
 )
 runner.COMMON_RESULTS_DIR = (
-    SCRIPT_DIR.parent / "results" / "dl" / "baseline_v3_manual_audit_cv"
+    SCRIPT_DIR.parent / "results" / "dl" / "shared" / "posecnn" / "runs" / "baseline_v3_manual_audit_cv"
 )
 
 

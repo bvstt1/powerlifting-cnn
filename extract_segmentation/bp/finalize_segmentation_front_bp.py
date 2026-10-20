@@ -1,3 +1,10 @@
+"""Cierra y audita el dataset de segmentación BP front con tracking V2.2.
+
+Verifica RAW fuente y reconstruido, máscaras, features y cobertura de los
+663 vídeos; congela configuración y genera manifiestos, previews e informe.
+No ejecuta YOLO ni convierte resultados V3 en datos del clasificador.
+"""
+
 import argparse
 import csv
 import json
@@ -113,7 +120,7 @@ def script_hashes():
     paths = [
         SCRIPT_DIR / "extract_segmentation_front_bp.py",
         SCRIPT_DIR / "segmentation_utils.py",
-        SCRIPT_DIR / "rebuild_tracking_front_bp_from_raw.py",
+        SCRIPT_DIR / "tracking_front_v2" / "rebuild_tracking_front_bp_from_raw.py",
         Path(__file__).resolve(),
     ]
     return {str(path.relative_to(PROJECT_ROOT)): sha256_file(path) for path in paths}

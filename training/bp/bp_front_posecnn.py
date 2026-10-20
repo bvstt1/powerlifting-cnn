@@ -66,9 +66,9 @@ SEGMENTATION_MANIFEST_PATH = (
     / "bp_front_segmentation_manifest.csv"
 )
 
-DATA_DIR = TRAINING_DIR / "data" / "bp" / "front"
-MODEL_DIR = TRAINING_DIR / "models" / "bp" / "front" / "posecnn"
-RESULTS_DIR = TRAINING_DIR / "results" / "bp" / "front" / "posecnn"
+DATA_DIR = TRAINING_DIR / "data" / "bp" / "front" / "posecnn"
+MODEL_DIR = TRAINING_DIR / "models" / "bp" / "front" / "posecnn" / "runs" / "legacy_default"
+RESULTS_DIR = TRAINING_DIR / "results" / "bp" / "front" / "posecnn" / "runs" / "legacy_default"
 CV_MODEL_DIR = MODEL_DIR / "cv"
 REPORT_PATH = PROJECT_ROOT / "Reporte_BP_FRONT_PoseCNN.md"
 

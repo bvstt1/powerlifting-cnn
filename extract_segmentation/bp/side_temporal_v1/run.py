@@ -1,4 +1,10 @@
-"""python -m extract_segmentation.bp.side_temporal_v1.run --view left --phase audit|pilot|all|verify"""
+"""Orquesta la generación de features temporales BP left o right V1.
+
+Audita la procedencia, ejecuta un piloto, extrae secuencias desde RAW y
+pose o verifica los resultados según --phase. No reejecuta YOLO.
+
+Uso: python -m extract_segmentation.bp.side_temporal_v1.run --view left --phase audit|pilot|all|verify
+"""
 import argparse
 import csv
 import hashlib

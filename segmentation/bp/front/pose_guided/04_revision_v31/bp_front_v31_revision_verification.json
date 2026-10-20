@@ -1,0 +1,79 @@
+{
+  "status": "REVISION_PROMISING_READY_FOR_INDEPENDENT_VALIDATION",
+  "development_only": true,
+  "confirmed_holdout_status": "BLOCKED_PHYSICAL_EVENT_INDEPENDENCE_UNVERIFIED",
+  "specification_sha256": "735befd58856d5d4156bf0ba4b169b2151aeec73e169d46553d67860e8c61855",
+  "original_files_checked": 122,
+  "source_files_checked": 2046,
+  "mp4_hashes_checked": 663,
+  "changed_originals": [],
+  "changed_sources": [],
+  "changed_videos": [],
+  "protected_source_relocations": {
+    "extract_keypoints\\bp\\extract_keypoints_front_bp.py": "extract_keypoints/bp/individual/extract_keypoints_front_bp.py"
+  },
+  "protected_source_path_integrity": "CHANGED_EXTERNALLY",
+  "protected_source_byte_integrity": "UNCHANGED",
+  "validation76": {
+    "frames": 7141,
+    "v3_selected": 7102,
+    "v31_original_confident": 6940,
+    "revision_confident": 6989,
+    "revision_unverified": 149,
+    "revision_incompatible": 3,
+    "no_bar": 0
+  },
+  "all_development": {
+    "frames": 8006,
+    "v3_selected": 7925,
+    "v31_original_confident": 7592,
+    "revision_confident": 7795
+  },
+  "restored_from_original": 203,
+  "removed_original_confident": 0,
+  "restored_different_from_original_v3": 0,
+  "correct_handoff_pose_compatible": 76,
+  "correct_handoff_pose_incompatible": 0,
+  "correct_handoff_pose_insufficient": 1,
+  "false_merges_pose_incompatible": 2,
+  "correct_both_confident_original": 38,
+  "correct_both_confident_revision": 42,
+  "correct_still_abstained_boundary": 35,
+  "false_merge_both_confident_revision": 0,
+  "newly_preserved_correct_edges": [
+    {
+      "video_id": "bp_102",
+      "source_track": "0",
+      "target_track": "3",
+      "transition_frame": "17"
+    },
+    {
+      "video_id": "bp_222",
+      "source_track": "0",
+      "target_track": "4",
+      "transition_frame": "24"
+    },
+    {
+      "video_id": "bp_224",
+      "source_track": "0",
+      "target_track": "4",
+      "transition_frame": "21"
+    },
+    {
+      "video_id": "bp_226",
+      "source_track": "0",
+      "target_track": "4",
+      "transition_frame": "24"
+    }
+  ],
+  "visual_review_scope": {
+    "frames_inspected": 24,
+    "explicit_statuses": {
+      "VISUALLY_CONFIRMED": 24
+    }
+  },
+  "new_velocity_nan_with_confident_position": 151,
+  "frame_identity_truth": "NOT_AVAILABLE_FOR_ALL_FRAMES; Pose proxy and sampled visual review are distinct",
+  "specific_warning": "bp_518 and bp_520 are unique Prototype14 cases, NOT members of Validation76; cannot attribute their 153-frame recovery to Validation76",
+  "limitation": "Physical event/session independence of reserved candidates still unverified; no confirmatory assessment performed"
+}

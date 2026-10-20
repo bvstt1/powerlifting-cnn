@@ -1,0 +1,1755 @@
+{
+  "purpose": "Inventario posterior a migracion, no protocolo nuevo",
+  "files": [
+    {
+      "old": "training/data/bp/front/bp_front_pose_audit_summary.json",
+      "new": "training/data/bp/front/posecnn/bp_front_pose_audit_summary.json",
+      "sha256": "6c8a0b5257c4b7443bec05c9c960d1311a0760fd243aa188b7da739a1d8ebbec"
+    },
+    {
+      "old": "training/data/bp/front/bp_front_pose_audit.csv",
+      "new": "training/data/bp/front/posecnn/bp_front_pose_audit.csv",
+      "sha256": "6dd2e49e5c8358c5fda555b93e86bed2e444882993a6423ecf4ca2631dd398d4"
+    },
+    {
+      "old": "training/data/bp/front/bp_front_pose_preprocessing_manifest.csv",
+      "new": "training/data/bp/front/posecnn/bp_front_pose_preprocessing_manifest.csv",
+      "sha256": "1532058ed8b70f8ca126364ee5151c83f7e1cbd7dc64fc8911cdda8a3f3dcbd3"
+    },
+    {
+      "old": "training/data/bp/front/bp_front_pose_split_arrays.npz",
+      "new": "training/data/bp/front/posecnn/bp_front_pose_split_arrays.npz",
+      "sha256": "7a83c897a6a428c1020a3844b7a5605ec8fd95427455fb33e2ab6b1fd8b6f0b0"
+    },
+    {
+      "old": "training/data/bp/front/bp_front_pose_split.csv",
+      "new": "training/data/bp/front/posecnn/bp_front_pose_split.csv",
+      "sha256": "d4233ef8f4fa2a77320a50134ec6503d1836a9cd41a14027a614e05f01128261"
+    },
+    {
+      "old": "training/data/bp/front/processed_sequences.npz",
+      "new": "training/data/bp/front/posecnn/processed_sequences.npz",
+      "sha256": "b18ab4cb8885580d462ad72e2034c4ba066f68d0f4e4dc61f5f9bb27f920d234"
+    },
+    {
+      "old": "training/data/bp/front/raw_sequences.npz",
+      "new": "training/data/bp/front/posecnn/raw_sequences.npz",
+      "sha256": "4ac551850f8138fb5a2e5d1bb3047077727edd3ac60eab0ce103ff2883db9f8c"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/bp_front_pose_best_model.pth",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/bp_front_pose_best_model.pth",
+      "sha256": "78877ac297f20582adcb988d5b1624f6a91d51e3b469c752ca7df8356b5b1530"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/bp_front_pose_config.json",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/bp_front_pose_config.json",
+      "sha256": "e967aac16bd0cef0c0bbbe7ea34f59e251accddadba3cc1a921832c07424fb32"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/bp_front_pose_scaler.pkl",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/bp_front_pose_scaler.pkl",
+      "sha256": "dfcf8abe90bd0e16938035258ce2a95ad2718a6d7815e677b7da21cfe4253d85"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_1/best_model.pth",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_1/best_model.pth",
+      "sha256": "211d51c56a516b0784570a4c66be7de7b93ad4d6d481b4ff9afdf634704e86f6"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_1/fold_membership.csv",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_1/fold_membership.csv",
+      "sha256": "52b477b241f60eefa8e25b7472418cec824bb71a3b9c37119e524c028b12f417"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_1/scaler.pkl",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_1/scaler.pkl",
+      "sha256": "86fc7d74f82c1b8dfacc6f7cad45c94d98076c7e8aa6d2010251f98c3a46a101"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_1/training_history.csv",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_1/training_history.csv",
+      "sha256": "cf17350bd20ecd56750fa788d232248c8e291e522001a6a838379f9af02e7961"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_2/best_model.pth",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_2/best_model.pth",
+      "sha256": "c1c56c01d40747e9f6d72683b57b2bba09a8b94aab430a3cbe5e960a60a7e4b6"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_2/fold_membership.csv",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_2/fold_membership.csv",
+      "sha256": "81930af18a9fdf5422fd74b01f880461942badf73691a44ba262f801151ef544"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_2/scaler.pkl",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_2/scaler.pkl",
+      "sha256": "ced58754883cdac1c23b9051f2992c8d7151db4673dd0be218558e18a30c4cb3"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_2/training_history.csv",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_2/training_history.csv",
+      "sha256": "a91a7993e297ed3e762996981d64ed7a464d0c33f1c9955ce32d7a250fa71758"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_3/best_model.pth",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_3/best_model.pth",
+      "sha256": "32c57a1415840b57d06a721216f22c8bd3fd63af09ac31ac7a070311a882faf5"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_3/fold_membership.csv",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_3/fold_membership.csv",
+      "sha256": "c489a3fb2861adc118a31c82a8b6654c3f9555e439434c37251dd92d87595fa6"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_3/scaler.pkl",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_3/scaler.pkl",
+      "sha256": "f2e32263434ec0a2e948de9893b06fa09acb06a024f02077913b1352a7d2813d"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_3/training_history.csv",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_3/training_history.csv",
+      "sha256": "788691f52724fd630dad82abcadcf78fd7d2d7bc6b94ab2b1b5709ab67344fdd"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_4/best_model.pth",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_4/best_model.pth",
+      "sha256": "bca5adbb99db1e53b9c1c84ea869661fd70b6028f5ef1322260831022ed6a339"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_4/fold_membership.csv",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_4/fold_membership.csv",
+      "sha256": "7c9df57c0562574666d1fd60252fd30668c4b2244604127866a5db9d77f48f03"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_4/scaler.pkl",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_4/scaler.pkl",
+      "sha256": "341b458231849da4d3f28a87ffdfa27116558b319a0bc7d94eab8aed72049682"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_4/training_history.csv",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_4/training_history.csv",
+      "sha256": "4de78cca226c278dab50b505ae75756291745868ac086cebd9db3b41dedad20d"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_5/best_model.pth",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_5/best_model.pth",
+      "sha256": "1e5df8245f2711579d59e2db204ea05f9233f837f9344417f81fd047f95fc717"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_5/fold_membership.csv",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_5/fold_membership.csv",
+      "sha256": "b2de80ff861a92d98a01623d20645876ef3da3e3d5799fd176bceb6bbd6d25bb"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_5/scaler.pkl",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_5/scaler.pkl",
+      "sha256": "dfdb7c0c74ea5c11e6985fb94f2e22a4970e8151be7a43bc54be447d2697a99a"
+    },
+    {
+      "old": "training/models/bp/front/posecnn/cv/fold_5/training_history.csv",
+      "new": "training/models/bp/front/posecnn/runs/legacy_default/cv/fold_5/training_history.csv",
+      "sha256": "e0ae73b7b44970aa9fa7930b3e42546b35bcb7e3673a0de94188238ea07f1004"
+    },
+    {
+      "old": "training/results/bp/front/posecnn/analysis/bp_front_pose_fault_analysis_manifest.json",
+      "new": "training/results/bp/front/posecnn/runs/legacy_default/analysis/bp_front_pose_fault_analysis_manifest.json",
+      "sha256": "161ff658d9f70a098af952f35b56dd923e508002cb6fb8d1b1b6485aa9d95665"
+    },
+    {
+      "old": "training/results/bp/front/posecnn/analysis/bp_front_pose_fault_observability.csv",
+      "new": "training/results/bp/front/posecnn/runs/legacy_default/analysis/bp_front_pose_fault_observability.csv",
+      "sha256": "81b813d9e88db13f81ce930d9712a1b5fa94ea2946bd1c301941eee5ef7f15bc"
+    },
+    {
+      "old": "training/results/bp/front/posecnn/analysis/bp_front_pose_observability_summary.csv",
+      "new": "training/results/bp/front/posecnn/runs/legacy_default/analysis/bp_front_pose_observability_summary.csv",
+      "sha256": "dc952c5d2e81712fb03bfcdea55584434dd714f4a28c8583722756145a54b073"
+    },
+    {
+      "old": "training/results/bp/front/posecnn/analysis/bp_front_pose_test_by_fault_code.csv",
+      "new": "training/results/bp/front/posecnn/runs/legacy_default/analysis/bp_front_pose_test_by_fault_code.csv",
+      "sha256": "56ff4cc822fb50c91e5cc931cbbb2cb40411499263292dc2132cc4bf6bf4fde7"
+    },
+    {
+      "old": "training/results/bp/front/posecnn/analysis/bp_front_pose_test_invalid_samples.csv",
+      "new": "training/results/bp/front/posecnn/runs/legacy_default/analysis/bp_front_pose_test_invalid_samples.csv",
+      "sha256": "f52e7085c49ed0ffc32890687778490d6581d1dee406f1f2e0e0af4e6c0265fe"
+    },
+    {
+      "old": "training/results/bp/front/posecnn/bp_front_pose_confusion_matrix.npy",
+      "new": "training/results/bp/front/posecnn/runs/legacy_default/bp_front_pose_confusion_matrix.npy",
+      "sha256": "558e89bf74d9d651ec37ad895d77a2161416a16d7ca029eeac7fc80c655a3710"
+    },
+    {
+      "old": "training/results/bp/front/posecnn/bp_front_pose_cv_predictions.csv",
+      "new": "training/results/bp/front/posecnn/runs/legacy_default/bp_front_pose_cv_predictions.csv",
+      "sha256": "ba363dd1b102254b2931fe0464d775c92f828fa10c6e80e91a346bbc1fee362d"
+    },
+    {
+      "old": "training/results/bp/front/posecnn/bp_front_pose_cv_results.csv",
+      "new": "training/results/bp/front/posecnn/runs/legacy_default/bp_front_pose_cv_results.csv",
+      "sha256": "b773055cfe48a6b977a60e692fa99834359372aad4e6f41b574c9c94c5a54e8a"
+    },
+    {
+      "old": "training/results/bp/front/posecnn/bp_front_pose_metrics.json",
+      "new": "training/results/bp/front/posecnn/runs/legacy_default/bp_front_pose_metrics.json",
+      "sha256": "3354516255bc5bfa228beec1659572bc5d63aae1ce540da03e0f0d0cf53b009a"
+    },
+    {
+      "old": "training/results/bp/front/posecnn/bp_front_pose_test_confusion_matrix.png",
+      "new": "training/results/bp/front/posecnn/runs/legacy_default/bp_front_pose_test_confusion_matrix.png",
+      "sha256": "3f3b6cb62fcdb90b227ea9cb9c828d350b0b7b840e835b1c668114fc483b44ec"
+    },
+    {
+      "old": "training/results/bp/front/posecnn/bp_front_pose_test_predictions.csv",
+      "new": "training/results/bp/front/posecnn/runs/legacy_default/bp_front_pose_test_predictions.csv",
+      "sha256": "0cd046b613db064c96c9bee99c9de4e5bdac23390124ace08bc419f1c00c5ddf"
+    },
+    {
+      "old": "training/results/bp/front/posecnn/bp_front_pose_training_curves.png",
+      "new": "training/results/bp/front/posecnn/runs/legacy_default/bp_front_pose_training_curves.png",
+      "sha256": "c7b2c3d78705c803f580a811e38eff4597577ad0d3dadb4aea48a8216050c676"
+    },
+    {
+      "old": "training/results/bp/front/posecnn/bp_front_pose_training_history.csv",
+      "new": "training/results/bp/front/posecnn/runs/legacy_default/bp_front_pose_training_history.csv",
+      "sha256": "4aa54ddc4b4460c936297dc4124e80bea4d1243059b8fa6526e68d74a4442149"
+    },
+    {
+      "old": "training/data/dl/event_split.npz",
+      "new": "training/data/dl/shared/event_split.npz",
+      "sha256": "67c345e222a4f597612b0b18765827aa758bcba613c3432c127b403f4438708c"
+    },
+    {
+      "old": "training/data/dl/cv_event_folds.csv",
+      "new": "training/data/dl/shared/cv_event_folds.csv",
+      "sha256": "b5337c656ae2c2640cf6735fc3d6ffcf55358b769f0ae61c7f88a412fe7791ee"
+    },
+    {
+      "old": "training/data/dl/cv_event_folds_v3.csv",
+      "new": "training/data/dl/shared/cv_event_folds_v3.csv",
+      "sha256": "40f22f41223c3540269cea69d988296fee2bbbaf778232ccef6dc37937c4f099"
+    },
+    {
+      "old": "training/data/dl/discordant_view_labels.csv",
+      "new": "training/data/dl/shared/discordant_view_labels.csv",
+      "sha256": "2dbfdb8fa6bfeec3436c3f5a0e8904624545f3282158102bfbf12531c053db21"
+    },
+    {
+      "old": "training/data/dl/manual_label_audit.csv",
+      "new": "training/data/dl/shared/manual_label_audit.csv",
+      "sha256": "ba498498688509e1b4f61565037fbcaf42d7c9fc7ee62a39312afcc536daf349"
+    },
+    {
+      "old": "training/data/dl/manual_quality_audit.csv",
+      "new": "training/data/dl/shared/manual_quality_audit.csv",
+      "sha256": "6c2158ecef513fbdc20a31e8d533ba628217a418ff6a61eb5b3cf46b2e3d676d"
+    },
+    {
+      "old": "training/data/dl/front/preprocessed/raw_sequences.npz",
+      "new": "training/data/dl/front/posecnn/preprocessed/raw_sequences.npz",
+      "sha256": "7da48f1e9a54072f3d790890de84c7e7a12ea6944ea2ca7f0eefbfebead54276"
+    },
+    {
+      "old": "training/data/dl/front/normalized/sequences_170.npz",
+      "new": "training/data/dl/front/posecnn/normalized/sequences_170.npz",
+      "sha256": "6d7ab330fc2b3f7c53bc485401e6f8ca290b6e70d5516b68c4c49682d4bf6bdb"
+    },
+    {
+      "old": "training/data/dl/front/split/scaler.pkl",
+      "new": "training/data/dl/front/posecnn/split/scaler.pkl",
+      "sha256": "127dc13d6a87329f6afa6dd5391ba2fa41885fd3c67082811d5ae928f15de287"
+    },
+    {
+      "old": "training/data/dl/front/split/split_data.npz",
+      "new": "training/data/dl/front/posecnn/split/split_data.npz",
+      "sha256": "b97c3897ab15dc5c31fbbd9ce8df8e41ee9aa3a4b4e8491b8b5757eecb0c77f3"
+    },
+    {
+      "old": "training/data/dl/front/augmented/augmented_data.npz",
+      "new": "training/data/dl/front/posecnn/augmented/augmented_data.npz",
+      "sha256": "dcf186ca49c080bf962599b1f38ef174a1d0d20f67f90820b374fea0389f1a15"
+    },
+    {
+      "old": "training/models/dl/front/best_model.pth",
+      "new": "training/models/dl/front/posecnn/runs/legacy_default/best_model.pth",
+      "sha256": "ba32492e2e099c597fd2edf18d030580767db83335dc166e6a3434a6c5deb8bb"
+    },
+    {
+      "old": "training/models/dl/front/history.npz",
+      "new": "training/models/dl/front/posecnn/runs/legacy_default/history.npz",
+      "sha256": "9b10697a3517c5ea2c0a066082a389cd412101f90a814ccbe43a2f441dd24839"
+    },
+    {
+      "old": "training/results/dl/front/cross_validation_boxplot.png",
+      "new": "training/results/dl/front/posecnn/runs/legacy_default/cross_validation_boxplot.png",
+      "sha256": "3dc83e02abdad0623df2f78a5a7847a40e5f2bec1b9df93bfe85743fe919d833"
+    },
+    {
+      "old": "training/results/dl/front/misclassified.csv",
+      "new": "training/results/dl/front/posecnn/runs/legacy_default/misclassified.csv",
+      "sha256": "ff724404739ea0f02094687cb5e42d1bba21dd9e5a909d5a77beb84ad4c6be51"
+    },
+    {
+      "old": "training/results/dl/front/predictions.csv",
+      "new": "training/results/dl/front/posecnn/runs/legacy_default/predictions.csv",
+      "sha256": "52f4ee38d3f63aceba38f288ce736219835284d3a15a017fb8e6346a7b773ce4"
+    },
+    {
+      "old": "training/results/dl/front/report.md",
+      "new": "training/results/dl/front/posecnn/runs/legacy_default/report.md",
+      "sha256": "d5c228c5a6918584ceaf628368e8b58c56936a17e2099803802ab24509fe4a72"
+    },
+    {
+      "old": "training/data/dl/left/preprocessed/raw_sequences.npz",
+      "new": "training/data/dl/left/posecnn/preprocessed/raw_sequences.npz",
+      "sha256": "2c8def7d41bd871ec77333fba8afcf467bdc3ad01ea7fc4cbd8b5ec49bfb643c"
+    },
+    {
+      "old": "training/data/dl/left/normalized/sequences_170.npz",
+      "new": "training/data/dl/left/posecnn/normalized/sequences_170.npz",
+      "sha256": "a9479d8e60134523ca1c7391fdbe4ef8edcee3d4bf94a6f804169aa6b8050810"
+    },
+    {
+      "old": "training/data/dl/left/split/scaler.pkl",
+      "new": "training/data/dl/left/posecnn/split/scaler.pkl",
+      "sha256": "2d9e9f4e580ae89f7f9b7255831b677578b2377bceb41b55a680ba0346902217"
+    },
+    {
+      "old": "training/data/dl/left/split/split_data.npz",
+      "new": "training/data/dl/left/posecnn/split/split_data.npz",
+      "sha256": "2c9543a546ee71fffe6fbb394c322411768679209bfff10a570cefd30bfcb3d8"
+    },
+    {
+      "old": "training/data/dl/left/augmented/augmented_data.npz",
+      "new": "training/data/dl/left/posecnn/augmented/augmented_data.npz",
+      "sha256": "1527e5162bf0a3f9bca67339013975e12910af73e7a81929c78c2eec2ed5de70"
+    },
+    {
+      "old": "training/models/dl/left/best_model.pth",
+      "new": "training/models/dl/left/posecnn/runs/legacy_default/best_model.pth",
+      "sha256": "c150c4e373be20b5fcf015ed4ddea6aa6506416ff42b9d5dafa9afa5a0387b1b"
+    },
+    {
+      "old": "training/models/dl/left/history.npz",
+      "new": "training/models/dl/left/posecnn/runs/legacy_default/history.npz",
+      "sha256": "2b8db83f6b0ba318ca7ff46ebbc2a828927a05edb6bfc129fad8de16f20b5228"
+    },
+    {
+      "old": "training/models/dl/left/run_config.json",
+      "new": "training/models/dl/left/posecnn/runs/legacy_default/run_config.json",
+      "sha256": "705a4d1676171b8fbc97fa6211c4011614b6dca218f5ee1c6a3f793d638f16b3"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2/best_model.pth",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2/best_model.pth",
+      "sha256": "d82e0e64adff84774dc6bebf01d6c530ff627e5c3470eda1b7801c34fd724123"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2/history.npz",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2/history.npz",
+      "sha256": "b1006a4feab0329e19721970802b15f65f802dcf2fcf777e609e0e000b3fd31d"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2/run_config.json",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2/run_config.json",
+      "sha256": "7aeb2fa3bc976fc21cbac078062b9e28933c94a1960adf897ff9c8e56a43af81"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2/metrics.npz",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2/metrics.npz",
+      "sha256": "9edd5cfcb3e74567239937ab74cb442a08b43018288794615fd96b3c1ab3069f"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2/misclassified.csv",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2/misclassified.csv",
+      "sha256": "f4d25b40e9ebe846688dc5c2db5bac7a23e2e3159681f0a7668e854aeb8d5c4d"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2/predictions.csv",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2/predictions.csv",
+      "sha256": "f1a79ea0dc2b761417e0e6322f6f1ce6ef2242f2db9bb551a2bae63065d59652"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2/report.md",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2/report.md",
+      "sha256": "7fce47046c0983107991c4b6e195f59450c1a2b84619d01ba0f18fa05bba7778"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2/train_val_loss.png",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2/train_val_loss.png",
+      "sha256": "fb0c62dcf6f6f4df9a6a2cc684b1c719b0ad29331dfee8d8e75f69cbd7712d3d"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_0/best_model.pth",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_0/best_model.pth",
+      "sha256": "50d5f15b69c8e57e32ff0b6332ad02d461a6a9c38924c84e70f0c317d47f950b"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_0/history.npz",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_0/history.npz",
+      "sha256": "92c96dd5c4062c6d50fa6108a5559fc59ff7fee1bc4b747cf5636f4012dc0d1e"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_0/scaler.pkl",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_0/scaler.pkl",
+      "sha256": "2feb9d6584c39e100e251375d2bf0d02b339793cf146803f6d1a3ab5a4b48e54"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_1/best_model.pth",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_1/best_model.pth",
+      "sha256": "e7e443b3289753e13deac2747103916a2c55273cb31a2917964e3c7f6b9e90ad"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_1/history.npz",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_1/history.npz",
+      "sha256": "0effc8882a4d8e865ca58960b38c172a8634e914dfd62059a3659bbbfb4fb93a"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_1/scaler.pkl",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_1/scaler.pkl",
+      "sha256": "e525fcce01baae8aacb14489efb255c5aacc1c0721f82c026c4a4061685bd29b"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_2/best_model.pth",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_2/best_model.pth",
+      "sha256": "fef660cfc4b7daecafc1580a20287ad8ffa61688cadc65705a47e42a3a79c31e"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_2/history.npz",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_2/history.npz",
+      "sha256": "21e1a5139be4ccef20c21b7ce9c6cb35747841e0288a91149586edcf8cfd7408"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_2/scaler.pkl",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_2/scaler.pkl",
+      "sha256": "a5164ddef66bcbd3cd2504af4c7ede566ecaf32cb5f2f73a51058d7f06ffd199"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_3/best_model.pth",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_3/best_model.pth",
+      "sha256": "a4464533a5cc313233ed92468a29886f3b238f96faa381a97d06360152f4ba13"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_3/history.npz",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_3/history.npz",
+      "sha256": "dd3a94794d4279be82e3922e72d1bc8279ed945f3b9c8c788bed39506d80b343"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_3/scaler.pkl",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_3/scaler.pkl",
+      "sha256": "875c9f55f87f8d260e223aa3179de86a4d51dda1c2e2dbe109e4e3f025a18c09"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_4/best_model.pth",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_4/best_model.pth",
+      "sha256": "d524edc9411325020849e9cf0e0e0e5b8816976210da7d8c232bf8bc6cadaf4a"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_4/history.npz",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_4/history.npz",
+      "sha256": "08293da0e9ffd061cc52617ea7b89cc30f8c4d3e43958a869e8dc92b4acca8df"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/fold_4/scaler.pkl",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/fold_4/scaler.pkl",
+      "sha256": "1dc4eda98447a4a9a754b5bfe125d438f7a1d2f142819b6565b7031a76c35227"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v2_cv/run_config.json",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v2_cv/run_config.json",
+      "sha256": "4b5d7d576bd10f04a471de4d7bde03e0413f1bf83584c2a043ce9a763068d1be"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/cv_predictions.csv",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/cv_predictions.csv",
+      "sha256": "b7842025a424187b7152c42e06927779a3bb2e2b1d9e2c9445c1051972b9dc78"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/cv_results.csv",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/cv_results.csv",
+      "sha256": "aa29571bd679263b27865e929f5c61feeb2af9b49afeadca3ff67e7d925d7c39"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/cv_summary.json",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/cv_summary.json",
+      "sha256": "74982e5516ffba18d8aea8b534e781272b91436e82aba0fe67efead2f16486e7"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/fold_0/confusion_matrix.npy",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/fold_0/confusion_matrix.npy",
+      "sha256": "b11bec534a2a1991e04d866d4a3ecc9288d5501242b9e57f0972406c7e7269a3"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/fold_0/train_val_loss.png",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/fold_0/train_val_loss.png",
+      "sha256": "4973b3f1544b679ecf1333755ee997d2dc145add66a5b88d98a42b18e58c0fc1"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/fold_1/confusion_matrix.npy",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/fold_1/confusion_matrix.npy",
+      "sha256": "7413c7c6a6585f62fc66c5343363de9cf2d74e5860501df42f945a13058191da"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/fold_1/train_val_loss.png",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/fold_1/train_val_loss.png",
+      "sha256": "09a8546114cb35e0cf2adb44d7b75383fac86e59708fe9d5de2d928a9919be7e"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/fold_2/confusion_matrix.npy",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/fold_2/confusion_matrix.npy",
+      "sha256": "78bb5abc2c68de6e518c42933a79c3077193c2c210bbdfe12af4f467769b3fbe"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/fold_2/train_val_loss.png",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/fold_2/train_val_loss.png",
+      "sha256": "58a05e33a0c88c51cfe1d61577d03fe93dfe0c4aa31486b39cb2af9b6090100a"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/fold_3/confusion_matrix.npy",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/fold_3/confusion_matrix.npy",
+      "sha256": "db85ccc136043591f070a7610c8b771504dbd26b03ae903492c774939c8d8a79"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/fold_3/train_val_loss.png",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/fold_3/train_val_loss.png",
+      "sha256": "af9d420f11c38690b2860a7f1896e9d853b9a3d4af3475316eaf3d058bb08abc"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/fold_4/confusion_matrix.npy",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/fold_4/confusion_matrix.npy",
+      "sha256": "04e50fb8c8fb641bbe0e4123fca80f22265718c86d78a17d78b7f839900e9e62"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/fold_4/train_val_loss.png",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/fold_4/train_val_loss.png",
+      "sha256": "08c43317bbbc72b60f3ca12e15ba6fc0526ee62361800ddd65d61c56eb093fff"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v2_cv/run_config.json",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v2_cv/run_config.json",
+      "sha256": "4b5d7d576bd10f04a471de4d7bde03e0413f1bf83584c2a043ce9a763068d1be"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit/best_model.pth",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit/best_model.pth",
+      "sha256": "eadb64c20a394437cff92a770e587597e324d790a478f3638b7e36f3770a6182"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit/history.npz",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit/history.npz",
+      "sha256": "19ba3034161cba8291bc1945fa914b10c366619c76daf5381500c7ba582638bb"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit/run_config.json",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit/run_config.json",
+      "sha256": "d1b8a4691479da70a7b15bd39b2eb9db8b80cf7c0884f8e435a10525a6a5746b"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit/metrics.npz",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit/metrics.npz",
+      "sha256": "9e36d9371520b048c10db7591531a9c7496459646a9624d590abfb33779fefd1"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit/misclassified.csv",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit/misclassified.csv",
+      "sha256": "6e12c2b480e81c2e20aa1b36f1017461fc5f0d1c5de69bf95a66c6bcfd73d5ff"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit/predictions.csv",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit/predictions.csv",
+      "sha256": "1f6f18ebfb5fe39a305bc92b31c3618d0f646de5f3a24266939d563cb6b3a99a"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit/predictions_with_quality.csv",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit/predictions_with_quality.csv",
+      "sha256": "e257ccec4e44550b053992517a3d9ce2ed31e897e94021e597828ca8f1bda568"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit/quality_subset_metrics.json",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit/quality_subset_metrics.json",
+      "sha256": "d3606779ede0dbc7668f28b3f70763be4448f2aa9cb6892ece6998263c1e918b"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit/report.md",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit/report.md",
+      "sha256": "4c58d80d98c8d0d40a8feddea632506603003e28d338cbe5f0095fa20fed69d0"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit/train_val_loss.png",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit/train_val_loss.png",
+      "sha256": "dd93a9f254e88e35a492ad58fbb33091b8270173bb0ac04ba887d3bd2f10ccc5"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_0/best_model.pth",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/best_model.pth",
+      "sha256": "3b398bfeff8f18a1858c4165465a29932851fe15ec5ec8a801695d79bc24d499"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_0/history.npz",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/history.npz",
+      "sha256": "3454a3f6993009222ea4d4e5d95879e9310ecf934915b3d916842b6077ef8443"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_0/scaler.pkl",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/scaler.pkl",
+      "sha256": "901566ecdfc0a6c460ac6c3770a2dea183075106d93bcabafe197855ee909766"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_1/best_model.pth",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/best_model.pth",
+      "sha256": "d342982038fa1a2042208ae51ad20a78ab981b0f73cf34ef3689fe37c3817cc4"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_1/history.npz",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/history.npz",
+      "sha256": "41871e7a54106c993ffc235ddf2da080d39d19e9b552cdac583bcbf65b08e65a"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_1/scaler.pkl",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/scaler.pkl",
+      "sha256": "ed89b0bee60b3e4192c88e1526856dfbfc6c3a6b8cc28f07bd2e2747fa2fa591"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_2/best_model.pth",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/best_model.pth",
+      "sha256": "0a7264de59a67e947ed2d0928e52041713faefd7ad70794b56532555fe27f58f"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_2/history.npz",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/history.npz",
+      "sha256": "7faef167ae461ebf91d8bd53820a279af1af7e94b1eba11b0e7bbdf5b2fbf6f4"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_2/scaler.pkl",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/scaler.pkl",
+      "sha256": "dfbce6fcd7cb3676703cb64919448dcd48085c8d34f3aa946ce378459567622c"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_3/best_model.pth",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/best_model.pth",
+      "sha256": "6c9b5455fedd3265236d96eb8fa98e42988db0a0bb5f839977329b1a05f52f3d"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_3/history.npz",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/history.npz",
+      "sha256": "9235ccfed99e02547843cd7094038af2e787052a040ebce379e63ff59bf6c110"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_3/scaler.pkl",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/scaler.pkl",
+      "sha256": "1aa864df089ed7c10123fa06a4a888dadac015a1ff86e8e84e4af4c6a4b38912"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_4/best_model.pth",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/best_model.pth",
+      "sha256": "e61b2c4c1a40abeb342177c4977268c8bd6b18901d2c5b2ae7c39076a5d63b36"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_4/history.npz",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/history.npz",
+      "sha256": "625f2de6d475c23be7b2c97c2bb267a5e48bc358cc725bcada7a20befcee5ac8"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/fold_4/scaler.pkl",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/scaler.pkl",
+      "sha256": "cd17d0558119ebc68418c664bff5b1e0dbeb054ad9adaa1186edfedd136a42e2"
+    },
+    {
+      "old": "training/models/dl/left/baseline_v3_manual_audit_cv/run_config.json",
+      "new": "training/models/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/run_config.json",
+      "sha256": "94c2ad0eac094d1ccf850832c26715f0665479d606f32a0b87cade33caff78e9"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/cv_predictions.csv",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/cv_predictions.csv",
+      "sha256": "532929832c543c4236fde9979aae418b09aef49558c8c93000872d99ea47e3fb"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/cv_results.csv",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/cv_results.csv",
+      "sha256": "6d9bf4f71814f5492b45f09063462372363550e419fa9697d0b8d8e18793a53c"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/cv_summary.json",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/cv_summary.json",
+      "sha256": "79a2172992cdc0758bd5e526408b0f9aa79b95cc9c51b715c17ba26dfaadb333"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/fold_0/confusion_matrix.npy",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/confusion_matrix.npy",
+      "sha256": "a895c5cfc3edbc6daf592ed093acb734148909143e4548989a109e6d090fdc88"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/fold_0/train_val_loss.png",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/train_val_loss.png",
+      "sha256": "841945319dd298de54cae44e6f7b0288cf1adc2662b5a7310a4dacae3fb29125"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/fold_1/confusion_matrix.npy",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/confusion_matrix.npy",
+      "sha256": "cd6e3291193275614c8bf0315a203b11cc511e0aca7661c1faf37a1fde80e2b7"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/fold_1/train_val_loss.png",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/train_val_loss.png",
+      "sha256": "db24a69e4511abe35bf06e8672e708435986cfbddba68287ecf2baea324505a6"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/fold_2/confusion_matrix.npy",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/confusion_matrix.npy",
+      "sha256": "116329f6ef706d5831913601781e6b54e1ba78c69a807b9b63064a3806d3bb96"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/fold_2/train_val_loss.png",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/train_val_loss.png",
+      "sha256": "4c8934ade0e70bd3c5b10a5e1ab4b2264e37856dad0957e9e03b8e168e0885d3"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/fold_3/confusion_matrix.npy",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/confusion_matrix.npy",
+      "sha256": "57428a44e6a94780fdca97ca003711c526ba5680b799ce56fec759eb919bb5f1"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/fold_3/train_val_loss.png",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/train_val_loss.png",
+      "sha256": "5739f7f80d1730b1d11fb0b9fdecb918b7349491c523d24ba0c4a63347ef306d"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/fold_4/confusion_matrix.npy",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/confusion_matrix.npy",
+      "sha256": "7a3cc7a90f82f82440be44991cff278c61a15f3ceba235de77a03623c8f3a72a"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/fold_4/train_val_loss.png",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/train_val_loss.png",
+      "sha256": "1d6caa8db3f1b8889cb84383f435ce3725965378921a42b8ee760e96e9af43c7"
+    },
+    {
+      "old": "training/results/dl/left/baseline_v3_manual_audit_cv/run_config.json",
+      "new": "training/results/dl/left/posecnn/runs/baseline_v3_manual_audit_cv/run_config.json",
+      "sha256": "94c2ad0eac094d1ccf850832c26715f0665479d606f32a0b87cade33caff78e9"
+    },
+    {
+      "old": "training/results/dl/left/cross_validation_boxplot.png",
+      "new": "training/results/dl/left/posecnn/runs/legacy_default/cross_validation_boxplot.png",
+      "sha256": "cf3eacf603e8d8e6f04c4f25a8a3a1ac0fd144d044afb76d86f228524d4ec6dd"
+    },
+    {
+      "old": "training/results/dl/left/cross_validation_metrics.npz",
+      "new": "training/results/dl/left/posecnn/runs/legacy_default/cross_validation_metrics.npz",
+      "sha256": "87eba79af8be545ffb7e77751f20108fdbd1c924d726f47a7cd74fb15fd95b6c"
+    },
+    {
+      "old": "training/results/dl/left/misclassified.csv",
+      "new": "training/results/dl/left/posecnn/runs/legacy_default/misclassified.csv",
+      "sha256": "33a3aee83574a281862d8eff1ebb87b00685efd39e6e77bcb9f84896ebb92d57"
+    },
+    {
+      "old": "training/results/dl/left/predictions.csv",
+      "new": "training/results/dl/left/posecnn/runs/legacy_default/predictions.csv",
+      "sha256": "dabf5b1cdde74921a383d6f360007bb69e8fc1aaf5a0740f4699155b5e2afb67"
+    },
+    {
+      "old": "training/results/dl/left/report.md",
+      "new": "training/results/dl/left/posecnn/runs/legacy_default/report.md",
+      "sha256": "d1989993d777788149c6572b0844f7e30acd3adeb3d94dfe546d7e3560d29216"
+    },
+    {
+      "old": "training/results/dl/left/train_val_loss.png",
+      "new": "training/results/dl/left/posecnn/runs/legacy_default/train_val_loss.png",
+      "sha256": "f80e565aa3358b813c424c7afee112dff74b66262587f942a7a2da01bf7d90c0"
+    },
+    {
+      "old": "training/data/dl/right/preprocessed/raw_sequences.npz",
+      "new": "training/data/dl/right/posecnn/preprocessed/raw_sequences.npz",
+      "sha256": "e1542fd6c2112fe7e002c717882e4d8983033a0b2191cea1e168a4d4e459db72"
+    },
+    {
+      "old": "training/data/dl/right/normalized/sequences_170.npz",
+      "new": "training/data/dl/right/posecnn/normalized/sequences_170.npz",
+      "sha256": "3bc6403e42a8ee8f371f7e383bfb6fc7da4577b17e8daf3634e99a8d8dbf7600"
+    },
+    {
+      "old": "training/data/dl/right/split/scaler.pkl",
+      "new": "training/data/dl/right/posecnn/split/scaler.pkl",
+      "sha256": "da016172ae64ccc23e1829fcea91e103993eace98b53278038ebc14917b05e5d"
+    },
+    {
+      "old": "training/data/dl/right/split/split_data.npz",
+      "new": "training/data/dl/right/posecnn/split/split_data.npz",
+      "sha256": "296aa3627d09c356e241b12993b6596f6d6c6faee233e1a5fe7263b77180bec3"
+    },
+    {
+      "old": "training/data/dl/right/augmented/augmented_data.npz",
+      "new": "training/data/dl/right/posecnn/augmented/augmented_data.npz",
+      "sha256": "55af2a225b21dc4b720d836f84ab06fb039dce57470c7189fec5731e7eb57c4c"
+    },
+    {
+      "old": "training/models/dl/right/best_model.pth",
+      "new": "training/models/dl/right/posecnn/runs/legacy_default/best_model.pth",
+      "sha256": "5145840c61f27d731afd80f64f30c1d4a1d1cc6d88f11fd46a1de4a7aaa6f176"
+    },
+    {
+      "old": "training/models/dl/right/history.npz",
+      "new": "training/models/dl/right/posecnn/runs/legacy_default/history.npz",
+      "sha256": "5c8753b0649513c584c60f942c345d24c2427e5e35ce9fb4211c0a6f743f8caf"
+    },
+    {
+      "old": "training/models/dl/right/run_config.json",
+      "new": "training/models/dl/right/posecnn/runs/legacy_default/run_config.json",
+      "sha256": "f76baa6ac5931efdc3d6a4388c7d51207c2f5a8c6eaaa5129b125c0be35f4f1f"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2/best_model.pth",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2/best_model.pth",
+      "sha256": "bd67fbc6558a9dd075f06c1660c0ac19b6dee7231e74edccc96c9756e9cadc90"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2/history.npz",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2/history.npz",
+      "sha256": "19b31f0da55ee54657729498d3d8e78a694579c6c9961ad420ce2991ec637410"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2/run_config.json",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2/run_config.json",
+      "sha256": "2a2ff977bd7d26a457f95a5a2ad904695e01dcdedc9dfbc7c6827d1a9661d1a5"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2/metrics.npz",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2/metrics.npz",
+      "sha256": "09c0359b915f337029e8b3486e98b9edb5cb175d84d6f0751c614034eb5f9db8"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2/misclassified.csv",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2/misclassified.csv",
+      "sha256": "7f77890044f319dcb6e8514211d34d6c8b92cf9a233544ec532ce89fc0b59afe"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2/predictions.csv",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2/predictions.csv",
+      "sha256": "66e76e2e473f40b376ac227900e21d0c9a7ad5be76d2604542fa4389757f3f32"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2/report.md",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2/report.md",
+      "sha256": "c5bbc7ca585ad8a33a37856d5625c408d35388de483f023650e9da0de8822c5c"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2/train_val_loss.png",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2/train_val_loss.png",
+      "sha256": "db24d37bbe01ea2a2920e3ccb6ca54bd9f9b8f2be4adc6d06d314e95e1cc17b7"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_0/best_model.pth",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_0/best_model.pth",
+      "sha256": "be50caca05fa16dc5293cbd7f2f0d35a78a713f9c8f9d22cc4bd4e653466fb08"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_0/history.npz",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_0/history.npz",
+      "sha256": "7682c8400f6f3c2c52da591036f2bf57d9faf9e8f36338f4a2ee96b992cbf246"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_0/scaler.pkl",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_0/scaler.pkl",
+      "sha256": "190dea2aeadfbbb31d3b2734143c778f9108a82bbd14555741fbcc99190074c3"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_1/best_model.pth",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_1/best_model.pth",
+      "sha256": "f49aceaa225dd6f84cff25a2a1b42bfb03d0eb0fad15a95ad9e9a301a27c1a4d"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_1/history.npz",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_1/history.npz",
+      "sha256": "df2f71f56df6de90e798b9ec87715e049b810eff28739ccf0da871d52a1383a4"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_1/scaler.pkl",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_1/scaler.pkl",
+      "sha256": "7c70d607f287f42bbd7e02ec430fa6a4556fba1e2a537854c22c2bd4b4973558"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_2/best_model.pth",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_2/best_model.pth",
+      "sha256": "85e2eb23b221c0d4676fbe4ab6ce1901ae7495e62efe301096a1516062ff4e56"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_2/history.npz",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_2/history.npz",
+      "sha256": "6f1591d1fe57450f71a0e0a6b6a4aff44aa6a4c1211fca36daa2e3a658ff5905"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_2/scaler.pkl",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_2/scaler.pkl",
+      "sha256": "6051b3218c7e775a55f0d6c29ebd98768f9b4e8530dccec8c75e060b211623ad"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_3/best_model.pth",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_3/best_model.pth",
+      "sha256": "07376a5ecc5735349b5bec2e5f14a86a86dd112287708f376abca42d932bab16"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_3/history.npz",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_3/history.npz",
+      "sha256": "d1ece48aef32b331684d57484f25c342e498ee9355b0534d691f7d28cc281912"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_3/scaler.pkl",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_3/scaler.pkl",
+      "sha256": "c9debc79fa66ea921ef9e5d9c00e00b5bea274667e94074aca18da84e96ad66a"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_4/best_model.pth",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_4/best_model.pth",
+      "sha256": "b163cf10deff9677d936551eae11490db02d80f0bbdc082a42401700f568be26"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_4/history.npz",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_4/history.npz",
+      "sha256": "29f9bdbc3c31d65d5babe56741d61a32b885a5406b3c5f017fd35f395c6c3f52"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/fold_4/scaler.pkl",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/fold_4/scaler.pkl",
+      "sha256": "658fc7bcdd902842458184d22def0cb5f9e7047437de2c670c6c6fc4c3ae0ec7"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v2_cv/run_config.json",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v2_cv/run_config.json",
+      "sha256": "9b975d016ccb700da8274b39a6bf17c66448017b453fea92ad2ec8f8f148c4fc"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/cv_predictions.csv",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/cv_predictions.csv",
+      "sha256": "883fa89449dfde869a8b3349a6fc1636c4ba7e0b61dc54d4cc2ac68f0db61d91"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/cv_results.csv",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/cv_results.csv",
+      "sha256": "7962c00a1966019fc9903ee223f14743c7de413a2517cdef26e97412cabb38b7"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/cv_summary.json",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/cv_summary.json",
+      "sha256": "83ac4501fac97d0075405db608b43a5a99fdc2dbb571aa00926e822a28bcea12"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/fold_0/confusion_matrix.npy",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/fold_0/confusion_matrix.npy",
+      "sha256": "f90d971bd67183247506d6e92622fcd480ba381e70b2461a0896aa3101dc53a6"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/fold_0/train_val_loss.png",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/fold_0/train_val_loss.png",
+      "sha256": "36ae38651c56d9e1936922a486b2dec75d9b659b5b2ac17f5eececb177f0c5eb"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/fold_1/confusion_matrix.npy",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/fold_1/confusion_matrix.npy",
+      "sha256": "cdad8e6a58db88bcb18a14974417fb52eb99466706db359a551bae2319811f92"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/fold_1/train_val_loss.png",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/fold_1/train_val_loss.png",
+      "sha256": "2b132a4b8946bddb659e14e4a71f76828258767187b4875fc89845eb9e3ce3ae"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/fold_2/confusion_matrix.npy",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/fold_2/confusion_matrix.npy",
+      "sha256": "8ef698f67339128671c7eafae8ea7a788bb93e709b311c177e606e1b35411eb2"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/fold_2/train_val_loss.png",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/fold_2/train_val_loss.png",
+      "sha256": "d71ce5ee3cbbe944092bf8e4c1ef8c82266ba8c5885a501bb0d47ba4b278ea8a"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/fold_3/confusion_matrix.npy",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/fold_3/confusion_matrix.npy",
+      "sha256": "530e0482a70f17e35d01343ac6dfa31c7bc3f512de82932e812a3ea056cd5870"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/fold_3/train_val_loss.png",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/fold_3/train_val_loss.png",
+      "sha256": "6f3779818d4220c4f6b0c453bf897dd0a02e3fc3137d4d254a5f4e0b755963a9"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/fold_4/confusion_matrix.npy",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/fold_4/confusion_matrix.npy",
+      "sha256": "9230510563c15f373b40272a83f74807aa3cac5ea7cdcd8a50caeef05b904797"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/fold_4/train_val_loss.png",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/fold_4/train_val_loss.png",
+      "sha256": "a6c79421399bd189c4a3747145cf1e9c5601843b2d013cbb079e3d51c0209399"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v2_cv/run_config.json",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v2_cv/run_config.json",
+      "sha256": "9b975d016ccb700da8274b39a6bf17c66448017b453fea92ad2ec8f8f148c4fc"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit/best_model.pth",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit/best_model.pth",
+      "sha256": "3ae636fe54f40ce8e24261535efe717e332ef009aeb1c9c5fcd43f77c24c08b9"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit/history.npz",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit/history.npz",
+      "sha256": "92616d1ea910fad0d1ed55f10ded5c43be33845e7bec7952e719056d80835463"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit/run_config.json",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit/run_config.json",
+      "sha256": "34b277717640ee48b9290ba1eac689993246aecf18f580fd0a58c2f9465abb21"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit/metrics.npz",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit/metrics.npz",
+      "sha256": "52e251c7a5177b185ced33f23c6230b66a49a7d04253468b4ac2de9747e48302"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit/misclassified.csv",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit/misclassified.csv",
+      "sha256": "616b745e59df6e80027e2a1a333bb11c6179ef2d43c9fe4356e781f474a341bd"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit/predictions.csv",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit/predictions.csv",
+      "sha256": "970c701e1ceef27431f7afe87c6da23c348db0e14cdc6d222f31da3e65d1fd58"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit/predictions_with_quality.csv",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit/predictions_with_quality.csv",
+      "sha256": "507463e565551796a3666a394c4fd0e9fc71682dff6ab2603b0c197d58e8be64"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit/quality_subset_metrics.json",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit/quality_subset_metrics.json",
+      "sha256": "2fbefedb753fd83848ff4100a58ded770f96bdaba3ceb630920daf5963508ce8"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit/report.md",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit/report.md",
+      "sha256": "4c255e907dba402309ee95cdedce9f6e02f6747cd374b4e3148e1c265f833991"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit/train_val_loss.png",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit/train_val_loss.png",
+      "sha256": "bba9c7ee43b38917e66187627d0e2287491eda678fbaea474ffc7ab08b814864"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_0/best_model.pth",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/best_model.pth",
+      "sha256": "18293e5225b2e64cf52be1d092262e412c6a175c799f7a73828c6291db45a7e8"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_0/history.npz",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/history.npz",
+      "sha256": "61e9fcb79c3cacb5d4c77f7c34f1b793596acf96d7bd56f0881d24e084bd71e7"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_0/scaler.pkl",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/scaler.pkl",
+      "sha256": "a5567fdb5af37df2793648ce3520d824d4dc6ef9a912f9de5c9a70c5b37d8ebb"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_1/best_model.pth",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/best_model.pth",
+      "sha256": "f49ea9994f4cb289fa53c68f1b5f35cc700690c462b1985ab812ee69a066ccd3"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_1/history.npz",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/history.npz",
+      "sha256": "da8711979a530aa1c930d2d1f16922ca3085ee6c39f438ea8758657296595def"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_1/scaler.pkl",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/scaler.pkl",
+      "sha256": "d0e645453ec528fc631059f2102985f262932c55a3c9626313e61ce151662434"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_2/best_model.pth",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/best_model.pth",
+      "sha256": "148d444e89739a1d0cbb06542ef3f50e1ed09817c325e46c3297350bf3366aee"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_2/history.npz",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/history.npz",
+      "sha256": "38b7769b9f6b1f0eefe28bcf1dd0c33f4eb704c9e6a126ff2dab64ac98e1b325"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_2/scaler.pkl",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/scaler.pkl",
+      "sha256": "cf816955840f38f216485b4beed0bf9c7abea9e33d793fb83c7d6cecb4d52d70"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_3/best_model.pth",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/best_model.pth",
+      "sha256": "c1b993e3be9f158c91a1bb0c95d8058e41c751b71441cfcf2b341ab9e5d7f4d1"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_3/history.npz",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/history.npz",
+      "sha256": "c5e0b7d73938b465a4372e0d9d8c2437ff3d1a62445d2cc9682504c2e24208b9"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_3/scaler.pkl",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/scaler.pkl",
+      "sha256": "a5f7a6477da5c32de3299e5ac252ad83952d40c06a8af9475bd0ef07c8814577"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_4/best_model.pth",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/best_model.pth",
+      "sha256": "dd0de1805e5dccc06b3e65fa48c1b91c2bb8db222722d73ccda46677fcd6e18f"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_4/history.npz",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/history.npz",
+      "sha256": "70a8ab8de835d0b87c13dbf322df2682dee5160594f010434236d3f0c793ffad"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/fold_4/scaler.pkl",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/scaler.pkl",
+      "sha256": "a580ef2f975bf8d7b376ba65661b8ffdb7680016703cb8739bd3d3a7c9cf0a17"
+    },
+    {
+      "old": "training/models/dl/right/baseline_v3_manual_audit_cv/run_config.json",
+      "new": "training/models/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/run_config.json",
+      "sha256": "429f32f86c2c3d3ac6132c613815606f98361633d43ef69ba663cc6c5f0592a6"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/cv_predictions.csv",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/cv_predictions.csv",
+      "sha256": "88aef0dec2d340fc928e85d05546e0136a71551245543dba1ba0c4f28b6b735a"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/cv_results.csv",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/cv_results.csv",
+      "sha256": "b9ab3da1548ac13294165da6757956a2d5041fa4c1adf0777bb9cba1b5630c6d"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/cv_summary.json",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/cv_summary.json",
+      "sha256": "40294c4d4ec426d58d04dedda3beef795862eaf68ab2da62537450cf82d3c560"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/fold_0/confusion_matrix.npy",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/confusion_matrix.npy",
+      "sha256": "2ef410c7a4d40f3726efa56bf0f260073b0fa5026d61ab0cb3b6e338d45b8b87"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/fold_0/train_val_loss.png",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/train_val_loss.png",
+      "sha256": "4315aadd319a69ced9bffea66d4a652b55de432f0772f3b4e2875c837167cc0b"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/fold_1/confusion_matrix.npy",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/confusion_matrix.npy",
+      "sha256": "ee16476a00281cd81713c28aaa6b3d5cfe87cb2bd724763de7d334b820ad9f58"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/fold_1/train_val_loss.png",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/train_val_loss.png",
+      "sha256": "831c0142765925e6826e498138326304d89d74b994aeb3379b3f62257aa9469a"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/fold_2/confusion_matrix.npy",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/confusion_matrix.npy",
+      "sha256": "0590e0015eebdfd78ff66f037eb9ec98e80247bb4406f367d0ed7491e2226d51"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/fold_2/train_val_loss.png",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/train_val_loss.png",
+      "sha256": "876f02550fe60060d30ff724dc36a836f2b4d4a54c5556be0b47a87af3c2310b"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/fold_3/confusion_matrix.npy",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/confusion_matrix.npy",
+      "sha256": "4a0f56288c024f19f01a6e8049e3f9d11c1cef4e83c87af338cafcedaabfc966"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/fold_3/train_val_loss.png",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/train_val_loss.png",
+      "sha256": "9a153ff56bcb69768463fe13fd5386921e2a1f38f4cd1e10f01c721bcad8de05"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/fold_4/confusion_matrix.npy",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/confusion_matrix.npy",
+      "sha256": "fa3778c3d575ae2e668af033e64bcc4e51c57df074477a6196f0836afba125ec"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/fold_4/train_val_loss.png",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/train_val_loss.png",
+      "sha256": "7bccdec863a94cfae56ec7f60ecc51436765274ac51dc677eb3d2b195184226b"
+    },
+    {
+      "old": "training/results/dl/right/baseline_v3_manual_audit_cv/run_config.json",
+      "new": "training/results/dl/right/posecnn/runs/baseline_v3_manual_audit_cv/run_config.json",
+      "sha256": "429f32f86c2c3d3ac6132c613815606f98361633d43ef69ba663cc6c5f0592a6"
+    },
+    {
+      "old": "training/results/dl/right/cross_validation_boxplot.png",
+      "new": "training/results/dl/right/posecnn/runs/legacy_default/cross_validation_boxplot.png",
+      "sha256": "01daf0b0b4ebcce87c5cef45eb6d27d4356cd1733c7b851d8005f289bf04357b"
+    },
+    {
+      "old": "training/results/dl/right/cross_validation_metrics.npz",
+      "new": "training/results/dl/right/posecnn/runs/legacy_default/cross_validation_metrics.npz",
+      "sha256": "e024afffaf32c8f21d495d3ebd2b223c2e9421880b42fb6a0055a307713a3588"
+    },
+    {
+      "old": "training/results/dl/right/misclassified.csv",
+      "new": "training/results/dl/right/posecnn/runs/legacy_default/misclassified.csv",
+      "sha256": "d448fb4b6ad9a12e62fa2832c05f50cbc4592ff38f31a7c27d5bc9f0022fcc61"
+    },
+    {
+      "old": "training/results/dl/right/predictions.csv",
+      "new": "training/results/dl/right/posecnn/runs/legacy_default/predictions.csv",
+      "sha256": "5bf987bdebd235488cb247b624667ec6ceb9497087efd8fff6173e6bedfc336d"
+    },
+    {
+      "old": "training/results/dl/right/report.md",
+      "new": "training/results/dl/right/posecnn/runs/legacy_default/report.md",
+      "sha256": "8d1ad43a96066661042d2b75dcb50c50af87f6ad14a84b91db883519acda5a92"
+    },
+    {
+      "old": "training/results/dl/right/train_val_loss.png",
+      "new": "training/results/dl/right/posecnn/runs/legacy_default/train_val_loss.png",
+      "sha256": "3dfd2ee428b22215ffd28d2bce3bf7569ae6f77534b953c0def2862f7623b941"
+    },
+    {
+      "old": "training/data/dl/side/preprocessed/raw_sequences.npz",
+      "new": "training/data/dl/side/posecnn/preprocessed/raw_sequences.npz",
+      "sha256": "7adce3cdba43bf4c227a00bda52093df6f7bd7e27e28b6e78ea2dbaa56ef0408"
+    },
+    {
+      "old": "training/data/dl/side/normalized/sequences_170.npz",
+      "new": "training/data/dl/side/posecnn/normalized/sequences_170.npz",
+      "sha256": "577f66df3c248800ceb9aaa0c82b39f6ffcc41de096df823c8efa13f3d1dba98"
+    },
+    {
+      "old": "training/data/dl/side/split/scaler.pkl",
+      "new": "training/data/dl/side/posecnn/split/scaler.pkl",
+      "sha256": "2715d9c196168143f86dd561c27a80e29cf9976b1b22a8619888be1f85c114df"
+    },
+    {
+      "old": "training/data/dl/side/split/split_data.npz",
+      "new": "training/data/dl/side/posecnn/split/split_data.npz",
+      "sha256": "0a9fdcd69255904afc551ceaaa721823c2b6ebad681c74a827769ebe058e2090"
+    },
+    {
+      "old": "training/data/dl/side/augmented/augmented_data.npz",
+      "new": "training/data/dl/side/posecnn/augmented/augmented_data.npz",
+      "sha256": "37857afbd0ef44e2e0b0919779a3746c4acd57b6756698c16ef0d70d64234afa"
+    },
+    {
+      "old": "training/models/dl/side/best_model.pth",
+      "new": "training/models/dl/side/posecnn/runs/legacy_default/best_model.pth",
+      "sha256": "717329605237d728bc71bb4b352b72cd9ec3139312b1b9a91d706e55a5020a27"
+    },
+    {
+      "old": "training/models/dl/side/history.npz",
+      "new": "training/models/dl/side/posecnn/runs/legacy_default/history.npz",
+      "sha256": "50ef848050f74cbf9a175831a04dac42769c2362cb0a704fd5ee377d8f71537c"
+    },
+    {
+      "old": "training/models/dl/side/run_config.json",
+      "new": "training/models/dl/side/posecnn/runs/legacy_default/run_config.json",
+      "sha256": "c1b4f00ee66ae12c3101a7204e2699f73b3dc5856469e80a1bc22d7b360e5377"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2/best_model.pth",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2/best_model.pth",
+      "sha256": "0fd6a3c2bd5d865c54afe5ffffd96c268488d291925b7269c82882f2107dea70"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2/history.npz",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2/history.npz",
+      "sha256": "f3fe88784f493f45a10a334f967d5531b481b5fa7e68ae3aeca099ba281829e5"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2/run_config.json",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2/run_config.json",
+      "sha256": "d9564feb249959d553fbfbf432ae69dac437f4610e10fb195a0438327bae6dd9"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2/metrics.npz",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2/metrics.npz",
+      "sha256": "812e95e4579385f9ad620436e48389e7a4b6d712ffa85f2ec4062f249800ee80"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2/misclassified.csv",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2/misclassified.csv",
+      "sha256": "d9f3f7b06058489218d1672bae6ec2cebc152eba29e1e3fafc3667b4bda13ae4"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2/predictions.csv",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2/predictions.csv",
+      "sha256": "e928515e751ec659503ce48fffd76d903aeef3ef0b396485d2529ba93ba42ae8"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2/report.md",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2/report.md",
+      "sha256": "8d2252591fc91c528f688192fee0b4a6bf6d8bed59fba0ce3f7ab8232adc86eb"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2/train_val_loss.png",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2/train_val_loss.png",
+      "sha256": "dad1ff907322e6d2ba77e4cfd5c417e6866ec5fed3cc39253d9d2635f881ae25"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_0/best_model.pth",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_0/best_model.pth",
+      "sha256": "14b5201d60479aa75365987d86f1636175d818060082071bdd991346fed4a6a3"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_0/history.npz",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_0/history.npz",
+      "sha256": "4f58c28eb96a2aa69cc5d8ab611c28a74ff61950200cd27ce1e8259c1b49d72c"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_0/scaler.pkl",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_0/scaler.pkl",
+      "sha256": "cf5dc24e79950bcfce2225a051f5fa613359f5861e32fcf777595880c23c0a7d"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_1/best_model.pth",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_1/best_model.pth",
+      "sha256": "4d5804777a3549361d7c1b6cf8b60273e2eb071f1d96b214aced7a9f800073fb"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_1/history.npz",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_1/history.npz",
+      "sha256": "5b26dde9e50fefa05cb3eba85e1118635e799df2f171d7dcd6fa1870d132ae7c"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_1/scaler.pkl",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_1/scaler.pkl",
+      "sha256": "450f9d73891ff73a809ac2b6319cca0dd21935c8e9a697aa4c1137ae258f8d6f"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_2/best_model.pth",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_2/best_model.pth",
+      "sha256": "0fb65913f118f2cc6f9c6449111c1768daf72259495f3c654eb49afc0f3a9a10"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_2/history.npz",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_2/history.npz",
+      "sha256": "477896c902cd8201857e6b468c8d1552b01f85bee132d63be3af274e7998164a"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_2/scaler.pkl",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_2/scaler.pkl",
+      "sha256": "a4574176b9eb7bbe9af3a8e1ba49333ea9a0a19ea9ad6ff08ff2fda8ba2a0c6a"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_3/best_model.pth",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_3/best_model.pth",
+      "sha256": "ac386fc738cd4cab8afa414b460e74d47292564948f40b1af10f3c705bcb6763"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_3/history.npz",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_3/history.npz",
+      "sha256": "918aeecd21c0e0cb02d302ec19a6bc92117274cbc3cbe05c72c6ca53698bd16e"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_3/scaler.pkl",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_3/scaler.pkl",
+      "sha256": "ab3a3726faf52f7e63d064f1da588f8d15746ef4a9b473011b6aad4b03124b95"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_4/best_model.pth",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_4/best_model.pth",
+      "sha256": "47b9b60f87963098a4084fbf55a6d6048240dab6bdb49527e43a7431251ccb4c"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_4/history.npz",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_4/history.npz",
+      "sha256": "90e9e896d6e9433bb0ab28ba112eb84be2f3db07c01434e0385f56f4fc305ec9"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/fold_4/scaler.pkl",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/fold_4/scaler.pkl",
+      "sha256": "556550b1997802f68c928640a60cfe6290b17a91cb51cd355a733098152e8ca4"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v2_cv/run_config.json",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v2_cv/run_config.json",
+      "sha256": "e8ae83b87a50bcfd24f46d5faa454c5648aa5406792d658fcbe740dcc6f4eed2"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/cv_predictions.csv",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/cv_predictions.csv",
+      "sha256": "ffdac3a3923cae0556ee5a1008e20507474c620a406d19448f415d306eec5376"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/cv_results.csv",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/cv_results.csv",
+      "sha256": "e535591394432dcc94d4083e18e9dddabf4bc8cea099bb4792fbc64f2f26a6f8"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/cv_summary.json",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/cv_summary.json",
+      "sha256": "54605ae7052375e5b061fcc692a85ce7cc3f7af4a8debda3131c99ee00e81f09"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/fold_0/confusion_matrix.npy",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/fold_0/confusion_matrix.npy",
+      "sha256": "d0fb2c7d67b83ac9e5174f4bd692bc5e0f6dd57aa73fa52f35dfc98eb6a36497"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/fold_0/train_val_loss.png",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/fold_0/train_val_loss.png",
+      "sha256": "bd76510d13dcec16ca53b1d14da1927af2cb9edd292382b1f174a58075a6bbbd"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/fold_1/confusion_matrix.npy",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/fold_1/confusion_matrix.npy",
+      "sha256": "e53a7c3a4e51ad5325c0af567aad72773a71c543bbb30903c5a1fadcb2cfd578"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/fold_1/train_val_loss.png",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/fold_1/train_val_loss.png",
+      "sha256": "68692c82647a17de34e8ab84f39d6429a0edf1d3841e53f381353d7736f71a47"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/fold_2/confusion_matrix.npy",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/fold_2/confusion_matrix.npy",
+      "sha256": "02a74bc38f4e97b79105c00e66df2684f6a1aefce945aef05243d0183fed8820"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/fold_2/train_val_loss.png",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/fold_2/train_val_loss.png",
+      "sha256": "f4dc3bb401d79f4d2912d2b434ae5eb0021f057bf21f6356c086eeddac477db8"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/fold_3/confusion_matrix.npy",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/fold_3/confusion_matrix.npy",
+      "sha256": "2ec6f1617574d98483dabe9d7f8fbac43375867ec89bc652a57aaaea651b7d82"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/fold_3/train_val_loss.png",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/fold_3/train_val_loss.png",
+      "sha256": "ce51194b04a69e591b27cf156519a38be133f1135673c5894c5e2a8ea1876004"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/fold_4/confusion_matrix.npy",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/fold_4/confusion_matrix.npy",
+      "sha256": "9e04b983c7160022883866bcc5290ccc2fb993bb7d720b9c148a8e29a5421570"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/fold_4/train_val_loss.png",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/fold_4/train_val_loss.png",
+      "sha256": "350f279ed1be07813848e0ec174ec8019f1a94f7e03c04efe8b60bcdd7901b91"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v2_cv/run_config.json",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v2_cv/run_config.json",
+      "sha256": "e8ae83b87a50bcfd24f46d5faa454c5648aa5406792d658fcbe740dcc6f4eed2"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit/best_model.pth",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit/best_model.pth",
+      "sha256": "1777f387477ba255e1f64498a99bc1fbdf59e483746bef5c3f83ef4e7d1af18f"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit/history.npz",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit/history.npz",
+      "sha256": "ee1de7af6ae9dd870294a7e799ef2a1dde9945e6b94733a7180c56fb7eb77c6a"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit/run_config.json",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit/run_config.json",
+      "sha256": "0307d32cbc50b6498bbfe56f1441c691831dde0e2f09224414ce1f401743a404"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit/metrics.npz",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit/metrics.npz",
+      "sha256": "b95e75ff4272c148755816f941a2ce7f60e1d7f97250b02cbb25ee246b98959c"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit/misclassified.csv",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit/misclassified.csv",
+      "sha256": "77ee5f73a4c796035eebd6255601a21e54d278b7d5baa901d783dc36547fccdd"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit/predictions.csv",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit/predictions.csv",
+      "sha256": "0aa4942935b8849c43f88ae1312bea457698da3bc7a57c99e77a982277cb1e71"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit/predictions_with_quality.csv",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit/predictions_with_quality.csv",
+      "sha256": "cba17c8dc3c37522c3502e23c94d584ed35bf969b1680a253eff1c6fbb5d6d27"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit/quality_subset_metrics.json",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit/quality_subset_metrics.json",
+      "sha256": "a228af5d81620d5a3918988e504e4d0f217e8d0b9658c2fb4ce6134aee5d468d"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit/report.md",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit/report.md",
+      "sha256": "a89501dd76c2d1ecbed1de995fa99f710de329298f3b442973a2bbdd0a12706f"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit/train_val_loss.png",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit/train_val_loss.png",
+      "sha256": "b92615e409cceb2119f518cb68819bb7a4fcc76a22ec37d3e232ee040b5289bf"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_0/best_model.pth",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/best_model.pth",
+      "sha256": "d7f42e25e2b208d06100dace715fc4e4baf77b5d9c219b03f0b769fbbe166fc9"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_0/history.npz",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/history.npz",
+      "sha256": "f860db2edfb74236aa68e28737d3ce1d964bf82ab080a5612cb16efb05700d0d"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_0/scaler.pkl",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/scaler.pkl",
+      "sha256": "e3e4c73a1325eba682f057fafc2da2a5f6e094ede2f092862fec2ccba883cab1"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_1/best_model.pth",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/best_model.pth",
+      "sha256": "0852ac49c9a494461a05c69b0e5192f5bdf9ee3f50dda49c6707347ea256eae3"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_1/history.npz",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/history.npz",
+      "sha256": "6f4cceab84b84fb33eb2792ca24a06bf61de173824b4878ec3a377b2af63350b"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_1/scaler.pkl",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/scaler.pkl",
+      "sha256": "23b9ea1b4676a1a6d1cb898dcec77dee94c6bac53c647a1746cac09a54dfc28c"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_2/best_model.pth",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/best_model.pth",
+      "sha256": "439c308a2e883a846f84eaac0b4f416a3ad83aa4642292eacceb676c2e7c5eb6"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_2/history.npz",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/history.npz",
+      "sha256": "000ed9249814a0393d3e8e4ff304bd45f0e0d49f9dc3dab71d521f41483ee092"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_2/scaler.pkl",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/scaler.pkl",
+      "sha256": "5235e172ac085e7f5d05e22411eb9f5ae0cd5217f50df684d839de8450bca1ba"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_3/best_model.pth",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/best_model.pth",
+      "sha256": "19b8c779d1b7a394d0058324831ccf0ce7e0d84de61a9a746c63cb5f3e78f2d7"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_3/history.npz",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/history.npz",
+      "sha256": "edc057f07e0ddf71047690131876988397a6b0886f0bc6a2d797776998652d0f"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_3/scaler.pkl",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/scaler.pkl",
+      "sha256": "7ce00bed820bbade299ab94d3d733c20685e025529ba576dcd9e49d816b5721e"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_4/best_model.pth",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/best_model.pth",
+      "sha256": "00c9205601fa8b64770c21970d468d848e410a9428c2caec317ea38f1b123e47"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_4/history.npz",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/history.npz",
+      "sha256": "f40800d6fcaded5f7b69ee546ac2b70854049c810f22d63fe5ced2065f0f3581"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/fold_4/scaler.pkl",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/scaler.pkl",
+      "sha256": "094a88f0ce55880f87da99e07ecc00aa743f61ed00c57cfcea07cc17e4b54c55"
+    },
+    {
+      "old": "training/models/dl/side/baseline_v3_manual_audit_cv/run_config.json",
+      "new": "training/models/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/run_config.json",
+      "sha256": "a9aff72774e889319f4a00558a52d8b12eba9f267ab706af5037f78d92cc2bde"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/cv_predictions.csv",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/cv_predictions.csv",
+      "sha256": "fcea72e99c6e85dfeb52996cc721d73a5a2c757ffaa8eee1da4a4ab34ee9667c"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/cv_results.csv",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/cv_results.csv",
+      "sha256": "c0e3d59f399f6017655c209d57effcf0d78dc277507b54b0ee9a66bb2d6f6cf8"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/cv_summary.json",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/cv_summary.json",
+      "sha256": "208bacbaaa132babe1cc6563163bc4f45a5634bc6df6f909a4519168a57a7f4f"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/fold_0/confusion_matrix.npy",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/confusion_matrix.npy",
+      "sha256": "c84a3ab7ad5f2b326c4c6839087e4fb2d1e962d60c21a5c54065168d3383cee4"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/fold_0/train_val_loss.png",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_0/train_val_loss.png",
+      "sha256": "9d7debc9635ce380d7d92a5b7c1ec030b95d52ef09f6997e4b65a3cde55e91ee"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/fold_1/confusion_matrix.npy",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/confusion_matrix.npy",
+      "sha256": "464d00c64c4666d32385168b3235a8286b226275568064cec08494cae909f32f"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/fold_1/train_val_loss.png",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_1/train_val_loss.png",
+      "sha256": "bc98353d09b9fc5b82bc4d408b543032b98a9c31ac03762b2386acaa60a230be"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/fold_2/confusion_matrix.npy",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/confusion_matrix.npy",
+      "sha256": "28f365ce120d4a95978dc5a9020205a387f8a4d25c506beae24700660d583e5f"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/fold_2/train_val_loss.png",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_2/train_val_loss.png",
+      "sha256": "bb2ed7cafbbd634cd186ee9cd2d626184dceea45c71a3e388f4d8920a2bea3d6"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/fold_3/confusion_matrix.npy",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/confusion_matrix.npy",
+      "sha256": "24f3b9119e29a21d012d1e0213c1f9094db18e7d92fb3b495594d0c94dbaee4d"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/fold_3/train_val_loss.png",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_3/train_val_loss.png",
+      "sha256": "4d7fa797f368298730c8e196ff011ea914466321dfdd0c5bbc1ea286027fec3e"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/fold_4/confusion_matrix.npy",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/confusion_matrix.npy",
+      "sha256": "fc58d02d463d87d6ec29e8c95525d26f6137b37d7fad1080cbd56e48ed181943"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/fold_4/train_val_loss.png",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/fold_4/train_val_loss.png",
+      "sha256": "8222c4571f77e2a50afeaf7816aaa1b3f981ca1044fe12bb6f9c181910c250f5"
+    },
+    {
+      "old": "training/results/dl/side/baseline_v3_manual_audit_cv/run_config.json",
+      "new": "training/results/dl/side/posecnn/runs/baseline_v3_manual_audit_cv/run_config.json",
+      "sha256": "a9aff72774e889319f4a00558a52d8b12eba9f267ab706af5037f78d92cc2bde"
+    },
+    {
+      "old": "training/results/dl/side/cross_validation_boxplot.png",
+      "new": "training/results/dl/side/posecnn/runs/legacy_default/cross_validation_boxplot.png",
+      "sha256": "5da7c2da1932f33cdc9e6d610c301f0f5028a487601e019a6a90c343c2822de4"
+    },
+    {
+      "old": "training/results/dl/side/cross_validation_metrics.npz",
+      "new": "training/results/dl/side/posecnn/runs/legacy_default/cross_validation_metrics.npz",
+      "sha256": "67c979cf6bb5e2f0c179910243c1819bd603c7e60a0a1d3aca646453b0814b2c"
+    },
+    {
+      "old": "training/results/dl/side/misclassified.csv",
+      "new": "training/results/dl/side/posecnn/runs/legacy_default/misclassified.csv",
+      "sha256": "cefa0150ca02ccf71142991418be1db6af874ad2987a384ea53a48e5176a982a"
+    },
+    {
+      "old": "training/results/dl/side/predictions.csv",
+      "new": "training/results/dl/side/posecnn/runs/legacy_default/predictions.csv",
+      "sha256": "84b7758e3bc686a6c13c8ed1d78be23d824166aceb390311092559845b313fc9"
+    },
+    {
+      "old": "training/results/dl/side/report.md",
+      "new": "training/results/dl/side/posecnn/runs/legacy_default/report.md",
+      "sha256": "431bfdf2ae03a6abb754d2032e763d20d8a8dc17d09022ad1071c5431ee9564f"
+    },
+    {
+      "old": "training/results/dl/side/train_val_loss.png",
+      "new": "training/results/dl/side/posecnn/runs/legacy_default/train_val_loss.png",
+      "sha256": "b85a03070a6df16ebf55f387fc75239b296fa50b0040c1da7effd6b3d3444877"
+    },
+    {
+      "old": "training/results/dl/baseline_v2/paired_metrics.json",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v2/paired_metrics.json",
+      "sha256": "66f19a68d87a5897ca2f2fcc719a57bc62a3d3c685c132fb1d2e27634bca19f2"
+    },
+    {
+      "old": "training/results/dl/baseline_v2/paired_predictions.csv",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v2/paired_predictions.csv",
+      "sha256": "94d9f931f1aef1aa450229d9404b0822f7af2fd7c20330f75120bd810eb77326"
+    },
+    {
+      "old": "training/results/dl/baseline_v2_cv/cv_comparison.json",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v2_cv/cv_comparison.json",
+      "sha256": "0990e528829e7ee857eea5b9ab7ec1c43373620107e713792dce8397769d0170"
+    },
+    {
+      "old": "training/results/dl/baseline_v2_cv/paired_cv_predictions.csv",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v2_cv/paired_cv_predictions.csv",
+      "sha256": "11313eef3514bc74b69a4eb74d60727e2270d942323805ab592ce4314774d818"
+    },
+    {
+      "old": "training/results/dl/baseline_v2_cv/paired_cv_results.csv",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v2_cv/paired_cv_results.csv",
+      "sha256": "cda1598bd8840437988c446135121fb7711d384bf803d30ee599e64bbb708f9d"
+    },
+    {
+      "old": "training/results/dl/baseline_v2_cv/paired_cv_summary.json",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v2_cv/paired_cv_summary.json",
+      "sha256": "04db88ca14d91fdfaa81ded21d6727e650b3544fd630dd1419911c616bfb74ee"
+    },
+    {
+      "old": "training/results/dl/baseline_v2_cv/report.md",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v2_cv/report.md",
+      "sha256": "7de319f4641cfc03df93c249db01dc5dd6fbc3919b8c8561b9156d8a1b574169"
+    },
+    {
+      "old": "training/results/dl/baseline_v3_manual_audit/paired_metrics.json",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v3_manual_audit/paired_metrics.json",
+      "sha256": "0c27de9fe2cb57942d5fcaae2c452034ec877b5319c9839603accd5f39fbe014"
+    },
+    {
+      "old": "training/results/dl/baseline_v3_manual_audit/paired_predictions.csv",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v3_manual_audit/paired_predictions.csv",
+      "sha256": "88866cbf187782532f05ae64fb28e8010f8ddfcf63e55b669795352d8cba83de"
+    },
+    {
+      "old": "training/results/dl/baseline_v3_manual_audit/report.md",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v3_manual_audit/report.md",
+      "sha256": "5ac12e240dc17962ee56a92408b1f774e435ca9815d0f168342b13df0f32f0d2"
+    },
+    {
+      "old": "training/results/dl/baseline_v3_manual_audit/v2_v3_comparison.json",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v3_manual_audit/v2_v3_comparison.json",
+      "sha256": "8278899f8ff18b04e8ca080bff0121ad03a8305d11d264e685b058920337ab28"
+    },
+    {
+      "old": "training/results/dl/baseline_v3_manual_audit_cv/paired_cv_predictions.csv",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v3_manual_audit_cv/paired_cv_predictions.csv",
+      "sha256": "c9e8d416045eff4f621db97f240116e65e967b886707580790a5d75565f389f2"
+    },
+    {
+      "old": "training/results/dl/baseline_v3_manual_audit_cv/paired_cv_results.csv",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v3_manual_audit_cv/paired_cv_results.csv",
+      "sha256": "f48195182536ee0f2d13de3fb19bc2e6fe8d09755cc28fab19425ac84ac4ebab"
+    },
+    {
+      "old": "training/results/dl/baseline_v3_manual_audit_cv/paired_cv_summary.json",
+      "new": "training/results/dl/shared/posecnn/runs/baseline_v3_manual_audit_cv/paired_cv_summary.json",
+      "sha256": "64ec308fcfe7c2ca9d8cdb4f90dde950662652e2cd49a6f6c624ce0363e2c620"
+    }
+  ]
+}
