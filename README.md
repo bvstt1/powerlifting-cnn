@@ -38,8 +38,8 @@ entradas/código junto con cada experimento.
 
 Los experimentos BP históricos están archivados en
 `training/bp/experiments/`; sus manifiestos y reportes congelados documentan las
-ejecuciones originales. Para detalles de migración y hashes, ver
-`training/README.md` y los documentos enlazados allí.
+ejecuciones originales. El manifiesto de migración está en
+[`training/docs/migration_artifact_manifest.json`](training/docs/migration_artifact_manifest.json).
 
 ## Empezar
 
@@ -56,8 +56,9 @@ python -B -m training.tests.test_event_mapping
 python -m training.tests.test_bp_side_posecnn
 ```
 
-Para un experimento de entrenamiento, consultar primero el README de
-[`training/`](training/README.md) y el documento del perfil correspondiente.
+Para un experimento de entrenamiento, consultar primero el
+[`README de training`](training/README.md) y el reporte/configuración del
+experimento o ejecución correspondiente.
 Los datos locales ignorados por Git pueden ser necesarios para ejecutar el
 pipeline completo.
 
@@ -69,5 +70,6 @@ partición: resultados de distintas cohortes o arquitecturas no son directamente
 comparables. El inventario y los informes vigentes se mantienen en
 `training/docs/` y en los directorios de experimentos.
 
-La documentación vigente de entrenamiento y experimentos está enlazada desde
-[`training/README.md`](training/README.md).
+El índice de comandos y estructura de entrenamiento está en
+[`training/README.md`](training/README.md); los resultados y protocolos se
+documentan junto a cada ejecución.

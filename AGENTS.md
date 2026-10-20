@@ -48,7 +48,7 @@ MediapipePythonProjects/
 │   ├── dl/yolo/{left,right,side}/         # Pose DL lateral; left puede ser parcial localmente
 │   └── sq/                                # Consultar extractor para versión y esquema
 │
-├── training/                              # Ver training/README.md y docs/EXPERIMENTOS.md
+├── training/                              # Ver training/README.md; reportes junto a experimentos/resultados
 │   ├── bp/                                # PoseCNN BP monovista y frontal histórico
 │   ├── dl/                                # 01-12: pipeline y baselines DL V2/V3
 │   ├── sq/                                # PoseCNN y estudios controlados SQ
@@ -430,7 +430,7 @@ modelos ni thresholds con estos subconjuntos.
 - [ ] Clasificación **multi-clase** (por tipo de falta, no solo binario)
 - [ ] Arquitecturas alternativas (LSTM, Transformer)
 - [ ] Extender los perfiles reutilizables a BP y SQ
-- [ ] Documentación final de la tesis (guía técnica en `training/README.md`)
+- [ ] Documentación final de la tesis (guía de entrenamiento en `training/README.md`)
 - [ ] requirements.txt o pyproject.toml
 
 ---

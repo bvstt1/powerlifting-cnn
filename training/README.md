@@ -1,9 +1,10 @@
 # Entrenamiento
 
 Código y experimentos de clasificación para DL, BP y SQ. Ejecutar los módulos
-desde la raíz del repositorio. El índice de experimentos y sus dependencias está
-en [docs/EXPERIMENTOS.md](docs/EXPERIMENTOS.md); el inventario de redes y métricas
-está en [docs/INVENTARIO_REDES.md](docs/INVENTARIO_REDES.md).
+desde la raíz del repositorio. Los reportes vigentes se encuentran junto a cada
+experimento en `bp/experiments/` o en `results/<ejercicio>/<vista>/<modelo>/`.
+La evidencia de rutas y hashes de la migración está en
+[`docs/migration_artifact_manifest.json`](docs/migration_artifact_manifest.json).
 
 ## Estructura
 
@@ -26,11 +27,9 @@ está en [docs/INVENTARIO_REDES.md](docs/INVENTARIO_REDES.md).
 - `tests/`: pruebas (`test_bp_side_posecnn.py`, `test_sq_posecnn.py`,
   `test_sq_controlled_front.py`,
   `test_event_mapping.py`).
-- `docs/`: documentación (`BP_SIDE_POSECNN.md`, `RESUMEN_SESION.md`,
-  `BP_LATERAL_POSECNN_baseline_t170_v1.md`,
-  `SQ_POSECNN_controlled_front_left_v2.md` con resultados y trazabilidad).
-   La comparación de SQ left y su auditoría están en `SQ_LEFT_point_xy_v1.md`.
-   Resultados right: `SQ_RIGHT_point_xy_v1.md`. Inventario global: `INVENTARIO_REDES.md`.
+- `docs/`: manifiesto de migración y trazabilidad de artefactos. Los reportes
+  narrativos de BP están co-localizados con los experimentos históricos; los
+  resultados de DL y SQ se publican en sus directorios de `results/`.
 - `legacy/`: utilidades históricas (`fix_csv.py`).
 - `bp/experiments/bp_*_v1/`: 20 experimentos BP migrados desde la raíz de
   `training/`. Cada directorio conserva scripts, manifiestos, checkpoints,
@@ -68,7 +67,8 @@ está en [docs/INVENTARIO_REDES.md](docs/INVENTARIO_REDES.md).
 
   Atribución de arquitectura: todas las métricas que se citan de estos
   experimentos pertenecen a la arquitectura que cada reporte indica, y las
-  filas del inventario (`docs/INVENTARIO_REDES.md`) la declaran fila por fila.
+  reportes de cada experimento identifican explícitamente la arquitectura y el
+  protocolo de las métricas.
   Solamente PoseCNN tiene checkpoints en `training/models/` (más los
   históricos BP/SQ); los pesos SegCNN y de fusión de BP **no están en
   `models/`**: residen dentro de `bp/experiments/bp_front_01_segcnn_v1/`,
@@ -80,9 +80,8 @@ está en [docs/INVENTARIO_REDES.md](docs/INVENTARIO_REDES.md).
   con ella.
 - `data/`, `models/`, `results/`: artefactos por ejercicio/vista/ejecución.
 
-La migración de los artefactos PoseCNN históricos BP front, DL y SQ se detalla
-en [docs/MIGRACION_LAYOUT.md](docs/MIGRACION_LAYOUT.md). El inventario de rutas
-y hashes está en `docs/migration_artifact_manifest.json`. SQ y BP lateral ya
+La migración de los artefactos PoseCNN históricos BP front, DL y SQ está
+registrada en `docs/migration_artifact_manifest.json`. SQ y BP lateral ya
 seguían `posecnn/runs/`; DL conserva los nombres de V2/V3 y llama
 `legacy_default` a los archivos que antes estaban directamente en la vista.
 Los paquetes BP de segmentación/fusión/test en `bp/experiments/` son archivo
@@ -101,8 +100,8 @@ protocolo congelado: sus rutas y hashes forman parte de la evidencia.
 Los directorios BP históricos se movieron a `bp/experiments/`; la convención
 anterior aplica a trabajos nuevos. Algunos artefactos antiguos de `data/`, `models/` y `results/`
 ya están registrados en Git; `.gitignore` impide incorporar otros por defecto
-pero **no elimina los registrados**. Los reportes narrativos `docs/*.md`,
-`docs/bp/Reporte_*.md` y `bp/experiments/*/Reporte_*.md` sí pueden publicarse. Para reproducir
+pero **no elimina los registrados**. Los reportes narrativos dentro de
+`bp/experiments/*/` y `results/` sí pueden publicarse. Para reproducir
 ejecuciones locales, conservar checkpoints, datos y manifiestos juntos; un
 clon sin los artefactos ignorados no puede repetir todas las evaluaciones.
 
