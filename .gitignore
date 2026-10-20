@@ -4,6 +4,7 @@
 !*.py
 !/.gitignore
 !/AGENTS.md
+!/README.md
 !/etiquetado/*/*.csv
 !/etiquetado/historico/README.md
 !/etiquetado/historico/sq/*.csv.bak

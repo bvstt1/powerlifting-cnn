@@ -459,3 +459,66 @@ modelos ni thresholds con estos subconjuntos.
 5. Probar arquitecturas LSTM/Transformer para comparar con CNN
 6. Extender la parametrización existente a BP y SQ
 7. Evaluar y documentar resultados para la tesis
+
+---
+
+## Actualización de estructura y reglas vigentes (octubre 2026)
+
+La documentación detallada del entrenamiento se mantiene en
+[`training/README.md`](training/README.md); el README de raíz es la introducción
+para usuarios. Ante diferencias entre este resumen histórico y el código o la
+documentación específica actual, inspeccionar el experimento vigente y no asumir
+que los nombres/rutas de la estructura antigua siguen existiendo.
+
+### Layout vigente de entrenamiento
+
+- Código de entrenamiento: `training/{bp,dl,sq}/`; utilidades compartidas en
+  `training/common/`, configuración en `training/configs/` y pruebas en
+  `training/tests/`.
+- Artefactos por ejercicio/vista/ejecución:
+  `training/data/<ejercicio>/<vista>/`,
+  `training/models/<ejercicio>/<vista>/<modelo>/runs/<run-id>/` y
+  `training/results/<ejercicio>/<vista>/<modelo>/runs/<run-id>/`.
+- Los 20 experimentos BP históricos están en `training/bp/experiments/`.
+  No moverlos de vuelta a la raíz ni tratar ese archivo como destino de
+  experimentos nuevos. La migración conservó los bytes de 949 archivos; los
+  reportes/manifiestos congelados retienen referencias y hashes de su ubicación
+  y código originales.
+- `training/docs/migration_artifact_manifest.json` registra rutas y hashes
+  posteriores a migración. No actualizar evidencia histórica para hacerla
+  parecer una ejecución nueva. Una re-ejecución requiere un protocolo y
+  manifiesto nuevos.
+- Los pesos SegCNN y de fusión de BP pueden vivir dentro de los directorios de
+  `training/bp/experiments/`; no asumir que todos los checkpoints están bajo
+  `training/models/`. Métricas deben atribuirse a la arquitectura indicada por
+  el reporte, nunca por el nombre de la cohorte.
+
+### Reglas para cambios y experimentos
+
+- Ejecutar módulos Python desde la raíz, normalmente como
+  `python -m training.<paquete>.<modulo>`.
+- Para trabajos nuevos, respetar el layout por `run-id`; no sobrescribir
+  artefactos existentes. Guardar configuración, split, hashes de entrada y
+  versión de código junto a la ejecución.
+- Revisar primero `training/README.md` y la documentación específica del perfil
+  antes de cambiar scripts, rutas, protocolos o métricas.
+- Los documentos históricos congelados son evidencia, no documentación para
+  reformatear durante una migración. Si cambia código o protocolo, registrar una
+  nueva ejecución de forma independiente.
+- Datos, vídeos y artefactos grandes pueden estar ignorados por Git. No inferir
+  que una ruta local ausente implica que se deba reconstruir, eliminar o
+  reemplazar el artefacto documentado.
+- Los scripts BP parametrizados usan vistas independientes (`left`/`right`);
+  SQ incluye estudios controlados front/left/right. DL tiene el pipeline
+  parametrizado y baselines V2/V3. Revisar comandos y etapas en
+  `training/README.md` antes de lanzar etapas que generen resultados o evalúen
+  el test reservado.
+
+### Referencias
+
+- README del repositorio: `README.md`.
+- Índice y comandos de entrenamiento: `training/README.md`.
+- Inventario, informes y trazabilidad por experimento: `training/docs/` y
+  `training/bp/experiments/`.
+- Mapping físico DL lateral: `physical_event()` en
+  `training/configs/training_config.py`; nunca duplicar su fórmula.
