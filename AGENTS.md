@@ -27,7 +27,6 @@ Cada levantamiento se graba desde **3 vistas sincronizadas**: frontal (front), l
 ```
 MediapipePythonProjects/
 ├── AGENTS.md                              # Este archivo
-├── Especificacion_CNN_Deadlift_Front.md   # Especificación técnica de la CNN
 ├── script.py                              # Organizador de dataset
 ├── .gitignore
 │
@@ -419,7 +418,7 @@ modelos ni thresholds con estos subconjuntos.
 - [x] Herramienta interactiva de etiquetado de frame "Press" (`label_press_frame.py`)
 - [x] Máquina de estados para validación de profundidad en sentadilla
 - [x] Visualización combinada YOLO segmentación + MediaPipe skeleton (DL front)
-- [x] Especificación técnica de la CNN (`Especificacion_CNN_Deadlift_Front.md`)
+- [x] Especificación técnica histórica de la CNN (el archivo ya no está en la raíz; consultar la documentación vigente en `training/README.md`)
 
 ### 🔄 En Progreso
 - [ ] Mejorar generalización de PoseCNN (reducir overfitting)

@@ -69,5 +69,5 @@ partición: resultados de distintas cohortes o arquitecturas no son directamente
 comparables. El inventario y los informes vigentes se mantienen en
 `training/docs/` y en los directorios de experimentos.
 
-La especificación técnica histórica de la CNN DL frontal está en
-[`Especificacion_CNN_Deadlift_Front.md`](Especificacion_CNN_Deadlift_Front.md).
+La documentación vigente de entrenamiento y experimentos está enlazada desde
+[`training/README.md`](training/README.md).
