@@ -1,0 +1,10 @@
+{
+  "view": "left",
+  "source": "mediapipe",
+  "run_id": "source_cmp_v1",
+  "seed": 42,
+  "baseline": "V3",
+  "best_epoch": 19,
+  "cohort_sha256": "53652c921bc59b16dab7223a228ba668171d33f8f3eee1481c6e8a95bdcb48f1",
+  "code_sha256": "014d31e8f4202a51bb983d0e62c0545b6c5fa0c22c4d4c8c7ea7d56c6c4232eb"
+}

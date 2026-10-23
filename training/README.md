@@ -193,6 +193,38 @@ La prueba de mapping DL ejecuta siempre las aserciones de IDs; las dos
 comprobaciones de longitud de keypoints se omiten con mensaje explícito si
 faltan sus `.npy` locales (por ejemplo, `keypoints/dl/yolo/left/dl_309.npy`).
 
+### DL lateral: comparación de fuente de keypoints (source_cmp_v1)
+
+`training/dl/compare_keypoint_sources.py` reentrena PoseCNN V3 para left/right
+con YOLO y MediaPipe sobre **los mismos vídeos por vista** (403 left, 411 right),
+el split físico V3 y los folds físicos V3. Usa los arrays normalizados YOLO V3
+locales, pues los `.npy` YOLO left pueden estar incompletos, y los `.npy`
+MediaPipe laterales completos. Conserva el preprocesamiento V3, el scaler
+ajustado exclusivamente en train original, los aumentos de train y la receta
+PoseCNN V3; `visibility` MediaPipe y confianza YOLO son canales distintos.
+El extractor guarda `[cadera, hombro]` en ambas fuentes, pero la normalización
+V3 interpreta el índice 0 como hombro: se conserva esa convención heredada
+para aislar el cambio de fuente. Los datos intermedios y manifiestos están en
+`data/dl/<vista>/posecnn/source_cmp_v1/`; pesos y predicciones separados por
+fuente bajo `models/` y `results/` con run-id `source_cmp_v1_<fuente>`.
+
+```powershell
+python -B -m training.dl.compare_keypoint_sources --stage prepare
+python -B -m training.dl.compare_keypoint_sources --stage cv
+python -B -m training.dl.compare_keypoint_sources --stage final
+python -B -m training.dl.compare_keypoint_sources --stage compare
+```
+
+El script evita sobrescribir ejecuciones existentes. Reportes locales:
+`results/dl/{left,right}/posecnn/source_cmp_v1/report.md` (junto a
+`comparison.json`); los manifiestos incluyen hashes de inputs y del código
+usado en el entrenamiento. La edición posterior del texto explicativo del
+generador de reportes no altera las métricas ni el código de entrenamiento;
+para reproducir *byte a byte* el hash de código en los manifiestos se necesita
+la versión exacta utilizada originalmente. YOLO final reprodujo el test V3;
+la CV YOLO se reentrenó con orden de muestras por split, por lo que sus curvas
+no son necesariamente idénticas a la CV V3 congelada.
+
 Notas BP lateral: implementación compartida parametrizada por vista; `bp_left`
 y `bp_right` tienen datos, scaler, particiones, checkpoints y resultados
 propios. La preparación estable vive en

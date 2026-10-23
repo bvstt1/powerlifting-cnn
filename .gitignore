@@ -41,6 +41,8 @@
 !/training/models/dl/*/posecnn/runs/**
 !/training/results/dl/*/posecnn/runs/**
 !/training/results/dl/shared/posecnn/runs/**
+!/training/results/dl/*/posecnn/source_cmp_v1/report.md
+!/training/results/dl/*/posecnn/source_cmp_v1/comparison.json
 
 # NPZ/PKL binarios regenerables del pipeline 01-04 (augmented_data.npz > 50 MB bloquea GitHub).
 training/data/bp/front/posecnn/*.npz

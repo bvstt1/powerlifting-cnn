@@ -1,0 +1,10 @@
+{
+  "view": "right",
+  "source": "yolo",
+  "run_id": "source_cmp_v1",
+  "seed": 42,
+  "baseline": "V3",
+  "best_epoch": 13,
+  "cohort_sha256": "3329d1db33dc40e4d329aba123b7fbf41370ceb9f80dfa4bedf0f902ced7ba1d",
+  "code_sha256": "014d31e8f4202a51bb983d0e62c0545b6c5fa0c22c4d4c8c7ea7d56c6c4232eb"
+}
