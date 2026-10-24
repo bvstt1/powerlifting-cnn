@@ -307,6 +307,13 @@ esta estrategia para comparabilidad con Baseline V2/V3.
 
 **Diagnóstico:** Overfitting (mejor época = 10, divergencia desde época ~3). 7 misclasificados (2 FP, 5 FN).
 
+**Discrepancia documental (resumen histórico):** el artefacto de esa ejecución,
+`training/results/dl/front/posecnn/runs/legacy_default/report.md`, informa
+**ROC-AUC Test 0.9243 y mejor época 20**, en vez de 0.9254 y 10 como indica
+este resumen. Para citar la ejecución `legacy_default`, usar sus cifras del
+reporte; no combinar métricas/épocas de ambas fuentes como si fueran una misma
+verificación. No se reentrenó ni se modificó el reporte histórico.
+
 ### Deadlift Lateral: Baseline V2
 
 Arquitectura y features sin cambios (`x,y,confidence`, T=170, K=2, C=3).

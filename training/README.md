@@ -225,6 +225,39 @@ la versión exacta utilizada originalmente. YOLO final reprodujo el test V3;
 la CV YOLO se reentrenó con orden de muestras por split, por lo que sus curvas
 no son necesariamente idénticas a la CV V3 congelada.
 
+**Estado de las comparaciones por fuente:** DL left y right sí tienen cuatro
+ejecuciones `source_cmp_v1_<fuente>` (CV y modelo final YOLO/MediaPipe). DL front
+solo tiene el clasificador histórico MediaPipe; DL side solo YOLO. El módulo
+`training/common/compare_keypoint_sources.py` implementa el protocolo para
+BP/SQ front/left/right, pero en `training/results/bp/` y `training/results/sq/`
+no hay resultados `source_cmp_v1` de MediaPipe. La presencia de archivos
+`keypoints/*/mediapipe/` no significa que las PoseCNN de esas seis vistas
+ya se hayan entrenado. Las métricas BP/SQ publicadas corresponden a sus
+ejecuciones YOLO y no constituyen comparaciones pareadas de fuente.
+
+**Trazabilidad del código DL:** los manifiestos y configuraciones
+`source_cmp_v1` registraron SHA-256 `014d31e8…c4232eb` para el script durante
+el entrenamiento. El script publicado tiene SHA-256 `8cadba6a…52442d37`:
+después de entrenar se corrigió únicamente la frase explicativa del generador
+de reportes sobre la cohorte V3. Las salidas numéricas y pesos no se
+recalcularon; el hash almacenado documenta el estado de ejecución y no
+coincide byte a byte con el archivo publicado. Los reportes por vista
+documentan esta diferencia y la corrección textual.
+
+### BP front: alcance de los reportes históricos de CV y Test
+
+`bp/experiments/bp_front_04_cross_validation_5fold_v1/Reporte_BP_FRONT_CrossValidation_5Fold_V1.md`
+dejó la columna «Test histórico (fuente ausente)» como N/D porque ese informe
+no incorporó un reporte autorizado de Test. **No significa que no existan
+resultados finales BP front:** `bp/experiments/bp_front_05_final_test_v1/
+bp_front_final_test_metrics.json` y `bp_front_final_test_integrity.json`
+registran una única evaluación de 100 vídeos sobre la cohorte común:
+PoseCNN Acc/F1/AUC=0.8400/0.8667/0.9260; SegCNN SIN
+0.8700/0.8976/0.9210; fusión tardía Pose+SIN
+0.8400/0.8730/0.9260. `04` es CV sobre desarrollo y `05` evaluación de
+checkpoints finales; no son los mismos modelos por fold ni deben rellenarse
+retroactivamente los N/D del informe congelado.
+
 Notas BP lateral: implementación compartida parametrizada por vista; `bp_left`
 y `bp_right` tienen datos, scaler, particiones, checkpoints y resultados
 propios. La preparación estable vive en

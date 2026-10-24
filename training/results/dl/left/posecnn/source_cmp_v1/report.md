@@ -18,3 +18,15 @@ cv_oof: IC95% bootstrap pareado de Δ (MediaPipe−YOLO): {'accuracy': [-0.03790
 | test | mediapipe | 60 | 0.7667 | 0.7812 | 0.7980 | 0.7778 | 6 | 8 |
 
 test: IC95% bootstrap pareado de Δ (MediaPipe−YOLO): {'accuracy': [-0.16666666666666674, 0.06666666666666665], 'f1': [-0.17708482142857146, 0.06153985507246377], 'roc_auc': [-0.2141211087483016, 0.0070768118662139536], 'specificity': [-0.15384615384615385, 0.1380541871921176]}; McNemar exacto: {'only_yolo_correct': 8, 'only_mediapipe_correct': 5, 'exact_p': 0.5810546875}.
+
+## Nota de trazabilidad posterior a la ejecución
+
+El manifiesto `training/data/dl/left/posecnn/source_cmp_v1/manifest.json` y
+las configuraciones de los modelos guardan el hash SHA-256 del script al
+entrenar (`014d31e8…c4232eb`). El script publicado tiene otro hash
+(`8cadba6a…52442d37`) porque se corrigió después **solo el texto del
+generador de reportes**: antes afirmaba erróneamente que V3 usaba otra
+cohorte. La cohorte del YOLO final es la misma V3 (403 muestras left) y sus
+métricas Test se reprodujeron; la CV de esta comparación reordenó el
+desarrollo y no debe presentarse como réplica exacta de la CV V3 histórica.
+Esta nota no implica nuevo entrenamiento ni recálculo de las métricas.
