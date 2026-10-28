@@ -24,6 +24,10 @@
 !/training/docs/bp/Reporte_*.md
 !/training/bp/experiments/*/Reporte_*.md
 
+# Juez virtual: configuracion y dependencias del paquete judge/.
+!/judge/config.yaml
+!/judge/requirements.txt
+
 # Solo se publican los backups documentados en etiquetado/historico/.
 **/*_pre_manual_audit.csv
 !/etiquetado/historico/dl/*_pre_manual_audit.csv

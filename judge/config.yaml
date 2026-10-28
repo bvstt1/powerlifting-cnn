@@ -1,0 +1,213 @@
+﻿# Configuración del juez virtual de powerlifting.
+#
+# Todas las rutas son relativas a la raíz del repositorio.
+# Cambia `exercise` y los índices de cámara antes de iniciar la evaluación.
+
+exercise: bench            # squat | bench | deadlift
+
+capture:
+  # Una cámara por vista. Los índices son los de cv2.VideoCapture.
+  cameras:
+    front: 0
+    left: 1
+    right: 2
+  width: 1280
+  height: 720
+  fps: 30
+  backend: auto            # auto | dshow | msmf | any
+  max_skew_ms: 40          # diferencia máxima de captura entre vistas de un mismo instante
+  process_fps: 2           # tope de conjuntos de 3 vistas que se procesan por segundo durante un levantamiento
+
+# Teclas del juez (ventana de video). Nombres: space, esc, enter o un carácter.
+controls:
+  start_stop: space        # inicia el levantamiento; al pulsarla de nuevo lo termina y evalúa
+  cancel: c                # descarta el levantamiento en curso
+  quit: q                  # sale del sistema
+
+pipeline:
+  preview_while_idle: false   # procesar keypoints también fuera de un levantamiento (más lento)
+  log_directory: judge/runs   # un registro por intento: decisión, veredictos y keypoints
+
+evaluation:
+  window_frames: 170       # T con el que se entrenaron las PoseCNN
+  threshold: 0.5           # probabilidad >= umbral -> VÁLIDO
+  allow_unverified: false  # si es false, una red marcada verified: false responde 'sin datos suficientes'
+
+fusion:
+  # Veredicto final según cuántas vistas dieron NULO (3 vistas).
+  decisions_by_null_count:
+    0: valid
+    1: manual_review
+    2: invalid
+    3: invalid
+
+# ─── Modelos de keypoints ───────────────────────────────────────────────────
+# Las vistas laterales izquierda y derecha comparten el mismo modelo.
+# `points` conserva el orden con el que se extrajeron los datos de entrenamiento.
+# `confidence_channel` es el tercer canal de cada punto (x, y, canal).
+skeleton_models:
+  bp_front:
+    backend: yolo
+    model: models/bp/bp_front_skeleton_v8.pt
+    points: [codo_izq, hombro_izq, hombro_der, codo_der, muneca_der, muneca_izq]
+    connections: [[0, 1], [1, 2], [2, 3], [3, 4], [0, 5]]
+    confidence_channel: yolo_confidence
+  bp_side:
+    backend: yolo
+    model: models/bp/bp_side_skeleton_v2.pt
+    points: [rodilla, tobillo, cadera, hombro, muneca, codo, talon, punta]
+    connections: [[0, 1], [0, 2], [2, 3], [3, 5], [5, 4], [1, 6], [6, 7], [7, 1]]
+    confidence_channel: yolo_confidence
+  sq_front:
+    backend: yolo
+    model: models/sq/sq_front_skeleton_v5.pt
+    points: [hombro_izq, hombro_der, cadera_der, cadera_izq, rodilla_izq, rodilla_der,
+             tobillo_der, punta_der, talon_der, tobillo_izq, punta_izq, talon_izq,
+             codo_izq, codo_der, muneca_der, muneca_izq]
+    connections: [[0, 1], [2, 3], [0, 3], [1, 2], [0, 12], [12, 15], [1, 13], [13, 14], [3, 4], [4, 9],
+                  [2, 5], [5, 6], [6, 7], [6, 8], [7, 8], [9, 10], [9, 11], [10, 11]]
+    confidence_channel: yolo_confidence
+  sq_side:
+    backend: yolo
+    model: models/sq/sq_side_skeleton_v3.pt
+    points: [rodilla, cadera, tobillo, punta, talon]
+    connections: [[1, 0], [0, 2], [2, 3], [2, 4], [3, 4]]
+    confidence_channel: yolo_confidence
+  dl_side:
+    backend: yolo
+    model: models/dl/dl_side_skeleton_v1.pt
+    # Orden real del modelo (extract_keypoints/dl/extract_keypoints_yolo_dl.py).
+    # Ojo: training/dl/01_preprocessing.py normaliza llamando "hombro" al índice 0 y
+    # "cadera" al 1, es decir, al revés. La red se entrenó así; el módulo de evaluación
+    # debe reproducir ese preprocesamiento tal cual, sin "corregirlo".
+    points: [cadera, hombro]
+    connections: [[1, 0]]
+    confidence_channel: yolo_confidence
+  dl_front:
+    # DL frontal no tiene modelo YOLO de pose: la red se entrenó con MediaPipe.
+    backend: mediapipe
+    model: models/common/pose_landmarker_heavy.task
+    points: [landmarks_11_a_32, centroide_mano_izq, centroide_mano_der, distancia_barra_rodilla]
+    num_points: 25
+    drawable_points: 24     # el punto 24 (distancia barra-rodilla) es una medida, no una posición
+    # Posición = landmark MediaPipe - 11 (se omiten los 11 del rostro); 22 y 23 son centroides de mano.
+    connections: [[0, 1], [0, 2], [2, 4], [1, 3], [3, 5], [0, 12], [1, 13], [12, 13], [12, 14], [14, 16],
+                  [13, 15], [15, 17], [16, 18], [18, 20], [16, 20], [17, 19], [19, 21], [17, 21],
+                  [4, 22], [5, 23]]
+    confidence_channel: mediapipe_visibility
+
+# ─── Segmentación (solo press de banca) ─────────────────────────────────────
+# Cada modelo segmenta tres clases: 0 bar, 1 bench, 2 person. Los parámetros de inferencia son los
+# de extract_segmentation/bp/extract_segmentation_{front,side}_bp.py (retina_masks siempre activo).
+segmentation_models:
+  bp_front:                # modelo exclusivo de la vista frontal
+    model: models/bp/bp_front_seg_v2.pt
+    imgsz: 960
+    conf: 0.25
+    iou: 0.70
+  bp_side:                 # un único modelo lateral, compartido por left y right
+    model: models/bp/bp_side_seg_v1.pt
+    imgsz: 960
+    conf: 0.25
+    iou: 0.70
+
+# ─── Redes de evaluación (PoseCNN) ──────────────────────────────────────────
+# Cada vista tiene su propia red. La salida es VÁLIDO/NULO por levantamiento.
+# `recipe` identifica el preprocesamiento exacto con el que se entrenó; lo aplica el
+# módulo de evaluación reutilizando el código de training/.
+# `provenance` indica de dónde sale el checkpoint.
+evaluators:
+  bp_front:
+    recipe: bp_front
+    arch: BPFrontPoseCNN
+    checkpoint: training/models/bp/front/posecnn/runs/source_cmp_v1_yolo/seed_42/best_model.pth
+    scaler: training/models/bp/front/posecnn/runs/source_cmp_v1_yolo/seed_42/scaler.pkl
+    scaler_type: standard
+    provenance: reentrenado en la comparación source_cmp_v1 (receta bp_front_02_posecnn_common_v1)
+  bp_left:
+    recipe: bp_lateral
+    arch: PoseCNN
+    checkpoint: training/models/bp/left/posecnn/runs/source_cmp_v1_yolo/best_model.pth
+    scaler: training/models/bp/left/posecnn/runs/source_cmp_v1_yolo/scaler.pkl
+    scaler_type: standard
+    provenance: reentrenado en la comparación source_cmp_v1 (receta training.bp.train_posecnn)
+  bp_right:
+    recipe: bp_lateral
+    arch: PoseCNN
+    checkpoint: training/models/bp/right/posecnn/runs/source_cmp_v1_yolo/best_model.pth
+    scaler: training/models/bp/right/posecnn/runs/source_cmp_v1_yolo/scaler.pkl
+    scaler_type: standard
+    provenance: reentrenado en la comparación source_cmp_v1 (receta training.bp.train_posecnn)
+  sq_front:
+    recipe: sq_front_legs
+    arch: PoseCNN
+    subset_indices: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]   # 10 puntos de piernas
+    checkpoint: training/models/sq/front/posecnn/runs/source_cmp_v1_yolo/best_model.pth
+    scaler: training/models/sq/front/posecnn/runs/source_cmp_v1_yolo/scaler.pkl
+    scaler_type: point_xy
+    provenance: reentrenado en la comparación source_cmp_v1 (receta controlled_front variante D)
+  sq_left:
+    recipe: sq_lateral
+    arch: PoseCNN
+    checkpoint: training/models/sq/left/posecnn/runs/source_cmp_v1_yolo/best_model.pth
+    scaler: training/models/sq/left/posecnn/runs/source_cmp_v1_yolo/scaler.pkl
+    scaler_type: standard
+    provenance: reentrenado en la comparación source_cmp_v1 (receta baseline_t170_v2)
+  sq_right:
+    recipe: sq_lateral
+    arch: PoseCNN
+    checkpoint: training/models/sq/right/posecnn/runs/source_cmp_v1_yolo/best_model.pth
+    scaler: training/models/sq/right/posecnn/runs/source_cmp_v1_yolo/scaler.pkl
+    scaler_type: point_xy
+    provenance: reentrenado en la comparación source_cmp_v1 (receta point_xy_v1)
+  dl_front:
+    recipe: dl_front
+    arch: PoseCNN
+    checkpoint: training/models/dl/front/posecnn/runs/legacy_default/best_model.pth
+    scaler: training/data/dl/front/posecnn/split/scaler.pkl
+    scaler_type: standard
+    provenance: corrida histórica legacy_default
+    verified: false
+    verification_note: >-
+      No reproduce sus predicciones guardadas (AUC 0.30 con solo centrado en cadera y 0.66 con el
+      script actual de training/dl, frente a 0.92 de las guardadas). El scaler indica coordenadas
+      centradas en cadera sin escalar, pero ese preprocesamiento tampoco la reproduce. Faltan los
+      datos de entrenamiento originales para determinar qué cambió.
+  dl_left:
+    recipe: dl_side
+    arch: PoseCNN
+    mirror_x: true          # la vista izquierda se espeja en x (training/dl/01_preprocessing.py)
+    checkpoint: training/models/dl/left/posecnn/runs/baseline_v3_manual_audit/best_model.pth
+    scaler: training/data/dl/left/posecnn/split/scaler.pkl
+    scaler_type: standard
+    provenance: corrida histórica baseline_v3_manual_audit (scaler de la partición de datos DL)
+  dl_right:
+    recipe: dl_side
+    arch: PoseCNN
+    checkpoint: training/models/dl/right/posecnn/runs/baseline_v3_manual_audit/best_model.pth
+    scaler: training/data/dl/right/posecnn/split/scaler.pkl
+    scaler_type: standard
+    provenance: corrida histórica baseline_v3_manual_audit (scaler de la partición de datos DL)
+
+# ─── Ejercicios ─────────────────────────────────────────────────────────────
+# Cada vista referencia, por nombre, los modelos de las secciones anteriores.
+exercises:
+  squat:
+    views:
+      front: {skeleton: sq_front, evaluator: sq_front}
+      left:  {skeleton: sq_side,  evaluator: sq_left}
+      right: {skeleton: sq_side,  evaluator: sq_right}
+  bench:
+    views:
+      front: {skeleton: bp_front, segmentation: bp_front, evaluator: bp_front}
+      left:  {skeleton: bp_side,  segmentation: bp_side,  evaluator: bp_left}
+      right: {skeleton: bp_side,  segmentation: bp_side,  evaluator: bp_right}
+  deadlift:
+    views:
+      front: {skeleton: dl_front, evaluator: dl_front}
+      left:  {skeleton: dl_side,  evaluator: dl_left}
+      right: {skeleton: dl_side,  evaluator: dl_right}
+
+
+
+
